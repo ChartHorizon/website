@@ -1,0 +1,18 @@
+title: ChartHorizon
+tagline: The Weekly Tape
+description: >-
+  Weekly futures positioning notes — where season, producer positioning,
+  hedging program and term structure line up. Data: ChartHorizon.
+url: https://chart-horizon.com
+baseurl: ""
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Files that live in the repo but must not be published as-is.
+exclude:
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

@@ -1,0 +1,71 @@
+/* ChartHorizon — The Weekly Tape
+   Light "paper" editorial theme. Single source of truth for the index and every post.
+   Palette + type lifted from the original Weekly Tape post preview. */
+:root{
+  --paper:#fbfaf7; --ink:#1a1814; --gold:#c8a24a; --gold-ink:#9a7b27;
+  --rule:#e8e2d4; --tline:#e0d9c8; --thead:#f3eede;
+  --muted:#6b6356; --quote-bg:#f7f1e2; --quote-ink:#4a443a;
+  --serif:'Iowan Old Style',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  max-width:780px; margin:0 auto; padding:0 22px;
+  background:var(--paper); color:var(--ink);
+  font:17px/1.65 var(--serif);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---- header / footer shell ---- */
+.site-head{display:flex; align-items:center; gap:11px; padding:30px 0 22px; border-bottom:1px solid var(--rule)}
+.site-head .brand{display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; border:none}
+.site-head .mark{flex:none}
+.site-head .word{font-size:20px; letter-spacing:-.3px}
+.site-head .tagline{margin-left:auto; font:13px/1.3 var(--sans); letter-spacing:.04em; color:var(--muted); text-transform:uppercase}
+
+.site-foot{margin-top:52px; padding:24px 0 44px; border-top:1px solid var(--rule); font:13px/1.6 var(--sans); color:var(--muted)}
+.site-foot strong{color:var(--ink)}
+.site-foot .legal-links{margin-top:8px}
+.site-foot a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--tline)}
+.site-foot a:hover{color:var(--ink)}
+
+/* ---- article typography (mirrors the post preview) ---- */
+h1{font-size:34px; margin:.5em 0 .1em; letter-spacing:-.5px; line-height:1.15}
+h2{font-size:23px; margin:1.4em 0 .3em; border-top:1px solid var(--rule); padding-top:1.2em}
+p{margin:.7em 0}
+em{color:var(--muted)}
+strong{color:var(--ink)}
+.dek{color:var(--muted); font-style:italic; margin:.2em 0 1.3em}
+a{color:var(--gold-ink); text-decoration:none; border-bottom:1px solid rgba(200,162,74,.4)}
+a:hover{color:var(--gold)}
+img{max-width:100%; border-radius:10px; margin:14px 0; box-shadow:0 2px 18px rgba(0,0,0,.12)}
+table{border-collapse:collapse; width:100%; font:14px/1.4 var(--sans); margin:10px 0}
+td,th{border:1px solid var(--tline); padding:7px 11px; text-align:left}
+th{background:var(--thead)}
+hr{border:none; border-top:1px solid var(--rule); margin:34px 0}
+blockquote{border-left:3px solid var(--gold); background:var(--quote-bg); padding:12px 18px; margin:18px 0; border-radius:0 6px 6px 0; color:var(--quote-ink)}
+blockquote p{margin:.3em 0}
+.post-disclaimer{font:italic 13px/1.55 var(--sans); color:var(--muted)}
+
+/* ---- index post list ---- */
+.post-list{list-style:none; padding:0; margin:26px 0 0}
+.post-list li{padding:22px 0; border-top:1px solid var(--rule)}
+.post-list li:first-child{border-top:none; padding-top:8px}
+.post-list .post-date{display:block; font:12px/1.3 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.post-list .post-link{display:inline-block; margin:.15em 0 0; font-size:24px; letter-spacing:-.3px; color:var(--ink); border:none}
+.post-list .post-link:hover{color:var(--gold-ink)}
+.post-list .post-excerpt{margin:.3em 0 0; color:var(--muted)}
+
+/* ---- legal pages (Impressum / Datenschutz) ---- */
+.legal{font-size:15px}
+.legal h1{margin:.4em 0 .1em}
+.legal h2{font-size:20px; border-top:none; padding-top:0; margin:1.7em 0 .3em}
+.legal p{color:var(--muted); margin:.3em 0}
+.legal strong{color:var(--ink)}
+.legal .ph{color:var(--gold-ink)}
+.legal .note{margin:18px 0 30px; padding:14px 18px; border:1px solid rgba(200,162,74,.35); border-radius:10px; background:var(--quote-bg); font:13px/1.55 var(--sans); color:var(--muted)}
+.legal .note strong{color:var(--gold-ink)}
+.legal a.link{color:var(--gold-ink); border-bottom:1px solid rgba(200,162,74,.4)}
+.legal a.link:hover{color:var(--gold)}
+.legal .back{display:inline-block; margin-top:36px}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
+<title>{% if page.url == "/" %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.subtitle | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+<!-- Privacy-friendly, cookieless analytics (Cloudflare Web Analytics) — documented in privacy.html §3. -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "ad8ec9c612294bc1becfed6a490aabdd"}'></script>
+</head>
+<body>
+
+<header class="site-head">
+  <a class="brand" href="{{ '/' | relative_url }}">
+    <svg class="mark" width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="translate(0,3)" fill="none" stroke-linecap="round">
+        <line x1="14" y1="64" x2="86" y2="64" stroke="#1a1814" stroke-width="2.6"/>
+        <g stroke="#c8a24a" stroke-width="5.2">
+          <path d="M33 64 a17 17 0 0 1 34 0"/>
+          <line x1="50" y1="19" x2="50" y2="28"/>
+          <line x1="26.4" y1="35.6" x2="32" y2="41.3"/>
+          <line x1="73.6" y1="35.6" x2="68" y2="41.3"/>
+        </g>
+      </g>
+    </svg>
+    <span class="word">ChartHorizon</span>
+  </a>
+  <span class="tagline">{{ site.tagline }}</span>
+</header>
+
+<main>
+  {{ content }}
+</main>
+
+<footer class="site-foot">
+  <p><strong>Not financial advice · educational only.</strong> Futures trading involves substantial
+     risk of loss; seasonal and positioning signals do not guarantee future results. Market data is
+     provided “as is” for personal, informational use.</p>
+  <p class="legal-links">© {{ 'now' | date: "%Y" }} ChartHorizon · AGPL-3.0 ·
+     <a href="{{ '/impressum.html' | relative_url }}">Impressum</a> ·
+     <a href="{{ '/privacy.html' | relative_url }}">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>
