@@ -7,7 +7,12 @@ url: https://chart-horizon.com
 baseurl: ""
 
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+
+# Pretty, date-based URLs for posts only. A top-level `permalink:` would also rewrite
+# pages (index, impressum, privacy) and break their .html paths — so scope it to posts.
+defaults:
+  - scope: { path: "", type: posts }
+    values: { permalink: /:year/:month/:day/:title/ }
 
 # Files that live in the repo but must not be published as-is.
 exclude:
