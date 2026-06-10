@@ -77,7 +77,7 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
       <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
       {% if fx.bullish_pairs and fx.bullish_pairs.size > 0 %}
       <div class="fx-pairlist">
-        {% for p in fx.bullish_pairs %}<button type="button" class="fx-pair fx-pair--bull" data-symbol="{{ p.pair | remove: '/' | prepend: 'FX_IDC:' }}" data-pair="{{ p.pair }}" data-dir="bull"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
+        {% for p in fx.bullish_pairs %}<button type="button" class="fx-pair fx-pair--bull" data-symbol="{{ p.pair | remove: '/' | prepend: 'FOREXCOM:' }}" data-pair="{{ p.pair }}" data-dir="bull"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
       </div>
       {% else %}<p class="fx-empty">No bullish divergence today.</p>{% endif %}
     </div>
@@ -86,7 +86,7 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
       <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
       {% if fx.bearish_pairs and fx.bearish_pairs.size > 0 %}
       <div class="fx-pairlist">
-        {% for p in fx.bearish_pairs %}<button type="button" class="fx-pair fx-pair--bear" data-symbol="{{ p.pair | remove: '/' | prepend: 'FX_IDC:' }}" data-pair="{{ p.pair }}" data-dir="bear"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
+        {% for p in fx.bearish_pairs %}<button type="button" class="fx-pair fx-pair--bear" data-symbol="{{ p.pair | remove: '/' | prepend: 'FOREXCOM:' }}" data-pair="{{ p.pair }}" data-dir="bear"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
       </div>
       {% else %}<p class="fx-empty">No bearish divergence today.</p>{% endif %}
     </div>
