@@ -58,7 +58,8 @@
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }} — {{ site.tagline }}" href="{{ '/feed.xml' | relative_url }}">
 <link rel="preload" href="{{ '/assets/fonts/newsreader.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+<!-- ?v= cache-busts the stylesheet on every build so returning visitors get CSS changes (e.g. the FX chart modal), not a stale cached copy. -->
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <!-- Privacy-friendly, cookieless analytics (Cloudflare Web Analytics) — documented in privacy.html §3. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "ad8ec9c612294bc1becfed6a490aabdd"}'></script>
