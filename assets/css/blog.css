@@ -48,36 +48,34 @@ blockquote{border-left:3px solid var(--gold); background:var(--quote-bg); paddin
 blockquote p{margin:.3em 0}
 .post-disclaimer{font:italic 13px/1.55 var(--sans); color:var(--muted)}
 
-/* ---- header / footer shell ---- */
-.site-head{display:flex; align-items:center; gap:11px; padding:30px 0 22px; border-bottom:1px solid var(--rule)}
-.site-head .brand{display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; border:none}
+/* ---- broadsheet masthead ---- */
+.site-head{padding:34px 0 0; text-align:center}
+.site-head .brand{display:inline-flex; align-items:center; gap:11px; text-decoration:none; color:inherit; border:none}
 .site-head .mark{flex:none}
-.site-head .word{font-size:20px; letter-spacing:-.3px}
-.site-head .tagline{margin-left:auto; font:13px/1.3 var(--sans); letter-spacing:.04em; color:var(--muted); text-transform:uppercase}
-.site-head .support{display:inline-flex; align-items:center; gap:6px; margin-left:14px; flex:none;
-  font:600 12.5px/1 var(--sans); letter-spacing:.02em; color:var(--gold-ink);
-  background:var(--quote-bg); border:1px solid rgba(200,162,74,.45); border-radius:999px;
-  padding:7px 13px; text-decoration:none; transition:background .15s,color .15s,border-color .15s}
-.site-head .support svg{width:14px; height:14px; fill:currentColor; flex:none}
-.site-head .support:hover{background:var(--gold); color:#fff; border-color:var(--gold)}
-.site-nav{display:flex; gap:15px; margin-left:18px}
-.site-nav a{font:12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); text-decoration:none; border:none; padding:2px 0; white-space:nowrap}
-.site-nav a:hover{color:var(--ink)}
-.site-nav a.active{color:var(--ink); font-weight:600}
+.site-head .word{font:600 28px/1 var(--serif); letter-spacing:.08em; text-transform:uppercase}
+.masthead-sub{font:11px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--muted-2); margin-top:10px}
+.masthead-rule{border-top:3px double var(--rule-strong); margin-top:14px}
+.dateline{display:flex; align-items:center; flex-wrap:wrap; gap:8px 16px; padding:9px 0; border-bottom:1px solid var(--rule);
+  font:11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase}
+.dateline .site-nav{display:flex; gap:16px}
+.dateline .site-nav a{color:var(--muted); text-decoration:none; border:none}
+.dateline .site-nav a:hover{color:var(--ink)}
+.dateline .site-nav a.active{color:var(--ink); font-weight:600}
+.dateline .edition{margin-left:auto; color:var(--muted-2)}
+.dateline .support{display:inline-flex; align-items:center; gap:6px; color:var(--gold-ink); text-decoration:none; border:none; letter-spacing:.06em}
+.dateline .support svg{width:13px; height:13px; fill:currentColor; flex:none}
+.dateline .support:hover{color:var(--gold)}
 @media (max-width:560px){
-  .site-head .tagline{display:none}
-  .site-nav{margin-left:16px; gap:13px}
-  .site-head .support{margin-left:auto}
-}
-@media (max-width:430px){
-  .site-head .word{display:none}
-  .site-nav{margin-left:12px; gap:12px}
+  .site-head .word{font-size:24px}
+  .masthead-sub{letter-spacing:.18em}
+  .dateline{justify-content:center; gap:8px 14px}
+  .dateline .edition{margin-left:0}
 }
 
-.site-foot{margin-top:52px; padding:24px 0 44px; border-top:1px solid var(--rule); font:13px/1.6 var(--sans); color:var(--muted)}
+.site-foot{margin-top:54px; padding:22px 0 46px; border-top:1px solid var(--rule); font:13px/1.62 var(--sans); color:var(--muted)}
 .site-foot strong{color:var(--ink)}
 .site-foot .legal-links{margin-top:8px}
-.site-foot a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--tline)}
+.site-foot a{color:var(--muted); text-decoration:none; border-bottom:1px solid var(--rule)}
 .site-foot a:hover{color:var(--ink)}
 
 /* ---- index post list ---- */
