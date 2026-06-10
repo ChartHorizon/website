@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chart-horizon.com/sitemap.xml

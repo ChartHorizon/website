@@ -4,6 +4,11 @@ title: "The Weekly Tape — June 9, 2026"
 date: 2026-06-09
 subtitle: "Prices through June 8 · COT report June 2 · Data: ChartHorizon"
 cards: /assets/posts/2026-06-09-weekly-tape/cards
+image: /assets/posts/2026-06-09-weekly-tape/cards/macro-shift.png
+image_alt: "Corn, soybeans and Chicago wheat — the grain divergence that resolved to the downside."
+# SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
+seo_title: "Grain Futures Weekly: Corn, Soybeans & Wheat Turn Bearish — Jun 9, 2026"
+description: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT positioning, hedging and term structure align — weekly grain futures notes, June 9, 2026."
 ---
 The grain complex went over to one side of the boat this week. Corn, soybeans, and Chicago
 wheat — the three sisters the country watches as one — each show the full hand: the season, the

@@ -4,14 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
-<title>{% if page.url == "/" %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
-<meta name="description" content="{{ page.subtitle | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+{%- if site.google_site_verification %}
+<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
+{%- if site.bing_site_verification %}
+<meta name="msvalidate.01" content="{{ site.bing_site_verification }}">{% endif %}
+
+{%- comment -%}
+  One canonical title/description/image, reused across <title>, Open Graph and Twitter so the
+  three never drift.
+    · Title  — home: "Site — Tagline"; a post may set `seo_title` (keyword-rich, for search,
+               independent of the on-page <h1>); else "Post · Site".
+    · Desc   — `description` front matter (search-tuned) wins over `subtitle` (the on-page dek).
+{%- endcomment -%}
+{%- if page.url == "/" -%}
+  {%- assign meta_title = site.title | append: " — " | append: site.tagline -%}
+{%- elsif page.seo_title -%}
+  {%- assign meta_title = page.seo_title -%}
+{%- else -%}
+  {%- assign meta_title = page.title | append: " · " | append: site.title -%}
+{%- endif -%}
+{%- assign meta_desc = page.description | default: page.subtitle | default: site.description | strip_html | normalize_whitespace | truncate: 160 -%}
+{%- assign meta_image = page.image | default: site.og_image -%}
+{%- assign meta_image_alt = page.image_alt | default: meta_desc -%}
+{%- assign og_locale = 'en_US' -%}{%- if page.lang == 'de' -%}{%- assign og_locale = 'de_DE' -%}{%- endif -%}
+
+<title>{{ meta_title }}</title>
+<meta name="description" content="{{ meta_desc }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
 <meta name="theme-color" content="#fbfaf7">
+
+<!-- Open Graph / Twitter — controls how shared links preview on social & messaging apps. -->
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ meta_title }}">
+<meta property="og:description" content="{{ meta_desc }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:locale" content="{{ og_locale }}">
+{%- if page.layout == 'post' %}
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- endif %}
+{%- if meta_image %}
+<meta property="og:image" content="{{ meta_image | absolute_url }}">
+<meta property="og:image:alt" content="{{ meta_image_alt }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ meta_image | absolute_url }}">
+<meta name="twitter:image:alt" content="{{ meta_image_alt }}">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+<meta name="twitter:title" content="{{ meta_title }}">
+<meta name="twitter:description" content="{{ meta_desc }}">
+
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} — {{ site.tagline }}" href="{{ '/feed.xml' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
 <!-- Privacy-friendly, cookieless analytics (Cloudflare Web Analytics) — documented in privacy.html §3. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "ad8ec9c612294bc1becfed6a490aabdd"}'></script>
+
+{%- comment -%} Structured data (JSON-LD) — inline metadata only, no network/tracking; lets search engines model the article and the brand. {%- endcomment -%}
+{%- if page.layout == 'post' %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | jsonify }},"description":{{ meta_desc | jsonify }},"datePublished":"{{ page.date | date_to_xmlschema }}","dateModified":"{{ page.date | date_to_xmlschema }}","url":{{ page.url | absolute_url | jsonify }},"mainEntityOfPage":{{ page.url | absolute_url | jsonify }}{% if meta_image %},"image":{{ meta_image | absolute_url | jsonify }}{% endif %},"author":{"@type":"Organization","name":{{ site.title | jsonify }}},"publisher":{"@type":"Organization","name":{{ site.title | jsonify }}}}
+</script>
+{%- else %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"alternateName":{{ site.tagline | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | strip_html | normalize_whitespace | jsonify }}}
+</script>
+{%- endif %}
 </head>
 <body>
 

@@ -24,6 +24,10 @@ support/social only.
    optional `subtitle` (shown as the dek and as the index excerpt), and `cards` (the
    image base path). The post body is **only** the article — the `post` layout supplies
    the `<h1>`, the dek, and the trailing educational/risk disclaimer automatically.
+   Optional **SEO-only** front matter (never shown on-page, just feeds `<head>` meta — see
+   "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta
+   description, overrides `subtitle`), `image` (social-share image, abs path under `/assets/...`),
+   `image_alt`. Without `image`, the site default `og_image` (`_config.yml`) is used.
 2. Put images under `assets/posts/<slug>/...` and reference them with the `cards` var,
    e.g. `![alt]({{ page.cards }}/wti_crude.png)`.
 3. Commit + push to `main` → CI builds and deploys. The post appears on the homepage list
@@ -48,6 +52,24 @@ support/social only.
   contact info.
 - **Analytics ↔ privacy coupling:** the beacon in `default.html` is documented in
   `privacy.html` §3 — keep them in sync if you add/remove third-party scripts.
+
+## SEO
+
+All hand-rolled in `default.html`'s `<head>` (no `jekyll-seo-tag` — its title logic fights the
+`seo_title`/`subtitle` scheme), plus two `github-pages` plugins. Nothing here loads third-party
+scripts, so the analytics↔privacy coupling is untouched.
+
+- **Meta**: `<title>`, `description`, `canonical`, Open Graph + Twitter Card, and JSON-LD
+  (`BlogPosting` on posts, `WebSite` on the home page) — all derived from one set of `meta_*`
+  Liquid vars so they never drift. JSON-LD is inline metadata, not a script that runs.
+- **Per-post knobs**: `seo_title`, `description`, `image`, `image_alt` (see "Publishing a post").
+  Site-wide default share image: `og_image` in `_config.yml` → `assets/og-default.png`.
+- **Plugins** (`_config.yml`, bundled with `github-pages`): `jekyll-sitemap` → `/sitemap.xml`,
+  `jekyll-feed` → `/feed.xml`. `robots.txt` points crawlers at the sitemap. Pages with
+  `sitemap: false` + `noindex: true` (impressum, privacy) stay out of both index and sitemap.
+- **Search Console**: paste tokens into `google_site_verification` / `bing_site_verification`
+  in `_config.yml`, then submit the sitemap in each provider's console. This is the step that
+  actually gets the site crawled and indexed — the meta tags above only shape *how* it appears.
 
 ## Developing locally
 
