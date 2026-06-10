@@ -114,7 +114,7 @@ blockquote p{margin:.3em 0}
 .fxmap-meta{font:11.5px/1.4 var(--sans); letter-spacing:.05em; text-transform:uppercase; color:var(--muted)}
 .fx-board,.fx-pairs{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 .fx-pairs{margin-top:14px}
-.fx-col,.fx-pairshelf{border:1px solid var(--tline); border-radius:10px; padding:14px 16px; background:#fffdf8}
+.fx-col,.fx-pairshelf{border:1px solid var(--tline); border-radius:10px; padding:14px 16px; background:var(--card)}
 .fx-col--bull{border-color:rgba(63,125,82,.4)}
 .fx-col--bear{border-color:rgba(176,86,63,.4)}
 .fx-col-head{display:flex; align-items:center; gap:8px; font:700 11.5px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase; margin-bottom:12px}
