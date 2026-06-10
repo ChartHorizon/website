@@ -42,8 +42,9 @@ support/social only.
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
   disclaimer. **`index.html`** — `default` + the `site.posts` list.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
-  FX currency-strength scoreboard natively in the paper theme from **`_data/fx.json`**, then
-  embeds two **TradingView** widgets (ticker tape + forex cross-rate matrix). See "The FX Map
+  FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
+  natively in the paper theme from **`_data/fx.json`**, interleaved with four **TradingView**
+  widgets (ticker tape, forex heat map, cross-rate matrix, economic calendar). See "The FX Map
   page" below.
 - **`assets/css/blog.css`** is the single source of truth for the look — a light "paper"
   editorial theme (palette + serif type lifted from the original post preview): tokens in
@@ -62,15 +63,19 @@ support/social only.
 
 ## The FX Map page (`/fx/`)
 
-A second content surface besides the post list: ChartHorizon's **FX Strength Map** — the
-dashboard's "FX Strength & Pairs" scoreboard (which of the eight majors lean bullish/bearish,
-the high-conviction pairs) rendered natively in the paper theme, plus live **TradingView**
-widgets (ticker tape + forex cross-rate matrix, light theme).
+A second content surface besides the post list. It's a **hybrid**: ChartHorizon's own
+"FX Strength & Pairs" scoreboard (bias columns, neutral row, top-6 bullish/bearish pairs,
+filter-logic note, interest-rate table) rendered natively in the paper theme from a daily
+snapshot, **interleaved** with four light-theme **TradingView** widgets (ticker tape, forex
+heat map, cross-rate matrix, economic calendar) that carry their own licensed live data — the
+strength read with its live market confirmation next to it.
 
-- **Data**: `_data/fx.json` (`site.data.fx`) — `as_of`, `bullish`/`bearish` (currency + score),
-  `bullish_pairs`/`bearish_pairs`, and the score/threshold scale. `fx.html` iterates it at build
-  time; **the page is a static daily snapshot, not live** (a public static site can't query the
-  local dashboard).
+- **Data**: `_data/fx.json` (`site.data.fx`) — `as_of`, `bullish`/`bearish`/`neutral` (currency +
+  score + display `label`), `bullish_pairs`/`bearish_pairs` (top 6 each, with a `Bull/Bear ±x/12`
+  label), `rate_table` (policy rate, central bank, instrument, rate-bias + tone, as-of), and the
+  score scale. `fx.html` iterates it at build time; **the snapshot half is static daily, not
+  live** (a public static site can't query the local dashboard) — the live half is the TradingView
+  widgets.
 - **Refresh (cross-repo — runs on the dashboard machine, NOT in this repo):** the private
   dashboard's daily job (`AUTO_UPDATE_CHARTHORIZON.command`, launchd ~23:30) calls
   `content_bot/fx_blog_push.command` → `content_bot/fx_blog_export.py`, which renders the real
