@@ -79,11 +79,12 @@ blockquote p{margin:.3em 0}
 .site-foot a:hover{color:var(--ink)}
 
 /* ---- index post list ---- */
+.index-title{margin-top:.7em}
 .post-list{list-style:none; padding:0; margin:26px 0 0}
-.post-list li{padding:22px 0; border-top:1px solid var(--rule)}
-.post-list li:first-child{border-top:none; padding-top:8px}
-.post-list .post-date{display:block; font:12px/1.3 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
-.post-list .post-link{display:inline-block; margin:.15em 0 0; font-size:24px; letter-spacing:-.3px; color:var(--ink); border:none}
+.post-list li{padding:20px 0; border-top:1px solid var(--rule)}
+.post-list li:first-child{border-top:2px solid var(--rule-strong)}
+.post-list .post-date{display:block; font:11px/1.3 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--gold-ink)}
+.post-list .post-link{display:inline-block; margin:.16em 0 0; font:600 25px/1.18 var(--serif); letter-spacing:-.2px; color:var(--ink); border:none}
 .post-list .post-link:hover{color:var(--gold-ink)}
 .post-list .post-excerpt{margin:.3em 0 0; color:var(--muted)}
 
