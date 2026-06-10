@@ -8,3 +8,6 @@ _site/
 
 # Brainstorming visual companion
 .superpowers/
+
+# Local redesign preview harness (static mirror of the layouts for screenshotting)
+.preview/
