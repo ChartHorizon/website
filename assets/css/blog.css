@@ -88,6 +88,12 @@ blockquote p{margin:.3em 0}
 .post-list .post-link:hover{color:var(--gold-ink)}
 .post-list .post-excerpt{margin:.3em 0 0; color:var(--muted)}
 
+/* ---- post body: broadsheet drop cap on the first paragraph ---- */
+.post-body>p:first-of-type::first-letter{
+  float:left; font:600 64px/48px var(--serif); color:var(--gold-ink);
+  padding:4px 9px 0 0;
+}
+
 /* ---- legal pages (Impressum / Datenschutz) ---- */
 .legal{font-size:15px}
 .legal h1{margin:.4em 0 .1em}
