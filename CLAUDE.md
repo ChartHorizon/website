@@ -43,9 +43,8 @@ support/social only.
   disclaimer. **`index.html`** — `default` + the `site.posts` list.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
-  natively in the paper theme from **`_data/fx.json`**, interleaved with four **TradingView**
-  widgets (ticker tape, forex heat map, cross-rate matrix, economic calendar). See "The FX Map
-  page" below.
+  natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
+  widgets (ticker tape, economic calendar). See "The FX Map page" below.
 - **`assets/css/blog.css`** is the single source of truth for the look — a light "paper"
   editorial theme (palette + serif type lifted from the original post preview): tokens in
   `:root` (`--paper #fbfaf7`, `--ink #1a1814`, gold `--gold #c8a24a`, hairlines, table tans,
@@ -66,9 +65,9 @@ support/social only.
 A second content surface besides the post list. It's a **hybrid**: ChartHorizon's own
 "FX Strength & Pairs" scoreboard (bias columns, neutral row, top-6 bullish/bearish pairs,
 filter-logic note, interest-rate table) rendered natively in the paper theme from a daily
-snapshot, **interleaved** with four light-theme **TradingView** widgets (ticker tape, forex
-heat map, cross-rate matrix, economic calendar) that carry their own licensed live data — the
-strength read with its live market confirmation next to it.
+snapshot, **interleaved** with two light-theme **TradingView** widgets (ticker tape, economic
+calendar) that carry their own licensed live data — the strength read with a live FX price band
+and the rate-decision calendar next to it.
 
 - **Data**: `_data/fx.json` (`site.data.fx`) — `as_of`, `bullish`/`bearish`/`neutral` (currency +
   score + display `label`), `bullish_pairs`/`bearish_pairs` (top 6 each, with a `Bull/Bear ±x/12`

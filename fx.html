@@ -38,7 +38,7 @@ description: "ChartHorizon's daily FX strength map — which of the eight majors
 <h1>FX Strength Map</h1>
 <p class="dek">Where the eight majors stand today — ChartHorizon's currency-strength read
    (season, producer positioning, hedging program, term structure and the interest-rate bias),
-   refreshed once a day, read alongside TradingView's live heat map, cross rates and calendar.</p>
+   refreshed once a day, with live FX prices and the economic calendar from TradingView.</p>
 
 <section class="fxmap">
   <div class="fx-section-head">
@@ -102,47 +102,6 @@ description: "ChartHorizon's daily FX strength map — which of the eight majors
        scaled across the FX basket. Pairs shown are the strongest divergences, ranked by score spread.</p>
   </div>
 </section>
-
-<h2>Live currency heat map</h2>
-<p>TradingView's live read on which currency is strong or weak right now — the market's own
-   version of the board above.</p>
-<!-- TradingView Forex Heat Map — third-party embed, documented in privacy.html §6. -->
-<div class="tv-widget">
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
-    {
-    "width": "100%",
-    "height": 400,
-    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"],
-    "isTransparent": true,
-    "colorTheme": "light",
-    "locale": "en"
-    }
-    </script>
-  </div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Market data by TradingView</a></div>
-</div>
-
-<h2>Live cross rates</h2>
-<p>The market's quote on every major cross right now.</p>
-<!-- TradingView Forex Cross Rates — third-party embed, documented in privacy.html §6. -->
-<div class="tv-widget">
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
-    {
-    "width": "100%",
-    "height": 420,
-    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"],
-    "isTransparent": true,
-    "colorTheme": "light",
-    "locale": "en"
-    }
-    </script>
-  </div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Market data by TradingView</a></div>
-</div>
 
 <h2>Interest rates</h2>
 <p>The policy-rate backdrop behind the strength scores — the rate-bias column is how each central
