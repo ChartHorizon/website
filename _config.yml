@@ -24,7 +24,7 @@ plugins:
 # then submit https://chart-horizon.com/sitemap.xml inside their console.
 #   Google Search Console → https://search.google.com/search-console
 #   Bing Webmaster Tools  → https://www.bing.com/webmasters
-google_site_verification: ""
+google_site_verification: "2CJ61hpNB-e-4qrgSS79xAPnwaOq4N-iFPaDpQmga5s"
 bing_site_verification: ""
 
 # Pretty, date-based URLs for posts only. A top-level `permalink:` would also rewrite
