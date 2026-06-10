@@ -196,7 +196,23 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
       withdateranges: true,
       calendar: false,
       backgroundColor: 'rgba(251,251,249,1)',
-      gridColor: 'rgba(221,217,208,0.5)'
+      gridColor: 'rgba(221,217,208,0.5)',
+      // Match the broadsheet palette (see blog.css :root): paper card bg,
+      // bull-green / bear-red candles, hairline grid, muted scale ink.
+      overrides: {
+        'paneProperties.background': '#fbfbf9',
+        'paneProperties.backgroundType': 'solid',
+        'paneProperties.vertGridProperties.color': 'rgba(221,217,208,0.45)',
+        'paneProperties.horzGridProperties.color': 'rgba(221,217,208,0.45)',
+        'scalesProperties.textColor': '#6b6356',
+        'scalesProperties.lineColor': '#ddd9d0',
+        'mainSeriesProperties.candleStyle.upColor': '#3f7d52',
+        'mainSeriesProperties.candleStyle.downColor': '#a8503f',
+        'mainSeriesProperties.candleStyle.borderUpColor': '#3f7d52',
+        'mainSeriesProperties.candleStyle.borderDownColor': '#a8503f',
+        'mainSeriesProperties.candleStyle.wickUpColor': '#3f7d52',
+        'mainSeriesProperties.candleStyle.wickDownColor': '#a8503f'
+      }
     });
     container.appendChild(s);
     body.appendChild(container);
