@@ -27,6 +27,8 @@ The report dated June 2, 2026 shows four markets registering fresh positioning e
 
 Commercial Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +13,812 contracts (as of 2026-06-02). New this week.
 
+One caveat worth flagging: the positioning here reads bullish, but the spread indicator is pointing firmly the other way — the term structure is rolling over to the downside even as the commercials sit at a record long. When the hedgers say one thing and the structure says another, the disagreement is itself the signal: it hints that the advance may be hollow, that the up-move is being held up by something other than genuine demand for forward supply. A record-long commercial book on its own looks like conviction; set against a structure that is sliding, it looks more like a move that has not yet proven it is real.
+
 ---
 
 ## Copper — commercials at a 3-year LOW (fresh record)
