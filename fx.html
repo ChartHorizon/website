@@ -74,19 +74,19 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   <div class="fx-pairs">
     <div class="fx-pairshelf">
       <div class="fx-pairshelf-head fx-pairshelf-head--bull">Bullish pairs · buy</div>
-      <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation</div>
+      <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
       {% if fx.bullish_pairs and fx.bullish_pairs.size > 0 %}
       <div class="fx-pairlist">
-        {% for p in fx.bullish_pairs %}<div class="fx-pair fx-pair--bull"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></div>{% endfor %}
+        {% for p in fx.bullish_pairs %}<button type="button" class="fx-pair fx-pair--bull" data-symbol="{{ p.pair | remove: '/' | prepend: 'FX_IDC:' }}" data-pair="{{ p.pair }}" data-dir="bull"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
       </div>
       {% else %}<p class="fx-empty">No bullish divergence today.</p>{% endif %}
     </div>
     <div class="fx-pairshelf">
       <div class="fx-pairshelf-head fx-pairshelf-head--bear">Bearish pairs · short</div>
-      <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation</div>
+      <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
       {% if fx.bearish_pairs and fx.bearish_pairs.size > 0 %}
       <div class="fx-pairlist">
-        {% for p in fx.bearish_pairs %}<div class="fx-pair fx-pair--bear"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></div>{% endfor %}
+        {% for p in fx.bearish_pairs %}<button type="button" class="fx-pair fx-pair--bear" data-symbol="{{ p.pair | remove: '/' | prepend: 'FX_IDC:' }}" data-pair="{{ p.pair }}" data-dir="bear"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
       </div>
       {% else %}<p class="fx-empty">No bearish divergence today.</p>{% endif %}
     </div>
@@ -148,3 +148,88 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
     </table>
   </div>
 </section>
+
+<!-- Per-pair chart overlay — opened on click from the pairs grid above.
+     Loads a TradingView Advanced Chart widget (third-party, documented in privacy.html §6). -->
+<div class="fx-modal" id="fxChart" hidden role="dialog" aria-modal="true" aria-labelledby="fxChartTitle">
+  <div class="fx-modal-backdrop" data-close></div>
+  <div class="fx-modal-panel">
+    <div class="fx-modal-head">
+      <span class="fx-modal-title" id="fxChartTitle">FX pair</span>
+      <button type="button" class="fx-modal-x" data-close aria-label="Close chart">&#10005;</button>
+    </div>
+    <div class="fx-modal-body" id="fxChartBody"></div>
+    <div class="fx-modal-foot"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Chart by TradingView</a></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal = document.getElementById('fxChart');
+  if (!modal) return;
+  var body = document.getElementById('fxChartBody');
+  var titleEl = document.getElementById('fxChartTitle');
+  var lastFocus = null;
+
+  function buildWidget(symbol) {
+    body.innerHTML = '';
+    var container = document.createElement('div');
+    container.className = 'tradingview-widget-container';
+    var widget = document.createElement('div');
+    widget.className = 'tradingview-widget-container__widget';
+    container.appendChild(widget);
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    s.textContent = JSON.stringify({
+      autosize: true,
+      symbol: symbol,
+      interval: 'D',
+      timezone: 'Etc/UTC',
+      theme: 'light',
+      style: '1',
+      locale: 'en',
+      hide_side_toolbar: true,
+      allow_symbol_change: false,
+      withdateranges: true,
+      calendar: false,
+      backgroundColor: 'rgba(251,251,249,1)',
+      gridColor: 'rgba(221,217,208,0.5)'
+    });
+    container.appendChild(s);
+    body.appendChild(container);
+  }
+
+  function open(symbol, label, dir) {
+    lastFocus = document.activeElement;
+    titleEl.textContent = label || 'FX pair';
+    modal.setAttribute('data-dir', dir || '');
+    buildWidget(symbol);
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var x = modal.querySelector('.fx-modal-x');
+    if (x) x.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    body.innerHTML = '';
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.fx-pair[data-symbol]'), function (el) {
+    el.addEventListener('click', function () {
+      open(el.getAttribute('data-symbol'), el.getAttribute('data-pair'), el.getAttribute('data-dir'));
+    });
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-close')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+})();
+</script>
