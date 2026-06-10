@@ -157,7 +157,7 @@ blockquote p{margin:.3em 0}
 /* ---- embedded market widgets (TradingView, /fx/ only — see privacy.html §6) ---- */
 .tv-widget{margin:14px 0 8px}
 .tv-ticker{margin:6px 0 4px}
-.tv-widget .tradingview-widget-container{border:1px solid var(--tline); border-radius:10px; overflow:hidden; background:#fff}
+.tv-widget .tradingview-widget-container{border:1px solid var(--tline); border-radius:10px; overflow:hidden; background:var(--card)}
 .tradingview-widget-copyright{font:11px/1.4 var(--sans); color:var(--muted); padding:7px 11px; text-align:right}
 .tradingview-widget-copyright a{color:var(--muted); border:none}
 .tradingview-widget-copyright a:hover{color:var(--ink)}
