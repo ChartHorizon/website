@@ -35,21 +35,25 @@ support/social only.
 
 ## Architecture
 
-- **`_layouts/default.html`** — the page shell for every page: `<head>` (system-serif type,
-  favicon, cookieless Cloudflare Web Analytics beacon), the brand header (inline horizon SVG
-  mark + wordmark + a two-item nav — **The Tape** (home) / **FX Map** (`/fx/`) — + tagline),
-  and the footer (risk disclaimer + Impressum/Datenschutz links).
+- **`_layouts/default.html`** — the page shell for every page: `<head>` (self-hosted Newsreader
+  `@font-face`/preload, favicon, cookieless Cloudflare Web Analytics beacon), the centred
+  **broadsheet masthead** (inline horizon SVG mark + `CHARTHORIZON` wordmark + a
+  `The Weekly Tape · Futures Desk` sub-line, closed by a 3px double rule, then a dateline row —
+  nav **The Tape** (home) / **FX Map** (`/fx/`) + edition date + Support pill), and the footer
+  (risk disclaimer + Impressum/Datenschutz links).
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
   disclaimer. **`index.html`** — `default` + the `site.posts` list.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
   natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
   widgets (ticker tape, economic calendar). See "The FX Map page" below.
-- **`assets/css/blog.css`** is the single source of truth for the look — a light "paper"
-  editorial theme (palette + serif type lifted from the original post preview): tokens in
-  `:root` (`--paper #fbfaf7`, `--ink #1a1814`, gold `--gold #c8a24a`, hairlines, table tans,
-  muted, quote bg). Both layouts and the index pull from it, so the index and every post
-  match. No web fonts (system `Iowan Old Style` → `Georgia` fallback).
+- **`assets/css/blog.css`** is the single source of truth for the look — a cool-newsprint
+  financial-broadsheet theme: tokens in `:root` (`--paper #f5f4f1`, `--ink #17150f`, gold
+  `--gold #c8a24a`, `--rule-strong` for the masthead double rule, `--card`, `--bull`/`--bear`,
+  hairlines, muted, quote bg). Both layouts and the index pull from it, so the index and every
+  page match. Type is **Newsreader**, self-hosted under `assets/fonts/` and declared via
+  `@font-face` at the top of `blog.css` (preloaded in `default.html`), so the site still makes
+  **zero third-party requests** on content pages — Georgia is the fallback.
 - **`impressum.html` / `privacy.html`** are Jekyll pages on the shared `default` layout
   (front matter `lang: de`, `noindex: true`; `.legal` styles live in `blog.css`, so they
   match the light theme). The layout reads per-page `lang` and `noindex`. Their content is
@@ -58,7 +62,9 @@ support/social only.
 - **Analytics ↔ privacy coupling:** two third-party scripts must stay disclosed in
   `privacy.html` — the cookieless Cloudflare beacon in `default.html` (loads on **every** page)
   in §3, and the **TradingView** widgets on `/fx/` (that **one** page only) in §6. Keep them in
-  sync if you add/remove third-party scripts.
+  sync if you add/remove third-party scripts. (The Newsreader web font is **self-hosted** under
+  `assets/fonts/`, not loaded from a CDN — so it adds no third-party request and needs no
+  disclosure. Keep it that way.)
 
 ## The FX Map page (`/fx/`)
 
