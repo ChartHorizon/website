@@ -67,7 +67,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | jsonify }},"description":{{ meta_desc | jsonify }},"datePublished":"{{ page.date | date_to_xmlschema }}","dateModified":"{{ page.date | date_to_xmlschema }}","url":{{ page.url | absolute_url | jsonify }},"mainEntityOfPage":{{ page.url | absolute_url | jsonify }}{% if meta_image %},"image":{{ meta_image | absolute_url | jsonify }}{% endif %},"author":{"@type":"Organization","name":{{ site.title | jsonify }}},"publisher":{"@type":"Organization","name":{{ site.title | jsonify }}}}
 </script>
-{%- else %}
+{%- elsif page.url == '/' %}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"alternateName":{{ site.tagline | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | strip_html | normalize_whitespace | jsonify }}}
 </script>
@@ -90,6 +90,10 @@
     </svg>
     <span class="word">ChartHorizon</span>
   </a>
+  <nav class="site-nav">
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active"{% endif %}>The Tape</a>
+    <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active"{% endif %}>FX Map</a>
+  </nav>
   <span class="tagline">{{ site.tagline }}</span>
   <a class="support" href="https://buymeacoffee.com/charthorizon" target="_blank" rel="noopener" aria-label="Support ChartHorizon on Buy Me a Coffee">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Support

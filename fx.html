@@ -1,0 +1,112 @@
+---
+layout: default
+permalink: /fx/
+title: FX Map
+seo_title: "FX Strength Map — Currency Bias, Cross Rates & Pairs"
+description: "ChartHorizon's daily FX strength map — which of the eight majors carry a bullish or bearish bias, the high-conviction pairs, plus live forex cross rates and a price ticker."
+---
+{%- assign fx = site.data.fx -%}
+
+<!-- Live FX ticker (TradingView) — third-party embed, documented in privacy.html §6. -->
+<div class="tv-widget tv-ticker">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+      {"proName": "FX_IDC:GBPUSD", "title": "GBP/USD"},
+      {"proName": "FX_IDC:USDJPY", "title": "USD/JPY"},
+      {"proName": "FX_IDC:USDCHF", "title": "USD/CHF"},
+      {"proName": "FX_IDC:AUDUSD", "title": "AUD/USD"},
+      {"proName": "FX_IDC:USDCAD", "title": "USD/CAD"},
+      {"proName": "FX_IDC:NZDUSD", "title": "NZD/USD"},
+      {"proName": "FX_IDC:EURGBP", "title": "EUR/GBP"},
+      {"proName": "FX_IDC:EURJPY", "title": "EUR/JPY"},
+      {"proName": "FX_IDC:GBPJPY", "title": "GBP/JPY"}
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "colorTheme": "light",
+    "locale": "en"
+    }
+    </script>
+  </div>
+</div>
+
+<h1>FX Strength Map</h1>
+<p class="dek">Where the eight majors stand today — ChartHorizon's currency-strength read
+   (season, producer positioning, hedging program, term structure and the interest-rate bias),
+   refreshed once a day, alongside the live cross-rate grid.</p>
+
+<section class="fxmap">
+  <div class="fxmap-meta">Data as of {{ fx.as_of }} · currency score −{{ fx.max_score }}…+{{ fx.max_score }}</div>
+
+  <div class="fx-board">
+    <div class="fx-col fx-col--bull">
+      <div class="fx-col-head">Bullish / Long bias <span class="fx-count">{{ fx.bullish | size }}</span></div>
+      {% if fx.bullish and fx.bullish.size > 0 %}
+      <div class="fx-chips">
+        {% for c in fx.bullish %}<span class="fx-chip">{{ c.cur }} <b>+{{ c.score }}</b></span>{% endfor %}
+      </div>
+      {% else %}<p class="fx-empty">No currency carries a bullish score today.</p>{% endif %}
+    </div>
+    <div class="fx-col fx-col--bear">
+      <div class="fx-col-head">Bearish / Short bias <span class="fx-count">{{ fx.bearish | size }}</span></div>
+      {% if fx.bearish and fx.bearish.size > 0 %}
+      <div class="fx-chips">
+        {% for c in fx.bearish %}<span class="fx-chip">{{ c.cur }} <b>{{ c.score }}</b></span>{% endfor %}
+      </div>
+      {% else %}<p class="fx-empty">No currency carries a bearish score today.</p>{% endif %}
+    </div>
+  </div>
+
+  <div class="fx-pairs">
+    <div class="fx-pairshelf">
+      <div class="fx-pairshelf-head">Bullish pairs · buy</div>
+      {% if fx.bullish_pairs and fx.bullish_pairs.size > 0 %}
+      <div class="fx-pairlist">
+        {% for p in fx.bullish_pairs %}<span class="fx-pair fx-pair--bull">{{ p.base }}/{{ p.quote }} <b>+{{ p.signed }}/{{ fx.pair_max }}</b></span>{% endfor %}
+      </div>
+      {% else %}<p class="fx-empty">No pair reaches {{ fx.pair_threshold }}/{{ fx.pair_max }} today — no high-conviction divergence.</p>{% endif %}
+    </div>
+    <div class="fx-pairshelf">
+      <div class="fx-pairshelf-head">Bearish pairs · short</div>
+      {% if fx.bearish_pairs and fx.bearish_pairs.size > 0 %}
+      <div class="fx-pairlist">
+        {% for p in fx.bearish_pairs %}<span class="fx-pair fx-pair--bear">{{ p.base }}/{{ p.quote }} <b>{{ p.signed }}/{{ fx.pair_max }}</b></span>{% endfor %}
+      </div>
+      {% else %}<p class="fx-empty">No pair reaches {{ fx.pair_threshold }}/{{ fx.pair_max }} today — no high-conviction divergence.</p>{% endif %}
+    </div>
+  </div>
+
+  <p class="fx-method">Currency score = Seasonals + COT + COT-Hedging + Term Structure +
+     Interest-Rate Bias (−{{ fx.max_score }}…+{{ fx.max_score }}). Pairs are filtered to a score
+     spread of at least {{ fx.pair_threshold }}/{{ fx.pair_max }} — the strongest base versus the
+     weakest quote, quality over quantity.</p>
+</section>
+
+<h2>Live cross rates</h2>
+<p>The live grid below is the market's quote on every major cross right now; the strength read
+   above is where the season and the positioning are leaning beneath it.</p>
+
+<!-- Live FX cross-rate matrix (TradingView) — third-party embed, documented in privacy.html §6. -->
+<div class="tv-widget">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+    {
+    "width": "100%",
+    "height": 420,
+    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"],
+    "isTransparent": true,
+    "colorTheme": "light",
+    "locale": "en"
+    }
+    </script>
+  </div>
+  <div class="tradingview-widget-copyright">
+    <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Market data by TradingView</a>
+  </div>
+</div>

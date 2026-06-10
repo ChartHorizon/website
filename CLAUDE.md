@@ -37,9 +37,14 @@ support/social only.
 
 - **`_layouts/default.html`** — the page shell for every page: `<head>` (system-serif type,
   favicon, cookieless Cloudflare Web Analytics beacon), the brand header (inline horizon SVG
-  mark + wordmark + tagline), and the footer (risk disclaimer + Impressum/Datenschutz links).
+  mark + wordmark + a two-item nav — **The Tape** (home) / **FX Map** (`/fx/`) — + tagline),
+  and the footer (risk disclaimer + Impressum/Datenschutz links).
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
   disclaimer. **`index.html`** — `default` + the `site.posts` list.
+- **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
+  FX currency-strength scoreboard natively in the paper theme from **`_data/fx.json`**, then
+  embeds two **TradingView** widgets (ticker tape + forex cross-rate matrix). See "The FX Map
+  page" below.
 - **`assets/css/blog.css`** is the single source of truth for the look — a light "paper"
   editorial theme (palette + serif type lifted from the original post preview): tokens in
   `:root` (`--paper #fbfaf7`, `--ink #1a1814`, gold `--gold #c8a24a`, hairlines, table tans,
@@ -50,8 +55,33 @@ support/social only.
   match the light theme). The layout reads per-page `lang` and `noindex`. Their content is
   an unfilled German placeholder template (amber `[...]` `.ph` fields) — not real legal or
   contact info.
-- **Analytics ↔ privacy coupling:** the beacon in `default.html` is documented in
-  `privacy.html` §3 — keep them in sync if you add/remove third-party scripts.
+- **Analytics ↔ privacy coupling:** two third-party scripts must stay disclosed in
+  `privacy.html` — the cookieless Cloudflare beacon in `default.html` (loads on **every** page)
+  in §3, and the **TradingView** widgets on `/fx/` (that **one** page only) in §6. Keep them in
+  sync if you add/remove third-party scripts.
+
+## The FX Map page (`/fx/`)
+
+A second content surface besides the post list: ChartHorizon's **FX Strength Map** — the
+dashboard's "FX Strength & Pairs" scoreboard (which of the eight majors lean bullish/bearish,
+the high-conviction pairs) rendered natively in the paper theme, plus live **TradingView**
+widgets (ticker tape + forex cross-rate matrix, light theme).
+
+- **Data**: `_data/fx.json` (`site.data.fx`) — `as_of`, `bullish`/`bearish` (currency + score),
+  `bullish_pairs`/`bearish_pairs`, and the score/threshold scale. `fx.html` iterates it at build
+  time; **the page is a static daily snapshot, not live** (a public static site can't query the
+  local dashboard).
+- **Refresh (cross-repo — runs on the dashboard machine, NOT in this repo):** the private
+  dashboard's daily job (`AUTO_UPDATE_CHARTHORIZON.command`, launchd ~23:30) calls
+  `content_bot/fx_blog_push.command` → `content_bot/fx_blog_export.py`, which renders the real
+  `forex.js` scoreboard headless, writes `_data/fx.json` here, and `git push`es it (only when the
+  data actually moved) → CI rebuilds. So the FX numbers refresh once a day, hands-off. To edit the
+  snapshot by hand, change `_data/fx.json`; the next dashboard run overwrites it.
+- **TradingView = third-party scripts**, loaded only on this page → disclosed in `privacy.html`
+  §6 (see the coupling note above). Constraint-safe: the page shows dashboard *output*, never
+  links to dashboard source/installers/releases.
+- It's a normal indexed page (no `noindex`/`sitemap:false`) → in `/sitemap.xml`, with its own
+  `seo_title`/`description`. Not a post, so it's absent from `/feed.xml`.
 
 ## SEO
 

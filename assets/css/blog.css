@@ -29,9 +29,18 @@ body{
   padding:7px 13px; text-decoration:none; transition:background .15s,color .15s,border-color .15s}
 .site-head .support svg{width:14px; height:14px; fill:currentColor; flex:none}
 .site-head .support:hover{background:var(--gold); color:#fff; border-color:var(--gold)}
+.site-nav{display:flex; gap:15px; margin-left:18px}
+.site-nav a{font:12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); text-decoration:none; border:none; padding:2px 0; white-space:nowrap}
+.site-nav a:hover{color:var(--ink)}
+.site-nav a.active{color:var(--ink); font-weight:600}
 @media (max-width:560px){
   .site-head .tagline{display:none}
+  .site-nav{margin-left:16px; gap:13px}
   .site-head .support{margin-left:auto}
+}
+@media (max-width:430px){
+  .site-head .word{display:none}
+  .site-nav{margin-left:12px; gap:12px}
 }
 
 .site-foot{margin-top:52px; padding:24px 0 44px; border-top:1px solid var(--rule); font:13px/1.6 var(--sans); color:var(--muted)}
@@ -79,3 +88,39 @@ blockquote p{margin:.3em 0}
 .legal a.link{color:var(--gold-ink); border-bottom:1px solid rgba(200,162,74,.4)}
 .legal a.link:hover{color:var(--gold)}
 .legal .back{display:inline-block; margin-top:36px}
+
+/* ---- FX Map page (/fx/) ---- */
+.fxmap{margin:20px 0 6px}
+.fxmap-meta{font:11.5px/1.4 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.fx-board,.fx-pairs{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.fx-pairs{margin-top:14px}
+.fx-col,.fx-pairshelf{border:1px solid var(--tline); border-radius:10px; padding:14px 16px; background:#fffdf8}
+.fx-col--bull{border-color:rgba(63,125,82,.4)}
+.fx-col--bear{border-color:rgba(176,86,63,.4)}
+.fx-col-head,.fx-pairshelf-head{display:flex; align-items:center; gap:8px; font:700 11.5px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase; margin-bottom:12px}
+.fx-pairshelf-head{color:var(--muted)}
+.fx-col--bull .fx-col-head{color:#3f7d52}
+.fx-col--bear .fx-col-head{color:#a8503f}
+.fx-count{font:600 11px/1 var(--sans); color:var(--muted); background:var(--quote-bg); border:1px solid var(--tline); border-radius:999px; padding:3px 7px; letter-spacing:0}
+.fx-chips,.fx-pairlist{display:flex; flex-wrap:wrap; gap:7px}
+.fx-chip,.fx-pair{font:13px/1 var(--sans); padding:8px 11px; border-radius:999px; background:var(--quote-bg); border:1px solid var(--tline); color:var(--ink); white-space:nowrap}
+.fx-pair{border-radius:8px}
+.fx-chip b,.fx-pair b{font-weight:700; margin-left:2px}
+.fx-col--bull .fx-chip b{color:#3f7d52}
+.fx-col--bear .fx-chip b{color:#a8503f}
+.fx-pair--bull b{color:#3f7d52}
+.fx-pair--bear b{color:#a8503f}
+.fx-empty{font:italic 13px/1.5 var(--sans); color:var(--muted); margin:2px 0 0}
+.fx-method{font:12.5px/1.55 var(--sans); color:var(--muted); margin:16px 0 0}
+
+/* ---- embedded market widgets (TradingView, /fx/ only — see privacy.html §6) ---- */
+.tv-widget{margin:18px 0}
+.tv-ticker{margin:6px 0 4px}
+.tv-widget .tradingview-widget-container{border:1px solid var(--tline); border-radius:10px; overflow:hidden; background:#fff}
+.tradingview-widget-copyright{font:11px/1.4 var(--sans); color:var(--muted); padding:7px 11px; text-align:right}
+.tradingview-widget-copyright a{color:var(--muted); border:none}
+.tradingview-widget-copyright a:hover{color:var(--ink)}
+
+@media (max-width:560px){
+  .fx-board,.fx-pairs{grid-template-columns:1fr}
+}
