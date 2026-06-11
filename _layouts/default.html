@@ -75,6 +75,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"alternateName":{{ site.tagline | jsonify }},"url":{{ site.url | jsonify }},"description":{{ site.description | strip_html | normalize_whitespace | jsonify }}}
 </script>
+{%- elsif page.url == '/about/' %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AboutPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }},"mainEntity":{"@type":"Organization","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }},"sameAs":["https://x.com/PlayLoneHand"]}}
+</script>
 {%- endif %}
 </head>
 <body>
@@ -103,6 +107,7 @@
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active" aria-current="page"{% endif %}>The Tape</a>
       <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active" aria-current="page"{% endif %}>FX Map</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="active" aria-current="page"{% endif %}>About</a>
     </nav>
     <span class="edition">No.&nbsp;{{ 'now' | date: "%V" }} · {{ 'now' | date: "%B %-d, %Y" }}</span>
     <a class="support" href="https://buymeacoffee.com/charthorizon" target="_blank" rel="noopener" aria-label="Support ChartHorizon on Buy Me a Coffee">
