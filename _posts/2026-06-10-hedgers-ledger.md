@@ -14,16 +14,16 @@ The report dated June 2, 2026 shows four markets registering fresh positioning e
 
 | Market | Side | Percentile | New |
 |---|---|---|---|
-| E-mini Nasdaq 100 | 🟢 HIGH | 100th | 🆕 |
-| Copper | 🔴 LOW | 1st | 🆕 |
-| WTI Crude Oil | 🟢 HIGH | 99th | 🆕 |
-| Soybean Oil | 🔴 LOW | 4th | 🆕 |
+| E-mini Nasdaq 100 | <span class="mark-bull">▲ HIGH</span> | 100th | New |
+| Copper | <span class="mark-bear">▼ LOW</span> | 1st | New |
+| WTI Crude Oil | <span class="mark-bull">▲ HIGH</span> | 99th | New |
+| Soybean Oil | <span class="mark-bear">▼ LOW</span> | 4th | New |
 
 ---
 
 ## E-mini Nasdaq 100 — commercials at a 3-year HIGH (fresh record)
 
-![E-mini Nasdaq 100 — commercial net positioning]({{ page.cards }}/nq_nasdaq.png)
+![E-mini Nasdaq 100 — commercial net positioning]({{ page.cards }}/nq_nasdaq.png){: width="1200" height="1035" loading="lazy"}
 
 Commercial Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +13,812 contracts (as of 2026-06-02). New this week.
 
@@ -33,7 +33,7 @@ One caveat worth flagging: the positioning here reads bullish, but the spread in
 
 ## Copper — commercials at a 3-year LOW (fresh record)
 
-![Copper — commercial net positioning]({{ page.cards }}/copper.png)
+![Copper — commercial net positioning]({{ page.cards }}/copper.png){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 1st percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. That is a fresh record for the window. Net: -114,904 contracts (as of 2026-06-02). New this week.
 
@@ -41,7 +41,7 @@ Producer/Merchant Net sits at the 1st percentile of its ~3-year range — the co
 
 ## WTI Crude Oil — commercials at a 3-year HIGH
 
-![WTI Crude Oil — commercial net positioning]({{ page.cards }}/wti_crude.png)
+![WTI Crude Oil — commercial net positioning]({{ page.cards }}/wti_crude.png){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +358,016 contracts (as of 2026-06-02). New this week.
 
@@ -49,6 +49,6 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## Soybean Oil — commercials at a 3-year LOW
 
-![Soybean Oil — commercial net positioning]({{ page.cards }}/soybean_oil.png)
+![Soybean Oil — commercial net positioning]({{ page.cards }}/soybean_oil.png){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 4th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. Net: -235,283 contracts (as of 2026-06-02). New this week.

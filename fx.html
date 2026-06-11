@@ -42,7 +42,7 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
 
 <section class="fxmap">
   <div class="fx-section-head">
-    <div class="fx-section-title">FX Strength &amp; Pairs</div>
+    <h2 class="fx-section-title">FX Strength &amp; Pairs</h2>
     <div class="fxmap-meta">Data as of {{ fx.as_of }} · score −{{ fx.max_score }}…+{{ fx.max_score }}</div>
   </div>
 
@@ -149,19 +149,17 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   </div>
 </section>
 
-<!-- Per-pair chart overlay — opened on click from the pairs grid above.
+<!-- Per-pair chart overlay — opened on click from the pairs grid above. A native <dialog>,
+     so the browser supplies the focus trap, Escape handling and focus restore.
      Loads a TradingView Advanced Chart widget (third-party, documented in privacy.html §6). -->
-<div class="fx-modal" id="fxChart" hidden role="dialog" aria-modal="true" aria-labelledby="fxChartTitle">
-  <div class="fx-modal-backdrop" data-close></div>
-  <div class="fx-modal-panel">
-    <div class="fx-modal-head">
-      <span class="fx-modal-title" id="fxChartTitle">FX pair</span>
-      <button type="button" class="fx-modal-x" data-close aria-label="Close chart">&#10005;</button>
-    </div>
-    <div class="fx-modal-body" id="fxChartBody"></div>
-    <div class="fx-modal-foot"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Chart by TradingView</a></div>
+<dialog class="fx-modal" id="fxChart" aria-labelledby="fxChartTitle">
+  <div class="fx-modal-head">
+    <span class="fx-modal-title" id="fxChartTitle">FX pair</span>
+    <button type="button" class="fx-modal-x" data-close aria-label="Close chart">&#10005;</button>
   </div>
-</div>
+  <div class="fx-modal-body" id="fxChartBody"></div>
+  <div class="fx-modal-foot"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Chart by TradingView</a></div>
+</dialog>
 
 <script>
 (function () {
@@ -169,7 +167,6 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   if (!modal) return;
   var body = document.getElementById('fxChartBody');
   var titleEl = document.getElementById('fxChartTitle');
-  var lastFocus = null;
 
   function buildWidget(symbol) {
     body.innerHTML = '';
@@ -219,22 +216,18 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   }
 
   function open(symbol, label, dir) {
-    lastFocus = document.activeElement;
     titleEl.textContent = label || 'FX pair';
     modal.setAttribute('data-dir', dir || '');
     buildWidget(symbol);
-    modal.hidden = false;
+    modal.showModal();
     document.body.style.overflow = 'hidden';
-    var x = modal.querySelector('.fx-modal-x');
-    if (x) x.focus();
   }
 
-  function close() {
-    modal.hidden = true;
+  // Fires on every close path — the × button, a backdrop click, and the built-in Escape.
+  modal.addEventListener('close', function () {
     body.innerHTML = '';
     document.body.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
+  });
 
   Array.prototype.forEach.call(document.querySelectorAll('.fx-pair[data-symbol]'), function (el) {
     el.addEventListener('click', function () {
@@ -243,10 +236,8 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   });
 
   modal.addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-close')) close();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden) close();
+    // A click on the backdrop lands on the dialog element itself; the panel's children swallow the rest.
+    if (e.target === modal || e.target.hasAttribute('data-close')) modal.close();
   });
 })();
 </script>

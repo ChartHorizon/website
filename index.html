@@ -1,16 +1,17 @@
 ---
 layout: default
 ---
+<h1 class="visually-hidden">{{ site.title }} — {{ site.tagline }}</h1>
 <p class="index-standfirst">Weekly futures notes — the markets where season, producer positioning, hedging
    program and term structure line up. Data: ChartHorizon.</p>
 
-<div class="section-rule"><span>Latest editions</span></div>
+<h2 class="section-rule"><span>Latest editions</span></h2>
 
 <ul class="post-list">
   {% for post in site.posts %}
   <li>
-    <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-    <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <h3 class="post-headline"><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
     {% if post.subtitle %}<p class="post-excerpt">{{ post.subtitle }}</p>{% endif %}
   </li>
   {% endfor %}

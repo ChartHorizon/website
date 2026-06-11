@@ -28,7 +28,7 @@ doing the same thing in all three.
 |---|---|---|---|
 | bearish | −456,684 (short) | bearish | **discount** — ZCN26 418.75 vs ZCU26 427.5, −8.75 |
 
-![Corn — bearish 4/4 setup]({{ page.cards }}/corn.png)
+![Corn — bearish 4/4 setup]({{ page.cards }}/corn.png){: width="1848" height="2062" loading="lazy"}
 
 The tape in corn shows all four signals pointed the same direction, and volume expanding to
 1,268,570 contracts against the prior week's 895,898 tells me the selling is not thin or
@@ -50,7 +50,7 @@ is made in the sitting has no business arguing with a tape that speaks this plai
 |---|---|---|---|
 | bearish | −282,650 (short) | bearish | **discount** — ZSN26 1115.75 vs ZSQ26 1121.25, −5.5 |
 
-![Soybeans — bearish 4/4 setup]({{ page.cards }}/soybeans.png)
+![Soybeans — bearish 4/4 setup]({{ page.cards }}/soybeans.png){: width="1848" height="2062" loading="lazy"}
 
 The tape in soybeans shows all four signals in agreement, and I have learned to pay close
 attention when that is so. Volume expanded sharply — 740,780 contracts against 422,553 the prior
@@ -72,7 +72,7 @@ the two are telling the same story, and the line of least resistance points down
 |---|---|---|---|
 | bearish | −43,933 (short) | bearish | **discount** — ZWN26 583.25 vs ZWU26 595.75, −12.5 |
 
-![Wheat (Chicago SRW) — bearish 4/4 setup]({{ page.cards }}/wheat.png)
+![Wheat (Chicago SRW) — bearish 4/4 setup]({{ page.cards }}/wheat.png){: width="1848" height="2062" loading="lazy"}
 
 The tape in Chicago wheat speaks plainly enough: at 583.25 the line of least resistance runs
 downward, the season leans on it through mid-June, and the volume signed the break — 438,903
@@ -91,7 +91,7 @@ number of lights.
 
 ## Sector behavior
 
-![Macro Shift — Corn · Wheat · Soybeans, the grain divergence]({{ page.cards }}/macro-shift.png)
+![Macro Shift — Corn · Wheat · Soybeans, the grain divergence]({{ page.cards }}/macro-shift.png){: width="1200" height="973" loading="lazy"}
 
 > Read the group, not the single quote. Into the spring the grains stopped agreeing: **wheat
 > alone pressed a fresh higher high** while **corn and soybeans carved lower highs** beneath it —

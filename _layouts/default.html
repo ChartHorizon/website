@@ -58,6 +58,8 @@
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }} — {{ site.tagline }}" href="{{ '/feed.xml' | relative_url }}">
 <link rel="preload" href="{{ '/assets/fonts/newsreader.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<!-- The italic face renders above the fold on every page (motto, dek, standfirst) — preload it too. -->
+<link rel="preload" href="{{ '/assets/fonts/newsreader-italic.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <!-- ?v= cache-busts the stylesheet on every build so returning visitors get CSS changes (e.g. the FX chart modal), not a stale cached copy. -->
 <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <!-- Privacy-friendly, cookieless analytics (Cloudflare Web Analytics) — documented in privacy.html §3. -->
@@ -76,6 +78,8 @@
 {%- endif %}
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-head">
   <a class="brand" href="{{ '/' | relative_url }}">
@@ -97,8 +101,8 @@
   <div class="masthead-motto">Positioning, not predictions.</div>
   <div class="dateline">
     <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active"{% endif %}>The Tape</a>
-      <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active"{% endif %}>FX Map</a>
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active" aria-current="page"{% endif %}>The Tape</a>
+      <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active" aria-current="page"{% endif %}>FX Map</a>
     </nav>
     <span class="edition">No.&nbsp;{{ 'now' | date: "%V" }} · {{ 'now' | date: "%B %-d, %Y" }}</span>
     <a class="support" href="https://buymeacoffee.com/charthorizon" target="_blank" rel="noopener" aria-label="Support ChartHorizon on Buy Me a Coffee">
@@ -107,7 +111,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   {{ content }}
 </main>
 
@@ -119,6 +123,25 @@
      <a href="{{ '/impressum.html' | relative_url }}">Impressum</a> ·
      <a href="{{ '/privacy.html' | relative_url }}">Datenschutz</a></p>
 </footer>
+
+<!-- The dateline is a newspaper edition stamp: keep it on *today*, not on the last CI build.
+     Inline + first-party only, so the zero-third-party guarantee on content pages holds;
+     the server-rendered build date stays as the no-JS fallback. -->
+<script>
+(function () {
+  var el = document.querySelector('.dateline .edition');
+  if (!el) return;
+  var d = new Date();
+  // ISO-8601 week number (matches Liquid's %V): shift to the week's Thursday, count from the year's first Thursday.
+  var t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  t.setUTCDate(t.getUTCDate() - ((t.getUTCDay() + 6) % 7) + 3);
+  var firstThu = new Date(Date.UTC(t.getUTCFullYear(), 0, 4));
+  firstThu.setUTCDate(firstThu.getUTCDate() - ((firstThu.getUTCDay() + 6) % 7) + 3);
+  var week = 1 + Math.round((t - firstThu) / 6048e5);
+  var date = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  el.textContent = 'No. ' + week + ' · ' + date;
+})();
+</script>
 
 </body>
 </html>
