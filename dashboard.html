@@ -11,10 +11,14 @@ description: "ChartHorizon's research dashboard — season, COT positioning, hed
 #    launched copy (dek, intro and closing line). Inserting the links is the
 #    only step needed — nothing else to edit.
 # ─────────────────────────────────────────────────────────────────────────────
-dl_version: ""          # e.g. "v1.0" — shown as each active button's sub-label
-dl_macos: ""            # e.g. "https://downloads.chart-horizon.com/charthorizon-macos.zip"
-dl_windows: ""          # e.g. "https://downloads.chart-horizon.com/charthorizon-windows.zip"
-dl_linux: ""            # e.g. "https://downloads.chart-horizon.com/charthorizon-linux.zip"
+# Release assets live on GitHub Releases of the public mirror (tag v<version>):
+#   https://github.com/ChartHorizon/charthorizon/releases/download/v<version>/<asset>
+# Asset names (from packaging/): ChartHorizon-<version>-macOS.dmg ·
+#   ChartHorizon-<version>-Windows-Setup.exe · ChartHorizon-<version>-x86_64.AppImage
+dl_version: ""          # e.g. "v1.0.0" — shown as each active button's sub-label
+dl_macos: ""            # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-macOS.dmg"
+dl_windows: ""          # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-Windows-Setup.exe"
+dl_linux: ""            # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-x86_64.AppImage"
 ---
 {%- assign released = false -%}
 {%- if page.dl_macos and page.dl_macos != "" -%}{%- assign released = true -%}{%- endif -%}
