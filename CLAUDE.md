@@ -39,14 +39,22 @@ support/social only.
   `@font-face`/preload, favicon, cookieless Cloudflare Web Analytics beacon), the centred
   **broadsheet masthead** (inline horizon SVG mark + `CHARTHORIZON` wordmark + a
   `The Weekly Tape · Futures Desk` sub-line, closed by a 3px double rule, then a dateline row —
-  nav **The Tape** (home) / **FX Map** (`/fx/`) / **About** (`/about/`) + edition date +
-  Support pill), and the footer (risk disclaimer + Impressum/Datenschutz links).
+  nav **The Tape** (home) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
+  **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
+  Impressum/Datenschutz links).
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
   disclaimer. **`index.html`** — `default` + the `site.posts` list.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the four-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@PlayLoneHand`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
+- **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
+  page: a "coming soon" notice that the private research dashboard will open **in the browser**
+  (no download/installer) at this site. Editorial broadsheet treatment (centred `.kicker` +
+  `.notice-head` + a `.dash-reads` chip strip of the four/five signals), reusing `.fx-chips`. CTA
+  is X-only (`@PlayLoneHand`) — no email/waitlist, so **zero third-party requests** stays intact
+  (no `privacy.html` change). Constraint-safe: describes access/output, never source/installers/
+  releases. Gets a `WebPage` JSON-LD branch in `default.html`.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
   natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
