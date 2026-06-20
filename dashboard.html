@@ -14,27 +14,27 @@ description: "ChartHorizon's research dashboard — season, COT positioning, hed
 #  Derived assets at  …/releases/download/v<version>/ :
 #    ChartHorizon-<version>-macOS.dmg · -Windows-Setup.exe · -x86_64.AppImage
 #
-#  Override one platform (or host elsewhere) by pasting a full URL into
-#  dl_macos / dl_windows / dl_linux — a non-empty value wins over the derived one.
+#  Per platform, dl_macos / dl_windows / dl_linux accept:
+#    ""        → derive the URL from dl_version (the normal case)
+#    full URL  → explicit override (host elsewhere, or a differently-named asset)
+#    "soon"    → hold this platform at "Coming soon" even though a version is set
 #  Leaving dl_version empty keeps every platform at "Coming soon".
 # ─────────────────────────────────────────────────────────────────────────────
-dl_version: ""          # release number WITHOUT the leading "v", e.g. "1.0.0"
-dl_macos: ""            # optional override; else derived from dl_version
-dl_windows: ""          # optional override; else derived from dl_version
-dl_linux: ""            # optional override; else derived from dl_version
+dl_version: "1.1.0"     # release number WITHOUT the leading "v"
+dl_macos: ""            # derive from version
+dl_windows: ""          # derive from version
+dl_linux: "soon"        # held — v1.1.0 ships no AppImage yet; set to "" once the release has one
 ---
-{%- comment -%} Resolve per-platform download URLs: an explicit override wins, else derive from dl_version. {%- endcomment -%}
+{%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
 {%- assign dl_repo = "https://github.com/ChartHorizon/charthorizon/releases/download" -%}
 {%- assign ver = page.dl_version | default: "" -%}
+{%- if ver != "" -%}{%- assign tag = ver | prepend: "v" -%}{%- endif -%}
 {%- assign url_macos = page.dl_macos | default: "" -%}
+{%- if url_macos == "soon" -%}{%- assign url_macos = "" -%}{%- elsif url_macos == "" and ver != "" -%}{%- assign url_macos = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-macOS.dmg" -%}{%- endif -%}
 {%- assign url_windows = page.dl_windows | default: "" -%}
+{%- if url_windows == "soon" -%}{%- assign url_windows = "" -%}{%- elsif url_windows == "" and ver != "" -%}{%- assign url_windows = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-Windows-Setup.exe" -%}{%- endif -%}
 {%- assign url_linux = page.dl_linux | default: "" -%}
-{%- if ver != "" -%}
-  {%- assign tag = ver | prepend: "v" -%}
-  {%- if url_macos == "" -%}{%- assign url_macos = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-macOS.dmg" -%}{%- endif -%}
-  {%- if url_windows == "" -%}{%- assign url_windows = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-Windows-Setup.exe" -%}{%- endif -%}
-  {%- if url_linux == "" -%}{%- assign url_linux = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-x86_64.AppImage" -%}{%- endif -%}
-{%- endif -%}
+{%- if url_linux == "soon" -%}{%- assign url_linux = "" -%}{%- elsif url_linux == "" and ver != "" -%}{%- assign url_linux = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-x86_64.AppImage" -%}{%- endif -%}
 {%- assign released = false -%}
 {%- if url_macos != "" or url_windows != "" or url_linux != "" -%}{%- assign released = true -%}{%- endif -%}
 <div class="notice-head">
