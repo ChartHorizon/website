@@ -169,6 +169,18 @@ a.dl-btn:active{transform:translateY(1px)}
 .dl-note{font:italic 14px/1.5 var(--serif); color:var(--muted); margin:16px auto 0; max-width:42ch; text-wrap:balance}
 @media (max-width:420px){ .dl-grid{gap:8px} .dl-btn{padding:14px 6px 12px} .dl-os{font-size:14px} .dl-sub{font-size:9px; letter-spacing:.06em} }
 
+/* dashboard product page — screenshot plates set as plates on the sheet */
+.board{margin:30px 0}
+.board img{width:100%; margin:0; display:block; border:1px solid var(--rule); border-radius:10px; box-shadow:0 1px 16px rgba(23,21,15,.10)}
+.board figcaption{font:italic 15px/1.5 var(--serif); color:var(--muted); text-align:center; margin-top:11px; text-wrap:balance}
+/* hero breaks out wider than the 760px column, bounded so it never causes horizontal scroll */
+.board-hero{--bleed:clamp(0px, calc((100vw - 716px)/2 - 16px), 160px); margin:26px calc(-1*var(--bleed)) 32px}
+.board-hero img{border-radius:12px}
+@media (prefers-reduced-motion:no-preference){
+  .board img{transition:box-shadow .25s ease}
+  .board img:hover{box-shadow:0 6px 30px rgba(23,21,15,.13)}
+}
+
 /* ---- FX Map page (/fx/) ---- */
 .fxmap{margin:18px 0 6px}
 .fx-section-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px; margin:0 0 14px}
