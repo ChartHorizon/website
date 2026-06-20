@@ -148,6 +148,17 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
     {%- endif -%}
   </div>
   <p class="dl-note">Local-first · runs in your browser · no account, no cloud.</p>
+  {%- if released %}
+  <details class="dl-firstrun">
+    <summary>Opening it the first time</summary>
+    <p>The builds aren't code-signed yet, so your system may warn on first launch — this clears it:</p>
+    <ul>
+      <li><b>macOS</b> — right-click (or Control-click) the app, choose <b>Open</b>, then <b>Open</b> again.</li>
+      <li><b>Windows</b> — on the SmartScreen prompt, click <b>More info</b>, then <b>Run anyway</b>.</li>
+      <li><b>Linux</b> — make it executable: <code>chmod +x ChartHorizon-*-x86_64.AppImage</code>, then run it.</li>
+    </ul>
+  </details>
+  {%- endif %}
 </div>
 
 {% if released %}
