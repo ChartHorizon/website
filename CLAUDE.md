@@ -10,10 +10,12 @@ A **Jekyll** site (the GitHub Pages default SSG), deployed from `main` via
 the result. The custom domain is pinned by `CNAME` (`chart-horizon.com`); DNS lives at
 Cloudflare (DNS-only).
 
-It was split out of the private ChartHorizon dashboard repo. **The one hard constraint:**
-this repo is **public**, so the site must **not** link to dashboard source, installers,
-GitHub releases, or describe the dashboard as a public download. Outbound links stay
-support/social only.
+It was split out of the private ChartHorizon dashboard repo. **The hard constraint:** this
+repo is **public**, so the site must **not** expose the dashboard's **source** — no links to
+its private repo or code. The dashboard *product* is positioned as a downloadable
+**local-first app** (installs on your machine, runs in your browser): the `/dashboard/` page
+may describe it and, once ready, offer the installer/download here. Apart from that download,
+outbound links stay support/social only.
 
 > History: this repo started as a standalone dark marketing landing page. It was converted
 > into the blog; the homepage is now the post list and the old landing page was retired.
@@ -49,12 +51,12 @@ support/social only.
   deliberate no-byline statement. Links only X (`@PlayLoneHand`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
-  page: a "coming soon" notice that the private research dashboard will open **in the browser**
-  (no download/installer) at this site. Editorial broadsheet treatment (centred `.kicker` +
-  `.notice-head` + a `.dash-reads` chip strip of the four/five signals), reusing `.fx-chips`. CTA
-  is X-only (`@PlayLoneHand`) — no email/waitlist, so **zero third-party requests** stays intact
-  (no `privacy.html` change). Constraint-safe: describes access/output, never source/installers/
-  releases. Gets a `WebPage` JSON-LD branch in `default.html`.
+  page: a "coming soon" notice for the **local-first dashboard** — it installs on your machine and
+  runs **in the browser**; the page says a **download will be offered here** when ready. Editorial
+  broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads` chip strip of the
+  four/five signals), reusing `.fx-chips`. CTA is X-only (`@PlayLoneHand`) — no email/waitlist, so
+  **zero third-party requests** stays intact (no `privacy.html` change). Still **no link to the
+  dashboard source/repo**. Gets a `WebPage` JSON-LD branch in `default.html`.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
   natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
