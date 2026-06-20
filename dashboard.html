@@ -5,25 +5,38 @@ title: Dashboard
 seo_title: "The ChartHorizon Dashboard — the Desk's Board, in Your Browser"
 description: "ChartHorizon's research dashboard — season, COT positioning, hedging, term structure and FX rate bias on every market, local-first and running in your browser."
 # ─────────────────────────────────────────────────────────────────────────────
-#  TO GO LIVE: paste each platform's download URL below and set dl_version.
-#  • An empty string ("") keeps that platform's button at "Coming soon".
-#  • Filling in ANY link also flips the whole page from "coming soon" copy to
-#    launched copy (dek, intro and closing line). Inserting the links is the
-#    only step needed — nothing else to edit.
+#  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and push.
+#  That is the ONLY step. The three platform download URLs are derived
+#  automatically from the GitHub release (ChartHorizon/charthorizon, tag
+#  v<version>), and setting the version flips the whole page from coming-soon
+#  copy to launched copy (dek, intro, closing line) and the buttons to live.
+#
+#  Derived assets at  …/releases/download/v<version>/ :
+#    ChartHorizon-<version>-macOS.dmg · -Windows-Setup.exe · -x86_64.AppImage
+#
+#  Override one platform (or host elsewhere) by pasting a full URL into
+#  dl_macos / dl_windows / dl_linux — a non-empty value wins over the derived one.
+#  Leaving dl_version empty keeps every platform at "Coming soon".
 # ─────────────────────────────────────────────────────────────────────────────
-# Release assets live on GitHub Releases of the public mirror (tag v<version>):
-#   https://github.com/ChartHorizon/charthorizon/releases/download/v<version>/<asset>
-# Asset names (from packaging/): ChartHorizon-<version>-macOS.dmg ·
-#   ChartHorizon-<version>-Windows-Setup.exe · ChartHorizon-<version>-x86_64.AppImage
-dl_version: ""          # e.g. "v1.0.0" — shown as each active button's sub-label
-dl_macos: ""            # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-macOS.dmg"
-dl_windows: ""          # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-Windows-Setup.exe"
-dl_linux: ""            # e.g. "https://github.com/ChartHorizon/charthorizon/releases/download/v1.0.0/ChartHorizon-1.0.0-x86_64.AppImage"
+dl_version: ""          # release number WITHOUT the leading "v", e.g. "1.0.0"
+dl_macos: ""            # optional override; else derived from dl_version
+dl_windows: ""          # optional override; else derived from dl_version
+dl_linux: ""            # optional override; else derived from dl_version
 ---
+{%- comment -%} Resolve per-platform download URLs: an explicit override wins, else derive from dl_version. {%- endcomment -%}
+{%- assign dl_repo = "https://github.com/ChartHorizon/charthorizon/releases/download" -%}
+{%- assign ver = page.dl_version | default: "" -%}
+{%- assign url_macos = page.dl_macos | default: "" -%}
+{%- assign url_windows = page.dl_windows | default: "" -%}
+{%- assign url_linux = page.dl_linux | default: "" -%}
+{%- if ver != "" -%}
+  {%- assign tag = ver | prepend: "v" -%}
+  {%- if url_macos == "" -%}{%- assign url_macos = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-macOS.dmg" -%}{%- endif -%}
+  {%- if url_windows == "" -%}{%- assign url_windows = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-Windows-Setup.exe" -%}{%- endif -%}
+  {%- if url_linux == "" -%}{%- assign url_linux = dl_repo | append: "/" | append: tag | append: "/ChartHorizon-" | append: ver | append: "-x86_64.AppImage" -%}{%- endif -%}
+{%- endif -%}
 {%- assign released = false -%}
-{%- if page.dl_macos and page.dl_macos != "" -%}{%- assign released = true -%}{%- endif -%}
-{%- if page.dl_windows and page.dl_windows != "" -%}{%- assign released = true -%}{%- endif -%}
-{%- if page.dl_linux and page.dl_linux != "" -%}{%- assign released = true -%}{%- endif -%}
+{%- if url_macos != "" or url_windows != "" or url_linux != "" -%}{%- assign released = true -%}{%- endif -%}
 <div class="notice-head">
   <p class="kicker">The Desk’s Board</p>
   <h1>The Dashboard</h1>
@@ -116,20 +129,20 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
 <div class="dl">
   <span class="dl-label">Download the board</span>
   <div class="dl-grid">
-    {%- if page.dl_macos and page.dl_macos != "" -%}
-    <a class="dl-btn" href="{{ page.dl_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if page.dl_version != "" %}{{ page.dl_version }}{% else %}Download{% endif %}</span></a>
+    {%- if url_macos != "" -%}
+    <a class="dl-btn" href="{{ url_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
-    {%- if page.dl_windows and page.dl_windows != "" -%}
-    <a class="dl-btn" href="{{ page.dl_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if page.dl_version != "" %}{{ page.dl_version }}{% else %}Download{% endif %}</span></a>
+    {%- if url_windows != "" -%}
+    <a class="dl-btn" href="{{ url_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
-    {%- if page.dl_linux and page.dl_linux != "" -%}
-    <a class="dl-btn" href="{{ page.dl_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if page.dl_version != "" %}{{ page.dl_version }}{% else %}Download{% endif %}</span></a>
+    {%- if url_linux != "" -%}
+    <a class="dl-btn" href="{{ url_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
