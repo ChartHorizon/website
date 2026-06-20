@@ -20,7 +20,7 @@ description: "ChartHorizon's research dashboard — season, COT positioning, hed
 #    "soon"    → hold this platform at "Coming soon" even though a version is set
 #  Leaving dl_version empty keeps every platform at "Coming soon".
 # ─────────────────────────────────────────────────────────────────────────────
-dl_version: "1.1.0"     # release number WITHOUT the leading "v"
+dl_version: "1.1.1"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
 dl_linux: ""            # derive from version
@@ -153,9 +153,9 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
     <summary>Opening it the first time</summary>
     <p>The builds aren't code-signed yet, so your system may warn on first launch — this clears it:</p>
     <ul>
-      <li><b>macOS</b> — right-click (or Control-click) the app, choose <b>Open</b>, then <b>Open</b> again.</li>
+      <li><b>macOS</b> — drag <b>ChartHorizon</b> onto <b>Applications</b>, then right-click (or Control-click) the app and choose <b>Open</b> → <b>Open</b>. If macOS still calls it “damaged,” clear the quarantine once: <code>xattr -cr /Applications/ChartHorizon.app</code>.</li>
       <li><b>Windows</b> — on the SmartScreen prompt, click <b>More info</b>, then <b>Run anyway</b>.</li>
-      <li><b>Linux</b> — make it executable: <code>chmod +x ChartHorizon-*-x86_64.AppImage</code>, then run it.</li>
+      <li><b>Linux</b> — make it executable: <code>chmod +x ChartHorizon-*-x86_64.AppImage</code>, then run it. If it reports “AppImages require FUSE,” install <code>libfuse2</code> or run it with <code>--appimage-extract-and-run</code>.</li>
     </ul>
   </details>
   {%- endif %}
