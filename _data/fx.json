@@ -1,6 +1,6 @@
 {
-  "as_of": "Jun 20, 2026",
-  "generated": "2026-06-20",
+  "as_of": "Jun 22, 2026",
+  "generated": "2026-06-22",
   "max_score": 6,
   "pair_max": 12,
   "pair_threshold": 7,
@@ -8,8 +8,8 @@
   "bullish": [
     {
       "cur": "GBP",
-      "score": 3.4,
-      "label": "+3.4"
+      "score": 1.4,
+      "label": "+1.4"
     },
     {
       "cur": "CAD",
@@ -53,40 +53,40 @@
   "bullish_pairs": [
     {
       "pair": "GBP/CHF",
-      "spread": 4.4,
-      "label": "Bull +4.4/12"
-    },
-    {
-      "pair": "GBP/NZD",
-      "spread": 4.3,
-      "label": "Bull +4.3/12"
-    },
-    {
-      "pair": "GBP/JPY",
-      "spread": 3.7,
-      "label": "Bull +3.7/12"
-    },
-    {
-      "pair": "GBP/USD",
-      "spread": 3.1,
-      "label": "Bull +3.1/12"
-    },
-    {
-      "pair": "GBP/AUD",
       "spread": 2.4,
       "label": "Bull +2.4/12"
     },
     {
-      "pair": "GBP/CAD",
+      "pair": "GBP/NZD",
       "spread": 2.3,
       "label": "Bull +2.3/12"
+    },
+    {
+      "pair": "CAD/CHF",
+      "spread": 2.1,
+      "label": "Bull +2.1/12"
+    },
+    {
+      "pair": "AUD/CHF",
+      "spread": 2,
+      "label": "Bull +2/12"
+    },
+    {
+      "pair": "AUD/NZD",
+      "spread": 1.9,
+      "label": "Bull +1.9/12"
+    },
+    {
+      "pair": "GBP/JPY",
+      "spread": 1.7,
+      "label": "Bull +1.7/12"
     }
   ],
   "bearish_pairs": [
     {
       "pair": "EUR/GBP",
-      "spread": 4.6,
-      "label": "Bear -4.6/12"
+      "spread": 2.6,
+      "label": "Bear -2.6/12"
     },
     {
       "pair": "EUR/CAD",
