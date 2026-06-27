@@ -1,15 +1,20 @@
 {
-  "as_of": "Jun 22, 2026",
-  "generated": "2026-06-22",
+  "as_of": "Jun 27, 2026",
+  "generated": "2026-06-27",
   "max_score": 6,
   "pair_max": 12,
   "pair_threshold": 7,
   "rate_range": 2,
   "bullish": [
     {
+      "cur": "AUD",
+      "score": 4,
+      "label": "+4"
+    },
+    {
       "cur": "GBP",
-      "score": 1.4,
-      "label": "+1.4"
+      "score": 2.4,
+      "label": "+2.4"
     },
     {
       "cur": "CAD",
@@ -17,9 +22,9 @@
       "label": "+1.1"
     },
     {
-      "cur": "AUD",
-      "score": 1,
-      "label": "+1"
+      "cur": "NZD",
+      "score": 1.1,
+      "label": "+1.1"
     },
     {
       "cur": "USD",
@@ -29,87 +34,82 @@
   ],
   "bearish": [
     {
-      "cur": "EUR",
-      "score": -1.2,
-      "label": "-1.2"
-    },
-    {
       "cur": "CHF",
       "score": -1,
       "label": "-1"
     },
     {
-      "cur": "NZD",
+      "cur": "EUR",
       "score": -0.9,
       "label": "-0.9"
     },
     {
       "cur": "JPY",
-      "score": -0.3,
-      "label": "-0.3"
+      "score": -0.1,
+      "label": "-0.1"
     }
   ],
   "neutral": [],
   "bullish_pairs": [
     {
-      "pair": "GBP/CHF",
-      "spread": 2.4,
-      "label": "Bull +2.4/12"
-    },
-    {
-      "pair": "GBP/NZD",
-      "spread": 2.3,
-      "label": "Bull +2.3/12"
-    },
-    {
-      "pair": "CAD/CHF",
-      "spread": 2.1,
-      "label": "Bull +2.1/12"
-    },
-    {
       "pair": "AUD/CHF",
-      "spread": 2,
-      "label": "Bull +2/12"
+      "spread": 5,
+      "label": "Bull +5/12"
+    },
+    {
+      "pair": "AUD/JPY",
+      "spread": 4.1,
+      "label": "Bull +4.1/12"
+    },
+    {
+      "pair": "AUD/USD",
+      "spread": 3.7,
+      "label": "Bull +3.7/12"
+    },
+    {
+      "pair": "GBP/CHF",
+      "spread": 3.4,
+      "label": "Bull +3.4/12"
     },
     {
       "pair": "AUD/NZD",
-      "spread": 1.9,
-      "label": "Bull +1.9/12"
+      "spread": 2.9,
+      "label": "Bull +2.9/12"
     },
     {
-      "pair": "GBP/JPY",
-      "spread": 1.7,
-      "label": "Bull +1.7/12"
+      "pair": "AUD/CAD",
+      "spread": 2.9,
+      "label": "Bull +2.9/12"
     }
   ],
   "bearish_pairs": [
     {
-      "pair": "EUR/GBP",
-      "spread": 2.6,
-      "label": "Bear -2.6/12"
-    },
-    {
-      "pair": "EUR/CAD",
-      "spread": 2.3,
-      "label": "Bear -2.3/12"
-    },
-    {
       "pair": "EUR/AUD",
-      "spread": 2.2,
-      "label": "Bear -2.2/12"
+      "spread": 4.9,
+      "label": "Bear -4.9/12"
     },
     {
-      "pair": "NZD/CAD",
+      "pair": "EUR/GBP",
+      "spread": 3.3,
+      "label": "Bear -3.3/12"
+    },
+    {
+      "pair": "EUR/NZD",
       "spread": 2,
       "label": "Bear -2/12"
     },
     {
-      "pair": "EUR/USD",
-      "spread": 1.5,
-      "label": "Bear -1.5/12"
+      "pair": "EUR/CAD",
+      "spread": 2,
+      "label": "Bear -2/12"
     },
     {
-      "pair": "NZD/USD",
+      "pair": "GBP/AUD",
+      "spread": 1.6,
+      "label": "Bear -1.6/12"
+    },
+    {
+      "pair": "EUR/USD",
       "spread": 1.2,
       "label": "Bear -1.2/12"
     }
@@ -156,6 +156,16 @@
       "as_of": "2025-10-30"
     },
     {
+      "cur": "EUR",
+      "policy": "2.25%",
+      "bank": "European Central Bank",
+      "instrument": "Deposit Facility Rate",
+      "bias": 0.1,
+      "bias_label": "+0.1",
+      "tone": "bull",
+      "as_of": "2026-06-17"
+    },
+    {
       "cur": "NZD",
       "policy": "2.25%",
       "bank": "Reserve Bank of New Zealand",
@@ -166,24 +176,14 @@
       "as_of": "2025-11-27"
     },
     {
-      "cur": "EUR",
-      "policy": "2.00%",
-      "bank": "European Central Bank",
-      "instrument": "Deposit Facility Rate",
-      "bias": -0.2,
-      "bias_label": "-0.2",
-      "tone": "bear",
-      "as_of": "2025-06-11"
-    },
-    {
       "cur": "JPY",
-      "policy": "0.75%",
+      "policy": "1.00%",
       "bank": "Bank of Japan",
       "instrument": "Overnight Call Rate",
-      "bias": -1.3,
-      "bias_label": "-1.3",
+      "bias": -1.1,
+      "bias_label": "-1.1",
       "tone": "bear",
-      "as_of": "2025-12-22"
+      "as_of": "2026-06-17"
     },
     {
       "cur": "CHF",
