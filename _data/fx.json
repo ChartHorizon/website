@@ -1,6 +1,6 @@
 {
-  "as_of": "Jul 11, 2026",
-  "generated": "2026-07-11",
+  "as_of": "Jul 17, 2026",
+  "generated": "2026-07-17",
   "max_score": 6,
   "pair_max": 12,
   "pair_threshold": 7,
@@ -13,16 +13,16 @@
     },
     {
       "cur": "GBP",
-      "score": 2.4,
-      "label": "+2.4"
-    },
-    {
-      "cur": "CAD",
-      "score": 1.1,
-      "label": "+1.1"
+      "score": 4.4,
+      "label": "+4.4"
     },
     {
       "cur": "NZD",
+      "score": 1.3,
+      "label": "+1.3"
+    },
+    {
+      "cur": "CAD",
       "score": 1.1,
       "label": "+1.1"
     },
@@ -58,9 +58,19 @@
       "label": "Bull +5.7/12"
     },
     {
+      "pair": "GBP/USD",
+      "spread": 5.1,
+      "label": "Bull +5.1/12"
+    },
+    {
       "pair": "AUD/CHF",
       "spread": 5,
       "label": "Bull +5/12"
+    },
+    {
+      "pair": "GBP/CHF",
+      "spread": 4.4,
+      "label": "Bull +4.4/12"
     },
     {
       "pair": "AUD/JPY",
@@ -68,19 +78,9 @@
       "label": "Bull +4.1/12"
     },
     {
-      "pair": "AUD/NZD",
-      "spread": 3.9,
-      "label": "Bull +3.9/12"
-    },
-    {
       "pair": "AUD/CAD",
       "spread": 3.9,
       "label": "Bull +3.9/12"
-    },
-    {
-      "pair": "GBP/USD",
-      "spread": 3.1,
-      "label": "Bull +3.1/12"
     }
   ],
   "bearish_pairs": [
@@ -90,14 +90,9 @@
       "label": "Bear -4.9/12"
     },
     {
-      "pair": "GBP/AUD",
-      "spread": 2.6,
-      "label": "Bear -2.6/12"
-    },
-    {
       "pair": "EUR/GBP",
-      "spread": 2.3,
-      "label": "Bear -2.3/12"
+      "spread": 4.3,
+      "label": "Bear -4.3/12"
     },
     {
       "pair": "USD/CAD",
@@ -111,6 +106,11 @@
     },
     {
       "pair": "EUR/NZD",
+      "spread": 1.2,
+      "label": "Bear -1.2/12"
+    },
+    {
+      "pair": "EUR/CAD",
       "spread": 1,
       "label": "Bear -1/12"
     }
@@ -147,6 +147,16 @@
       "as_of": "2025-12-11"
     },
     {
+      "cur": "NZD",
+      "policy": "2.50%",
+      "bank": "Reserve Bank of New Zealand",
+      "instrument": "Official Cash Rate",
+      "bias": 0.3,
+      "bias_label": "+0.3",
+      "tone": "bull",
+      "as_of": "2026-07-09"
+    },
+    {
       "cur": "CAD",
       "policy": "2.25%",
       "bank": "Bank of Canada",
@@ -165,16 +175,6 @@
       "bias_label": "+0.1",
       "tone": "bull",
       "as_of": "2026-06-17"
-    },
-    {
-      "cur": "NZD",
-      "policy": "2.25%",
-      "bank": "Reserve Bank of New Zealand",
-      "instrument": "Official Cash Rate",
-      "bias": 0.1,
-      "bias_label": "+0.1",
-      "tone": "bull",
-      "as_of": "2025-11-27"
     },
     {
       "cur": "JPY",
