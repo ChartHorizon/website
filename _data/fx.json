@@ -1,20 +1,20 @@
 {
-  "as_of": "Jul 17, 2026",
-  "generated": "2026-07-17",
+  "as_of": "Jul 18, 2026",
+  "generated": "2026-07-18",
   "max_score": 6,
   "pair_max": 12,
   "pair_threshold": 7,
   "rate_range": 2,
   "bullish": [
     {
-      "cur": "AUD",
-      "score": 5,
-      "label": "+5"
-    },
-    {
       "cur": "GBP",
       "score": 4.4,
       "label": "+4.4"
+    },
+    {
+      "cur": "AUD",
+      "score": 4,
+      "label": "+4"
     },
     {
       "cur": "NZD",
@@ -53,19 +53,14 @@
   ],
   "bullish_pairs": [
     {
-      "pair": "AUD/USD",
-      "spread": 5.7,
-      "label": "Bull +5.7/12"
-    },
-    {
       "pair": "GBP/USD",
       "spread": 5.1,
       "label": "Bull +5.1/12"
     },
     {
-      "pair": "AUD/CHF",
-      "spread": 5,
-      "label": "Bull +5/12"
+      "pair": "AUD/USD",
+      "spread": 4.7,
+      "label": "Bull +4.7/12"
     },
     {
       "pair": "GBP/CHF",
@@ -73,26 +68,31 @@
       "label": "Bull +4.4/12"
     },
     {
-      "pair": "AUD/JPY",
-      "spread": 4.1,
-      "label": "Bull +4.1/12"
+      "pair": "AUD/CHF",
+      "spread": 4,
+      "label": "Bull +4/12"
     },
     {
-      "pair": "AUD/CAD",
-      "spread": 3.9,
-      "label": "Bull +3.9/12"
+      "pair": "GBP/JPY",
+      "spread": 3.5,
+      "label": "Bull +3.5/12"
+    },
+    {
+      "pair": "GBP/CAD",
+      "spread": 3.3,
+      "label": "Bull +3.3/12"
     }
   ],
   "bearish_pairs": [
     {
-      "pair": "EUR/AUD",
-      "spread": 4.9,
-      "label": "Bear -4.9/12"
-    },
-    {
       "pair": "EUR/GBP",
       "spread": 4.3,
       "label": "Bear -4.3/12"
+    },
+    {
+      "pair": "EUR/AUD",
+      "spread": 3.9,
+      "label": "Bear -3.9/12"
     },
     {
       "pair": "USD/CAD",
