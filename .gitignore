@@ -11,3 +11,13 @@ _site/
 
 # Local redesign preview harness (static mirror of the layouts for screenshotting)
 .preview/
+
+# Local agent tooling — no reason to ship it with the site
+.claude/
+.impeccable/
+.github/skills/
+
+# Internal working notes. This repo is PUBLIC: product positioning and the design
+# system stay local, so a stray `git add -A` can't publish them.
+DESIGN.md
+PRODUCT.md
