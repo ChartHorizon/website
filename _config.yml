@@ -13,6 +13,13 @@ og_image: /assets/og-default.png
 
 markdown: kramdown
 
+# The desk's timezone. Without this, CI builds in UTC and Jekyll silently DROPS any post
+# whose date is still in the future there — a post dated today, built at 23:30 CEST
+# (= 21:30 UTC the same day) is fine, but anything written after midnight local time
+# vanishes from the build until UTC catches up. The workflow still reports success, the
+# assets still deploy, and only the post 404s. Keep this set.
+timezone: Europe/Berlin
+
 # SEO plugins — both ship with the `github-pages` gem, so no Gemfile change needed.
 # jekyll-sitemap → /sitemap.xml · jekyll-feed → /feed.xml
 plugins:
