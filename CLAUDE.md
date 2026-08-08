@@ -24,16 +24,29 @@ outbound links stay support/social only.
 
 1. Add `_posts/YYYY-MM-DD-slug.md` with front matter: `layout: post`, `title`, `date`,
    optional `subtitle` (shown as the dek and as the index excerpt), and `cards` (the
-   image base path). The post body is **only** the article — the `post` layout supplies
+   image base path). Optional `edition:` overrides the masthead section shown in the
+   index/archive dateline; without it `_includes/edition.html` derives it from the title
+   ("Hedgers' Ledger" if the title contains *Hedgers*, otherwise "Weekly Tape"). The post body is **only** the article — the `post` layout supplies
    the `<h1>`, the dek, and the trailing educational/risk disclaimer automatically.
    Optional **SEO-only** front matter (never shown on-page, just feeds `<head>` meta — see
    "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta
    description, overrides `subtitle`), `image` (social-share image, abs path under `/assets/...`),
    `image_alt`. Without `image`, the site default `og_image` (`_config.yml`) is used.
 2. Put images under `assets/posts/<slug>/...` and reference them with the `cards` var,
-   e.g. `![alt]({{ page.cards }}/wti_crude.png)`.
-3. Commit + push to `main` → CI builds and deploys. The post appears on the homepage list
-   automatically (it iterates `site.posts`). `permalink` is `/:year/:month/:day/:title/`.
+   e.g. `![alt]({{ page.cards }}/wti_crude.webp)`. **In-body charts are WebP** (~67% smaller
+   than the PNGs they replaced); only the card used as the OG `image:` keeps a PNG twin,
+   because share-card crawlers are the one audience whose WebP support isn't worth betting
+   on. The upstream bot does this automatically — `content/livermore/blog/publish.py`
+   writes both and prunes the unused PNGs.
+3. Commit + push to `main` → CI builds and deploys. The post appears at the top of the
+   homepage list automatically. `permalink` is `/:year/:month/:day/:title/`.
+   **The homepage shows the 10 most recent posts** and then links to `/archive/`; the
+   Ledger publishes weekly, so an uncapped `site.posts` loop became a hundred-row ladder
+   within a year. Everything older is on the archive page, grouped by year.
+
+> **Bump `css_version` in `_config.yml` whenever you touch `assets/css/blog.css`.** It is
+> the stylesheet's cache key. It used to be `site.time`, which made every daily FX push
+> re-download the CSS for every returning reader.
 
 ## Architecture
 
@@ -45,18 +58,29 @@ outbound links stay support/social only.
   **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
   Impressum/Datenschutz links).
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
-  disclaimer. **`index.html`** — `default` + the `site.posts` list.
+  disclaimer. **`index.html`** — `default` + the 10 most recent posts, each opened by an
+  edition dateline (`_includes/edition.html`), then a "Back issues" link to `/archive/`.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the four-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@PlayLoneHand`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
-  page: a "coming soon" notice for the **local-first dashboard** — it installs on your machine and
-  runs **in the browser**; the page says a **download will be offered here** when ready. Editorial
-  broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads` chip strip of the
-  four/five signals), reusing `.fx-chips`. CTA is X-only (`@PlayLoneHand`) — no email/waitlist, so
-  **zero third-party requests** stays intact (no `privacy.html` change). Still **no link to the
-  dashboard source/repo**. Gets a `WebPage` JSON-LD branch in `default.html`.
+  page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
+  Setting `dl_version` in the front matter is the single switch that flips the whole page from
+  coming-soon copy to launched copy and derives the three platform download URLs from the GitHub
+  release (see the comment block at the top of the file). **Currently launched at v1.1.3.**
+  Two download affordances: a `.dl-top` release line set as dateline furniture directly under
+  the masthead rule (above the fold — the page is ~5,300px and the foot is a fine place to *end*
+  but a poor place to be the only one), and the full `.dl` platform block with first-run notes at
+  `#download`. Editorial broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads`
+  chip strip of the four/five signals), reusing `.fx-chips`. Contact is X-only (`@PlayLoneHand`) —
+  no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
+  Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
+  `WebPage` JSON-LD branch in `default.html`.
+- **`archive.html`** (`/archive/`) — every post grouped by year, with the same edition dateline as
+  the index. Indexed, in the sitemap. **`404.html`** — broadsheet not-found page (`noindex`,
+  `sitemap: false`); without it GitHub Pages serves its own GitHub-branded 404, on a site whose
+  standing constraint is that it never points at its own repository.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
   natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
@@ -64,7 +88,11 @@ outbound links stay support/social only.
 - **`assets/css/blog.css`** is the single source of truth for the look — a cool-newsprint
   financial-broadsheet theme: tokens in `:root` (`--paper #f5f4f1`, `--ink #17150f`, gold
   `--gold #c8a24a`, `--rule-strong` for the masthead double rule, `--card`, `--bull`/`--bear`,
-  hairlines, muted, quote bg). Both layouts and the index pull from it, so the index and every
+  hairlines, muted, quote bg, and `--measure` for the prose column). Three rules worth knowing
+  before editing it: **both** muted tones clear 4.5:1 on every surface they sit on (gold is
+  2.19:1 on paper — never body text, never a focus ring there); `:focus-visible` is one ink
+  ring defined once, not per-component; and prose is capped at `--measure` (~72 chars/line)
+  while figures, boards and tables break out to the full 760px sheet. Both layouts and the index pull from it, so the index and every
   page match. Type is **Newsreader**, self-hosted under `assets/fonts/` and declared via
   `@font-face` at the top of `blog.css` (preloaded in `default.html`), so the site still makes
   **zero third-party requests** on content pages — Georgia is the fallback.
@@ -73,6 +101,13 @@ outbound links stay support/social only.
   match the light theme). The layout reads per-page `lang` and `noindex`. Their content is
   an unfilled German placeholder template (amber `[...]` `.ph` fields) — not real legal or
   contact info.
+- **Third-party embeds fail loudly, not silently.** Privacy extensions and DNS filters block
+  TradingView outright. `fx.html` probes for the widget frames after a grace period and toggles
+  `.no-tv` on `<html>`; the CSS then hides the empty widget shells, reveals a first-party
+  `.tv-fallback` note, and suppresses the "click a pair for its live chart" hint (the chart modal
+  shows `.fx-modal-empty` instead of an empty frame). The probe keeps watching, so frames that
+  arrive late undo the fallback. It runs off `DOMContentLoaded`, **not `load`** — a proxy that
+  black-holes the request rather than refusing it never fires `load` at all.
 - **Analytics ↔ privacy coupling:** two third-party scripts must stay disclosed in
   `privacy.html` — the cookieless Cloudflare beacon in `default.html` (loads on **every** page)
   in §3, and the **TradingView** widgets on `/fx/` (that **one** page only) in §6. Keep them in

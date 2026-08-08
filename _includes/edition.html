@@ -1,0 +1,16 @@
+{%- comment -%}
+  The masthead section a post ran under, for the index and archive datelines.
+
+  `edition:` front matter wins; otherwise it is derived from the title, so the daily
+  Hedgers' Ledger bot needs no change to be labelled correctly. Everything that is not
+  a Ledger release is a Weekly Tape note — the two named editions in about.html.
+
+  Usage: {% include edition.html post=post %}
+{%- endcomment -%}
+{%- if include.post.edition -%}
+{{- include.post.edition -}}
+{%- elsif include.post.title contains "Hedgers" -%}
+Hedgers&rsquo; Ledger
+{%- else -%}
+Weekly Tape
+{%- endif -%}

@@ -22,7 +22,7 @@ friendly.
 
 ## The dollar — pressed to 100, and stalling
 
-![Macro Shift — Euro FX, British Pound and the US Dollar Index: the dollar stalls at the 100 handle while sterling turns up]({{ page.cards }}/fx.png){: width="1200" height="973" loading="lazy"}
+![Macro Shift — Euro FX, British Pound and the US Dollar Index: the dollar stalls at the 100 handle while sterling turns up]({{ page.cards }}/fx.webp){: width="1200" height="973" loading="lazy"}
 
 The Dollar Index carried up from its spring low along a clean rising line and has now arrived
 where round numbers live — the 100 handle at 99.75, the very ceiling that turned it back earlier
@@ -48,7 +48,7 @@ sterling pressing its lead, before I trade the turn instead of anticipating it.
 
 ## The stock leaders — a reaction, not a top
 
-![Macro Shift — E-mini S&P 500, Nasdaq 100 and Dow: a reaction inside the advance, with the Dow holding its trend]({{ page.cards }}/equities.png){: width="1200" height="973" loading="lazy"}
+![Macro Shift — E-mini S&P 500, Nasdaq 100 and Dow: a reaction inside the advance, with the Dow holding its trend]({{ page.cards }}/equities.webp){: width="1200" height="973" loading="lazy"}
 
 While the dollar climbed toward 100, the stock leaders did the mirror thing — they quit advancing
 and pulled back. The S&P 500 at 7435 and the Nasdaq 100 at 29,662 have each carved a short string

@@ -7,12 +7,24 @@ layout: default
 
 <h2 class="section-rule"><span>Latest editions</span></h2>
 
+{%- comment -%}
+  The front page is capped: the Ledger publishes weekly, so an uncapped `site.posts` loop
+  turns into a hundred-row ladder inside a year. Everything older lives on /archive/.
+{%- endcomment -%}
 <ul class="post-list">
-  {% for post in site.posts %}
+  {% for post in site.posts limit: 10 %}
   <li>
-    <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <div class="post-dateline">
+      <span class="post-edition">{% include edition.html post=post %}</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    </div>
     <h3 class="post-headline"><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
     {% if post.subtitle %}<p class="post-excerpt">{{ post.subtitle }}</p>{% endif %}
   </li>
   {% endfor %}
 </ul>
+
+{% if site.posts.size > 10 %}
+<p class="more-issues"><a href="{{ '/archive/' | relative_url }}">Back issues &rarr;</a></p>
+{% endif %}

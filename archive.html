@@ -1,0 +1,27 @@
+---
+layout: default
+permalink: /archive/
+title: Back Issues
+seo_title: "Back Issues — Every Weekly Tape and Hedgers' Ledger"
+description: "The full run of ChartHorizon's futures positioning notes: every Weekly Tape edition and every Hedgers' Ledger COT release, by year."
+---
+<h1>Back Issues</h1>
+<p class="dek">The full run, newest first — every Weekly Tape note and every Hedgers&rsquo; Ledger
+   release since the desk started publishing.</p>
+
+{%- assign by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
+{% for year in by_year %}
+<h2 class="section-rule archive-year"><span>{{ year.name }}</span></h2>
+<ul class="archive-list">
+  {% for post in year.items %}
+  <li>
+    <div class="post-dateline">
+      <span class="post-edition">{% include edition.html post=post %}</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d" }}</time>
+    </div>
+    <a class="archive-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}

@@ -1,0 +1,28 @@
+---
+layout: default
+permalink: /404.html
+title: Page Not Found
+noindex: true
+sitemap: false
+---
+{%- comment -%}
+  Without this file GitHub Pages serves its own 404 — GitHub-branded, on a site whose
+  standing constraint is that it never points at its own repository.
+{%- endcomment -%}
+<div class="notice-head">
+  <p class="kicker">No Such Edition</p>
+  <h1>This page never went to press</h1>
+  <p class="dek">Either the address is wrong, or the note you are after was never filed under it.</p>
+  <div class="notice-rule"></div>
+</div>
+
+{%- comment -%} Deliberately not .post-body: the drop cap marks the start of a read, and this
+is not one. {%- endcomment -%}
+<div class="notfound">
+<p>Nothing dramatic has happened — a link has simply come apart. The desk keeps every note it
+has ever published, so if the piece exists, it is still on the paper somewhere.</p>
+
+<p class="dash-close">Start again from <strong><a href="{{ '/' | relative_url }}">The Tape</a></strong>,
+check today&rsquo;s board on the <strong><a href="{{ '/fx/' | relative_url }}">FX Map</a></strong>, or
+go through the <strong><a href="{{ '/archive/' | relative_url }}">back issues</a></strong>.</p>
+</div>

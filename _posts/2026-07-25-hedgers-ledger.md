@@ -23,7 +23,7 @@ The tape dated 21 July 2026 shows four markets registering positioning highs wit
 
 ## WTI Crude Oil — commercials at a 3-year HIGH
 
-![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.png){: width="1200" height="1036" loading="lazy"}
+![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +383,350 contracts (as of 2026-07-21). New this week.
 
@@ -31,7 +31,7 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## Silver — commercials at a 3-year HIGH
 
-![Silver — commercials net positioning]({{ page.cards }}/silver.png){: width="1200" height="1036" loading="lazy"}
+![Silver — commercials net positioning]({{ page.cards }}/silver.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: -13,044 contracts (as of 2026-07-21). New this week.
 
@@ -39,7 +39,7 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## Platinum — commercials at a 3-year HIGH
 
-![Platinum — commercials net positioning]({{ page.cards }}/platinum.png){: width="1200" height="1036" loading="lazy"}
+![Platinum — commercials net positioning]({{ page.cards }}/platinum.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: -9,314 contracts (as of 2026-07-21). New this week.
 
@@ -47,6 +47,6 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## 10-Year U.S. T-Note — commercials at a 3-year HIGH
 
-![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.png){: width="1200" height="1036" loading="lazy"}
+![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +890,118 contracts (as of 2026-07-21). New this week.

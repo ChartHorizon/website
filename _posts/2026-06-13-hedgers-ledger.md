@@ -27,7 +27,7 @@ The board dated 2026-06-09 runs six markets at positioning highs against two at 
 
 ## Platinum — commercials at a 3-year HIGH (fresh record)
 
-![Platinum — commercials net positioning]({{ page.cards }}/platinum.png){: width="1200" height="1035" loading="lazy"}
+![Platinum — commercials net positioning]({{ page.cards }}/platinum.webp){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: -12,284 contracts (as of 2026-06-09).
 
@@ -35,7 +35,7 @@ Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the 
 
 ## Brent Crude Oil — commercials at a 3-year LOW (fresh record)
 
-![Brent Crude Oil — commercials net positioning]({{ page.cards }}/brent_crude.png){: width="1200" height="1035" loading="lazy"}
+![Brent Crude Oil — commercials net positioning]({{ page.cards }}/brent_crude.webp){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 1st percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. That is a fresh record for the window. Net: -44,512 contracts (as of 2026-06-09).
 
@@ -43,7 +43,7 @@ Producer/Merchant Net sits at the 1st percentile of its ~3-year range — the co
 
 ## Coffee (Arabica) — commercials at a 3-year HIGH
 
-![Coffee (Arabica) — commercials net positioning]({{ page.cards }}/coffee.png){: width="1200" height="1035" loading="lazy"}
+![Coffee (Arabica) — commercials net positioning]({{ page.cards }}/coffee.webp){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: -9,308 contracts (as of 2026-06-09).
 
@@ -51,7 +51,7 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## WTI Crude Oil — commercials at a 3-year HIGH
 
-![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.png){: width="1200" height="1035" loading="lazy"}
+![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.webp){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +365,942 contracts (as of 2026-06-09).
 
@@ -59,7 +59,7 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## Bitcoin — leveraged funds at a 3-year HIGH
 
-![Bitcoin — leveraged funds net positioning]({{ page.cards }}/bitcoin.png){: width="1200" height="1035" loading="lazy"}
+![Bitcoin — leveraged funds net positioning]({{ page.cards }}/bitcoin.webp){: width="1200" height="1035" loading="lazy"}
 
 Leveraged Funds Net sits at the 97th percentile of its ~3-year range — the leveraged funds (the fast, speculative money) have been heavy net buyers. Net: -5,995 contracts (as of 2026-06-09). New this week.
 
@@ -67,7 +67,7 @@ Leveraged Funds Net sits at the 97th percentile of its ~3-year range — the lev
 
 ## Copper — commercials at a 3-year LOW
 
-![Copper — commercials net positioning]({{ page.cards }}/copper.png){: width="1200" height="1035" loading="lazy"}
+![Copper — commercials net positioning]({{ page.cards }}/copper.webp){: width="1200" height="1035" loading="lazy"}
 
 Producer/Merchant Net sits at the 3rd percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. Net: -109,260 contracts (as of 2026-06-09).
 
@@ -75,7 +75,7 @@ Producer/Merchant Net sits at the 3rd percentile of its ~3-year range — the co
 
 ## 10-Year U.S. T-Note — commercials at a 3-year HIGH
 
-![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.png){: width="1200" height="1035" loading="lazy"}
+![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.webp){: width="1200" height="1035" loading="lazy"}
 
 Commercial Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +864,695 contracts (as of 2026-06-09).
 
@@ -83,6 +83,6 @@ Commercial Net sits at the 96th percentile of its ~3-year range — the commerci
 
 ## British Pound — commercials at a 3-year HIGH
 
-![British Pound — commercials net positioning]({{ page.cards }}/gbp_fx.png){: width="1200" height="1035" loading="lazy"}
+![British Pound — commercials net positioning]({{ page.cards }}/gbp_fx.webp){: width="1200" height="1035" loading="lazy"}
 
 Commercial Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +75,870 contracts (as of 2026-06-09).

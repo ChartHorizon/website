@@ -30,7 +30,7 @@ from, at a moment when the tape was giving them every excuse not to bother.
 ## Four entries in one hand
 
 <figure class="board">
-  <img src="{{ page.cards }}/zn_10y.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/zn_10y.webp" width="1200" height="1036" loading="lazy"
        alt="10-Year U.S. T-Note — commercial net long at the 100th percentile of its three-year range, a fresh record">
   <figcaption>10-Year U.S. T-Note · commercial net positioning · ChartHorizon</figcaption>
 </figure>
@@ -42,7 +42,7 @@ the 1st percentile. And in Silver the producer book, which is structurally short
 sell what they dig, has covered back to the least-short reading in three years.
 
 <figure class="board">
-  <img src="{{ page.cards }}/usdx.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/usdx.webp" width="1200" height="1036" loading="lazy"
        alt="US Dollar Index — commercial net short at the 1st percentile of its three-year range, a fresh record">
   <figcaption>US Dollar Index · commercial net positioning · ChartHorizon</figcaption>
 </figure>
@@ -53,13 +53,13 @@ a diversified book. That is one opinion, expressed four times, by people who are
 opinions.
 
 <figure class="board">
-  <img src="{{ page.cards }}/ym_dow.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/ym_dow.webp" width="1200" height="1036" loading="lazy"
        alt="E-mini Dow — commercial net short at the 1st percentile of its three-year range">
   <figcaption>E-mini Dow ($5) · commercial net positioning · ChartHorizon</figcaption>
 </figure>
 
 <figure class="board">
-  <img src="{{ page.cards }}/silver.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/silver.webp" width="1200" height="1036" loading="lazy"
        alt="Silver — producer/merchant net short covered back to the 97th percentile, the least short in three years">
   <figcaption>Silver · producer/merchant net positioning · ChartHorizon</figcaption>
 </figure>
@@ -107,7 +107,7 @@ risking money on it.
 An honest ledger includes the entries that spoil the story, and there are two.
 
 <figure class="board">
-  <img src="{{ page.cards }}/nq_nasdaq.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/nq_nasdaq.webp" width="1200" height="1036" loading="lazy"
        alt="E-mini Nasdaq 100 — commercial net long at the 100th percentile, a fresh record">
   <figcaption>E-mini Nasdaq 100 · commercial net positioning · ChartHorizon</figcaption>
 </figure>
@@ -132,7 +132,7 @@ position the tape has not paid off yet.
 Two further entries round out the report.
 
 <figure class="board">
-  <img src="{{ page.cards }}/cotton.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/cotton.webp" width="1200" height="1036" loading="lazy"
        alt="Cotton #2 — producer/merchant net short at the 2nd percentile of its three-year range">
   <figcaption>Cotton #2 · producer/merchant net positioning · ChartHorizon</figcaption>
 </figure>
@@ -142,7 +142,7 @@ hard into their own crop, an agricultural story with its own weather and its own
 macro signal.
 
 <figure class="board">
-  <img src="{{ page.cards }}/platinum.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/platinum.webp" width="1200" height="1036" loading="lazy"
        alt="Platinum — producer/merchant net short covered back to the 96th percentile, the least short in three years">
   <figcaption>Platinum · producer/merchant net positioning · ChartHorizon</figcaption>
 </figure>

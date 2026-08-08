@@ -16,13 +16,13 @@ The bond market has cast a vote this week, and the stock indices have not finish
 
 At the long end, money is moving in. The 30-year T-bond has run from 112.47 to 114.16 — up 1.50% in six weeks and pressed to a fresh high on the move — and the 10-year note sits at its own high of the stretch. The 2-year, meanwhile, has barely budged: off 0.13% and going nowhere. That is a bull flattening — the long end rallying while the short end sits still. It is the shape a market makes when it marks down the price of money for the years ahead without any panic about the months right in front of it: no scramble for the front end, no cry for emergency cuts. Lower long rates, calmly arrived at.
 
-![30-Year T-Bond · 10-Year T-Note · 2-Year T-Note — the long end bid, the 2-year still]({{ page.cards }}/bonds.png){: width="1200" height="973" loading="lazy"}
+![30-Year T-Bond · 10-Year T-Note · 2-Year T-Note — the long end bid, the 2-year still]({{ page.cards }}/bonds.webp){: width="1200" height="973" loading="lazy"}
 
 ## The indices have not caught up — except one
 
 Look across to the equity board and the first thing the eye catches is disagreement. The S&P 500 has slipped 1.64% from its high and the Nasdaq 1.08% — the long-duration names, the very ones that ought to cheer lower discount rates, have been the laggards. But the Dow tells the opposite story: up 4.10% and sitting within a whisker of its high. The cyclical index — the steel, the banks, the machinery — is not retreating. It is leading.
 
-![E-mini S&P 500 · E-mini Nasdaq 100 · E-mini Dow — the Dow leading, the others lagging]({{ page.cards }}/indices.png){: width="1200" height="973" loading="lazy"}
+![E-mini S&P 500 · E-mini Nasdaq 100 · E-mini Dow — the Dow leading, the others lagging]({{ page.cards }}/indices.webp){: width="1200" height="973" loading="lazy"}
 
 ## The read
 

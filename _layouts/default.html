@@ -60,8 +60,10 @@
 <link rel="preload" href="{{ '/assets/fonts/newsreader.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <!-- The italic face renders above the fold on every page (motto, dek, standfirst) — preload it too. -->
 <link rel="preload" href="{{ '/assets/fonts/newsreader-italic.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<!-- ?v= cache-busts the stylesheet on every build so returning visitors get CSS changes (e.g. the FX chart modal), not a stale cached copy. -->
-<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<!-- ?v= cache-busts the stylesheet. Keyed to `css_version` in _config.yml, NOT to the build
+     time: the FX job pushes daily, and a build-time key would make every returning reader
+     re-download the CSS every day. Bump css_version whenever blog.css changes. -->
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}?v={{ site.css_version }}">
 <!-- Privacy-friendly, cookieless analytics (Cloudflare Web Analytics) — documented in privacy.html §3. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "ad8ec9c612294bc1becfed6a490aabdd"}'></script>
@@ -108,7 +110,7 @@
   <div class="masthead-rule"></div>
   <div class="masthead-motto">Positioning, not predictions.</div>
   <div class="dateline">
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Sections">
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active" aria-current="page"{% endif %}>The Tape</a>
       <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active" aria-current="page"{% endif %}>FX Map</a>
       <a href="{{ '/dashboard/' | relative_url }}"{% if page.url == '/dashboard/' %} class="active" aria-current="page"{% endif %}>Dashboard</a>

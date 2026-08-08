@@ -196,7 +196,7 @@ draining a warehouse. It is built by writing customs regulations.
 ## What the ledger says
 
 <figure class="board">
-  <img src="{{ page.cards }}/gold.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/gold.webp" width="1200" height="1036" loading="lazy"
        alt="Gold futures, daily, with open interest, producer/merchant net position and the front-to-next calendar spread">
   <figcaption>Gold · GCZ26 single contract · price, CFTC open interest, producer/merchant net vs 12-month hedging programme, front−next calendar spread · ChartHorizon</figcaption>
 </figure>
@@ -244,7 +244,7 @@ rises off a low while price grinds sideways above 4,000 is new money taking posi
 money capitulating.
 
 <figure class="board">
-  <img src="{{ page.cards }}/silver.png" width="1200" height="1036" loading="lazy"
+  <img src="{{ page.cards }}/silver.webp" width="1200" height="1036" loading="lazy"
        alt="Silver futures, daily — a peak at 121.30 in January 2026 and a fall to 57.86, with open interest, producer hedging and the calendar spread beneath">
   <figcaption>Silver · SIU26 single contract · same panes · ChartHorizon</figcaption>
 </figure>

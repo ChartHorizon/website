@@ -26,7 +26,7 @@ The week of 4 August 2026 presents a board that leans decidedly against the doll
 
 ## 10-Year U.S. T-Note — commercials at a 3-year HIGH (fresh record)
 
-![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.png){: width="1200" height="1036" loading="lazy"}
+![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +995,416 contracts (as of 2026-08-04).
 
@@ -34,7 +34,7 @@ Commercial Net sits at the 100th percentile of its ~3-year range — the commerc
 
 ## E-mini Nasdaq 100 — commercials at a 3-year HIGH (fresh record)
 
-![E-mini Nasdaq 100 — commercials net positioning]({{ page.cards }}/nq_nasdaq.png){: width="1200" height="1036" loading="lazy"}
+![E-mini Nasdaq 100 — commercials net positioning]({{ page.cards }}/nq_nasdaq.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +15,442 contracts (as of 2026-08-04). New this week.
 
@@ -42,7 +42,7 @@ Commercial Net sits at the 100th percentile of its ~3-year range — the commerc
 
 ## US Dollar Index — commercials at a 3-year LOW (fresh record)
 
-![US Dollar Index — commercials net positioning]({{ page.cards }}/usdx.png){: width="1200" height="1036" loading="lazy"}
+![US Dollar Index — commercials net positioning]({{ page.cards }}/usdx.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 1st percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. That is a fresh record for the window. Net: -24,626 contracts (as of 2026-08-04). New this week.
 
@@ -50,7 +50,7 @@ Commercial Net sits at the 1st percentile of its ~3-year range — the commercia
 
 ## E-mini Dow ($5) — commercials at a 3-year LOW
 
-![E-mini Dow ($5) — commercials net positioning]({{ page.cards }}/ym_dow.png){: width="1200" height="1036" loading="lazy"}
+![E-mini Dow ($5) — commercials net positioning]({{ page.cards }}/ym_dow.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 1st percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. Net: -25,579 contracts (as of 2026-08-04). New this week.
 
@@ -58,7 +58,7 @@ Commercial Net sits at the 1st percentile of its ~3-year range — the commercia
 
 ## Cotton #2 — commercials at a 3-year LOW
 
-![Cotton #2 — commercials net positioning]({{ page.cards }}/cotton.png){: width="1200" height="1036" loading="lazy"}
+![Cotton #2 — commercials net positioning]({{ page.cards }}/cotton.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 2nd percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. Net: -140,793 contracts (as of 2026-08-04). New this week.
 
@@ -66,7 +66,7 @@ Producer/Merchant Net sits at the 2nd percentile of its ~3-year range — the co
 
 ## Silver — commercials at a 3-year HIGH
 
-![Silver — commercials net positioning]({{ page.cards }}/silver.png){: width="1200" height="1036" loading="lazy"}
+![Silver — commercials net positioning]({{ page.cards }}/silver.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 97th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) remain net short here, as producers structurally are, but less short than at almost any point in three years. The move is short-covering, not accumulation. Net: -13,080 contracts (as of 2026-08-04). New this week.
 
@@ -74,6 +74,6 @@ Producer/Merchant Net sits at the 97th percentile of its ~3-year range — the c
 
 ## Platinum — commercials at a 3-year HIGH
 
-![Platinum — commercials net positioning]({{ page.cards }}/platinum.png){: width="1200" height="1036" loading="lazy"}
+![Platinum — commercials net positioning]({{ page.cards }}/platinum.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) remain net short here, as producers structurally are, but less short than at almost any point in three years. The move is short-covering, not accumulation. Net: -11,155 contracts (as of 2026-08-04). New this week.

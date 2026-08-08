@@ -26,7 +26,7 @@ fifteen years.
 ## The two nights
 
 <figure class="board">
-  <img src="{{ page.cards }}/usdjpy.png" width="1200" height="760" loading="lazy"
+  <img src="{{ page.cards }}/usdjpy.webp" width="1200" height="760" loading="lazy"
        alt="US Dollar / Japanese Yen, daily — a twelve-month climb from 147 to 163.95, ended by a two-session collapse to 157.47">
   <figcaption>U.S. Dollar / Japanese Yen · daily · chart by TradingView</figcaption>
 </figure>
@@ -68,7 +68,7 @@ anything printed during the unwind of 2024.
 ## What kind of week that was
 
 <figure class="board">
-  <img src="{{ page.cards }}/usdjpy_w.png" width="1200" height="760" loading="lazy"
+  <img src="{{ page.cards }}/usdjpy_w.webp" width="1200" height="760" loading="lazy"
        alt="US Dollar / Japanese Yen, weekly over five years — a new high at 163.95 and a close at 157.47, the week's low">
   <figcaption>U.S. Dollar / Japanese Yen · weekly, five years · chart by TradingView</figcaption>
 </figure>
@@ -141,7 +141,7 @@ Intervention did not turn the yen in 2024. It lit the fuse. Policy and positioni
 ## The cross that pays for it
 
 <figure class="board">
-  <img src="{{ page.cards }}/audjpy.png" width="1200" height="760" loading="lazy"
+  <img src="{{ page.cards }}/audjpy.webp" width="1200" height="760" loading="lazy"
        alt="Australian Dollar / Japanese Yen, daily — a year-long carry advance from the mid-90s to 115, broken to 110.84">
   <figcaption>Australian Dollar / Japanese Yen · daily · chart by TradingView</figcaption>
 </figure>

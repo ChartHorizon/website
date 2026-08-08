@@ -20,6 +20,6 @@ The report dated 14 July 2026 shows the commercial book thin on conviction: no m
 
 ## Cotton #2 — commercials at a 3-year LOW
 
-![Cotton #2 — commercials net positioning]({{ page.cards }}/cotton.png){: width="1200" height="1036" loading="lazy"}
+![Cotton #2 — commercials net positioning]({{ page.cards }}/cotton.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 4th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net sellers. Net: -133,903 contracts (as of 2026-07-14). New this week.

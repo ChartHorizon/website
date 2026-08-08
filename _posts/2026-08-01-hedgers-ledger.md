@@ -22,7 +22,7 @@ The report dated 2026-07-28 shows commercial hedgers pressed to a three-year pos
 
 ## Euro FX — commercials at a 3-year HIGH
 
-![Euro FX — commercials net positioning]({{ page.cards }}/eur_fx.png){: width="1200" height="1036" loading="lazy"}
+![Euro FX — commercials net positioning]({{ page.cards }}/eur_fx.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +51,714 contracts (as of 2026-07-28). New this week.
 
@@ -30,7 +30,7 @@ Commercial Net sits at the 99th percentile of its ~3-year range — the commerci
 
 ## 10-Year U.S. T-Note — commercials at a 3-year HIGH
 
-![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.png){: width="1200" height="1036" loading="lazy"}
+![10-Year U.S. T-Note — commercials net positioning]({{ page.cards }}/zn_10y.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +890,267 contracts (as of 2026-07-28).
 
@@ -38,6 +38,6 @@ Commercial Net sits at the 96th percentile of its ~3-year range — the commerci
 
 ## Canadian Dollar — commercials at a 3-year HIGH
 
-![Canadian Dollar — commercials net positioning]({{ page.cards }}/cad_fx.png){: width="1200" height="1036" loading="lazy"}
+![Canadian Dollar — commercials net positioning]({{ page.cards }}/cad_fx.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 96th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +189,021 contracts (as of 2026-07-28). New this week.

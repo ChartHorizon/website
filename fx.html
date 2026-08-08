@@ -43,7 +43,9 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
 <section class="fxmap">
   <div class="fx-section-head">
     <h2 class="fx-section-title">FX Strength &amp; Pairs</h2>
-    <div class="fxmap-meta">Data as of {{ fx.as_of }} · score −{{ fx.max_score }}…+{{ fx.max_score }}</div>
+    {%- comment -%} Both scales, because the board shows both: currency scores run ±max_score,
+    pair spreads are the difference of two of them and run ±pair_max. {%- endcomment -%}
+    <div class="fxmap-meta">Data as of {{ fx.as_of }} · currency −{{ fx.max_score }}…+{{ fx.max_score }} · pair −{{ fx.pair_max }}…+{{ fx.pair_max }}</div>
   </div>
 
   <div class="fx-board">
@@ -123,6 +125,9 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   </div>
   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Calendar by TradingView</a></div>
 </div>
+<p class="tv-fallback"><strong>The calendar is not loading.</strong> It is a TradingView embed, and
+   something between here and them — a privacy extension, a DNS filter, a company proxy — is
+   holding it back. The strength board above is ChartHorizon's own and is unaffected.</p>
 
 <h2>Interest rates</h2>
 <p>The policy-rate backdrop behind the strength scores — the rate-bias column is how each central
@@ -147,6 +152,7 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
       </tbody>
     </table>
   </div>
+  <p class="fx-rate-scroll">Scroll the ledger sideways for the central bank, instrument and as-of columns.</p>
 </section>
 
 <!-- Per-pair chart overlay — opened on click from the pairs grid above. A native <dialog>,
@@ -167,6 +173,15 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   if (!modal) return;
   var body = document.getElementById('fxChartBody');
   var titleEl = document.getElementById('fxChartTitle');
+
+  function showEmpty() {
+    body.innerHTML = '<div class="fx-modal-empty">' +
+      '<p><strong>The chart is not loading.</strong></p>' +
+      '<p>TradingView supplies the live charts on this page, and something between here and ' +
+      'them is blocking the request — usually a privacy extension, a DNS filter or a company ' +
+      'proxy. The strength read behind this pair is ChartHorizon&rsquo;s own and stands as printed.</p>' +
+      '</div>';
+  }
 
   function buildWidget(symbol) {
     body.innerHTML = '';
@@ -218,7 +233,16 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
   function open(symbol, label, dir) {
     titleEl.textContent = label || 'FX pair';
     modal.setAttribute('data-dir', dir || '');
-    buildWidget(symbol);
+    if (document.documentElement.classList.contains('no-tv')) {
+      showEmpty();
+    } else {
+      buildWidget(symbol);
+      // The widget may be blocked even if the page-level probe passed; if no frame has
+      // appeared by now it is not coming, so say so instead of holding an empty panel.
+      setTimeout(function () {
+        if (modal.open && !body.querySelector('iframe')) showEmpty();
+      }, 6000);
+    }
     modal.showModal();
     document.body.style.overflow = 'hidden';
   }
@@ -239,5 +263,28 @@ description: "ChartHorizon's daily FX strength map: bias of the eight majors, th
     // A click on the backdrop lands on the dialog element itself; the panel's children swallow the rest.
     if (e.target === modal || e.target.hasAttribute('data-close')) modal.close();
   });
+})();
+
+// Privacy extensions, DNS filters and company proxies block TradingView outright. When they
+// do, the embeds never build a frame — so the page would otherwise show a headed, introduced
+// calendar section standing over nothing, plus pair tiles advertising a chart that cannot
+// load. Probe once, then let the CSS swap in first-party copy (see .no-tv in blog.css).
+(function () {
+  function loaded() {
+    var frames = document.querySelectorAll('.tv-widget iframe');
+    return frames.length >= document.querySelectorAll('.tv-widget').length;
+  }
+  // Grace period first (a slow link is not a blocked one), then the verdict — and keep
+  // watching after it, because frames that arrive late must undo the fallback rather than
+  // leave the page claiming data it actually got. Driven off DOMContentLoaded, not load:
+  // a proxy that black-holes the request instead of refusing it never fires load at all.
+  function check(attempt) {
+    var blocked = !loaded();
+    document.documentElement.classList.toggle('no-tv', blocked && attempt >= 12);
+    if (!blocked || attempt >= 40) return;
+    setTimeout(function () { check(attempt + 1); }, 900);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { check(0); });
+  else check(0);
 })();
 </script>

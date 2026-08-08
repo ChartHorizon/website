@@ -24,7 +24,7 @@ The COT report dated 7 July 2026 finds the hedger book leaning hard to one side:
 
 ## New Zealand Dollar — commercials at a 3-year HIGH (fresh record)
 
-![New Zealand Dollar — commercials net positioning]({{ page.cards }}/nzd_fx.png){: width="1200" height="1036" loading="lazy"}
+![New Zealand Dollar — commercials net positioning]({{ page.cards }}/nzd_fx.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +68,783 contracts (as of 2026-07-07). New this week.
 
@@ -32,7 +32,7 @@ Commercial Net sits at the 100th percentile of its ~3-year range — the commerc
 
 ## WTI Crude Oil — commercials at a 3-year HIGH (fresh record)
 
-![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.png){: width="1200" height="1036" loading="lazy"}
+![WTI Crude Oil — commercials net positioning]({{ page.cards }}/wti_crude.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: +390,293 contracts (as of 2026-07-07).
 
@@ -40,7 +40,7 @@ Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the 
 
 ## Platinum — commercials at a 3-year HIGH (fresh record)
 
-![Platinum — commercials net positioning]({{ page.cards }}/platinum.png){: width="1200" height="1036" loading="lazy"}
+![Platinum — commercials net positioning]({{ page.cards }}/platinum.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. That is a fresh record for the window. Net: -9,239 contracts (as of 2026-07-07).
 
@@ -48,7 +48,7 @@ Producer/Merchant Net sits at the 100th percentile of its ~3-year range — the 
 
 ## Silver — commercials at a 3-year HIGH
 
-![Silver — commercials net positioning]({{ page.cards }}/silver.png){: width="1200" height="1036" loading="lazy"}
+![Silver — commercials net positioning]({{ page.cards }}/silver.webp){: width="1200" height="1036" loading="lazy"}
 
 Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: -13,356 contracts (as of 2026-07-07). New this week.
 
@@ -56,6 +56,6 @@ Producer/Merchant Net sits at the 99th percentile of its ~3-year range — the c
 
 ## British Pound — commercials at a 3-year HIGH
 
-![British Pound — commercials net positioning]({{ page.cards }}/gbp_fx.png){: width="1200" height="1036" loading="lazy"}
+![British Pound — commercials net positioning]({{ page.cards }}/gbp_fx.webp){: width="1200" height="1036" loading="lazy"}
 
 Commercial Net sits at the 98th percentile of its ~3-year range — the commercials (hedgers, the "smart-money" side) have been heavy net buyers. Net: +98,366 contracts (as of 2026-07-07).

@@ -13,6 +13,11 @@ og_image: /assets/og-default.png
 
 markdown: kramdown
 
+# Stylesheet cache key, appended as ?v= in _layouts/default.html. BUMP THIS whenever
+# assets/css/blog.css changes — otherwise returning readers keep the cached copy.
+# (It used to be site.time, which made every daily FX push re-download the CSS.)
+css_version: 2
+
 # The desk's timezone. Without this, CI builds in UTC and Jekyll silently DROPS any post
 # whose date is still in the future there — a post dated today, built at 23:30 CEST
 # (= 21:30 UTC the same day) is fine, but anything written after midnight local time

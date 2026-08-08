@@ -33,7 +33,7 @@ with its own term structure. Three divergences, all pointing the same way. The c
 
 ## The leaders make price, not strength
 
-![Macro Shift — E-mini S&P 500, Nasdaq 100 and Dow: the S&P and Nasdaq carve lower highs under descending lines while only the Dow presses to a new high]({{ page.cards }}/equities.png){: width="1200" height="467" loading="lazy"}
+![Macro Shift — E-mini S&P 500, Nasdaq 100 and Dow: the S&P and Nasdaq carve lower highs under descending lines while only the Dow presses to a new high]({{ page.cards }}/equities.webp){: width="1200" height="467" loading="lazy"}
 
 A healthy advance is signed by every leader at once — that was the whole virtue of the move off
 the April low, straight and broad and undersigned by none. Look at the three now and the signatures
@@ -55,7 +55,7 @@ looks like on the tape.
 
 ## The bond board stops agreeing
 
-![Macro Shift — 30-Year T-Bond, 10-Year T-Note and 2-Year T-Note: the long bond turns up on a rising line while the 10- and 2-year slip under descending lines]({{ page.cards }}/bonds.png){: width="1200" height="467" loading="lazy"}
+![Macro Shift — 30-Year T-Bond, 10-Year T-Note and 2-Year T-Note: the long bond turns up on a rising line while the 10- and 2-year slip under descending lines]({{ page.cards }}/bonds.webp){: width="1200" height="467" loading="lazy"}
 
 Read the bond board the same way — the group, not the single quote — and it is telling a story the
 stock crowd is not yet listening to. These three maturities normally move as one family. Here they
@@ -77,7 +77,7 @@ risk-on — and I have learned to trust the whisper.
 
 ## The Dow's own confession
 
-![E-mini Dow — price rides a steep rising line to a new high near 52,451 while the calendar spread deepens into contango toward −426 beneath it]({{ page.cards }}/dow.png){: width="1200" height="956" loading="lazy"}
+![E-mini Dow — price rides a steep rising line to a new high near 52,451 while the calendar spread deepens into contango toward −426 beneath it]({{ page.cards }}/dow.webp){: width="1200" height="956" loading="lazy"}
 
 Then take the leader itself — the one name still making new highs, the Dow at 52,451 — and put its
 own internals beneath its own price, and you find it confessing against itself. The price rides a
