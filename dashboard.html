@@ -2,8 +2,8 @@
 layout: default
 permalink: /dashboard/
 title: Dashboard
-seo_title: "The ChartHorizon Dashboard — the Desk's Board, in Your Browser"
-description: "ChartHorizon's research dashboard — season, COT positioning, hedging, term structure and FX rate bias on every market, local-first and running in your browser."
+seo_title: "Free COT Dashboard & Futures Charting Software — Seasonality, Term Structure"
+description: "A free, local-first futures charting dashboard for macOS, Windows and Linux: candlestick charts with CFTC Commitments of Traders positioning, seasonality, hedging programs and term structure across forty markets. Runs in your browser, no account."
 # ─────────────────────────────────────────────────────────────────────────────
 #  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and push.
 #  That is the ONLY step. The three platform download URLs are derived
@@ -40,7 +40,7 @@ dl_linux: ""            # derive from version
 <div class="notice-head">
   <p class="kicker">The Desk’s Board</p>
   <h1>The Dashboard</h1>
-  <p class="dek">The board the desk reads every evening — {% if released %}now open in your browser.{% else %}soon, open in your browser.{% endif %}</p>
+  <p class="dek">The board the desk reads every evening — free and local-first, {% if released %}now open in your browser.{% else %}soon, open in your browser.{% endif %}</p>
   <div class="notice-rule"></div>
   {%- comment -%}
     Release line. A shipped build has to be reachable on arrival — the full download block
@@ -49,7 +49,7 @@ dl_linux: ""            # derive from version
   {%- endcomment -%}
   {%- if released %}
   <p class="dl-top">
-    <span class="dl-top-label">Version {{ ver }} &middot; Download</span>
+    <span class="dl-top-label">Version {{ ver }} &middot; Free download</span>
     {%- if url_macos != "" %}<a href="{{ url_macos }}" download>macOS</a>{% endif -%}
     {%- if url_windows != "" %}<a href="{{ url_windows }}" download>Windows</a>{% endif -%}
     {%- if url_linux != "" %}<a href="{{ url_linux }}" download>Linux</a>{% endif -%}
@@ -68,8 +68,8 @@ dl_linux: ""            # derive from version
 </figure>
 
 <p>Every note on this paper is computed upstream, on ChartHorizon's own research
-dashboard: end-of-day futures and CFTC data, read against the four lights — season, the
-commercials' positioning, the hedging program, term structure — with the interest-rate
+dashboard: end-of-day futures and CFTC Commitments of Traders data, read against the four
+lights — season, the commercials' positioning, the hedging program, term structure — with the interest-rate
 bias added across the FX majors. The Weekly Tape, the Hedgers' Ledger and the FX Map are
 what that board prints when the desk judges a market worth writing about.</p>
 
