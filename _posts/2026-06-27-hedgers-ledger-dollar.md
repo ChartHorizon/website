@@ -6,7 +6,7 @@ subtitle: "CFTC COT report 2026-06-23 · positioning vs. each market's 3-year ra
 cards: /assets/posts/2026-06-27-hedgers-ledger-dollar/cards
 image: /assets/posts/2026-06-27-hedgers-ledger-dollar/cards/gbp_fx.png
 image_alt: "British Pound — commercial net long +123,431 (three-year record, vs +79,925 prior week)"
-seo_title: "The Hedgers' Ledger — a note on the dollar"
+seo_title: "Commercials Press Record Longs in Sterling, Kiwi and Franc — COT Dollar Read, Jun 27, 2026"
 description: "The commercials are positioned against the dollar — extreme net longs in sterling, the kiwi and the franc, and metal shorts covered into weakness. A COT read on a possible dollar correction."
 ---
 

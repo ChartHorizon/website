@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-07-1
 cards: /assets/posts/2026-07-18-hedgers-ledger/cards
 image: /assets/posts/2026-07-18-hedgers-ledger/cards/cotton.png
 image_alt: "Cotton #2 — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-07-18"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: Cotton #2 the Lone Hedger Low on an Empty Board — Jul 18, 2026"
+description: "Cotton #2 is the lone positioning extreme in the CFTC report of 14 July 2026 — producer/merchant net short 133,903 contracts, the 4th percentile of 3 years."
 ---
 
 The report dated 14 July 2026 shows the commercial book thin on conviction: no market in this issue's coverage sits at a positioning high, and Cotton #2 stands as the lone entry at a positioning low — a fresh print, new to the ledger this week. The board beyond these pages carries its own business. One extreme, one side — there is nothing in that shape to force a remark.

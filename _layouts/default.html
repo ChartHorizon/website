@@ -15,6 +15,12 @@
     · Title  — home: "Site — Tagline"; a post may set `seo_title` (keyword-rich, for search,
                independent of the on-page <h1>); else "Post · Site".
     · Desc   — `description` front matter (search-tuned) wins over `subtitle` (the on-page dek).
+               NOT truncated here, deliberately. This used to carry `| truncate: 160`, which cut
+               nine posts mid-word and appended "…" — and the same string feeds `og:description`
+               and `twitter:description`, where no 160-char limit exists at all (X shows ~200,
+               Slack/iMessage more). Google re-cuts search snippets itself, at a boundary it
+               chooses, so a hard cut here only ever loses text. Author descriptions at ~160
+               instead; the Ledger generator enforces that upstream (blog/publish.py, cot_seo).
 {%- endcomment -%}
 {%- if page.url == "/" -%}
   {%- assign meta_title = site.title | append: " — " | append: site.tagline -%}
@@ -23,7 +29,7 @@
 {%- else -%}
   {%- assign meta_title = page.title | append: " · " | append: site.title -%}
 {%- endif -%}
-{%- assign meta_desc = page.description | default: page.subtitle | default: site.description | strip_html | normalize_whitespace | truncate: 160 -%}
+{%- assign meta_desc = page.description | default: page.subtitle | default: site.description | strip_html | normalize_whitespace -%}
 {%- assign meta_image = page.image | default: site.og_image -%}
 {%- assign meta_image_alt = page.image_alt | default: meta_desc -%}
 {%- assign og_locale = 'en_US' -%}{%- if page.lang == 'de' -%}{%- assign og_locale = 'de_DE' -%}{%- endif -%}

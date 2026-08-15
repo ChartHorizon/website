@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-07-0
 cards: /assets/posts/2026-07-11-hedgers-ledger/cards
 image: /assets/posts/2026-07-11-hedgers-ledger/cards/nzd_fx.png
 image_alt: "New Zealand Dollar — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-07-11"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: New Zealand Dollar, WTI and Platinum at Record Hedger Highs — Jul 11, 2026"
+description: "Five markets at three-year positioning highs and none at a low in the CFTC report of 7 July 2026 — records in the New Zealand Dollar, WTI Crude and Platinum."
 ---
 
 The COT report dated 7 July 2026 finds the hedger book leaning hard to one side: five markets register positioning highs against the three-year window, and not a single market sits at a low. Three of those five — New Zealand Dollar, WTI Crude Oil, and Platinum — have pushed to fresh window records, while the New Zealand Dollar and Silver enter the extreme column for the first time this week. When the board fills up on one side without a counterweight, the tape is telling you something about where the professionals have already done their selling; the line of least resistance, at that point, is worth watching closely.

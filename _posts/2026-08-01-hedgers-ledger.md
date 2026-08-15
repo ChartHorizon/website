@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-07-2
 cards: /assets/posts/2026-08-01-hedgers-ledger/cards
 image: /assets/posts/2026-08-01-hedgers-ledger/cards/eur_fx.png
 image_alt: "Euro FX — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-08-01"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: Euro and Canadian Dollar Join the T-Note at Hedger Highs — Aug 1, 2026"
+description: "Three markets at three-year positioning highs and none at a low in the CFTC report of 28 July 2026 — Euro FX and the Canadian Dollar are new to the register."
 ---
 
 The report dated 2026-07-28 shows commercial hedgers pressed to a three-year positioning high in three markets — Euro FX and Canadian Dollar fresh to that register this week, the 10-Year T-Note already established there — with no market at the opposite extreme among the entries tracked here. The lean is one-sided, and the broader board carries additional extremes this issue does not detail. Three highs, no lows, and two of them newly arrived: that is not a crowded tape on both sides of the ledger — it is a tape that has chosen a direction, at least for now, and the sitting will tell us whether it holds.

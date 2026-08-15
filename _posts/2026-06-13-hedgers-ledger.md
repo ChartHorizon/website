@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-06-0
 cards: /assets/posts/2026-06-13-hedgers-ledger/cards
 image: /assets/posts/2026-06-13-hedgers-ledger/cards/platinum.png
 image_alt: "Platinum — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-06-13"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: Platinum at a Record High, Brent Crude at a Record Low — Jun 13, 2026"
+description: "Six markets at positioning highs against two at lows in the CFTC report of 9 June 2026 — Platinum and Brent Crude set fresh three-year records; Bitcoin enters."
 ---
 
 The board dated 2026-06-09 runs six markets at positioning highs against two at lows, a lopsided ledger that leans heavily to the long side of the hedger book. Platinum and Brent Crude Oil set fresh records within their three-year windows — one at the top, one at the bottom — which is itself worth marking. Bitcoin enters the tally for the first time, though the extreme there belongs to leveraged funds, a speculative cohort, not the commercial hedgers who anchor most of this report. When six markets crowd the upper rail of their ranges and only two sit at the lower, the tape is telling you something about where the weight of conviction has settled; the prudent reader notes it and waits to see whether price confirms the position.

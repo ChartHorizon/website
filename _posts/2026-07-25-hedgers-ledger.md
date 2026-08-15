@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-07-2
 cards: /assets/posts/2026-07-25-hedgers-ledger/cards
 image: /assets/posts/2026-07-25-hedgers-ledger/cards/wti_crude.png
 image_alt: "WTI Crude Oil — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-07-25"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: WTI, Silver, Platinum and the T-Note All at Hedger Highs — Jul 25, 2026"
+description: "Four markets at three-year positioning highs and none at a low in the CFTC report of 21 July 2026 — WTI Crude, Silver, Platinum and the 10-Year T-Note, all new."
 ---
 
 The tape dated 21 July 2026 shows four markets registering positioning highs within their three-year ranges — WTI Crude Oil, Silver, Platinum, and the 10-Year U.S. T-Note — and not one market sitting at a low. Every entry on this week's board is fresh, each arriving at its high for the first time in the current window. The lean is entirely one-sided: commercial hedgers are extended to the heavy end of their recent range across the board, with no counterweight on the opposite side. When the whole room crowds the same wall, the patient man does not rush to join them — he watches to see whether the tape confirms or corrects.

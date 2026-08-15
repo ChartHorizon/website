@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-08-0
 cards: /assets/posts/2026-08-08-hedgers-ledger/cards
 image: /assets/posts/2026-08-08-hedgers-ledger/cards/zn_10y.png
 image_alt: "10-Year U.S. T-Note — commercials net positioning"
-seo_title: "The Hedgers' Ledger — 2026-08-08"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: T-Note and Nasdaq at Record Highs, Dollar Index at a Record Low — Aug 8, 2026"
+description: "Seven markets at three-year positioning extremes in the CFTC report of 4 August 2026 — fresh records in the 10-Year T-Note, the Nasdaq 100 and the Dollar Index."
 ---
 
 The week of 4 August 2026 presents a board that leans decidedly against the dollar and toward paper assets and the metals. Four markets sit at positioning highs within their three-year window — the 10-Year T-Note, the E-mini Nasdaq 100, Silver, and Platinum — while the Dollar Index, the E-mini Dow, and Cotton #2 press to positioning lows; the T-Note and Nasdaq 100 on the high side and the Dollar Index on the low side each set fresh window records. Six of the seven markets tracked here are new entries this week, which is itself a fact worth noting — the tape does not often reprice this many books at once, and when the records cluster on opposite ends of the same ledger, the patient man watches to see which side yields first.

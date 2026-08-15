@@ -6,8 +6,8 @@ subtitle: "Weekly COT extremes from the commercial book · CFTC report 2026-06-0
 cards: /assets/posts/2026-06-10-hedgers-ledger/cards
 image: /assets/posts/2026-06-10-hedgers-ledger/cards/nq_nasdaq.png
 image_alt: "E-mini Nasdaq 100 — commercial net positioning"
-seo_title: "The Hedgers' Ledger — 2026-06-10"
-description: "Weekly COT extremes — where the commercial hedgers sit at the edge of their multi-year positioning range. Data: CFTC via ChartHorizon."
+seo_title: "COT Extremes: Nasdaq 100 and WTI at Hedger Highs, Copper at a Record Low — Jun 10, 2026"
+description: "Four fresh three-year extremes in the CFTC report of 2 June 2026: commercial positioning at a record high in the E-mini Nasdaq 100 and a record low in Copper."
 ---
 
 The report dated June 2, 2026 shows four markets registering fresh positioning extremes against the three-year window, with the board splitting cleanly down the middle — two highs, two lows, and no ambiguity about which side owns the record territory: both fresh window records fall on opposite ends, the E-mini Nasdaq 100 pressing a commercial positioning high and Copper pressing a low. That the records land on contrary sides of the ledger in the same week, and that all four entries are new to this report, gives the board a hard, stretched quality — commercials leaning away from equities and crude on one rail while pulling back sharply from copper and soybean oil on the other. When the tape sets records simultaneously at both extremes, the prudent reader notes the tension and waits; the resolution, when it comes, will announce itself plainly.
