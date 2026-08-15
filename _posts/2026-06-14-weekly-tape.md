@@ -7,7 +7,7 @@ cards: /assets/posts/2026-06-14-weekly-tape/cards
 image: /assets/posts/2026-06-14-weekly-tape/cards/fx.png
 image_alt: "The Dollar Index stalls at the 100 handle while sterling turns up and the Dow holds its trend — a short-term risk-on lean."
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
-seo_title: "Weekly Tape: Dollar Stalls at 100, a Risk-On Lean — Jun 14, 2026"
+seo_title: "Dollar Index Stalls at 100, Sterling Turns — Risk-On Lean, Jun 14, 2026"
 description: "The Dollar Index stalls at the 100 handle while sterling turns up and the stock leaders hold their advance — a short-term risk-on read for the week ahead. Intermarket notes, June 14, 2026."
 ---
 A man does not read one market in a corner; he sizes up the whole board first, then trades the

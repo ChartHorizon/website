@@ -5,7 +5,7 @@ date: 2026-06-11
 subtitle: "SPCX prices tonight at $135 and a $1.77 trillion mark — the loudest new issue on the board, and the one with no history behind it. A speculator reads the tape; here there is none yet."
 image: /assets/og-default.png
 image_alt: "The SpaceX listing — a speculator's note on chasing the hottest new issue with no trading history."
-seo_title: "SpaceX IPO (SPCX): A Speculator's Case for Patience — June 11, 2026"
+seo_title: "SpaceX IPO (SPCX): A Speculator's Case for Patience — Jun 11, 2026"
 description: "SpaceX (SPCX) prices its IPO at $135 for a $1.77 trillion Nasdaq debut. A Livermore-voice case for why a speculator waits for a tape before chasing the hottest new issue."
 ---
 Tonight, after the bell, the bankers will hand the market a number. One hundred and
