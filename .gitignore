@@ -21,3 +21,7 @@ _site/
 # system stay local, so a stray `git add -A` can't publish them.
 DESIGN.md
 PRODUCT.md
+
+# Wrangler's local deploy state. Written by `ops/website-deploy.sh` and holds the
+# Cloudflare account id — not a credential, but account metadata, and this repo is public.
+.wrangler/

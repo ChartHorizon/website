@@ -5,10 +5,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this is
 
 The **blog** for ChartHorizon — "The Weekly Tape" — served at **chart-horizon.com**.
-A **Jekyll** site (the GitHub Pages default SSG), deployed from `main` via
-`.github/workflows/deploy-pages.yml`, which runs a real `jekyll build` in CI and publishes
-the result. The custom domain is pinned by `CNAME` (`chart-horizon.com`); DNS lives at
-Cloudflare (DNS-only).
+A **Jekyll** site (the GitHub Pages default SSG). The custom domain is pinned by `CNAME`
+(`chart-horizon.com`); DNS lives at Cloudflare.
+
+> **Deployment moved off GitHub on 2026-08-15** and `.github/workflows/deploy-pages.yml` is
+> currently dead weight. The ChartHorizon GitHub account was flagged: every repo, release and
+> the Pages site began returning 404 to logged-out visitors while still looking normal to the
+> signed-in owner, so the site went dark. It is now built **locally** and pushed to
+> **Cloudflare Pages** (project `charthorizon`) by `ops/website-build.sh` +
+> `ops/website-deploy.sh` in the monorepo — see "Publishing a post" and "Developing locally".
+> `git push` to GitHub still works and is still worth doing; it just deploys nothing.
+> Apex and `www` are **proxied** CNAMEs to `charthorizon.pages.dev` (the zone used to be
+> DNS-only). To go back once the account is reinstated, restore the four GitHub A records
+> (185.199.108-111.153) and the `www` CNAME to `charthorizon.github.io`, and drop the custom
+> domain from the Pages project.
 
 It was split out of the private ChartHorizon dashboard repo. **The hard constraint:** this
 repo is **public**, so the site must **not** expose the dashboard's **source** — no links to
@@ -38,8 +48,14 @@ outbound links stay support/social only.
    because share-card crawlers are the one audience whose WebP support isn't worth betting
    on. The upstream bot does this automatically — `content/livermore/blog/publish.py`
    writes both and prunes the unused PNGs.
-3. Commit + push to `main` → CI builds and deploys. The post appears at the top of the
-   homepage list automatically. `permalink` is `/:year/:month/:day/:title/`.
+3. **Commit** the post, then publish with `ops/website-build.sh --from-head &&
+   ops/website-deploy.sh`. Committing is what makes it live: `--from-head` builds the
+   committed tree, not the working tree, precisely so the drafts `publish.py` stages into
+   `_posts/` are not published the moment they are written. (The nightly `ops/daily-update.sh`
+   runs the same two commands, so a committed post also goes out on its own that evening.)
+   Pushing to GitHub is still worth doing for the backup, but deploys nothing right now.
+   The post appears at the top of the homepage list automatically.
+   `permalink` is `/:year/:month/:day/:title/`.
    **The homepage shows the 10 most recent posts** and then links to `/archive/`; the
    Ledger publishes weekly, so an uncapped `site.posts` loop became a hundred-row ladder
    within a year. Everything older is on the archive page, grouped by year.
@@ -77,7 +93,10 @@ outbound links stay support/social only.
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from the GitHub
-  release (see the comment block at the top of the file). **Currently launched at v1.1.3.**
+  release (see the comment block at the top of the file). **Launched at v1.1.3, but held back
+  at coming-soon since 2026-08-15** (`dl_version: ""`): the GitHub account is flagged, so every
+  `releases/download/v1.1.3/…` URL 404s and live buttons would be dead ones. Put `1.1.3` back
+  once the account is reinstated.
   Two download affordances: a `.dl-top` release line set as dateline furniture directly under
   the masthead rule (above the fold — the page is ~5,300px and the foot is a fine place to *end*
   but a poor place to be the only one), and the full `.dl` platform block with first-run notes at
@@ -177,13 +196,33 @@ scripts, so the analytics↔privacy coupling is untouched.
 
 ## Developing locally
 
-A static server (`python3 -m http.server`) will **not** render Liquid/posts — you need
-Jekyll. Requires Ruby ≥ 2.7 (macOS system Ruby 2.6 is too old for the `github-pages` gem):
+A static server (`python3 -m http.server`) will **not** render Liquid/posts — you need Jekyll.
+
+**`bundle install` does not work on this Mac and never will**: it wants the `github-pages`
+metagem, which needs Ruby ≥ 3.0 (via `ffi`/`i18n`), and only system Ruby 2.6.10 is installed —
+no Homebrew, no rbenv. Use the monorepo scripts instead, which run **Jekyll 3.10.0, the exact
+version `github-pages` pins**, on 2.6 by holding every dependency at its last 2.6-compatible
+release:
 
 ```bash
-bundle install
-bundle exec jekyll serve   # http://localhost:4000, live reload
+ops/website-toolchain.sh              # once: gems -> ~/.local/share/charthorizon/jekyll-gems
+ops/website-build.sh                  # build the WORKING TREE  -> _site/ + verify
+ops/website-build.sh --from-head      # build the COMMITTED tree (what the nightly job does)
+ops/website-deploy.sh                 # upload _site/ to Cloudflare Pages
 ```
 
-`Gemfile` pins the `github-pages` gem so local Jekyll matches what CI/GitHub Pages runs.
-Keep `CNAME` intact on every change — removing it drops the custom domain.
+`website-build.sh` verifies what it produced — post count, local-only file leaks, CNAME,
+sitemap, feed, broken internal refs, the `/fx/` snapshot date — and fails loudly, because a
+green build has never meant a correct one here. To preview without deploying, serve `_site/`
+(`python3 -m http.server`) and screenshot with `.preview/shot.mjs`.
+
+Three traps the scripts already handle, worth knowing before touching them: RubyGems on 2.6
+reports a *misleading* "last version to support your Ruby" (it names one that still needs 3.0);
+`JEKYLL_NO_BUNDLER_REQUIRE=true` is mandatory or Jekyll loads the Gemfile and demands
+github-pages; and Psych 3.1 cannot parse `_config.yml`'s unquoted `permalink: /:year/…` inside
+a flow mapping, so the build patches a *copy* of the config rather than the file. On macOS the
+`--from-head` export must also be resolved with `pwd -P`, or Jekyll's `/var` vs `/private/var`
+prefix check silently fails to load the layouts.
+
+Keep `CNAME` intact on every change — it is what the Pages custom domain is matched against.
+The `Gemfile` is now unused locally; leave it, it is what CI would need if GitHub returns.
