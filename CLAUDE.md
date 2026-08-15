@@ -156,9 +156,15 @@ scripts, so the analytics↔privacy coupling is untouched.
 - **Plugins** (`_config.yml`, bundled with `github-pages`): `jekyll-sitemap` → `/sitemap.xml`,
   `jekyll-feed` → `/feed.xml`. `robots.txt` points crawlers at the sitemap. Pages with
   `sitemap: false` + `noindex: true` (impressum, privacy) stay out of both index and sitemap.
-- **Search Console**: paste tokens into `google_site_verification` / `bing_site_verification`
-  in `_config.yml`, then submit the sitemap in each provider's console. This is the step that
-  actually gets the site crawled and indexed — the meta tags above only shape *how* it appears.
+- **Search Console**: both providers are verified and crawling as of 2026-08-15. Google uses the
+  `google_site_verification` token in `_config.yml`; **Bing needs no token** — its property was
+  imported from Google Search Console, which carries the ownership proof across, so
+  `bing_site_verification` stays empty on purpose. Verification and the sitemap only decide
+  *whether* pages are crawled; the meta tags above shape *how* they appear.
+- **The bottleneck is not technical.** Bing reported 14 URLs indexed, 0 errors, 0 excluded — and
+  4 impressions with 0 clicks over six months, against **1 backlink**. Crawling works; nothing is
+  blocked. What the site lacks is authority, which no amount of front-matter tuning buys. Treat
+  new SEO ideas against that fact before spending effort on them.
 
 ## Developing locally
 

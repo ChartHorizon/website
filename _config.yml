@@ -38,6 +38,10 @@ plugins:
 #   Google Search Console → https://search.google.com/search-console
 #   Bing Webmaster Tools  → https://www.bing.com/webmasters
 google_site_verification: "2CJ61hpNB-e-4qrgSS79xAPnwaOq4N-iFPaDpQmga5s"
+# Bing is verified and crawling ALREADY — the property was imported from Google Search
+# Console (Bing WMT → "Import from Google Search Console"), which carries the ownership
+# proof across and needs no tag of its own. Leave this empty; adding a token buys nothing.
+# Verified 2026-08-15: Bing reported 14 URLs indexed, 0 errors, 0 excluded.
 bing_site_verification: ""
 
 # Pretty, date-based URLs for posts only. A top-level `permalink:` would also rewrite
