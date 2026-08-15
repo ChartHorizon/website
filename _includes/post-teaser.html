@@ -1,0 +1,17 @@
+{%- comment -%}
+  One row of the "Elsewhere in the paper" block under a post.
+
+  Mirrors the dateline markup the index and /archive/ already use (.post-dateline /
+  .post-edition / .post-date / .post-link), so the three surfaces that list editions stay
+  in step and share one set of styles.
+
+  Usage: {% include post-teaser.html post=p %}
+{%- endcomment -%}
+<li>
+  <div class="post-dateline">
+    <span class="post-edition">{% include edition.html post=include.post %}</span>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <time class="post-date" datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: "%b %-d, %Y" }}</time>
+  </div>
+  <a class="post-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+</li>

@@ -14,3 +14,82 @@ layout: default
      trading involves substantial risk of loss; seasonal and positioning signals do not guarantee
      future results. Signals and charts: ChartHorizon (local end-of-day data).</p>
 </article>
+
+{%- comment -%}
+  Internal links between the editions. Until this existed a post was reachable only from the
+  home page (10 most recent) and /archive/, so there was almost no path BETWEEN posts — and
+  Google left 15 of 22 URLs at "discovered, currently not indexed", never fetching them.
+  Anchor text is each post's own title, which is where the market names live.
+
+  Both groups are derived, so no post needs front matter and every future post gets this free:
+    · the editions either side of this one chronologically — chains every post to its
+      neighbours, which guarantees no orphan anywhere in the run
+    · up to three more from the same masthead section (Ledger with Ledger, Tape with Tape) —
+      the closest thing to a topical link without a tag vocabulary to match on
+
+  `site.posts` is newest-first, so index-1 is the NEWER post and index+1 the older. The index
+  is found by walking the list rather than trusting page.previous/next, whose direction is a
+  well-known source of confusion.
+{%- endcomment -%}
+{%- assign posts = site.posts -%}
+{%- assign idx = -1 -%}
+{%- for p in posts -%}
+  {%- if p.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- capture this_edition %}{% include edition.html post=page %}{% endcapture -%}
+
+{%- comment -%}
+  SELECTION is separate from ORDER, deliberately.
+
+  Selection: the two chronological neighbours, then up to three more from the same section,
+  walking DOWN the run from this post and wrapping to the top only once they run out (hence
+  the two passes). Taking the three NEWEST of the section instead piles every link onto the
+  most recent editions — measured at 8-9 inbound links for the newest posts against 1-2 for
+  the oldest, which starves exactly the older URLs this block exists to get crawled. With the
+  walk, every post lands between 4 and 6.
+
+  Order: the picks are rendered in a final pass over site.posts, so the list always reads
+  newest-first. Rendering them in selection order let a wrapped pick land after an older one
+  (… Jun 13, Jun 10, Aug 8), which reads as a sorting bug.
+
+  `chosen` is a delimited URL set because Liquid has no arrays to collect into; the trailing
+  "|" on every key is what keeps `contains` from matching a shorter URL inside a longer one.
+{%- endcomment -%}
+{%- assign chosen = "" -%}
+{%- if idx > 0 -%}
+  {%- assign i = idx | minus: 1 -%}
+  {%- assign chosen = chosen | append: posts[i].url | append: "|" -%}
+{%- endif -%}
+{%- assign last = posts.size | minus: 1 -%}
+{%- if idx >= 0 and idx < last -%}
+  {%- assign i = idx | plus: 1 -%}
+  {%- assign chosen = chosen | append: posts[i].url | append: "|" -%}
+{%- endif -%}
+{%- assign shown = 0 -%}
+{%- for pass in (1..2) -%}
+  {%- for p in posts -%}
+    {%- if shown >= 3 -%}{%- break -%}{%- endif -%}
+    {%- if pass == 1 and forloop.index0 <= idx -%}{%- continue -%}{%- endif -%}
+    {%- if pass == 2 and forloop.index0 >= idx -%}{%- continue -%}{%- endif -%}
+    {%- assign key = p.url | append: "|" -%}
+    {%- if p.url == page.url or chosen contains key -%}{%- continue -%}{%- endif -%}
+    {%- capture p_edition %}{% include edition.html post=p %}{% endcapture -%}
+    {%- if p_edition == this_edition -%}
+      {%- assign chosen = chosen | append: key -%}
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- capture links -%}
+  {%- for p in posts -%}
+    {%- assign key = p.url | append: "|" -%}
+    {%- if chosen contains key -%}{%- include post-teaser.html post=p -%}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if links != blank %}
+<nav class="post-more" aria-labelledby="post-more-head">
+  <h2 class="section-rule" id="post-more-head"><span>Elsewhere in the paper</span></h2>
+  <ul class="post-more-list">{{ links }}</ul>
+  <p class="more-issues"><a href="{{ '/archive/' | relative_url }}">All back issues &rarr;</a></p>
+</nav>
+{%- endif %}

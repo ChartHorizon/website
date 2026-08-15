@@ -153,6 +153,17 @@ blockquote p{margin:.3em 0}
 .archive-list .archive-link:hover{color:var(--gold-ink)}
 @media (max-width:560px){ .archive-list li{display:block} .archive-list .post-dateline{width:auto; margin-bottom:3px} }
 
+/* ---- "Elsewhere in the paper": the links between editions, under every post ----
+   Same dateline furniture as the index and /archive/ (see _includes/post-teaser.html),
+   set one step down: this is a footer to the piece you just read, not a second front page. */
+.post-more{margin:46px 0 0}
+.post-more-list{list-style:none; padding:0; margin:6px 0 0}
+.post-more-list li{padding:14px 0; border-top:1px solid var(--rule)}
+.post-more-list li:first-child{border-top:none}
+.post-more-list .post-link{display:inline-block; margin:.14em 0 0; font:600 19px/1.25 var(--serif);
+  letter-spacing:-.15px; color:var(--ink); border:none; text-wrap:balance}
+.post-more-list .post-link:hover{color:var(--gold-ink)}
+
 /* ---- post body: broadsheet drop cap on the first paragraph ---- */
 .post-body>p:first-of-type::first-letter{
   float:left; font:600 64px/48px var(--serif); color:var(--gold-ink);

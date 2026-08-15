@@ -58,7 +58,16 @@ outbound links stay support/social only.
   **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
   Impressum/Datenschutz links).
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
-  disclaimer. **`index.html`** — `default` + the 10 most recent posts, each opened by an
+  disclaimer, then the **"Elsewhere in the paper"** block: 4-6 links to other editions, all
+  derived, so no post needs front matter. It exists for crawling — before it, a post was
+  reachable only from the home page (10 most recent) and `/archive/`, and Google left 15 of
+  22 URLs at "discovered, currently not indexed". Two rules there are load-bearing and
+  commented in place: picks walk **down** the run from the current post (taking the section's
+  three newest instead skews inbound links 8-9 on new posts against 1-2 on old ones — the
+  opposite of the point), and they render in a final pass over `site.posts` so the list still
+  reads newest-first. Rows come from `_includes/post-teaser.html`, which reuses the index and
+  archive dateline markup. Verify changes by rendering, not by eye — see "Developing locally".
+  **`index.html`** — `default` + the 10 most recent posts, each opened by an
   edition dateline (`_includes/edition.html`), then a "Back issues" link to `/archive/`.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the four-signal method, the three editions, the not-advice stance, and the
