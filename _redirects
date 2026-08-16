@@ -1,0 +1,12 @@
+# Cloudflare Pages redirect rules. Read from the build output root, so this file has to
+# survive Jekyll — leading-underscore names are skipped by default, hence the `include:`
+# entry in _config.yml. Verify after any change to it: a silently dropped _redirects is
+# indistinguishable from a working one until someone follows an old link.
+#
+# The legal pages moved from /privacy.html to /privacy/ (a directory permalink, like every
+# other page on the site) so the footer links land on a 200 instead of Cloudflare's own
+# .html-stripping 308. Pages does NOT keep the old path alive on its own — /about.html,
+# which made the same move long ago, answers 404 — so these two rules are what stop an
+# existing bookmark to the Datenschutzerklärung from breaking.
+/privacy.html    /privacy/      301
+/impressum.html  /impressum/    301

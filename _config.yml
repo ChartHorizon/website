@@ -50,6 +50,11 @@ defaults:
   - scope: { path: "", type: posts }
     values: { permalink: /:year/:month/:day/:title/ }
 
+# Jekyll skips leading-underscore names, but Cloudflare Pages reads its redirect rules
+# from a file called exactly `_redirects` at the build root — so it has to be forced back in.
+include:
+  - _redirects
+
 # Files that live in the repo but must not be published as-is.
 exclude:
   - README.md

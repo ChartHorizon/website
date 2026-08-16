@@ -4,17 +4,22 @@ lang: de
 title: Datenschutz
 noindex: true
 sitemap: false
+# A directory permalink, like every other page on the site. Cloudflare Pages strips
+# .html and 308s to the extensionless path, so the old privacy.html spent a round trip
+# on a redirect and advertised a redirecting URL as its own canonical. `/privacy.html`
+# stays alive as a permanent redirect via the root _redirects file.
+permalink: /privacy/
 ---
 <section class="legal">
   <h1>Datenschutzerklärung</h1>
-  <div class="note"><strong>Vorlage — kein Rechtsrat.</strong> Diese Erklärung beschreibt den geplanten technischen Aufbau (GitHub-Pages-Hosting, optionale cookielose Cloudflare-Analyse). Bitte die gelb markierten Felder ausfüllen und das Dokument vor dem Live-Gang anwaltlich oder über einen Datenschutz-Generator prüfen lassen.</div>
+  <div class="note"><strong>Vorlage — kein Rechtsrat.</strong> Diese Erklärung beschreibt den technischen Aufbau der Website (Hosting über Cloudflare Pages, optionale cookielose Cloudflare-Analyse). Bitte die gelb markierten Felder ausfüllen und das Dokument vor dem Live-Gang anwaltlich oder über einen Datenschutz-Generator prüfen lassen.</div>
 
   <h2>1. Verantwortlicher</h2>
   <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
-  <p><span class="ph">[Name]</span>, <span class="ph">[Anschrift]</span>, E-Mail: <span class="ph">[deine@e-mail.de]</span> (siehe auch <a class="link" href="{{ '/impressum.html' | relative_url }}">Impressum</a>).</p>
+  <p><span class="ph">[Name]</span>, <span class="ph">[Anschrift]</span>, E-Mail: <span class="ph">[deine@e-mail.de]</span> (siehe auch <a class="link" href="{{ '/impressum/' | relative_url }}">Impressum</a>).</p>
 
-  <h2>2. Hosting (GitHub Pages)</h2>
-  <p>Diese Website wird über <strong>GitHub Pages</strong> bereitgestellt, einen Dienst der GitHub, Inc. (88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Zugriffsdaten (u. a. IP-Adresse, Datum/Uhrzeit, abgerufene Datei, User-Agent), um die Seite auszuliefern und die Sicherheit zu gewährleisten. Rechtsgrundlage ist das berechtigte Interesse an einer sicheren, funktionsfähigen Bereitstellung (Art. 6 Abs. 1 lit. f DSGVO). Es findet eine Übermittlung in die USA statt. Details: <a class="link" href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
+  <h2>2. Hosting (Cloudflare Pages)</h2>
+  <p>Diese Website wird über <strong>Cloudflare Pages</strong> bereitgestellt, einen Dienst der Cloudflare, Inc. (101 Townsend Street, San Francisco, CA 94107, USA). Cloudflare ist zugleich der DNS- und Reverse-Proxy-Anbieter dieser Domain, sodass <strong>sämtlicher Datenverkehr</strong> über das Netz von Cloudflare läuft. Beim Aufruf der Seite verarbeitet Cloudflare technisch notwendige Zugriffsdaten (u. a. IP-Adresse, Datum/Uhrzeit, abgerufene Datei, User-Agent), um die Seite auszuliefern und die Sicherheit des Angebots zu gewährleisten. Rechtsgrundlage ist das berechtigte Interesse an einer sicheren, funktionsfähigen Bereitstellung (Art. 6 Abs. 1 lit. f DSGVO). Es findet eine Übermittlung in die USA statt. Details: <a class="link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. <span class="ph">[Für das Hosting ist ein Auftragsverarbeitungsvertrag mit Cloudflare erforderlich — bitte abschließen und hier bestätigen.]</span></p>
 
   <h2>3. Reichweitenmessung (Cloudflare Web Analytics)</h2>
   <p>Sofern aktiviert, nutzt diese Website <strong>Cloudflare Web Analytics</strong> (Cloudflare, Inc., USA) zur anonymen Reichweitenmessung. Der Dienst arbeitet <strong>ohne Cookies</strong> und erstellt nach Angaben des Anbieters keine seitenübergreifenden Nutzerprofile und speichert keine personenbezogenen Identifikatoren; ausgewertet werden aggregierte Aufrufzahlen. Rechtsgrundlage ist das berechtigte Interesse an einer datensparsamen Statistik (Art. 6 Abs. 1 lit. f DSGVO). <span class="ph">[Falls Cloudflare Web Analytics NICHT aktiviert wird, diesen Abschnitt entfernen.]</span></p>
@@ -24,7 +29,7 @@ sitemap: false
   <p>Wenn du über den Schalter in der Kopfzeile die <strong>helle oder dunkle Ansicht</strong> wählst, wird diese Entscheidung unter dem Schlüssel <code>ch_theme_mode</code> im <strong>localStorage</strong> deines Browsers gespeichert, damit die Seite beim nächsten Besuch so aussieht, wie du sie verlassen hast. Der Wert ist ausschließlich <code>light</code> oder <code>dark</code>, verlässt dein Gerät nicht, wird nicht an einen Server übertragen und erlaubt keine Wiedererkennung. Ohne eigene Wahl wird nichts gespeichert; die Seite folgt dann der Farbeinstellung deines Betriebssystems. Du kannst den Eintrag jederzeit über die Websitedaten deines Browsers löschen. <span class="ph">[Nach § 25 Abs. 2 TDDDG als unbedingt erforderliche, ausdrücklich vom Nutzer gewünschte Einstellung eingeordnet — bitte rechtlich bestätigen lassen.]</span></p>
 
   <h2>5. Externe Links und Dienste</h2>
-  <p>Die Seite verlinkt auf externe Dienste — u. a. <strong>Buy Me a Coffee</strong> und <strong>GitHub Sponsors</strong> (Unterstützung). Erst beim Anklicken bzw. Aufruf dieser Dienste werden dort Daten verarbeitet; es gelten dann die jeweiligen Datenschutzbestimmungen der Anbieter.</p>
+  <p>Die Seite verlinkt auf externe Dienste — <strong>Buy Me a Coffee</strong> (Unterstützung, in der Kopfzeile jeder Seite) und <strong>X</strong> (Kontakt, auf den Seiten <strong>About</strong> und <strong>Dashboard</strong>). Erst beim Anklicken werden dort Daten verarbeitet; es gelten dann die jeweiligen Datenschutzbestimmungen der Anbieter. Ein bloßer Link löst keine Datenübertragung aus.</p>
 
   <h2>6. Eingebettete Marktdaten (TradingView)</h2>
   <p>Auf der Seite <strong>FX Map</strong> sind interaktive Markt-Widgets von <strong>TradingView</strong> (TradingView, Inc., USA) eingebettet (Live-Kurs-Ticker und Wirtschaftskalender; zusätzlich öffnet ein Klick auf ein Währungspaar einen interaktiven Kurschart). Beim Aufruf dieser Seite – bzw. beim Anklicken eines Paars – lädt dein Browser die Widget-Skripte direkt von TradingView; dabei wird deine IP-Adresse an TradingView übermittelt, und TradingView kann zur Auslieferung und Reichweitenmessung eigene Cookies oder ähnliche Technologien setzen. Auf den übrigen Seiten dieser Website werden keine TradingView-Inhalte geladen. Rechtsgrundlage ist das berechtigte Interesse an der Darstellung aktueller Marktdaten (Art. 6 Abs. 1 lit. f DSGVO); <span class="ph">[ob für die Cookie-Setzung zusätzlich eine Einwilligung nach § 25 TDDDG (vormals TTDSG) erforderlich ist, bitte rechtlich prüfen]</span>. Es findet eine Übermittlung in die USA statt. Details: <a class="link" href="https://www.tradingview.com/policies/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</p>
