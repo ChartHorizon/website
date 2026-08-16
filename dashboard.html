@@ -64,11 +64,9 @@ dl_linux: ""            # derive from version
 
 <div class="post-body">
 
-<figure class="board board-hero">
-  <img src="{{ '/assets/dashboard/board-futures.webp' | relative_url }}" width="1800" height="1379"
-       alt="The ChartHorizon dashboard reading WTI Crude Oil — a daily candlestick chart stacked over CFTC open interest and the commercials' net position, with the full market list down the left.">
-  <figcaption>The board on one market: price, open interest and the commercials’ net, read together.</figcaption>
-</figure>
+{% include board.html hero=true plate="board-futures" w=1800 h=1174
+   alt="The ChartHorizon dashboard reading WTI Crude Oil — a daily candlestick chart stacked over CFTC open interest and the commercials' net position, with the full market list down the left."
+   caption="The board on one market: price, open interest and the commercials’ net, read together." %}
 
 <p>Every note on this paper is computed upstream, on ChartHorizon's own research
 dashboard: end-of-day futures and CFTC Commitments of Traders data, read against the four
@@ -92,44 +90,36 @@ every market, every light, on demand.</p>
 </div>
 
 <h2>Every market, every light</h2>
-<p>Forty futures markets scored on the four signals at once — season, the commercials'
-positioning, the hedging program and term structure — filterable and ranked, the whole
-desk on a single screen. It's the view that decides which market is worth a note.</p>
-<figure class="board">
-  <img src="{{ '/assets/dashboard/board-screener.webp' | relative_url }}" width="1320" height="1011" loading="lazy"
-       alt="The dashboard's Screener: a table of forty markets across indices, crypto, metals and energy, each tagged bullish, bearish or neutral on seasonals, COT, the hedging program and term structure.">
-  <figcaption>The Screener — every market, every signal, at a glance.</figcaption>
-</figure>
+<p>Every futures market on the board scored on the four signals at once — season, the
+commercials' positioning, the hedging program and term structure — filterable and ranked,
+the whole desk on a single screen. It's the view that decides which market is worth a note.</p>
+{% include board.html plate="board-screener" w=1320 h=1012
+   alt="The dashboard's Screener: a table of every market it covers, across indices, crypto, metals and energy, each tagged bullish, bearish or neutral on seasonals, COT, the hedging program and term structure."
+   caption="The Screener — every market, every signal, at a glance." %}
 
 <h2>The season, isolated</h2>
 <p>Years of the same contract folded onto one calendar, so a market's seasonal tendency
 stands clear against where price actually sits this year — the first of the four lights,
 read on its own terms.</p>
-<figure class="board">
-  <img src="{{ '/assets/dashboard/board-seasonals.webp' | relative_url }}" width="1320" height="1011" loading="lazy"
-       alt="The dashboard's Seasonals view for WTI Crude Oil: several years of average price path drawn over a single January-to-December calendar, with today's position marked.">
-  <figcaption>Seasonals — WTI’s path, year laid over year.</figcaption>
-</figure>
+{% include board.html plate="board-seasonals" w=1320 h=745
+   alt="The dashboard's Seasonals view for WTI Crude Oil: several years of average price path drawn over a single January-to-December calendar, with today's position marked."
+   caption="Seasonals — WTI’s path, year laid over year." %}
 
 <h2>Cross-asset, side by side</h2>
 <p>Three markets on one timeline — the euro against sterling against the dollar; equities
 against bonds — so a divergence between things that usually move together shows up before
 the turn does. Quarter boundaries marked, the lines yours to draw.</p>
-<figure class="board">
-  <img src="{{ '/assets/dashboard/board-macro.webp' | relative_url }}" width="1320" height="972" loading="lazy"
-       alt="The dashboard's Macro Shift view: Euro FX, the British pound and the US Dollar Index stacked on one daily timeline so their paths can be read against each other for divergence.">
-  <figcaption>Macro Shift — markets read against each other.</figcaption>
-</figure>
+{% include board.html plate="board-macro" w=1320 h=1050
+   alt="The dashboard's Macro Shift view: Euro FX, the British pound and the US Dollar Index stacked on one daily timeline so their paths can be read against each other for divergence."
+   caption="Macro Shift — markets read against each other." %}
 
 <h2>Down to the candle</h2>
 <p>Every contract as a full chart — price, open interest and the commercials' net on one
 pane, years deep, with drawing tools to mark up what you see. The same data the notes are
 built on, open to your own read.</p>
-<figure class="board">
-  <img src="{{ '/assets/dashboard/board-charts.webp' | relative_url }}" width="1320" height="825" loading="lazy"
-       alt="The dashboard's full charting view of the E-mini S&P 500: a five-year daily candlestick chart over CFTC open interest and the commercials' net position, with a drawing toolbar.">
-  <figcaption>Charts — the E-mini S&P 500, positioning stacked under price.</figcaption>
-</figure>
+{% include board.html plate="board-charts" w=1320 h=825
+   alt="The dashboard's full charting view of the E-mini S&P 500: a five-year daily candlestick chart over CFTC open interest and the commercials' net position, with a drawing toolbar."
+   caption="Charts — the E-mini S&P 500, positioning stacked under price." %}
 
 {% if released %}
 <p>The board is ready. Pick your platform below — it lives on your machine and opens in

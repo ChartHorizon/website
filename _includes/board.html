@@ -1,0 +1,23 @@
+{%- comment -%}
+  One screenshot plate of the dashboard, shot in both of the app's own editions.
+
+  The dashboard has a light and a dark theme of its own, so a reader on the night press
+  run gets the dark board rather than a dimmed photograph of the light one. Both plates
+  are emitted; CSS (.plate-light / .plate-dark in blog.css) picks the one that matches
+  the sheet, and `loading="lazy"` means the browser never fetches the other — a
+  display:none image is never in the viewport, so its lazy load never fires. Both carry
+  the same alt: the hidden one is out of the accessibility tree, so it is never read twice.
+
+  Params: plate (basename under /assets/dashboard/, no extension), w, h, alt, caption,
+          hero (truthy for the wide opening plate).
+{%- endcomment -%}
+{%- assign base = '/assets/dashboard/' | append: include.plate -%}
+<figure class="board{% if include.hero %} board-hero{% endif %}">
+  <img class="plate plate-light" src="{{ base | append: '.webp' | relative_url }}"
+       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"
+       alt="{{ include.alt }}">
+  <img class="plate plate-dark" src="{{ base | append: '-dark.webp' | relative_url }}"
+       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"
+       alt="{{ include.alt }}">
+  <figcaption>{{ include.caption }}</figcaption>
+</figure>

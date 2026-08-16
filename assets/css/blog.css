@@ -422,20 +422,37 @@ button.fx-pair:active{transform:translateY(1px)}
 }
 
 /* ---- dark edition: the plates ----
-   Every chart on this site is exported light and baked into a file — post cards from the
-   dashboard's headless export, the /dashboard/ screenshots from the app itself. On navy
-   they arrive as lit panels. A hairline and ~8% off the brightness seats them on the sheet
-   the way a plate sits on newsprint; hover returns the file untouched, so nothing is
-   permanently dimmed and no image is ever read through a filter that hides detail.
-   Deliberately NOT `invert()`: these are candles read by colour, and inverting them turns
-   every up-day red. */
-[data-theme="dark"] :is(.post-body,.board) img{filter:brightness(.92)}
+   Post cards come out of the dashboard's headless export baked light, one file, no dark
+   twin — on navy they arrive as lit panels. A hairline and ~8% off the brightness seats
+   them on the sheet the way a plate sits on newsprint; hover returns the file untouched,
+   so nothing is permanently dimmed and no image is ever read through a filter that hides
+   detail. Deliberately NOT `invert()`: these are candles read by colour, and inverting
+   them turns every up-day red.
+
+   `.plate` is exempt because it needs no correction: the /dashboard/ screenshots are shot
+   twice, in the app's own light and dark themes, and the rule below picks the right one. */
+[data-theme="dark"] :is(.post-body,.board) img:not(.plate){filter:brightness(.92)}
 @media (prefers-reduced-motion:no-preference){
   /* box-shadow is restated because .board img already animates it above and this
      later, more specific rule would otherwise replace that transition outright. */
-  [data-theme="dark"] :is(.post-body,.board) img{transition:filter .2s ease, box-shadow .25s ease}
+  [data-theme="dark"] :is(.post-body,.board) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
 }
-[data-theme="dark"] :is(.post-body,.board) img:hover{filter:none}
+[data-theme="dark"] :is(.post-body,.board) img:not(.plate):hover{filter:none}
+
+/* Two plates per figure, one per edition (see _includes/board.html). `display:none` is
+   load-bearing twice over: it keeps the plate that isn't showing out of the accessibility
+   tree, so the shared alt text is never announced twice — and, because a display:none
+   image is never in the viewport, it stops `loading="lazy"` from ever fetching it. The
+   page therefore still downloads exactly one set of screenshots, as it always did.
+   No-JS readers get the light plates, which is right: without JS no data-theme is set
+   and the sheet stays light too.
+
+   All three are written through `.board` on purpose: `.board img` already sets
+   display:block, and a bare `.plate-dark` loses to it on specificity — which shows up as
+   both editions stacked on the light sheet. */
+.board .plate-dark{display:none}
+[data-theme="dark"] .board .plate-light{display:none}
+[data-theme="dark"] .board .plate-dark{display:block}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms !important; animation-duration:.01ms !important}

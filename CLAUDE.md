@@ -105,6 +105,14 @@ outbound links stay support/social only.
   no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
   Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
   `WebPage` JSON-LD branch in `default.html`.
+  **Every plate exists twice** — `board-<name>.webp` and `board-<name>-dark.webp` — because the
+  app has a dark theme of its own and a dimmed light screenshot is not it. `_includes/board.html`
+  emits both `<img>`s and `blog.css` shows one per edition; `loading="lazy"` on a `display:none`
+  image never fires, so a reader still downloads exactly one set. Regenerate them with
+  **`ops/website-plates.sh`** in the monorepo (the dashboard must be serving on :8000) — it
+  shoots both editions from one session at one viewport and refuses to finish if the pair comes
+  out at different pixel sizes, because the page swaps between them on a click and any drift in
+  data or framing reads as a jump. Never hand-replace one edition on its own.
 - **`archive.html`** (`/archive/`) — every post grouped by year, with the same edition dateline as
   the index. Indexed, in the sitemap. **`404.html`** — broadsheet not-found page (`noindex`,
   `sitemap: false`); without it GitHub Pages serves its own GitHub-branded 404, on a site whose
