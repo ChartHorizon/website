@@ -7,12 +7,12 @@ description: "A daily currency strength meter and forex economic calendar: bulli
 ---
 {%- assign fx = site.data.fx -%}
 
-<!-- Live FX ticker (TradingView) — third-party embed, documented in privacy.html §6. -->
-<div class="tv-widget tv-ticker">
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-    {
+<!-- Live FX ticker (TradingView) — third-party embed, documented in privacy.html §6.
+     Mounted from JS rather than written inline, because a TradingView widget bakes its
+     palette in at creation and cannot be re-themed afterwards: switching the edition has
+     to tear the frame down and build a new one. `colorTheme` is supplied by mountTv(). -->
+<div class="tv-widget tv-ticker" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+     data-tv-config='{
     "symbols": [
       {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
       {"proName": "FX_IDC:GBPUSD", "title": "GBP/USD"},
@@ -28,11 +28,9 @@ description: "A daily currency strength meter and forex economic calendar: bulli
     "showSymbolLogo": true,
     "isTransparent": true,
     "displayMode": "adaptive",
-    "colorTheme": "light",
     "locale": "en"
-    }
-    </script>
-  </div>
+    }'>
+  <div class="tv-mount"></div>
 </div>
 
 <h1>FX Strength Map</h1>
@@ -107,22 +105,19 @@ description: "A daily currency strength meter and forex economic calendar: bulli
 
 <h2>Economic calendar</h2>
 <p>Upcoming releases and central-bank decisions for the eight majors — what moves the rates below next.</p>
-<!-- TradingView Economic Calendar — third-party embed, documented in privacy.html §6. -->
-<div class="tv-widget">
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-    {
+<!-- TradingView Economic Calendar — third-party embed, documented in privacy.html §6.
+     JS-mounted for the same reason as the ticker above; the attribution line sits outside
+     the mount point so a re-theme never takes it down with the frame. -->
+<div class="tv-widget" data-tv-src="https://s3.tradingview.com/external-embedding/embed-widget-events.js"
+     data-tv-config='{
     "width": "100%",
     "height": 540,
-    "colorTheme": "light",
     "isTransparent": true,
     "locale": "en",
     "importanceFilter": "0,1",
     "countryFilter": "us,eu,gb,jp,ch,au,ca,nz"
-    }
-    </script>
-  </div>
+    }'>
+  <div class="tv-mount"></div>
   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Calendar by TradingView</a></div>
 </div>
 <p class="tv-fallback"><strong>The calendar is not loading.</strong> It is a TradingView embed, and
@@ -169,6 +164,55 @@ description: "A daily currency strength meter and forex economic calendar: bulli
 
 <script>
 (function () {
+
+/* ---- edition palette for the embeds -------------------------------------------------
+   TradingView paints from values handed to it at creation, not from our stylesheet, so
+   the sheet's tokens have to be restated here in both editions. Keep these in step with
+   :root and [data-theme="dark"] in blog.css — drift shows up as a widget that does not
+   match the page it is sitting in. */
+var PALETTE = {
+  light: { panel:'#fbfbf9', rule:'#ddd9d0', grid:'rgba(221,217,208,0.45)',
+           scale:'#6b6356', bull:'#39744b', bear:'#a8503f' },
+  dark:  { panel:'#141f2b', rule:'#243240', grid:'rgba(107,128,153,0.28)',
+           scale:'#8493a6', bull:'#6fae83', bear:'#d98a76' }
+};
+function themeName() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+function palette() { return PALETTE[themeName()]; }
+
+/* Build one embed from the config parked on the element, stamping in the current
+   edition. Replacing the mount's contents drops the old frame; the attribution line is
+   a sibling of the mount, so it survives. */
+function mountTv(el) {
+  var mount = el.querySelector('.tv-mount');
+  if (!mount) return;
+  var cfg;
+  try { cfg = JSON.parse(el.getAttribute('data-tv-config') || '{}'); } catch (e) { return; }
+  cfg.colorTheme = themeName();
+  mount.innerHTML = '';
+  var container = document.createElement('div');
+  container.className = 'tradingview-widget-container';
+  var widget = document.createElement('div');
+  widget.className = 'tradingview-widget-container__widget';
+  container.appendChild(widget);
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = el.getAttribute('data-tv-src');
+  s.textContent = JSON.stringify(cfg);
+  container.appendChild(s);
+  mount.appendChild(container);
+  el.setAttribute('data-tv-theme', themeName());
+}
+
+function mountAllTv() {
+  Array.prototype.forEach.call(document.querySelectorAll('.tv-widget[data-tv-src]'), function (el) {
+    // Only rebuild what is actually out of date. Tearing down a frame that already
+    // carries the right palette would cost the reader a second fetch for nothing.
+    if (el.getAttribute('data-tv-theme') !== themeName()) mountTv(el);
+  });
+}
+
+(function () {
   var modal = document.getElementById('fxChart');
   if (!modal) return;
   var body = document.getElementById('fxChartBody');
@@ -184,6 +228,7 @@ description: "A daily currency strength meter and forex economic calendar: bulli
   }
 
   function buildWidget(symbol) {
+    var p = palette();
     body.innerHTML = '';
     var container = document.createElement('div');
     container.className = 'tradingview-widget-container';
@@ -199,7 +244,7 @@ description: "A daily currency strength meter and forex economic calendar: bulli
       symbol: symbol,
       interval: 'D',
       timezone: 'Etc/UTC',
-      theme: 'light',
+      theme: themeName(),
       style: '1',
       locale: 'en',
       hide_side_toolbar: true,
@@ -207,32 +252,37 @@ description: "A daily currency strength meter and forex economic calendar: bulli
       hide_volume: true,
       withdateranges: true,
       calendar: false,
-      backgroundColor: 'rgba(251,251,249,1)',
-      gridColor: 'rgba(221,217,208,0.5)',
-      // Match the broadsheet palette (see blog.css :root): paper card bg,
-      // bull-green / bear-red candles, hairline grid, muted scale ink.
+      backgroundColor: p.panel,
+      gridColor: p.grid,
+      // Match the broadsheet palette of the current edition (see PALETTE above):
+      // card bg, bull/bear candles, hairline grid, muted scale ink.
       overrides: {
-        'paneProperties.background': '#fbfbf9',
+        'paneProperties.background': p.panel,
         'paneProperties.backgroundType': 'solid',
-        'paneProperties.vertGridProperties.color': 'rgba(221,217,208,0.45)',
-        'paneProperties.horzGridProperties.color': 'rgba(221,217,208,0.45)',
-        'scalesProperties.textColor': '#6b6356',
-        'scalesProperties.lineColor': '#ddd9d0',
-        'mainSeriesProperties.candleStyle.upColor': '#39744b',
-        'mainSeriesProperties.candleStyle.downColor': '#a8503f',
-        'mainSeriesProperties.candleStyle.borderUpColor': '#39744b',
-        'mainSeriesProperties.candleStyle.borderDownColor': '#a8503f',
-        'mainSeriesProperties.candleStyle.wickUpColor': '#39744b',
-        'mainSeriesProperties.candleStyle.wickDownColor': '#a8503f'
+        'paneProperties.vertGridProperties.color': p.grid,
+        'paneProperties.horzGridProperties.color': p.grid,
+        'scalesProperties.textColor': p.scale,
+        'scalesProperties.lineColor': p.rule,
+        'mainSeriesProperties.candleStyle.upColor': p.bull,
+        'mainSeriesProperties.candleStyle.downColor': p.bear,
+        'mainSeriesProperties.candleStyle.borderUpColor': p.bull,
+        'mainSeriesProperties.candleStyle.borderDownColor': p.bear,
+        'mainSeriesProperties.candleStyle.wickUpColor': p.bull,
+        'mainSeriesProperties.candleStyle.wickDownColor': p.bear
       }
     });
     container.appendChild(s);
     body.appendChild(container);
   }
 
+  // The symbol currently on screen, so a mid-read edition switch can rebuild the chart
+  // rather than leave a light panel sitting inside a dark one.
+  var openSymbol = null;
+
   function open(symbol, label, dir) {
     titleEl.textContent = label || 'FX pair';
     modal.setAttribute('data-dir', dir || '');
+    openSymbol = symbol;
     if (document.documentElement.classList.contains('no-tv')) {
       showEmpty();
     } else {
@@ -250,7 +300,15 @@ description: "A daily currency strength meter and forex economic calendar: bulli
   // Fires on every close path — the × button, a backdrop click, and the built-in Escape.
   modal.addEventListener('close', function () {
     body.innerHTML = '';
+    openSymbol = null;
     document.body.style.overflow = '';
+  });
+
+  // Rebuild an open chart in the new edition. Skipped when the panel is showing the
+  // blocked-embed copy, which is first-party markup and re-themes from CSS on its own.
+  document.addEventListener('ch:themechange', function () {
+    if (!modal.open || !openSymbol || body.querySelector('.fx-modal-empty')) return;
+    buildWidget(openSymbol);
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('.fx-pair[data-symbol]'), function (el) {
@@ -269,22 +327,41 @@ description: "A daily currency strength meter and forex economic calendar: bulli
 // do, the embeds never build a frame — so the page would otherwise show a headed, introduced
 // calendar section standing over nothing, plus pair tiles advertising a chart that cannot
 // load. Probe once, then let the CSS swap in first-party copy (see .no-tv in blog.css).
-(function () {
-  function loaded() {
-    var frames = document.querySelectorAll('.tv-widget iframe');
-    return frames.length >= document.querySelectorAll('.tv-widget').length;
-  }
-  // Grace period first (a slow link is not a blocked one), then the verdict — and keep
-  // watching after it, because frames that arrive late must undo the fallback rather than
-  // leave the page claiming data it actually got. Driven off DOMContentLoaded, not load:
-  // a proxy that black-holes the request instead of refusing it never fires load at all.
-  function check(attempt) {
-    var blocked = !loaded();
-    document.documentElement.classList.toggle('no-tv', blocked && attempt >= 12);
-    if (!blocked || attempt >= 40) return;
-    setTimeout(function () { check(attempt + 1); }, 900);
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { check(0); });
-  else check(0);
+var probeTimer = null;
+function loaded() {
+  var frames = document.querySelectorAll('.tv-widget iframe');
+  return frames.length >= document.querySelectorAll('.tv-widget').length;
+}
+// Grace period first (a slow link is not a blocked one), then the verdict — and keep
+// watching after it, because frames that arrive late must undo the fallback rather than
+// leave the page claiming data it actually got. Driven off DOMContentLoaded, not load:
+// a proxy that black-holes the request instead of refusing it never fires load at all.
+function check(attempt) {
+  var blocked = !loaded();
+  document.documentElement.classList.toggle('no-tv', blocked && attempt >= 12);
+  if (!blocked || attempt >= 40) return;
+  probeTimer = setTimeout(function () { check(attempt + 1); }, 900);
+}
+// A re-theme tears every frame down and builds new ones, so the count legitimately drops
+// to zero for a moment. Restarting from attempt 0 gives the new frames the same grace
+// period the first ones got — without it the probe would read its own rebuild as a block
+// and print "the calendar is not loading" over a calendar that is on its way.
+function probe() {
+  if (probeTimer) { clearTimeout(probeTimer); probeTimer = null; }
+  check(0);
+}
+
+document.addEventListener('ch:themechange', function () {
+  mountAllTv();
+  probe();
+});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function () { mountAllTv(); probe(); });
+} else {
+  mountAllTv();
+  probe();
+}
+
 })();
 </script>

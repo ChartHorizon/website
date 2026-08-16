@@ -39,7 +39,25 @@
 <title>{{ meta_title }}</title>
 <meta name="description" content="{{ meta_desc }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<!-- Kept in sync with the resolved theme by the boot script below; the light value is the
+     no-JS answer, which is correct, because without JS no data-theme is ever set. -->
 <meta name="theme-color" content="#f5f4f1">
+
+<!-- Resolve the edition before the first paint. Without this the white paper flashes on
+     every load for a dark-mode reader, on every page. Deliberately inline and first-party,
+     so the zero-third-party guarantee on content pages holds.
+     Storage key and the light/dark/system contract are the dashboard's (app/index.html),
+     so the two products behave the same way; the origins differ, so nothing is shared. -->
+<script>
+(function () {
+  try {
+    var m = localStorage.getItem('ch_theme_mode') || 'system';
+    var dark = m === 'dark' || (m !== 'light' && window.matchMedia &&
+               window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+})();
+</script>
 
 <!-- Open Graph / Twitter — controls how shared links preview on social & messaging apps. -->
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
@@ -101,10 +119,12 @@
 
 <header class="site-head">
   <a class="brand" href="{{ '/' | relative_url }}">
+    <!-- Horizon takes currentColor (the brand inherits body ink, so it inverts with the
+         edition); the sun is painted from --gold in blog.css. Neither is hardcoded. -->
     <svg class="mark" width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
       <g transform="translate(0,3)" fill="none" stroke-linecap="round">
-        <line x1="14" y1="64" x2="86" y2="64" stroke="#17150f" stroke-width="2.6"/>
-        <g stroke="#c8a24a" stroke-width="5.2">
+        <line x1="14" y1="64" x2="86" y2="64" stroke="currentColor" stroke-width="2.6"/>
+        <g class="mark-sun" stroke-width="5.2">
           <path d="M33 64 a17 17 0 0 1 34 0"/>
           <line x1="50" y1="19" x2="50" y2="28"/>
           <line x1="26.4" y1="35.6" x2="32" y2="41.3"/>
@@ -125,6 +145,12 @@
       <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="active" aria-current="page"{% endif %}>About</a>
     </nav>
     <span class="edition">No.&nbsp;{{ 'now' | date: "%V" }} · {{ 'now' | date: "%B %-d, %Y" }}</span>
+    <!-- Sun in the light edition, moon in the dark one — the glyph names the edition you
+         are reading, matching the dashboard's header control exactly. -->
+    <button class="theme-toggle" type="button" aria-label="Switch to the dark edition" title="Switch light / dark edition">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
+    </button>
     <a class="support" href="https://buymeacoffee.com/charthorizon" target="_blank" rel="noopener" aria-label="Support ChartHorizon on Buy Me a Coffee">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Support
     </a>
@@ -143,6 +169,62 @@
      <a href="{{ '/impressum.html' | relative_url }}">Impressum</a> ·
      <a href="{{ '/privacy.html' | relative_url }}">Datenschutz</a></p>
 </footer>
+
+<!-- Edition switch. The head script already resolved and applied the theme; this only wires
+     the control, persists the choice, and announces the change.
+     Anything whose colours are baked in at creation rather than read from CSS (the
+     TradingView embeds on /fx/) listens for `ch:themechange` and rebuilds itself. -->
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.querySelector('.theme-toggle');
+  var meta = document.querySelector('meta[name="theme-color"]');
+  var KEY = 'ch_theme_mode';
+
+  function storedMode() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function current() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+
+  // Reflect the resolved theme everywhere that cannot read it from CSS itself.
+  // `announce` is false on the boot pass: nothing has changed yet, and firing the event
+  // there would make listeners tear down and rebuild work they just did correctly.
+  function sync(announce) {
+    var dark = current() === 'dark';
+    if (btn) btn.setAttribute('aria-label', dark ? 'Switch to the light edition' : 'Switch to the dark edition');
+    // Straight from the token, so the browser chrome can never drift from --paper.
+    if (meta) {
+      var paper = getComputedStyle(root).getPropertyValue('--paper').trim();
+      if (paper) meta.setAttribute('content', paper);
+    }
+    if (announce) document.dispatchEvent(new CustomEvent('ch:themechange', { detail: { theme: current() } }));
+  }
+
+  function apply(theme) {
+    root.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+    sync(true);
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      apply(next);
+    });
+  }
+
+  // Follow the OS while the reader has not made an explicit choice — the head script
+  // resolved 'system' once at load, and this keeps it honest if the OS flips mid-visit.
+  try {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      if ((storedMode() || 'system') !== 'system') return;
+      apply(e.matches ? 'dark' : 'light');
+    });
+  } catch (e) {}
+
+  // Label + theme-color are server-rendered for the light edition; correct them once on
+  // load so a reader who arrives in dark is not offered "switch to the dark edition".
+  sync(false);
+})();
+</script>
 
 <!-- The dateline is a newspaper edition stamp: keep it on *today*, not on the last CI build.
      Inline + first-party only, so the zero-third-party guarantee on content pages holds;
