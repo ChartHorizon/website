@@ -201,6 +201,11 @@ blockquote p{margin:.3em 0}
 .archive-list .archive-link:hover{color:var(--gold-ink)}
 @media (max-width:560px){ .archive-list li{display:block} .archive-list .post-dateline{width:auto; margin-bottom:3px} }
 
+/* section hubs (/tape/, /ledger/) reuse the archive list, minus the edition label —
+   the page IS the edition — so the dateline column only has to clear "Aug 16". */
+.hub-list .post-dateline{width:6.5rem}
+@media (max-width:560px){ .hub-list .post-dateline{width:auto} }
+
 /* ---- "Elsewhere in the paper": the links between editions, under every post ----
    Same dateline furniture as the index and /archive/ (see _includes/post-teaser.html),
    set one step down: this is a footer to the piece you just read, not a second front page. */

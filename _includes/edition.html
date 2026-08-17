@@ -1,15 +1,31 @@
 {%- comment -%}
-  The masthead section a post ran under, for the index and archive datelines.
+  The masthead section a post ran under, for the index, the hubs and the archive datelines.
 
   `edition:` front matter wins; otherwise it is derived from the title, so the daily
   Hedgers' Ledger bot needs no change to be labelled correctly. Everything that is not
   a Ledger release is a Weekly Tape note — the two named editions in about.html.
 
-  Usage: {% include edition.html post=post %}
+  With `key=true` the SAME rule renders a machine key instead of the display name.
+  Callers that COMPARE editions must use the key: the display name carries an HTML
+  entity (&rsquo;), and no caller should have to spell that to match on it.
+
+  The key is total by construction — anything that is not a Ledger is `tape` — so the
+  two hubs always partition the run and no post can fall out of both.
+
+  Usage: {% include edition.html post=post %}           -> "Hedgers&rsquo; Ledger" | "Weekly Tape"
+         {% include edition.html post=post key=true %}  -> "ledger" | "tape"
 {%- endcomment -%}
+{%- assign is_ledger = false -%}
 {%- if include.post.edition -%}
-{{- include.post.edition -}}
+  {%- if include.post.edition contains "Hedgers" -%}{%- assign is_ledger = true -%}{%- endif -%}
 {%- elsif include.post.title contains "Hedgers" -%}
+  {%- assign is_ledger = true -%}
+{%- endif -%}
+{%- if include.key -%}
+{%- if is_ledger -%}ledger{%- else -%}tape{%- endif -%}
+{%- elsif include.post.edition -%}
+{{- include.post.edition -}}
+{%- elsif is_ledger -%}
 Hedgers&rsquo; Ledger
 {%- else -%}
 Weekly Tape

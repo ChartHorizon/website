@@ -1,0 +1,33 @@
+---
+layout: default
+permalink: /ledger/
+title: The Hedgers' Ledger
+seo_title: "Hedgers' Ledger — Weekly COT Extremes From the Commercial Book"
+description: "Every Hedgers' Ledger release: where commercial hedgers sit against their own three-year range in each market, read from the CFTC Commitments of Traders report the week it published."
+---
+<h1>The Hedgers&rsquo; Ledger</h1>
+<p class="dek">The weekly release: where the commercial book sits against its own three-year
+   range, market by market, straight from the CFTC report. The written notes run in
+   <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a>.</p>
+
+{%- assign run = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- capture k %}{% include edition.html post=post key=true %}{% endcapture -%}
+  {%- if k == "ledger" -%}{%- assign run = run | push: post -%}{%- endif -%}
+{%- endfor -%}
+{%- assign by_year = run | group_by_exp: "post", "post.date | date: '%Y'" -%}
+{% for year in by_year %}
+<h2 class="section-rule archive-year"><span>{{ year.name }}</span></h2>
+<ul class="archive-list hub-list">
+  {% for post in year.items %}
+  <li>
+    <div class="post-dateline">
+      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d" }}</time>
+    </div>
+    <a class="archive-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}
+
+<p class="more-issues"><a href="{{ '/archive/' | relative_url }}">All back issues &rarr;</a></p>
