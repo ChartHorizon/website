@@ -28,7 +28,8 @@ may describe it and, once ready, offer the installer/download here. Apart from t
 outbound links stay support/social only.
 
 > History: this repo started as a standalone dark marketing landing page. It was converted
-> into the blog; the homepage is now the post list and the old landing page was retired.
+> into the blog and the old landing page was retired; the homepage became a plain post list,
+> and on 2026-08-17 that list became the broadsheet cover described under "Architecture".
 
 ## Publishing a post (the core workflow)
 
@@ -36,7 +37,11 @@ outbound links stay support/social only.
    optional `subtitle` (shown as the dek and as the index excerpt), and `cards` (the
    image base path). Optional `edition:` overrides the masthead section shown in the
    index/archive dateline; without it `_includes/edition.html` derives it from the title
-   ("Hedgers' Ledger" if the title contains *Hedgers*, otherwise "Weekly Tape"). The post body is **only** the article — the `post` layout supplies
+   ("Hedgers' Ledger" if the title contains *Hedgers*, otherwise "Weekly Tape"). Callers that
+   need to compare editions rather than display them — the cover's lead/strand selection, the
+   two hubs — call `edition.html` with `key=true`, which returns the machine key `tape`/`ledger`
+   instead: the display name carries an HTML entity (`&rsquo;`) no caller should have to spell
+   to match on. The post body is **only** the article — the `post` layout supplies
    the `<h1>`, the dek, and the trailing educational/risk disclaimer automatically.
    Optional **SEO-only** front matter (never shown on-page, just feeds `<head>` meta — see
    "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta
@@ -54,11 +59,14 @@ outbound links stay support/social only.
    `_posts/` are not published the moment they are written. (The nightly `ops/daily-update.sh`
    runs the same two commands, so a committed post also goes out on its own that evening.)
    Pushing to GitHub is still worth doing for the backup, but deploys nothing right now.
-   The post appears at the top of the homepage list automatically.
+   The post appears on the cover automatically, as a lead if it is the newest of its edition
+   or a strand row otherwise.
    `permalink` is `/:year/:month/:day/:title/`.
-   **The homepage shows the 10 most recent posts** and then links to `/archive/`; the
-   Ledger publishes weekly, so an uncapped `site.posts` loop became a hundred-row ladder
-   within a year. Everything older is on the archive page, grouped by year.
+   **The cover shows ten post links, not simply the ten most recent**: two derived leads (the
+   newest Weekly Tape, the newest Hedgers' Ledger) plus four more of each edition in the
+   strands below — capped so the Ledger's weekly cadence can't turn an uncapped `site.posts`
+   loop into a hundred-row ladder within a year. Everything older is on the archive page,
+   grouped by year.
 
 > **Bump `css_version` in `_config.yml` whenever you touch `assets/css/blog.css`.** It is
 > the stylesheet's cache key. It used to be `site.time`, which made every daily FX push
@@ -72,7 +80,12 @@ outbound links stay support/social only.
   `The Weekly Tape · Futures Desk` sub-line, closed by a 3px double rule, then a dateline row —
   nav **The Tape** (home) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
   **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
-  Impressum/Datenschutz links).
+  Impressum/Datenschutz links). A page widens to 1080px by setting `wide: true` in its front
+  matter — today only `index.html` does. The layout puts `wide-page` on `<body>` and `wide` on
+  `<main>`; the 760px cap lives on `body` (`assets/css/blog.css`), not on a wrapper, so a class
+  on `main` alone would do nothing, and the CSS lifts the cap there and hands it back to
+  `.site-head`/`.site-foot`, which stay at 760px so the masthead and footer read as the same
+  narrow paper while the cover steps out from under them.
 - **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
   disclaimer, then the **"Elsewhere in the paper"** block: 4-6 links to other editions, all
   derived, so no post needs front matter. It exists for crawling — before it, a post was
@@ -83,8 +96,19 @@ outbound links stay support/social only.
   opposite of the point), and they render in a final pass over `site.posts` so the list still
   reads newest-first. Rows come from `_includes/post-teaser.html`, which reuses the index and
   archive dateline markup. Verify changes by rendering, not by eye — see "Developing locally".
-  **`index.html`** — `default` + the 10 most recent posts, each opened by an
-  edition dateline (`_includes/edition.html`), then a "Back issues" link to `/archive/`.
+- **`index.html`** — the cover: `default` layout with `wide: true`. A lead story (the newest
+  Weekly Tape, its OG card cropped 2:1 from the top) and a second lead (the newest Hedgers'
+  Ledger, no picture), then the two editions as side-by-side strands of four headlines each,
+  each strand ending in its own hub link, then a rail carrying the FX standing from
+  `_data/fx.json` and a dashboard plate. The lead is the newest *Tape*, not simply the newest
+  post: the Ledger publishes automatically every week, and as a permanent lead it would bury
+  the written notes under a headline that is just a date. Ten post links total (2 leads + 4 +
+  4); a "Back issues" link closes the page to `/archive/`.
+- **`tape.html`** / **`ledger.html`** (`/tape/`, `/ledger/`) — one hub per edition: that
+  edition's full run, grouped by year, reusing `/archive/`'s list markup. They exist because
+  Google left 15 of 22 URLs at "discovered, currently not indexed" and thin internal linking
+  was the half of that problem fixable here — every post's foot (`_layouts/post.html`) now
+  links its own hub, and so does the cover's matching strand.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the four-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@PlayLoneHand`) — support/social only, per the
@@ -153,7 +177,7 @@ outbound links stay support/social only.
 
 ## The FX Map page (`/fx/`)
 
-A second content surface besides the post list. It's a **hybrid**: ChartHorizon's own
+A second content surface besides the cover and the editions. It's a **hybrid**: ChartHorizon's own
 "FX Strength & Pairs" scoreboard (bias columns, neutral row, top-6 bullish/bearish pairs,
 filter-logic note, interest-rate table) rendered natively in the paper theme from a daily
 snapshot, **interleaved** with two light-theme **TradingView** widgets (ticker tape, economic

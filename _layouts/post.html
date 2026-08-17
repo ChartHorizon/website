@@ -37,6 +37,7 @@ layout: default
   {%- if p.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- break -%}{%- endif -%}
 {%- endfor -%}
 {%- capture this_edition %}{% include edition.html post=page %}{% endcapture -%}
+{%- capture this_key %}{% include edition.html post=page key=true %}{% endcapture -%}
 
 {%- comment -%}
   SELECTION is separate from ORDER, deliberately.
@@ -90,6 +91,19 @@ layout: default
 <nav class="post-more" aria-labelledby="post-more-head">
   <h2 class="section-rule" id="post-more-head"><span>Elsewhere in the paper</span></h2>
   <ul class="post-more-list">{{ links }}</ul>
-  <p class="more-issues"><a href="{{ '/archive/' | relative_url }}">All back issues &rarr;</a></p>
+  {%- comment -%}
+    The section hub first, the whole run second. This is the link that gives every post a
+    path into a topical hub — the thing that was missing when Google left 15 of 22 URLs at
+    "discovered, currently not indexed".
+  {%- endcomment -%}
+  <p class="more-issues">
+    {%- if this_key == "ledger" -%}
+    <a href="{{ '/ledger/' | relative_url }}">All Ledger releases &rarr;</a>
+    {%- else -%}
+    <a href="{{ '/tape/' | relative_url }}">All Tape notes &rarr;</a>
+    {%- endif -%}
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="{{ '/archive/' | relative_url }}">Back issues &rarr;</a>
+  </p>
 </nav>
 {%- endif %}

@@ -1,5 +1,6 @@
 ---
 layout: default
+wide: true
 seo_title: "Commitment of Traders Analysis & Futures Positioning Notes — ChartHorizon"
 description: "Weekly futures notes read from the CFTC Commitments of Traders report: where the commercial hedgers sit, plus seasonality, hedging programs and term structure across forty markets. Free to read, with a free local-first charting dashboard."
 ---
@@ -13,26 +14,139 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
    from the CFTC's Commitments of Traders report, hedging program and term structure line up.
    Data: ChartHorizon.</p>
 
-<h2 class="section-rule"><span>Latest editions</span></h2>
+{%- comment -%}
+  Selection, in one pass over site.posts (which is newest-first):
+    · lead_tape   — the newest Weekly Tape. It leads even when a Ledger is newer: the
+                    Ledger publishes automatically every week, and as a permanent lead it
+                    would bury the written notes under a headline that is a date.
+    · lead_ledger — the newest Ledger, second lead, no picture.
+  A post has exactly one edition key, so nothing can appear in both strands, and the
+  strand loop below skips whichever two posts became leads.
+{%- endcomment -%}
+{%- for p in site.posts -%}
+  {%- capture k %}{% include edition.html post=p key=true %}{% endcapture -%}
+  {%- if k == "tape" and lead_tape == nil -%}{%- assign lead_tape = p -%}{%- endif -%}
+  {%- if k == "ledger" and lead_ledger == nil -%}{%- assign lead_ledger = p -%}{%- endif -%}
+{%- endfor -%}
 
 {%- comment -%}
-  The front page is capped: the Ledger publishes weekly, so an uncapped `site.posts` loop
-  turns into a hundred-row ladder inside a year. Everything older lives on /archive/.
+  The lead picture is the post's own OG card as WebP (~48 KB against 153 KB for the PNG
+  twin publish.py writes alongside it). A post whose `image` is the site default carries
+  no card of its own, so the lead renders without a figure rather than showing the logo.
 {%- endcomment -%}
-<ul class="post-list">
-  {% for post in site.posts limit: 10 %}
-  <li>
-    <div class="post-dateline">
-      <span class="post-edition">{% include edition.html post=post %}</span>
-      <span class="sep" aria-hidden="true">·</span>
-      <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-    </div>
-    <h3 class="post-headline"><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-    {% if post.subtitle %}<p class="post-excerpt">{{ post.subtitle }}</p>{% endif %}
-  </li>
-  {% endfor %}
-</ul>
+{%- assign lead_img = "" -%}
+{%- if lead_tape.image and lead_tape.image != site.og_image -%}
+  {%- assign lead_img = lead_tape.image | replace: ".png", ".webp" -%}
+{%- endif -%}
 
-{% if site.posts.size > 10 %}
-<p class="more-issues"><a href="{{ '/archive/' | relative_url }}">Back issues &rarr;</a></p>
-{% endif %}
+<div class="front-grid">
+<div class="front-main">
+
+  {%- if lead_tape %}
+  <article class="lead">
+    {%- if lead_img != "" %}
+    <figure class="lead-figure">
+      <img src="{{ lead_img | relative_url }}" width="1200" height="1036" decoding="async"
+           alt="{{ lead_tape.image_alt | default: lead_tape.title }}">
+    </figure>
+    {%- endif %}
+    <div class="post-dateline">
+      <span class="post-edition">{% include edition.html post=lead_tape %}</span>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <time class="post-date" datetime="{{ lead_tape.date | date: '%Y-%m-%d' }}">{{ lead_tape.date | date: "%B %-d, %Y" }}</time>
+    </div>
+    <h2 class="lead-head"><a class="post-link" href="{{ lead_tape.url | relative_url }}">{{ lead_tape.title }}</a></h2>
+    {%- if lead_tape.subtitle %}<p class="lead-dek">{{ lead_tape.subtitle }}</p>{% endif %}
+  </article>
+  {%- endif %}
+
+  {%- if lead_ledger %}
+  <article class="lead lead-second">
+    <div class="post-dateline">
+      <span class="post-edition">{% include edition.html post=lead_ledger %}</span>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <time class="post-date" datetime="{{ lead_ledger.date | date: '%Y-%m-%d' }}">{{ lead_ledger.date | date: "%B %-d, %Y" }}</time>
+    </div>
+    <h2 class="lead-head"><a class="post-link" href="{{ lead_ledger.url | relative_url }}">{{ lead_ledger.title }}</a></h2>
+    {%- if lead_ledger.subtitle %}<p class="lead-dek">{{ lead_ledger.subtitle }}</p>{% endif %}
+  </article>
+  {%- endif %}
+
+  <div class="strands">
+    <section class="strand">
+      <h2 class="section-rule"><span>The Weekly Tape</span></h2>
+      <ul class="strand-list">
+        {%- assign n = 0 -%}
+        {%- for p in site.posts -%}
+          {%- capture k %}{% include edition.html post=p key=true %}{% endcapture -%}
+          {%- if k != "tape" or p.url == lead_tape.url -%}{%- continue -%}{%- endif -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- if n > 4 -%}{%- break -%}{%- endif %}
+        <li>
+          <div class="post-dateline">
+            <time class="post-date" datetime="{{ p.date | date: '%Y-%m-%d' }}">{{ p.date | date: "%b %-d, %Y" }}</time>
+          </div>
+          <a class="post-link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+      <p class="more-issues"><a href="{{ '/tape/' | relative_url }}">All Tape notes &rarr;</a></p>
+    </section>
+
+    <section class="strand">
+      <h2 class="section-rule"><span>Hedgers&rsquo; Ledger</span></h2>
+      <ul class="strand-list">
+        {%- assign n = 0 -%}
+        {%- for p in site.posts -%}
+          {%- capture k %}{% include edition.html post=p key=true %}{% endcapture -%}
+          {%- if k != "ledger" or p.url == lead_ledger.url -%}{%- continue -%}{%- endif -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- if n > 4 -%}{%- break -%}{%- endif %}
+        <li>
+          <div class="post-dateline">
+            <time class="post-date" datetime="{{ p.date | date: '%Y-%m-%d' }}">{{ p.date | date: "%b %-d, %Y" }}</time>
+          </div>
+          <a class="post-link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+      <p class="more-issues"><a href="{{ '/ledger/' | relative_url }}">All Ledger releases &rarr;</a></p>
+    </section>
+  </div>
+
+</div>
+
+<aside class="rail">
+  {%- assign fx = site.data.fx -%}
+  {%- assign nbull = fx.bullish | size -%}
+  {%- if nbull > 0 %}
+  <section class="rail-block rail-fx">
+    <h2 class="section-rule"><span>FX standing</span></h2>
+    <p class="rail-meta">Currency strength &middot; {{ fx.as_of }}</p>
+    <div class="fx-chips fx-col--bull">
+      {%- for c in fx.bullish limit: 3 %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
+    </div>
+    <div class="fx-chips fx-col--bear">
+      {%- for c in fx.bearish limit: 3 %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
+    </div>
+    {%- if fx.bullish_pairs and fx.bullish_pairs.size > 0 -%}
+      {%- assign top = fx.bullish_pairs | first %}
+    <p class="rail-lede">Widest spread: <strong>{{ top.pair }}</strong> &middot; {{ top.label }}</p>
+    {%- endif %}
+    <p class="more-issues"><a href="{{ '/fx/' | relative_url }}">The full FX map &rarr;</a></p>
+  </section>
+  {%- endif %}
+
+  <section class="rail-block rail-board">
+    <h2 class="section-rule"><span>The dashboard</span></h2>
+    {% include board.html plate="board-screener" w=1320 h=1012
+       alt="The ChartHorizon screener: forty futures markets ranked by season, positioning, hedging program and term structure"
+       caption="The screener, reading forty markets at once." %}
+    <p class="rail-lede">Every chart in these notes comes off the same local-first dashboard —
+       it installs on your machine and runs in your browser, with your data staying there.</p>
+    <p class="more-issues"><a href="{{ '/dashboard/' | relative_url }}">More about the dashboard &rarr;</a></p>
+  </section>
+</aside>
+</div>
+
+<p class="more-issues front-foot"><a href="{{ '/archive/' | relative_url }}">Back issues &rarr;</a></p>
