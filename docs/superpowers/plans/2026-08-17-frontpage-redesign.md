@@ -67,47 +67,41 @@ Copied verbatim from the spec. Every task's requirements implicitly include thes
 
 ---
 
-### Task 0: Branch and baseline
+### Task 0: Workspace — ALREADY DONE, do not repeat
 
-**Files:**
-- Create: `/tmp/frontpage-baseline/` (throwaway, outside the repo)
+The controller completed this before dispatching Task 1. It is recorded here so every later
+task knows where it is working and why the commands look the way they do.
 
-- [ ] **Step 1: Confirm the toolchain is installed**
+**Where the work happens.** An isolated git worktree:
 
-```bash
-cd ~/charthorizon/website
-ls ~/.local/share/charthorizon/jekyll-gems/bin/jekyll
+```
+~/charthorizon/website/.worktrees/frontpage-redesign     branch: frontpage-redesign
 ```
 
-Expected: the path exists. If it does not, run `ops/website-toolchain.sh` once — it installs
-Jekyll 3.10.0 with every dependency pinned to its last Ruby-2.6-compatible release. Do not run
-`bundle install`; it wants the `github-pages` metagem, which needs Ruby ≥ 3.0, and this Mac only
-has system Ruby 2.6.10.
+The main checkout at `~/charthorizon/website` stays on `main` on purpose. `ops/daily-update.sh`
+runs at 23:30 and does `website-build.sh --from-head && website-deploy.sh` against whatever is
+committed at HEAD — on a feature branch in the main checkout that job would deploy this
+half-finished redesign to chart-horizon.com. The worktree removes that hazard entirely.
 
-- [ ] **Step 2: Branch**
+**Consequences for every command in this plan, already applied to the steps below:**
 
-```bash
-cd ~/charthorizon/website
-git checkout -b frontpage-redesign
-git status --porcelain
-```
+- `cd` targets are the worktree, never `~/charthorizon/website`.
+- The build script lives in the OUTER monorepo and defaults `REPO` to the main checkout, so it
+  is always invoked as `REPO="$PWD" ~/charthorizon/ops/website-build.sh` from the worktree root.
+  Calling a bare `ops/website-build.sh` would build and verify the wrong tree — silently, with
+  a green result.
+- `.preview/` is gitignored, so it does not exist in a fresh worktree. It has been copied in;
+  `.preview/shot.mjs` is there and works.
+- Throwaway artifacts (baseline copy, screenshots, helper scripts) go to this session's
+  scratchpad, spelled out in full in each step.
 
-Expected: on `frontpage-redesign`, working tree clean apart from the untracked plan and spec
-under `docs/superpowers/`.
+**Already verified:** the Jekyll toolchain is installed at
+`~/.local/share/charthorizon/jekyll-gems/bin/jekyll`; the spec and this plan are committed on
+the branch (`97d8555`); a clean baseline build passed all checks (`posts 18/18`,
+`broken local refs 0`, `sitemap urls 23`) and `_site/` was copied to
+`…/scratchpad/baseline` — that copy is what Task 2 Step 7 diffs against.
 
-- [ ] **Step 3: Build the current site and keep it as the regression baseline**
-
-```bash
-cd ~/charthorizon/website
-ops/website-build.sh
-rm -rf /tmp/frontpage-baseline
-cp -R _site /tmp/frontpage-baseline
-```
-
-Expected: `all checks passed`. The copy is what Task 2 diffs against to prove that widening the
-cover changed nothing on any other page.
-
-- [ ] **Step 4: Note the current post count**
+- [ ] **Step 1: Note the current post count**
 
 ```bash
 ls ~/charthorizon/website/_posts/*.md | wc -l
@@ -219,7 +213,7 @@ print("\n  front-page checks passed")
 - [ ] **Step 2: Run it to make sure it fails**
 
 ```bash
-cd ~/charthorizon/website && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && python3 .preview/check-front.py
 ```
 
 Expected: FAIL, reporting `missing page: tape/index.html` and `missing page: ledger/index.html`
@@ -365,7 +359,7 @@ Bump `css_version` in `_config.yml` from `5` to `6` in the same edit.
 - [ ] **Step 7: Build and run the check**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
 ```
 
 Expected: `all checks passed`, then `hubs: 9 tape + 9 ledger = 18/18` and `front-page checks
@@ -374,8 +368,8 @@ passed`. The 9/9 split is today's; the total is what must always equal the post 
 - [ ] **Step 8: Confirm the display form did not change**
 
 ```bash
-cd ~/charthorizon/website
-diff <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' /tmp/frontpage-baseline/archive/index.html) \
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+diff <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/archive/index.html) \
      <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' _site/archive/index.html)
 ```
 
@@ -385,7 +379,7 @@ parameter did not disturb the default rendering.
 - [ ] **Step 9: Commit**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git add _includes/edition.html tape.html ledger.html assets/css/blog.css _config.yml
 git commit -m "hubs: /tape/ and /ledger/, split on one derived edition key"
 ```
@@ -425,7 +419,7 @@ print("  wide shell:    cover only")
 - [ ] **Step 2: Run it to make sure it fails**
 
 ```bash
-cd ~/charthorizon/website && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && python3 .preview/check-front.py
 ```
 
 Expected: FAIL with `home page <body> is missing the wide-page class`.
@@ -483,7 +477,7 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 - [ ] **Step 6: Build and check**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
 ```
 
 Expected: both pass, `wide shell: cover only`.
@@ -491,12 +485,12 @@ Expected: both pass, `wide shell: cover only`.
 - [ ] **Step 7: Prove no other page moved**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 for p in about fx dashboard archive impressum privacy; do
-  diff -q /tmp/frontpage-baseline/$p/index.html _site/$p/index.html
+  diff -q /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/$p/index.html _site/$p/index.html
 done
-diff -q /tmp/frontpage-baseline/404.html _site/404.html
-diff -rq /tmp/frontpage-baseline/2026 _site/2026
+diff -q /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/404.html _site/404.html
+diff -rq /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/2026 _site/2026
 ```
 
 Expected: no output at all. Every page except the cover — including all 18 posts — is
@@ -505,9 +499,9 @@ byte-identical to the baseline built in Task 0.
 - [ ] **Step 8: Screenshot the widened shell**
 
 ```bash
-cd ~/charthorizon/website/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
-cd ~/charthorizon/website
-node .preview/shot.mjs http://localhost:8899/ /tmp/frontpage-wide-1280.png 1280 full
+cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-wide-1280.png 1280 full
 ```
 
 Expected: the post list now runs to 1080px while the masthead and footer stay narrow. It will
@@ -517,7 +511,7 @@ replaces the list with the grid. Leave the server running for the next tasks.
 - [ ] **Step 9: Commit**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git add _layouts/default.html index.html assets/css/blog.css
 git commit -m "shell: the cover widens to 1080px, every other page stays at 760"
 ```
@@ -568,7 +562,7 @@ print("  cover leads:   newest Weekly Tape leads, both hubs linked")
 - [ ] **Step 2: Run it to make sure it fails**
 
 ```bash
-cd ~/charthorizon/website && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && python3 .preview/check-front.py
 ```
 
 Expected: FAIL — the cover still links 10 posts in plain date order, so the lead assertion and
@@ -747,7 +741,7 @@ Bump `css_version` in `_config.yml` from `6` to `7`.
 - [ ] **Step 5: Build and check**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
 ```
 
 Expected: `all checks passed`, `cover posts: 10 links, 10 distinct`, `cover leads: newest Weekly
@@ -756,10 +750,10 @@ Tape leads, both hubs linked`, `front-page checks passed`.
 - [ ] **Step 6: Screenshot the cover at three widths, both editions**
 
 ```bash
-cd ~/charthorizon/website/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 for w in 1280 900 375; do
-  node .preview/shot.mjs http://localhost:8899/ /tmp/frontpage-$w.png $w full
+  node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-$w.png $w full
 done
 ```
 
@@ -773,8 +767,8 @@ Then open the three files and confirm, by looking:
 For the dark edition, load the page and set the theme before shooting:
 
 ```bash
-cd ~/charthorizon/website
-cat > /tmp/shot-dark.mjs <<'EOF'
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+cat > /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs <<'EOF'
 import pkg from '/Users/notwoalike/.npm/_npx/705bc6b22212b352/node_modules/playwright-core/index.js';
 const { chromium } = pkg;
 const EXE = '/Users/notwoalike/Library/Caches/ms-playwright/chromium-1226/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
@@ -786,7 +780,7 @@ await page.waitForTimeout(400);
 await page.screenshot({ path: process.argv[3], fullPage: true });
 await browser.close();
 EOF
-node /tmp/shot-dark.mjs http://localhost:8899/ /tmp/frontpage-dark.png
+node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark.png
 ```
 
 Expected in dark: the paper is navy and the lead chart card is **glaring white** — the existing
@@ -803,17 +797,17 @@ them — the `:not(.plate)` guard and the hover behaviour stay as they are.
 - [ ] **Step 8: Rebuild and re-shoot dark**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
-node /tmp/shot-dark.mjs http://localhost:8899/ /tmp/frontpage-dark2.png
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
+node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark2.png
 ```
 
-Expected: checks pass; the lead card in `/tmp/frontpage-dark2.png` is dimmed to match the night
+Expected: checks pass; the lead card in `/private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark2.png` is dimmed to match the night
 press run rather than glaring.
 
 - [ ] **Step 9: Commit**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git add index.html assets/css/blog.css _config.yml
 git commit -m "cover: lead story, second lead and the two strands"
 ```
@@ -872,7 +866,7 @@ if "releases/download" in home:
 - [ ] **Step 2: Run it to make sure it fails**
 
 ```bash
-cd ~/charthorizon/website && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && python3 .preview/check-front.py
 ```
 
 Expected: FAIL with `cover does not show the FX as_of date`, the missing links and the missing
@@ -954,7 +948,7 @@ Bump `css_version` in `_config.yml` from `7` to `8`.
 - [ ] **Step 5: Build and check**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
 ```
 
 Expected: all checks pass, including `third-party: none beyond the beacon`.
@@ -962,10 +956,10 @@ Expected: all checks pass, including `third-party: none beyond the beacon`.
 - [ ] **Step 6: Screenshot all four states**
 
 ```bash
-cd ~/charthorizon/website/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
-cd ~/charthorizon/website
-for w in 1280 900 375; do node .preview/shot.mjs http://localhost:8899/ /tmp/rail-$w.png $w full; done
-node /tmp/shot-dark.mjs http://localhost:8899/ /tmp/rail-dark.png
+cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+for w in 1280 900 375; do node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/rail-$w.png $w full; done
+node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/rail-dark.png
 ```
 
 Confirm by looking: at 1280 the rail sits beside the leads and the chips wrap at most onto two
@@ -975,8 +969,8 @@ no horizontal overflow; in dark the plate is the app's own dark board, not a dim
 - [ ] **Step 7: Verify the network log carries nothing new**
 
 ```bash
-cd ~/charthorizon/website
-cat > /tmp/net-check.mjs <<'EOF'
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+cat > /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/net-check.mjs <<'EOF'
 import pkg from '/Users/notwoalike/.npm/_npx/705bc6b22212b352/node_modules/playwright-core/index.js';
 const { chromium } = pkg;
 const EXE = '/Users/notwoalike/Library/Caches/ms-playwright/chromium-1226/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
@@ -988,7 +982,7 @@ await page.goto(process.argv[2], { waitUntil: 'networkidle' });
 await browser.close();
 console.log([...hosts].sort().join('\n'));
 EOF
-node /tmp/net-check.mjs http://localhost:8899/
+node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/net-check.mjs http://localhost:8899/
 ```
 
 Expected: exactly `localhost:8899` and `static.cloudflareinsights.com`. Anything else is a
@@ -998,7 +992,7 @@ stop and report instead.
 - [ ] **Step 8: Commit**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git add index.html assets/css/blog.css _config.yml
 git commit -m "cover: FX standing and dashboard rail"
 ```
@@ -1044,7 +1038,7 @@ if 'href="/tape/"' not in arch or 'href="/ledger/"' not in arch:
 - [ ] **Step 2: Run it to make sure it fails**
 
 ```bash
-cd ~/charthorizon/website && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && python3 .preview/check-front.py
 ```
 
 Expected: FAIL — every post is listed under `post(s) with no link to their own hub`, and
@@ -1109,7 +1103,7 @@ In `archive.html`, replace the `.dek` paragraph with:
 - [ ] **Step 6: Build and run every check**
 
 ```bash
-cd ~/charthorizon/website && ops/website-build.sh && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
 ```
 
 Expected: `all checks passed` and every one of the six check groups reporting ok, ending in
@@ -1118,10 +1112,10 @@ Expected: `all checks passed` and every one of the six check groups reporting ok
 - [ ] **Step 7: Screenshot a post from each edition**
 
 ```bash
-cd ~/charthorizon/website/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
-cd ~/charthorizon/website
-node .preview/shot.mjs http://localhost:8899/2026/08/15/paid-to-wait/ /tmp/post-tape.png 1280 full
-node .preview/shot.mjs http://localhost:8899/2026/08/16/hedgers-ledger/ /tmp/post-ledger.png 1280 full
+cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+node .preview/shot.mjs http://localhost:8899/2026/08/15/paid-to-wait/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/post-tape.png 1280 full
+node .preview/shot.mjs http://localhost:8899/2026/08/16/hedgers-ledger/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/post-ledger.png 1280 full
 ```
 
 Confirm by looking at the foot of each: the Tape note offers "All Tape notes → · Back issues →",
@@ -1131,7 +1125,7 @@ otherwise unchanged.
 - [ ] **Step 8: Commit**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git add _layouts/post.html archive.html assets/css/blog.css _config.yml
 git commit -m "links: every post and the archive lead into the section hubs"
 ```
@@ -1145,8 +1139,8 @@ git commit -m "links: every post and the archive lead into the section hubs"
 - [ ] **Step 1: Full build from the committed tree**
 
 ```bash
-cd ~/charthorizon/website
-ops/website-build.sh --from-head && python3 .preview/check-front.py
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
+REPO="$PWD" ~/charthorizon/ops/website-build.sh --from-head && python3 .preview/check-front.py
 ```
 
 `--from-head` builds the committed state, which is what the nightly job publishes. Expected: both
@@ -1156,7 +1150,7 @@ uncommitted — that is exactly the failure this step exists to catch.
 - [ ] **Step 2: Confirm nothing outside the intended set changed**
 
 ```bash
-cd ~/charthorizon/website
+cd ~/charthorizon/website/.worktrees/frontpage-redesign
 git diff --stat main...HEAD
 ```
 
