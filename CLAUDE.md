@@ -28,7 +28,8 @@ may describe it and, once ready, offer the installer/download here. Apart from t
 outbound links stay support/social only.
 
 > History: this repo started as a standalone dark marketing landing page. It was converted
-> into the blog; the homepage is now the post list and the old landing page was retired.
+> into the blog and the old landing page was retired; the homepage became a plain post list,
+> and on 2026-08-17 that list became the broadsheet cover described under "Architecture".
 
 ## Publishing a post (the core workflow)
 
@@ -176,7 +177,7 @@ outbound links stay support/social only.
 
 ## The FX Map page (`/fx/`)
 
-A second content surface besides the post list. It's a **hybrid**: ChartHorizon's own
+A second content surface besides the cover and the editions. It's a **hybrid**: ChartHorizon's own
 "FX Strength & Pairs" scoreboard (bias columns, neutral row, top-6 bullish/bearish pairs,
 filter-logic note, interest-rate table) rendered natively in the paper theme from a daily
 snapshot, **interleaved** with two light-theme **TradingView** widgets (ticker tape, economic
