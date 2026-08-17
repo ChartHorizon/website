@@ -117,7 +117,34 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
 </div>
 
 <aside class="rail">
-  {%- comment -%} Filled in Task 4: the FX standing and the dashboard block. {%- endcomment -%}
+  {%- assign fx = site.data.fx -%}
+  {%- if fx and fx.bullish %}
+  <section class="rail-block rail-fx">
+    <h2 class="section-rule"><span>FX standing</span></h2>
+    <p class="rail-meta">Currency strength &middot; {{ fx.as_of }}</p>
+    <div class="fx-chips fx-col--bull">
+      {%- for c in fx.bullish limit: 3 %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
+    </div>
+    <div class="fx-chips fx-col--bear">
+      {%- for c in fx.bearish limit: 3 %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
+    </div>
+    {%- if fx.bullish_pairs and fx.bullish_pairs.size > 0 -%}
+      {%- assign top = fx.bullish_pairs | first %}
+    <p class="rail-lede">Widest spread: <strong>{{ top.pair }}</strong> &middot; {{ top.label }}</p>
+    {%- endif %}
+    <p class="more-issues"><a href="{{ '/fx/' | relative_url }}">The full FX map &rarr;</a></p>
+  </section>
+  {%- endif %}
+
+  <section class="rail-block rail-board">
+    <h2 class="section-rule"><span>The dashboard</span></h2>
+    {% include board.html plate="board-screener" w=1320 h=1012
+       alt="The ChartHorizon screener: forty futures markets ranked by season, positioning, hedging program and term structure"
+       caption="The screener, reading forty markets at once." %}
+    <p class="rail-lede">Every chart in these notes comes off the same local-first dashboard —
+       it installs on your machine and runs in your browser, with your data staying there.</p>
+    <p class="more-issues"><a href="{{ '/dashboard/' | relative_url }}">More about the dashboard &rarr;</a></p>
+  </section>
 </aside>
 </div>
 

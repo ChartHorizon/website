@@ -518,3 +518,24 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 @media (max-width:600px){
   .strands{grid-template-columns:1fr; gap:26px}
 }
+
+/* the rail: FX standing + dashboard block */
+.rail{min-width:0}
+.rail-block + .rail-block{margin-top:30px}
+.rail-meta{font:11.5px/1.4 var(--sans); letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); margin:9px 0 11px}
+.rail .fx-chips + .fx-chips{margin-top:7px}
+.rail .fx-chip{font-size:12.5px; padding:7px 10px}
+.rail-lede{font:15px/1.5 var(--serif); color:var(--muted); margin:12px 0 0; max-width:none}
+.rail-lede strong{color:var(--ink)}
+/* the plate is furniture here, not a plate on a product page: no bleed, tighter caption */
+.rail .board{margin:12px 0 0}
+.rail .board figcaption{font-size:13px; margin-top:8px; text-align:left}
+.rail .more-issues{margin-top:14px; padding-top:11px; border-top-width:1px}
+
+/* below the fold-down the rail is a full-width footer band, so its two blocks sit
+   side by side instead of stacking into a second long ladder */
+@media (max-width:939px) and (min-width:601px){
+  .rail{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start}
+  .rail-block + .rail-block{margin-top:0}
+}
