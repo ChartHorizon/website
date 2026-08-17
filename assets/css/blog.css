@@ -166,10 +166,6 @@ blockquote p{margin:.3em 0}
 .section-rule::before{content:none}
 .section-rule::after{content:""; flex:1; border-top:2px solid var(--rule-strong)}
 
-/* ---- index post list ---- */
-.post-list{list-style:none; padding:0; margin:6px 0 0}
-.post-list li{padding:20px 0; border-top:1px solid var(--rule)}
-.post-list li:first-child{border-top:none}
 /* a real dateline: which edition this is, then when it ran — so seven Ledger entries in a
    row read as a running series rather than as the same note posted seven times.
    Shared by the front page and /archive/. */
@@ -177,14 +173,6 @@ blockquote p{margin:.3em 0}
 .post-edition{color:var(--gold-ink)}
 .post-date{color:var(--muted-2)}
 .post-dateline .sep{color:var(--muted-2)}
-.post-list .post-headline{margin:0}
-.post-list .post-link{display:inline-block; margin:.16em 0 0; font:600 25px/1.18 var(--serif); letter-spacing:-.2px; color:var(--ink); border:none; text-wrap:balance}
-.post-list .post-link:hover{color:var(--gold-ink)}
-.post-list .post-excerpt{margin:.3em 0 0; color:var(--muted); max-width:var(--measure)}
-/* front-page lead: the most recent post reads as the broadsheet lead story, not a list row */
-.post-list li:first-child{padding:16px 0 28px}
-.post-list li:first-child .post-link{font-size:clamp(30px,3.8vw,38px); line-height:1.1; letter-spacing:-.5px; margin-top:.1em}
-.post-list li:first-child .post-excerpt{font-size:19px; line-height:1.5; max-width:60ch}
 
 /* back issues: the front page is capped, everything else lives on /archive/ */
 .more-issues{margin:26px 0 0; padding-top:16px; border-top:2px solid var(--rule-strong); text-align:right;
@@ -216,6 +204,8 @@ blockquote p{margin:.3em 0}
 .post-more-list .post-link{display:inline-block; margin:.14em 0 0; font:600 19px/1.25 var(--serif);
   letter-spacing:-.15px; color:var(--ink); border:none; text-wrap:balance}
 .post-more-list .post-link:hover{color:var(--gold-ink)}
+/* two links share the foot rule under a post now — the hub, then the whole run */
+.post-more .more-issues .sep{margin:0 10px; color:var(--muted-2)}
 
 /* ---- post body: broadsheet drop cap on the first paragraph ---- */
 .post-body>p:first-of-type::first-letter{
@@ -499,7 +489,7 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 
 /* the two strands */
 .strands{display:grid; grid-template-columns:1fr 1fr; gap:34px}
-.strand{min-width:0}
+.strand{min-width:0; display:flex; flex-direction:column}
 .strand-list{list-style:none; padding:0; margin:4px 0 0}
 .strand-list li{padding:13px 0; border-top:1px solid var(--rule)}
 .strand-list li:first-child{border-top:none}
@@ -508,7 +498,10 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 .strand-list .post-link{display:inline-block; margin:.14em 0 0; font:600 19px/1.24 var(--serif);
   color:var(--ink); border:none; text-wrap:balance}
 .strand-list .post-link:hover{color:var(--gold-ink)}
-.strand .more-issues{margin-top:18px; padding-top:12px; border-top-width:1px}
+/* The two columns rarely hold the same number of wrapped headlines, so the feet would
+   otherwise sit at different heights — on a page whose argument is column discipline,
+   that reads as an accident. Flex + auto margin pins both hub links to a shared baseline. */
+.strand .more-issues{margin-top:auto; padding-top:12px; border-top-width:1px}
 .front-foot{margin-top:34px}
 
 /* the cover folds down before the sheet does: rail under the strands, then one column */
@@ -539,6 +532,3 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
   .rail{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start}
   .rail-block + .rail-block{margin-top:0}
 }
-
-/* two links share the foot rule under a post now — the hub, then the whole run */
-.post-more .more-issues .sep{margin:0 10px; color:var(--muted-2)}

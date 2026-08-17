@@ -93,7 +93,9 @@ half-finished redesign to chart-horizon.com. The worktree removes that hazard en
 - `.preview/` is gitignored, so it does not exist in a fresh worktree. It has been copied in;
   `.preview/shot.mjs` is there and works.
 - Throwaway artifacts (baseline copy, screenshots, helper scripts) go to this session's
-  scratchpad, spelled out in full in each step.
+  scratchpad, written below as `$SCRATCH` — a session-specific temp directory outside this
+  repo (this repo is public; the concrete path was local to the machine that ran this plan
+  and isn't worth repeating below).
 
 **Already verified:** the Jekyll toolchain is installed at
 `~/.local/share/charthorizon/jekyll-gems/bin/jekyll`; the spec and this plan are committed on
@@ -369,7 +371,7 @@ passed`. The 9/9 split is today's; the total is what must always equal the post 
 
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-diff <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/archive/index.html) \
+diff <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' $SCRATCH/baseline/archive/index.html) \
      <(sed -n 's/.*<span class="post-edition">\(.*\)<\/span>.*/\1/p' _site/archive/index.html)
 ```
 
@@ -493,7 +495,7 @@ string away and requires everything else to be identical:
 
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-SP=/private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad
+SP=$SCRATCH
 norm() { sed 's/blog\.css?v=[0-9][0-9]*/blog.css/' "$1"; }
 for p in about/index.html fx/index.html dashboard/index.html archive/index.html \
          impressum/index.html privacy/index.html 404.html; do
@@ -514,7 +516,7 @@ all 18 posts — is identical to the Task 0 baseline apart from the stylesheet c
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-wide-1280.png 1280 full
+node .preview/shot.mjs http://localhost:8899/ $SCRATCH/frontpage-wide-1280.png 1280 full
 ```
 
 Expected: the post list now runs to 1080px while the masthead and footer stay narrow. It will
@@ -766,7 +768,7 @@ Tape leads, both hubs linked`, `front-page checks passed`.
 cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
 for w in 1280 900 375; do
-  node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-$w.png $w full
+  node .preview/shot.mjs http://localhost:8899/ $SCRATCH/frontpage-$w.png $w full
 done
 ```
 
@@ -781,10 +783,13 @@ For the dark edition, load the page and set the theme before shooting:
 
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-cat > /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs <<'EOF'
-import pkg from '/Users/notwoalike/.npm/_npx/705bc6b22212b352/node_modules/playwright-core/index.js';
+cat > $SCRATCH/shot-dark.mjs <<'EOF'
+// playwright-core module path and Chromium executable path: resolved the same way
+// .preview/shot.mjs resolves them in this repo — see that file for the concrete,
+// machine-local paths rather than repeating them here.
+import pkg from playwrightCorePath;
 const { chromium } = pkg;
-const EXE = '/Users/notwoalike/Library/Caches/ms-playwright/chromium-1226/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
+const EXE = chromiumExecutablePath;
 const browser = await chromium.launch({ executablePath: EXE });
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 2 });
 await page.addInitScript(() => localStorage.setItem('ch_theme_mode', 'dark'));
@@ -793,7 +798,7 @@ await page.waitForTimeout(400);
 await page.screenshot({ path: process.argv[3], fullPage: true });
 await browser.close();
 EOF
-node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark.png
+node $SCRATCH/shot-dark.mjs http://localhost:8899/ $SCRATCH/frontpage-dark.png
 ```
 
 Expected in dark: the paper is navy and the lead chart card is **glaring white** — the existing
@@ -811,10 +816,10 @@ them — the `:not(.plate)` guard and the hover behaviour stay as they are.
 
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign && REPO="$PWD" ~/charthorizon/ops/website-build.sh && python3 .preview/check-front.py
-node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark2.png
+node $SCRATCH/shot-dark.mjs http://localhost:8899/ $SCRATCH/frontpage-dark2.png
 ```
 
-Expected: checks pass; the lead card in `/private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/frontpage-dark2.png` is dimmed to match the night
+Expected: checks pass; the lead card in `$SCRATCH/frontpage-dark2.png` is dimmed to match the night
 press run rather than glaring.
 
 - [ ] **Step 9: Commit**
@@ -975,8 +980,8 @@ Expected: all checks pass, including `third-party: none beyond the beacon`.
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-for w in 1280 900 375; do node .preview/shot.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/rail-$w.png $w full; done
-node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/shot-dark.mjs http://localhost:8899/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/rail-dark.png
+for w in 1280 900 375; do node .preview/shot.mjs http://localhost:8899/ $SCRATCH/rail-$w.png $w full; done
+node $SCRATCH/shot-dark.mjs http://localhost:8899/ $SCRATCH/rail-dark.png
 ```
 
 Confirm by looking: at 1280 the rail sits beside the leads and the chips wrap at most onto two
@@ -987,10 +992,13 @@ no horizontal overflow; in dark the plate is the app's own dark board, not a dim
 
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-cat > /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/net-check.mjs <<'EOF'
-import pkg from '/Users/notwoalike/.npm/_npx/705bc6b22212b352/node_modules/playwright-core/index.js';
+cat > $SCRATCH/net-check.mjs <<'EOF'
+// playwright-core module path and Chromium executable path: resolved the same way
+// .preview/shot.mjs resolves them in this repo — see that file for the concrete,
+// machine-local paths rather than repeating them here.
+import pkg from playwrightCorePath;
 const { chromium } = pkg;
-const EXE = '/Users/notwoalike/Library/Caches/ms-playwright/chromium-1226/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing';
+const EXE = chromiumExecutablePath;
 const browser = await chromium.launch({ executablePath: EXE });
 const page = await browser.newPage();
 const hosts = new Set();
@@ -999,7 +1007,7 @@ await page.goto(process.argv[2], { waitUntil: 'networkidle' });
 await browser.close();
 console.log([...hosts].sort().join('\n'));
 EOF
-node /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/net-check.mjs http://localhost:8899/
+node $SCRATCH/net-check.mjs http://localhost:8899/
 ```
 
 Expected: exactly `localhost:8899` and `static.cloudflareinsights.com`. Anything else is a
@@ -1131,8 +1139,8 @@ Expected: `all checks passed` and every one of the six check groups reporting ok
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign/_site && (python3 -m http.server 8899 >/dev/null 2>&1 &) ; sleep 1
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-node .preview/shot.mjs http://localhost:8899/2026/08/15/paid-to-wait/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/post-tape.png 1280 full
-node .preview/shot.mjs http://localhost:8899/2026/08/16/hedgers-ledger/ /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/post-ledger.png 1280 full
+node .preview/shot.mjs http://localhost:8899/2026/08/15/paid-to-wait/ $SCRATCH/post-tape.png 1280 full
+node .preview/shot.mjs http://localhost:8899/2026/08/16/hedgers-ledger/ $SCRATCH/post-ledger.png 1280 full
 ```
 
 Confirm by looking at the foot of each: the Tape note offers "All Tape notes → · Back issues →",

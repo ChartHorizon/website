@@ -4,7 +4,7 @@ The **ChartHorizon blog** ("The Weekly Tape"), served at **chart-horizon.com** �
 [Jekyll](https://jekyllrb.com/) site deployed to GitHub Pages.
 
 - `_posts/` — blog posts (Markdown). Add `YYYY-MM-DD-slug.md` and push to publish.
-- `_layouts/`, `index.html` — the page shell and the post-list homepage.
+- `_layouts/`, `index.html` — the page shell and the cover (home page).
 - `assets/css/blog.css` — the light "paper" theme; `assets/posts/<slug>/` — post images.
 - `impressum.html`, `privacy.html` — legal pages (static HTML, copied as-is).
 - `CNAME` — pins the custom domain (do not delete).

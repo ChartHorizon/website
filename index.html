@@ -118,7 +118,8 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
 
 <aside class="rail">
   {%- assign fx = site.data.fx -%}
-  {%- if fx and fx.bullish %}
+  {%- assign nbull = fx.bullish | size -%}
+  {%- if nbull > 0 %}
   <section class="rail-block rail-fx">
     <h2 class="section-rule"><span>FX standing</span></h2>
     <p class="rail-meta">Currency strength &middot; {{ fx.as_of }}</p>
