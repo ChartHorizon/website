@@ -462,3 +462,14 @@ button.fx-pair:active{transform:translateY(1px)}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms !important; animation-duration:.01ms !important}
 }
+
+/* ---- the cover -----------------------------------------------------------
+   Only the home page widens. The 760px measure is set on `body` (see the body rule
+   at the top of this file), not on a wrapper, so the cap is lifted here and handed
+   back to the masthead and the footer: the cover steps out from under a narrow head,
+   which is the broadsheet gesture, not an oversight. Every other page renders a
+   byte-identical <body> tag and is untouched. */
+body.wide-page{max-width:none}
+body.wide-page .site-head,
+body.wide-page .site-foot{max-width:760px; margin-inline:auto}
+body.wide-page main.wide{max-width:1080px; margin-inline:auto}

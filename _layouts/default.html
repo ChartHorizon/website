@@ -113,7 +113,7 @@
 </script>
 {%- endif %}
 </head>
-<body>
+<body{% if page.wide %} class="wide-page"{% endif %}>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -157,7 +157,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main"{% if page.wide %} class="wide"{% endif %}>
   {{ content }}
 </main>
 
