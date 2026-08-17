@@ -54,13 +54,13 @@ Copied verbatim from the spec. Every task's requirements implicitly include thes
 
 | File | Responsibility | Task |
 |---|---|---|
-| `.preview/check-front.py` | **new, gitignored** — asserts the invariants the build script does not: strand partition, no duplicate on the cover, hubs indexed, FX date on the cover | 1–4 |
+| `.preview/check-front.py` | **new, gitignored** — asserts the invariants the build script does not: strand partition, no duplicate on the cover, hubs indexed, FX date on the cover | 1–5 |
 | `_includes/edition.html` | the one edition rule, now rendering either the display name or a machine key | 1 |
 | `tape.html` | **new** — `/tape/` hub, the Weekly Tape run grouped by year | 1 |
 | `ledger.html` | **new** — `/ledger/` hub, the Hedgers' Ledger run grouped by year | 1 |
 | `_layouts/default.html` | page shell; gains the `wide-page` body class and `wide` main class | 2 |
-| `assets/css/blog.css` | the whole look; gains one `/* front page */` block | 2, 3, 4 |
-| `_config.yml` | `css_version` bump | 2 |
+| `assets/css/blog.css` | the whole look; gains one `/* front page */` block | 1, 2, 3, 4, 5 |
+| `_config.yml` | `css_version` bump, one per task touching the CSS | 1, 2, 3, 4, 5 |
 | `index.html` | the cover: leads, strands, rail | 3, 4 |
 | `_layouts/post.html` | "Elsewhere in the paper" foot gains a link to the post's own hub | 5 |
 | `archive.html` | dek gains links to both hubs | 5 |
@@ -474,6 +474,9 @@ body.wide-page .site-foot{max-width:760px; margin-inline:auto}
 body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 ```
 
+Bump `css_version` in `_config.yml` from `6` to `7` in the same edit — this task changes
+`blog.css`, and the plan's Global Constraints require a bump on every commit that does.
+
 - [ ] **Step 6: Build and check**
 
 ```bash
@@ -484,17 +487,26 @@ Expected: both pass, `wide shell: cover only`.
 
 - [ ] **Step 7: Prove no other page moved**
 
+The baseline was copied in Task 0, before Task 1 bumped `css_version` — and that bump rewrites
+the `?v=` on the stylesheet link of **every** page. So the comparison normalises that one query
+string away and requires everything else to be identical:
+
 ```bash
 cd ~/charthorizon/website/.worktrees/frontpage-redesign
-for p in about fx dashboard archive impressum privacy; do
-  diff -q /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/$p/index.html _site/$p/index.html
+SP=/private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad
+norm() { sed 's/blog\.css?v=[0-9][0-9]*/blog.css/' "$1"; }
+for p in about/index.html fx/index.html dashboard/index.html archive/index.html \
+         impressum/index.html privacy/index.html 404.html; do
+  diff <(norm "$SP/baseline/$p") <(norm "_site/$p") >/dev/null || echo "CHANGED: $p"
 done
-diff -q /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/404.html _site/404.html
-diff -rq /private/tmp/claude-501/-Users-notwoalike-charthorizon-website/1c6f54c5-3353-43f2-8c34-4b66c5b961f4/scratchpad/baseline/2026 _site/2026
+find _site/2026 -name index.html | while read -r f; do
+  diff <(norm "${f/_site/$SP\/baseline}") <(norm "$f") >/dev/null || echo "CHANGED: $f"
+done
+echo "comparison done"
 ```
 
-Expected: no output at all. Every page except the cover — including all 18 posts — is
-byte-identical to the baseline built in Task 0.
+Expected: only `comparison done`, no `CHANGED:` line. Every page except the cover — including
+all 18 posts — is identical to the Task 0 baseline apart from the stylesheet cache key.
 
 - [ ] **Step 8: Screenshot the widened shell**
 
@@ -736,7 +748,7 @@ Append to the `/* ---- the cover ---- */` block in `assets/css/blog.css`:
 }
 ```
 
-Bump `css_version` in `_config.yml` from `6` to `7`.
+Bump `css_version` in `_config.yml` from `7` to `8`.
 
 - [ ] **Step 5: Build and check**
 
@@ -852,7 +864,11 @@ print(f"  rail:          fx {fx['as_of']}, plate + both links present")
 # buymeacoffee is the masthead Support pill — a link the reader clicks, not a request
 # the page makes, so it is allowed here and changes nothing about privacy.html.
 external = re.findall(r'(?:src|href)="(https?://[^"]+)"', home)
-allowed = ("https://static.cloudflareinsights.com/", "https://buymeacoffee.com/")
+allowed = (
+    "https://chart-horizon.com",             # the page's own canonical link
+    "https://static.cloudflareinsights.com/",  # the cookieless beacon, privacy.html §3
+    "https://buymeacoffee.com/",               # the masthead Support pill
+)
 bad = [u for u in external if not u.startswith(allowed)]
 if bad:
     fail.append(f"cover gained third-party requests: {bad}")
@@ -943,7 +959,7 @@ Append to the `/* ---- the cover ---- */` block in `assets/css/blog.css`:
 }
 ```
 
-Bump `css_version` in `_config.yml` from `7` to `8`.
+Bump `css_version` in `_config.yml` from `8` to `9`.
 
 - [ ] **Step 5: Build and check**
 
@@ -1087,7 +1103,7 @@ Append to the cover block in `assets/css/blog.css`:
 .post-more .more-issues .sep{margin:0 10px; color:var(--muted-2)}
 ```
 
-Bump `css_version` in `_config.yml` from `8` to `9`.
+Bump `css_version` in `_config.yml` from `9` to `10`.
 
 - [ ] **Step 5: Point the archive at both hubs**
 
@@ -1188,7 +1204,7 @@ scan, as noted in the deltas.
 
 **Naming consistency.** `key=true` returns `tape` | `ledger` and is compared against those exact
 literals in Tasks 1, 3 and 5. The DOM hooks `.front-grid`, `.front-main`, `.rail` are declared in
-Task 3 and only filled in Task 4. `css_version` runs 5 → 6 → 7 → 8 → 9, one bump per task that
+Task 3 and only filled in Task 4. `css_version` runs 5 → 6 → 7 → 8 → 9 → 10, one bump per task that
 touches `blog.css`; a single bump at the end would also be correct, but a bump per task keeps
 each commit independently deployable.
 
