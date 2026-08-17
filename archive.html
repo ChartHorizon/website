@@ -6,8 +6,10 @@ seo_title: "COT Report Archive — Every Futures Positioning Note by Year"
 description: "The full run of ChartHorizon's futures positioning notes, grouped by year: weekly readings of CFTC Commitments of Traders positioning, seasonality, hedging programs and term structure across forty markets."
 ---
 <h1>Back Issues</h1>
-<p class="dek">The full run, newest first — every Weekly Tape note and every Hedgers&rsquo; Ledger
-   release since the desk started publishing.</p>
+<p class="dek">The full run, newest first — every Weekly Tape note and every Hedgers&rsquo;
+   Ledger release since the desk started publishing. By edition:
+   <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a> &middot;
+   <a href="{{ '/ledger/' | relative_url }}">Hedgers&rsquo; Ledger</a>.</p>
 
 {%- assign by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" -%}
 {% for year in by_year %}

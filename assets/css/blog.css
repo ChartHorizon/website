@@ -539,3 +539,6 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
   .rail{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start}
   .rail-block + .rail-block{margin-top:0}
 }
+
+/* two links share the foot rule under a post now — the hub, then the whole run */
+.post-more .more-issues .sep{margin:0 10px; color:var(--muted-2)}
