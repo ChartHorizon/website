@@ -100,7 +100,13 @@ outbound links stay support/social only.
   Weekly Tape, its OG card cropped 2:1 from the top) and a second lead (the newest Hedgers'
   Ledger, no picture), then the two editions as side-by-side strands of four headlines each,
   each strand ending in its own hub link, then a rail carrying the FX standing from
-  `_data/fx.json` and a dashboard plate. The lead is the newest *Tape*, not simply the newest
+  `_data/fx.json`, a dashboard plate, and an **"On video"** card from `_data/videos.yml`
+  (newest entry only). That card is a **link, never an embed**: its still is a copy committed
+  under `assets/video/<id>.webp`, because an iframe — or even a thumbnail pulled from
+  `i.ytimg.com` — would put Google on the most-visited page of a site whose standing promise
+  is zero third-party requests, and would make `privacy.html` wrong. `videos.yml` is
+  hand-maintained; the upload pipeline records no video ids anywhere to read from.
+  The lead is the newest *Tape*, not simply the newest
   post: the Ledger publishes automatically every week, and as a permanent lead it would bury
   the written notes under a headline that is just a date. Ten post links total (2 leads + 4 +
   4); a "Back issues" link closes the page to `/archive/`.
