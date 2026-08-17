@@ -436,13 +436,13 @@ button.fx-pair:active{transform:translateY(1px)}
 
    `.plate` is exempt because it needs no correction: the /dashboard/ screenshots are shot
    twice, in the app's own light and dark themes, and the rule below picks the right one. */
-[data-theme="dark"] :is(.post-body,.board) img:not(.plate){filter:brightness(.92)}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){filter:brightness(.92)}
 @media (prefers-reduced-motion:no-preference){
   /* box-shadow is restated because .board img already animates it above and this
      later, more specific rule would otherwise replace that transition outright. */
-  [data-theme="dark"] :is(.post-body,.board) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
+  [data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
 }
-[data-theme="dark"] :is(.post-body,.board) img:not(.plate):hover{filter:none}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate):hover{filter:none}
 
 /* Two plates per figure, one per edition (see _includes/board.html). `display:none` is
    load-bearing twice over: it keeps the plate that isn't showing out of the accessibility
@@ -473,3 +473,48 @@ body.wide-page{max-width:none}
 body.wide-page .site-head,
 body.wide-page .site-foot{max-width:760px; margin-inline:auto}
 body.wide-page main.wide{max-width:1080px; margin-inline:auto}
+
+.front-grid{display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:0 48px; align-items:start; margin-top:8px}
+.front-main{min-width:0}
+
+/* lead story */
+.lead{padding-bottom:20px; border-bottom:1px solid var(--rule); margin-bottom:20px}
+.lead-figure{margin:0 0 13px}
+/* The card is 1200x1036 — nearly square, and ~600px tall at this column width, which would
+   push the strands and the whole rail under the fold. Cropped 2:1 from the top it shows the
+   price panel and its header; the COT and calendar-spread panels are one click away in the
+   article, where they are readable at full size. */
+.lead-figure img{display:block; width:100%; aspect-ratio:2/1; object-fit:cover; object-position:top;
+  margin:0; border:1px solid var(--rule); border-radius:10px; box-shadow:0 1px 16px rgba(var(--shadow-tint),.10)}
+/* an h2 set as a headline — resets the section-opener chrome the global h2 carries */
+.lead-head{margin:.1em 0 0; padding-top:0; border-top:none; font-weight:400; letter-spacing:normal}
+.lead-head::before{content:none}
+.lead-head .post-link{display:inline-block; font:600 clamp(29px,3.2vw,39px)/1.08 var(--serif);
+  letter-spacing:-.5px; color:var(--ink); border:none; text-wrap:balance}
+.lead-head .post-link:hover{color:var(--gold-ink)}
+.lead-dek{margin:.4em 0 0; color:var(--muted); font-style:italic; line-height:1.5; max-width:58ch}
+.lead-second{border-bottom:2px solid var(--rule-strong); padding-bottom:22px; margin-bottom:26px}
+.lead-second .lead-head .post-link{font-size:clamp(21px,1.9vw,25px); line-height:1.18; letter-spacing:-.2px}
+.lead-second .lead-dek{font-size:16px}
+
+/* the two strands */
+.strands{display:grid; grid-template-columns:1fr 1fr; gap:34px}
+.strand{min-width:0}
+.strand-list{list-style:none; padding:0; margin:4px 0 0}
+.strand-list li{padding:13px 0; border-top:1px solid var(--rule)}
+.strand-list li:first-child{border-top:none}
+/* no dek here on purpose: dropping it is what lets eight entries occupy the height four
+   took on the old single ladder */
+.strand-list .post-link{display:inline-block; margin:.14em 0 0; font:600 19px/1.24 var(--serif);
+  color:var(--ink); border:none; text-wrap:balance}
+.strand-list .post-link:hover{color:var(--gold-ink)}
+.strand .more-issues{margin-top:18px; padding-top:12px; border-top-width:1px}
+.front-foot{margin-top:34px}
+
+/* the cover folds down before the sheet does: rail under the strands, then one column */
+@media (max-width:939px){
+  .front-grid{grid-template-columns:minmax(0,1fr); gap:34px}
+}
+@media (max-width:600px){
+  .strands{grid-template-columns:1fr; gap:26px}
+}
