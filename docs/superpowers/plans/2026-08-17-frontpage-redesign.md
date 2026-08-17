@@ -500,7 +500,8 @@ for p in about/index.html fx/index.html dashboard/index.html archive/index.html 
   diff <(norm "$SP/baseline/$p") <(norm "_site/$p") >/dev/null || echo "CHANGED: $p"
 done
 find _site/2026 -name index.html | while read -r f; do
-  diff <(norm "${f/_site/$SP\/baseline}") <(norm "$f") >/dev/null || echo "CHANGED: $f"
+  b="$SP/baseline/${f#_site/}"
+  diff <(norm "$b") <(norm "$f") >/dev/null || echo "CHANGED: $f"
 done
 echo "comparison done"
 ```
