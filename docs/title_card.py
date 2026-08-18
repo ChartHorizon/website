@@ -118,12 +118,29 @@ def kursband(img: Image.Image, chart: pathlib.Path) -> Image.Image:
 
     The card draws rising candles blue and falling ones red, so direction is
     recoverable from hue: compare the red and blue channels. Anything near the card's
-    white ground drops out, so only the trace survives."""
+    ground drops out, so only the trace survives.
+
+    The ground is DETECTED, not assumed white: the dashboard has a dark theme of its
+    own, so a chart card exported from it can arrive on navy instead of white. Keying
+    a fixed white threshold against a dark card reads almost the whole panel as ink —
+    that is exactly what shipped once, a solid colour wash burying the motif, on the
+    one dark-ground chart in a run of otherwise-white ones. The panel's own corners are
+    reliably background (candles run through the middle, not the edges), so sample
+    those to tell which ground this card was drawn on, then key toward the ink in
+    whichever direction applies. The light-ground branch is untouched from before this
+    check existed, so every existing white-ground card renders exactly as it always
+    has."""
     panel = price_panel(chart).convert("RGB")
     bh = int(H * BAND)
     panel = panel.resize((W, bh), Image.LANCZOS)
     r, _g, b = panel.split()
-    ink = panel.convert("L").point(lambda v: 0 if v > 220 else min(255, int((220 - v) * 2.6)))
+    gray = panel.convert("L")
+    corners = [gray.getpixel((x, y)) for x in (2, W - 3) for y in (2, bh - 3)]
+    ground = sum(corners) / len(corners)
+    if ground >= 128:
+        ink = gray.point(lambda v: 0 if v > 220 else min(255, int((220 - v) * 2.6)))
+    else:
+        ink = gray.point(lambda v: 0 if v < 35 else min(255, int((v - 35) * 2.6)))
     bear_sel = ImageChops.subtract(r, b, 1, 0).point(lambda v: 255 if v > 8 else 0)
     bull_sel = bear_sel.point(lambda v: 255 - v)
     out = img
