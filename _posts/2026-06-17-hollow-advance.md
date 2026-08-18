@@ -4,8 +4,8 @@ title: "The Tape Answers Back: A Hollow Advance"
 date: 2026-06-17
 subtitle: "Last week the board leaned risk-on — on one condition the dollar never met. In the sessions since, the stock leaders have made new highs without it, and three divergences now argue the climb is unconfirmed: the leaders, the bond board, and the Dow's own term structure. Data: ChartHorizon."
 cards: /assets/posts/2026-06-17-hollow-advance/cards
-image: /assets/posts/2026-06-17-hollow-advance/cards/dow.png
-image_alt: "The E-mini Dow rides a steep rising line to a new high while its calendar spread deepens into contango — a hollow advance the tape has not confirmed."
+image: /assets/posts/2026-06-17-hollow-advance/title.png
+image_alt: "Title card: an exchange facade in 1928, with the Dow's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
 seo_title: "A Hollow Advance: Divergences at the Stock-Market High — Jun 17, 2026"
 description: "The stock leaders print new highs without the dollar weakness the bull case required, while bond-board and Dow calendar-spread divergences warn of risk-off. A Livermore-voice read of a possible top, June 17, 2026."

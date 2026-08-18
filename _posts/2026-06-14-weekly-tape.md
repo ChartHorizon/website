@@ -4,8 +4,8 @@ title: "The Weekly Tape — The Dollar at the 100 Line"
 date: 2026-06-14
 subtitle: "Prices through June 12 · An intermarket note · Data: ChartHorizon"
 cards: /assets/posts/2026-06-14-weekly-tape/cards
-image: /assets/posts/2026-06-14-weekly-tape/cards/fx.png
-image_alt: "The Dollar Index stalls at the 100 handle while sterling turns up and the Dow holds its trend — a short-term risk-on lean."
+image: /assets/posts/2026-06-14-weekly-tape/title.png
+image_alt: "Title card: a freighter at the dock, with the dollar's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
 seo_title: "Dollar Index Stalls at 100, Sterling Turns — Risk-On Lean, Jun 14, 2026"
 description: "The Dollar Index stalls at the 100 handle while sterling turns up and the stock leaders hold their advance — a short-term risk-on read for the week ahead. Intermarket notes, June 14, 2026."
