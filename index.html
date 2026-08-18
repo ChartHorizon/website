@@ -146,6 +146,40 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
        it installs on your machine and runs in your browser, with your data staying there.</p>
     <p class="more-issues"><a href="{{ '/dashboard/' | relative_url }}">More about the dashboard &rarr;</a></p>
   </section>
+
+  {%- comment -%}
+    "On video" — a linked-out card, deliberately not an embed. The thumbnail is a copy
+    committed under /assets/video/, so the cover still makes zero third-party requests and
+    privacy.html needs no YouTube section; an iframe here would put Google on the site's
+    most-visited page on every load. Outbound links stay support/social, and this is the
+    desk's own channel, so the constraint holds.
+
+    `size` rather than a truthiness test on the list: Liquid treats an empty array as true,
+    so testing site.data.videos directly would render an empty shell once the file is
+    emptied. (Writing that test out here as a real tag is what broke the first build —
+    Liquid parses tags inside a comment block too.)
+  {%- endcomment -%}
+  {%- assign nvid = site.data.videos | size -%}
+  {%- if nvid > 0 -%}
+    {%- assign v = site.data.videos | first %}
+  <section class="rail-block rail-video">
+    <h2 class="section-rule"><span>On video</span></h2>
+    <a class="video-card" href="https://www.youtube.com/watch?v={{ v.id }}" target="_blank" rel="noopener">
+      <span class="video-shot">
+        <img src="{{ '/assets/video/' | append: v.id | append: '.webp' | relative_url }}"
+             width="1280" height="720" loading="lazy" decoding="async" alt="{{ v.alt }}">
+        <span class="video-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 7.5v9l7.5-4.5z"/></svg>
+        </span>
+      </span>
+      <span class="post-dateline">
+        <time class="post-date" datetime="{{ v.date | date: '%Y-%m-%d' }}">{{ v.date | date: "%b %-d, %Y" }}</time>
+      </span>
+      <span class="video-title">{{ v.title }}</span>
+    </a>
+    <p class="more-issues"><a href="https://www.youtube.com/watch?v={{ v.id }}" target="_blank" rel="noopener">Watch on YouTube &rarr;</a></p>
+  </section>
+  {%- endif %}
 </aside>
 </div>
 

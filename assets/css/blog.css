@@ -426,13 +426,13 @@ button.fx-pair:active{transform:translateY(1px)}
 
    `.plate` is exempt because it needs no correction: the /dashboard/ screenshots are shot
    twice, in the app's own light and dark themes, and the rule below picks the right one. */
-[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){filter:brightness(.92)}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate){filter:brightness(.92)}
 @media (prefers-reduced-motion:no-preference){
   /* box-shadow is restated because .board img already animates it above and this
      later, more specific rule would otherwise replace that transition outright. */
-  [data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
+  [data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
 }
-[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate):hover{filter:none}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate):hover{filter:none}
 
 /* Two plates per figure, one per edition (see _includes/board.html). `display:none` is
    load-bearing twice over: it keeps the plate that isn't showing out of the accessibility
@@ -531,4 +531,22 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 @media (max-width:939px) and (min-width:601px){
   .rail{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start}
   .rail-block + .rail-block{margin-top:0}
+}
+
+/* "On video" — a linked-out card, never an embed. The whole card is the anchor, so it
+   resets the global link chrome; the thumbnail is a committed copy, which is what keeps
+   the cover at zero third-party requests. */
+.rail-video .video-card{display:block; color:inherit; border:none; margin-top:12px}
+.video-shot{position:relative; display:block}
+.video-shot img{display:block; width:100%; margin:0; border:1px solid var(--rule); border-radius:10px}
+.video-play{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+/* White, not --paper: this sits on a photograph, not on the sheet, so it must stay light
+   in both editions — in the dark one --paper is navy and the glyph would vanish. */
+.video-play svg{width:54px; height:54px; fill:#fff; filter:drop-shadow(0 1px 7px rgba(0,0,0,.55))}
+.rail-video .post-dateline{margin-top:10px}
+.video-title{display:block; margin-top:2px; font:600 17px/1.28 var(--serif); color:var(--ink); text-wrap:balance}
+.video-card:hover .video-title{color:var(--gold-ink)}
+@media (prefers-reduced-motion:no-preference){
+  .video-play svg{transition:transform .12s ease}
+  .video-card:hover .video-play svg{transform:scale(1.08)}
 }
