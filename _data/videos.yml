@@ -14,6 +14,11 @@
 #   curl -sfL -o /tmp/yt.jpg "https://i.ytimg.com/vi/<id>/maxresdefault.jpg"
 #   python3 -c "from PIL import Image; Image.open('/tmp/yt.jpg').convert('RGB').save('assets/video/<id>.webp','WEBP',quality=82,method=6)"
 
+- id: v6i-UEXypI0
+  title: "Japan Spent 59 Billion Dollars and the Carry Trade Just Refinanced"
+  date: 2026-08-18
+  alt: "Video title card — Weekly Tape, August 18, 2026: Funded in Euros"
+
 - id: I5oMp63facI
   title: "Two Governments Bought the Yen — the Hedgers Were Already There"
   date: 2026-08-01
