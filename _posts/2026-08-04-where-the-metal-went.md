@@ -4,8 +4,8 @@ title: "Where the Metal Went"
 date: 2026-08-04
 subtitle: "COMEX stocks through 31 July 2026 · COT through the 28 July report · WGC Q2 demand · Data: ChartHorizon, CFTC, World Gold Council · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-04-where-the-metal-went/cards
-image: /assets/posts/2026-08-04-where-the-metal-went/cards/gold.png
-image_alt: "Gold futures, daily — a blow-off top at 5,586 in January 2026 and a 27 per cent decline to just above 4,000, with open interest, producer hedging and the calendar spread beneath"
+image: /assets/posts/2026-08-04-where-the-metal-went/title.jpg
+image_alt: "Title card: a foundry pour, with gold's price action drawn across it"
 seo_title: "Where the Metal Went — COMEX Gold Outflows and the Eastward Shift, August 2026"
 description: "COMEX gold stocks have fallen from 45.1 million ounces to the middle twenties. The internet says Asia is bidding the metal away. The Shanghai premium says otherwise — it has been flat for a month. What actually moved east was not the bullion. It was the bid."
 ---

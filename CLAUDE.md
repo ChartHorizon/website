@@ -53,6 +53,21 @@ outbound links stay support/social only.
    because share-card crawlers are the one audience whose WebP support isn't worth betting
    on. The upstream bot does this automatically — `content/livermore/blog/publish.py`
    writes both and prunes the unused PNGs.
+
+   Weekly Tape posts also get a **title card**: `docs/title_card.py` composites a dark
+   photographic motif (`--motif`) with the week's price action drawn across it
+   (`--chart`; `--no-chart` for a post without one) and the headline set into the image,
+   1280×720. The motifs themselves live in the private content repo, resolved through
+   `$CH_CONTENT` — only the finished card is committed here. That card becomes the post's
+   `image:`, and therefore its share image and its cover lead figure. It's written as
+   `title.jpg` (q86, the WebP-incompatible-crawler twin) + `title.webp` (what the page
+   loads) — **JPEG, not PNG**, because a title card is a photograph and PNG's lossless
+   encoding mostly buys size for grain it doesn't need to keep (the nine cards ran 8.5MB
+   as PNG, 1.1MB as JPEG at q86). The **chart cards** under `assets/posts/*/cards/` stay
+   **PNG**: they're flat line art (solid fills, hard edges, text), which is what PNG is
+   actually for and where JPEG would add ringing around every line for no size win. The
+   **Hedgers' Ledger deliberately keeps its chart card** instead of a title card, so the
+   two editions read as visibly different at a glance.
 3. **Commit** the post, then publish with `ops/website-build.sh --from-head &&
    ops/website-deploy.sh`. Committing is what makes it live: `--from-head` builds the
    committed tree, not the working tree, precisely so the drafts `publish.py` stages into
@@ -97,9 +112,11 @@ outbound links stay support/social only.
   reads newest-first. Rows come from `_includes/post-teaser.html`, which reuses the index and
   archive dateline markup. Verify changes by rendering, not by eye — see "Developing locally".
 - **`index.html`** — the cover: `default` layout with `wide: true`. A lead story (the newest
-  Weekly Tape, its OG card cropped 2:1 from the top) and a second lead (the newest Hedgers'
-  Ledger, no picture), then the two editions as side-by-side strands of four headlines each,
-  each strand ending in its own hub link, then a rail carrying the FX standing from
+  Weekly Tape, shown as its **title card** — a dark photographic motif with the market's own
+  price action drawn across it and the headline set into the image, rendered 16:9) and a
+  second lead (the newest Hedgers' Ledger, no picture), then the two editions as side-by-side
+  strands of four headlines each, each strand ending in its own hub link, then a rail carrying
+  the FX standing from
   `_data/fx.json`, a dashboard plate, and an **"On video"** card from `_data/videos.yml`
   (newest entry only). That card is a **link, never an embed**: its still is a copy committed
   under `assets/video/<id>.webp`, because an iframe — or even a thumbnail pulled from

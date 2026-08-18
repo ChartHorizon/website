@@ -4,8 +4,8 @@ title: "The Weekly Tape — the yen did not turn, it was turned"
 date: 2026-08-01
 subtitle: "Prices through 31 July 2026 · COT through the 28 July report · a currency note · Data: ChartHorizon & CFTC · Charts: TradingView"
 cards: /assets/posts/2026-08-01-yen-warning-shot/cards
-image: /assets/posts/2026-08-01-yen-warning-shot/cards/usdjpy.png
-image_alt: "US Dollar / Japanese Yen, daily — a twelve-month climb to 163.95 ends in a two-day collapse to 157.47 on official intervention"
+image: /assets/posts/2026-08-01-yen-warning-shot/title.jpg
+image_alt: "Title card: a freighter at the dock, with the dollar-yen price action drawn across it"
 seo_title: "Yen Intervention: Tokyo and Washington Turn USD/JPY — Aug 1, 2026"
 description: "Tokyo spent an estimated ¥8.45tn in one night and Washington joined for the first time since 2011 — six and a half yen in two sessions. But the commercial hedgers were already at the 96th percentile long before a single yen was bought. What the record says happens next."
 ---

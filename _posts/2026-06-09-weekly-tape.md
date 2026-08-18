@@ -4,8 +4,8 @@ title: "The Weekly Tape — June 9, 2026"
 date: 2026-06-09
 subtitle: "Prices through June 8 · COT report June 2 · Data: ChartHorizon"
 cards: /assets/posts/2026-06-09-weekly-tape/cards
-image: /assets/posts/2026-06-09-weekly-tape/cards/macro-shift.png
-image_alt: "Corn, soybeans and Chicago wheat — the grain divergence that resolved to the downside."
+image: /assets/posts/2026-06-09-weekly-tape/title.jpg
+image_alt: "Title card: an exchange facade in 1928, with the week's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
 seo_title: "Grain Futures Weekly: Corn, Soybeans & Wheat Turn Bearish — Jun 9, 2026"
 description: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT positioning, hedging and term structure align — weekly grain futures notes, June 9, 2026."

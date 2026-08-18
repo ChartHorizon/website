@@ -470,11 +470,11 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 /* lead story */
 .lead{padding-bottom:20px; border-bottom:1px solid var(--rule); margin-bottom:20px}
 .lead-figure{margin:0 0 13px}
-/* The card is 1200x1036 — nearly square, and ~600px tall at this column width, which would
-   push the strands and the whole rail under the fold. Cropped 2:1 from the top it shows the
-   price panel and its header; the COT and calendar-spread panels are one click away in the
-   article, where they are readable at full size. */
-.lead-figure img{display:block; width:100%; aspect-ratio:2/1; object-fit:cover; object-position:top;
+/* 16:9, because a Weekly Tape lead is now a title card with its headline set into the
+   lower half of the image — the old 2:1 crop from the top ate exactly that. The Ledger's
+   chart cards (1200x1036) crop acceptably at 16:9 too, in fact better than at 2:1, so one
+   rule serves both editions and no per-edition branch is needed. */
+.lead-figure img{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top;
   margin:0; border:1px solid var(--rule); border-radius:10px; box-shadow:0 1px 16px rgba(var(--shadow-tint),.10)}
 /* an h2 set as a headline — resets the section-opener chrome the global h2 carries */
 .lead-head{margin:.1em 0 0; padding-top:0; border-top:none; font-weight:400; letter-spacing:normal}
