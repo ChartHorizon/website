@@ -30,13 +30,18 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
 {%- endfor -%}
 
 {%- comment -%}
-  The lead picture is the post's own OG card as WebP (~48 KB against 153 KB for the PNG
-  twin publish.py writes alongside it). A post whose `image` is the site default carries
-  no card of its own, so the lead renders without a figure rather than showing the logo.
+  The lead picture is the post's own OG card as WebP — the format the page loads; the
+  `image:` front matter always points at the crawler twin (JPEG for a Tape title card,
+  PNG for a Ledger chart card) because share-card crawlers are the one audience whose
+  WebP support isn't worth betting on. Derived from the filename rather than hardcoding
+  either source extension, so this keeps working whichever twin `image:` names: drop
+  everything from the first "." onward (post slugs and card filenames carry no dots of
+  their own) and append ".webp". A post whose `image` is the site default carries no
+  card of its own, so the lead renders without a figure rather than showing the logo.
 {%- endcomment -%}
 {%- assign lead_img = "" -%}
 {%- if lead_tape.image and lead_tape.image != site.og_image -%}
-  {%- assign lead_img = lead_tape.image | replace: ".png", ".webp" -%}
+  {%- assign lead_img = lead_tape.image | split: "." | first | append: ".webp" -%}
 {%- endif -%}
 
 <div class="front-grid">
@@ -46,7 +51,13 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
   <article class="lead">
     {%- if lead_img != "" %}
     <figure class="lead-figure">
-      <img src="{{ lead_img | relative_url }}" width="1200" height="1036" decoding="async"
+      {%- comment -%}
+        lead_tape is always the newest WEEKLY TAPE post (edition.html's key=="tape" branch,
+        never "ledger"), and every Tape post's image is its title card, 1280x720 — a Ledger
+        lead never reaches this figure at all (it renders picture-less, see lead_ledger
+        below). blog.css's aspect-ratio:16/9 governs layout regardless; these are metadata.
+      {%- endcomment -%}
+      <img src="{{ lead_img | relative_url }}" width="1280" height="720" decoding="async"
            alt="{{ lead_tape.image_alt | default: lead_tape.title }}">
     </figure>
     {%- endif %}
