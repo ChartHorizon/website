@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import os
 import pathlib
+import statistics
 import sys
 from io import BytesIO
 
@@ -113,6 +114,24 @@ def price_panel(chart: pathlib.Path) -> Image.Image:
     return c.crop((int(w * 0.05), int(h * 0.105), int(w * 0.915), int(h * 0.54)))
 
 
+def panel_ground(gray: Image.Image, w: int, h: int, inset: int = 2, n: int = 9) -> float:
+    """Median of a border ring of samples, not the mean of 4 corner pixels.
+
+    Four single pixels let one gridline, axis tick or crosshair dash near a corner
+    decide which way the *entire* band renders (a stray dark corner reads as "dark
+    ground", flips the whole formula, and keys the actual background in as ink). A
+    ring of points along all four edges, reduced with a median instead of a mean,
+    shrugs off that one contaminated sample instead of baking it into the average —
+    the background is still the majority of any edge, even a busy one."""
+    xs = [round(inset + i * (w - 1 - 2 * inset) / (n - 1)) for i in range(n)]
+    ys = [round(inset + i * (h - 1 - 2 * inset) / (n - 1)) for i in range(n)]
+    pts = ([gray.getpixel((x, inset)) for x in xs] +
+           [gray.getpixel((x, h - 1 - inset)) for x in xs] +
+           [gray.getpixel((inset, y)) for y in ys] +
+           [gray.getpixel((w - 1 - inset, y)) for y in ys])
+    return statistics.median(pts)
+
+
 def kursband(img: Image.Image, chart: pathlib.Path) -> Image.Image:
     """Key the candles out of the card and colour them by direction.
 
@@ -121,26 +140,51 @@ def kursband(img: Image.Image, chart: pathlib.Path) -> Image.Image:
     ground drops out, so only the trace survives.
 
     The ground is DETECTED, not assumed white: the dashboard has a dark theme of its
-    own, so a chart card exported from it can arrive on navy instead of white. Keying
-    a fixed white threshold against a dark card reads almost the whole panel as ink —
-    that is exactly what shipped once, a solid colour wash burying the motif, on the
-    one dark-ground chart in a run of otherwise-white ones. The panel's own corners are
-    reliably background (candles run through the middle, not the edges), so sample
-    those to tell which ground this card was drawn on, then key toward the ink in
-    whichever direction applies. The light-ground branch is untouched from before this
-    check existed, so every existing white-ground card renders exactly as it always
-    has."""
+    own, so a chart card exported from it can arrive on navy instead of white. An
+    earlier version of this function sampled the ground only to pick one of two
+    hardcoded cutoffs (220 on white, 35 on black) — the sampled value never
+    recalibrated anything, so a card whose ground sits somewhere in between (say
+    grey, ~140) still ran the white-paper cutoff of 220, which is nowhere near where
+    that ground actually falls, and read almost the entire panel as ink. That is
+    the solid-colour wash that shipped once, just generalised to any ground the
+    corpus hasn't seen yet rather than the one dark chart that first hit it.
+
+    So the cutoff is now DERIVED from the sampled ground, not chosen from it:
+    `cutoff = ground - MARGIN` on a light ground, mirrored (`ground + MARGIN`) on a
+    dark one — ink is whatever sits meaningfully further from the ground than
+    MARGIN, in the one direction the ground is not. MARGIN=8 is the slack the one
+    real dark card in the corpus already needed (its ground measures 27, 8 short of
+    the old hardcoded 35), reused for both directions rather than inventing a second
+    constant. The derived cutoff is then clamped back to the old constant (`min(...,
+    220)` / `max(..., 35)`) so a near-paper or near-navy ground — everything actually
+    seen so far — keys identically to before: on this corpus every measured ground
+    sits far enough from 128 that the clamp is what fires, at exactly 220 or 35, so
+    all eight existing white-ground cards and the one dark-ground card are unchanged
+    down to the byte. The clamp only yields to the derived value once the ground is
+    genuinely in between, which is exactly the case that broke before.
+
+    Two things this does NOT fix, honestly: it still only looks for ink on the one
+    side of the ground the >=128/<128 branch commits to, so a light stroke on a
+    light ground (or a dark stroke on a dark ground) still drops out as background —
+    the same one-directional assumption the old code made, now just correctly
+    calibrated rather than incorrectly calibrated. And the two branches still meet
+    at a step, not a curve: a ground of 127 and 129 pick cutoffs on opposite sides of
+    the mirror rather than converging. Untested in practice, because no real ground
+    in the corpus has ever landed near 128 — dashboard exports are paper-white or
+    navy-black, nothing between."""
+    MARGIN = 8
     panel = price_panel(chart).convert("RGB")
     bh = int(H * BAND)
     panel = panel.resize((W, bh), Image.LANCZOS)
     r, _g, b = panel.split()
     gray = panel.convert("L")
-    corners = [gray.getpixel((x, y)) for x in (2, W - 3) for y in (2, bh - 3)]
-    ground = sum(corners) / len(corners)
+    ground = panel_ground(gray, W, bh)
     if ground >= 128:
-        ink = gray.point(lambda v: 0 if v > 220 else min(255, int((220 - v) * 2.6)))
+        cutoff = min(220, ground - MARGIN)
+        ink = gray.point(lambda v: 0 if v > cutoff else min(255, int((cutoff - v) * 2.6)))
     else:
-        ink = gray.point(lambda v: 0 if v < 35 else min(255, int((v - 35) * 2.6)))
+        cutoff = max(35, ground + MARGIN)
+        ink = gray.point(lambda v: 0 if v < cutoff else min(255, int((v - cutoff) * 2.6)))
     bear_sel = ImageChops.subtract(r, b, 1, 0).point(lambda v: 255 if v > 8 else 0)
     bull_sel = bear_sel.point(lambda v: 255 - v)
     out = img
