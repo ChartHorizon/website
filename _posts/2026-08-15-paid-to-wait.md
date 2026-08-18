@@ -4,7 +4,7 @@ title: "Paid to Wait"
 date: 2026-08-15
 subtitle: "COT through the 11 August report · prices through 14 August 2026 · a positioning note · Data: ChartHorizon, CFTC & USDA"
 cards: /assets/posts/2026-08-15-paid-to-wait/cards
-image: /assets/posts/2026-08-15-paid-to-wait/title.png
+image: /assets/posts/2026-08-15-paid-to-wait/title.jpg
 image_alt: "Title card: grain elevators at dawn, with corn's price action drawn across them"
 seo_title: "Grain Producers Hedged Into the August WASDE Yield Cut — Positioning Note, Aug 15, 2026"
 description: "On Tuesday the grain producers were hedged near the short end of their three-year range. On Wednesday the USDA cut the corn yield. By Friday wheat had added 3.3 per cent — and only one of the two curves believed it."

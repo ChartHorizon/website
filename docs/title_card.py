@@ -4,9 +4,15 @@
     python3 docs/title_card.py 2026-08-15-paid-to-wait --motif grains --chart corn.png
     python3 docs/title_card.py 2026-06-11-spacex-ipo  --motif softs --no-chart
 
-Writes assets/posts/<slug>/title.png and title.webp, both 1280x720. The PNG is the
-share image (card crawlers are the one audience whose WebP support is not worth
-betting on); the WebP is what the page loads.
+Writes assets/posts/<slug>/title.jpg and title.webp, both 1280x720. The WebP is what
+the page loads; the JPEG twin exists for the same reason every card gets one — share
+card crawlers are the one audience whose WebP support is not worth betting on — but
+this card is JPEG rather than PNG because it is a PHOTOGRAPH: q86 JPEG holds a
+photographic scene at a fraction of PNG's size (the nine cards ran 8.5MB as PNG,
+1.1MB as JPEG), where PNG's lossless encoding is mostly spent on grain it doesn't
+need to preserve. The chart cards under assets/posts/*/cards/ stay PNG on purpose —
+they are flat line art (solid fills, hard edges, text), the case PNG is actually
+built for, where JPEG would introduce ringing around every line for no size win.
 
 WHY A PICTURE CARD AT ALL
     The chart cards are drawn on near-white and glare on the night press run — the
@@ -278,9 +284,9 @@ def render(slug: str, motif: str, chart: pathlib.Path | None) -> None:
     out = img.resize((1280, 720), Image.LANCZOS)
     dest = REPO / "assets/posts" / slug
     dest.mkdir(parents=True, exist_ok=True)
-    out.save(dest / "title.png")
+    out.save(dest / "title.jpg", "JPEG", quality=86, optimize=True, progressive=True)
     out.save(dest / "title.webp", "WEBP", quality=84, method=6)
-    print(f"  {slug}  ->  title.png + title.webp   ({motif}"
+    print(f"  {slug}  ->  title.jpg + title.webp   ({motif}"
           f"{', no chart' if chart is None else ', ' + chart.name})")
 
 

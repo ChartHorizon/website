@@ -4,7 +4,7 @@ title: "The Weekly Tape — the bond market's vote"
 date: 2026-06-27
 subtitle: "Prices through 2026-06-26 · a cross-asset read · Data: ChartHorizon"
 cards: /assets/posts/2026-06-27-bond-market-vote/cards
-image: /assets/posts/2026-06-27-bond-market-vote/title.png
+image: /assets/posts/2026-06-27-bond-market-vote/title.jpg
 image_alt: "Title card: exchange trading posts in 1922, with the bond price action drawn across them"
 seo_title: "Bull Flattening in Treasury Futures: Long End Bid, 2-Year Still — Jun 27, 2026"
 description: "Bonds have voted: the long end is bid to fresh highs while the 2-year sits still — a bull flattening. With the Dow leading and the S&P and Nasdaq merely consolidating, the cross-asset read points risk-on, not to a top."
