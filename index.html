@@ -50,15 +50,50 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
   {%- if lead_tape %}
   <article class="lead">
     {%- if lead_img != "" %}
-    <figure class="lead-figure">
+    {%- comment -%}
+      A title card is built to be cropped to 16:9 — its headline sits in the lower half and
+      the motif carries the rest. A chart card is not: crop one and the cut lands somewhere
+      arbitrary in the data (on the COT card it severs the bar pane mid-annotation, leaving a
+      leader line pointing at nothing). So a chart-card lead keeps its own shape. Derived from
+      the path, not from front matter, because the two kinds already live in two places:
+      title cards at <slug>/title.jpg, chart cards under <slug>/cards/.
+    {%- endcomment -%}
+    {%- assign lead_fig_class = "lead-figure" -%}
+    {%- assign lead_w = 1280 -%}
+    {%- assign lead_h = 720 -%}
+    {%- if lead_tape.image contains "/cards/" -%}
+      {%- assign lead_fig_class = "lead-figure lead-figure-plate" -%}
+      {%- assign lead_w = lead_tape.image_w -%}
+      {%- assign lead_h = lead_tape.image_h -%}
+    {%- endif -%}
+    <figure class="{{ lead_fig_class }}">
       {%- comment -%}
         lead_tape is always the newest WEEKLY TAPE post (edition.html's key=="tape" branch,
-        never "ledger"), and every Tape post's image is its title card, 1280x720 — a Ledger
-        lead never reaches this figure at all (it renders picture-less, see lead_ledger
-        below). blog.css's aspect-ratio:16/9 governs layout regardless; these are metadata.
+        never "ledger"); a Ledger lead never reaches this figure at all (it renders
+        picture-less, see lead_ledger below).
+
+        width/height are the space the browser reserves before the picture arrives — this is
+        the first image on the site's busiest page, so getting them wrong is a visible jump.
+        A title card is always 1280x720 and needs no front matter. An uncropped chart card is
+        whatever shape it is, so it carries image_w/image_h in the post; without them the pair
+        is simply omitted, which costs the reservation but never states a wrong ratio.
+
+        The figure is a link because a cover picture that does not take you to its story is
+        a dead target — readers click the picture first. It wraps the <img> rather than
+        sitting beside it so the whole plate is the hit area; .lead-figure a in blog.css
+        strips the gold underline an <a> would otherwise draw under it.
+
+        It is NOT aria-hidden/tabindex="-1", the usual trick for a link that repeats the
+        headline below it: image_alt here describes a chart with real numbers in it, so
+        hiding the link would take that description away from screen readers to save one
+        tab stop. The .video-card pattern (one link over picture AND title) is not available
+        either — the dateline and dek sit between them.
       {%- endcomment -%}
-      <img src="{{ lead_img | relative_url }}" width="1280" height="720" decoding="async"
-           alt="{{ lead_tape.image_alt | default: lead_tape.title }}">
+      <a href="{{ lead_tape.url | relative_url }}">
+        <img src="{{ lead_img | relative_url }}" decoding="async"
+             {% if lead_w and lead_h %}width="{{ lead_w }}" height="{{ lead_h }}" {% endif %}
+             alt="{{ lead_tape.image_alt | default: lead_tape.title }}">
+      </a>
     </figure>
     {%- endif %}
     <div class="post-dateline">

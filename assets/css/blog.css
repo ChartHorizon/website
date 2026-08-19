@@ -474,8 +474,14 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
    lower half of the image — the old 2:1 crop from the top ate exactly that. The Ledger's
    chart cards (1200x1036) crop acceptably at 16:9 too, in fact better than at 2:1, so one
    rule serves both editions and no per-edition branch is needed. */
+/* the plate is a link to its story (index.html) — block so the whole picture is the hit
+   area, border:none so the global gold underline on <a> does not rule under it */
+.lead-figure a{display:block; border:none}
 .lead-figure img{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top;
   margin:0; border:1px solid var(--rule); border-radius:10px; box-shadow:0 1px 16px rgba(var(--shadow-tint),.10)}
+/* A chart card in the lead slot (index.html sets this when the image is a <slug>/cards/
+   plate). No 16:9 crop: a chart is read, not framed, and cropping it cuts the data. */
+.lead-figure-plate img{aspect-ratio:auto; height:auto; object-fit:contain}
 /* an h2 set as a headline — resets the section-opener chrome the global h2 carries */
 .lead-head{margin:.1em 0 0; padding-top:0; border-top:none; font-weight:400; letter-spacing:normal}
 .lead-head::before{content:none}

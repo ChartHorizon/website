@@ -4,8 +4,11 @@ title: "Funded in Euros"
 date: 2026-08-18
 subtitle: "Prices through 17 August 2026 · COT through the 11 August report · a currency note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-18-funded-in-euros/cards
-image: /assets/posts/2026-08-18-funded-in-euros/title.jpg
-image_alt: "Title card: the old trading posts, with the dollar-yen price action drawn across them"
+image: /assets/posts/2026-08-18-funded-in-euros/cards/jpy_cot.png
+image_alt: "Japanese Yen — commercial net position against price over three years, showing the collapse from 158,025 contracts on 28 July to 48,769 on 11 August"
+# the cover shows a chart-card lead uncropped, so it needs the card's own shape
+image_w: 1200
+image_h: 1036
 seo_title: "Euro-Funded Carry Trade Survives the Yen Intervention — Currency Note, Aug 18, 2026"
 description: "Two weeks after the first joint US-Japan intervention since 2011, the dollar is back at 159.21 and the commercial hedgers have sold 69 per cent of the yen long they were holding before the first yen was bought. The carry trade did not die. It changed its funding currency."
 ---

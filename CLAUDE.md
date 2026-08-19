@@ -68,6 +68,15 @@ outbound links stay support/social only.
    actually for and where JPEG would add ringing around every line for no size win. The
    **Hedgers' Ledger deliberately keeps its chart card** instead of a title card, so the
    two editions read as visibly different at a glance.
+
+   A Tape post **may point `image:` at one of its own chart cards instead** (2026-08-18
+   "Funded in Euros" does, at `cards/jpy_cot.png`). The cover then renders that lead
+   **uncropped** — see `.lead-figure-plate` under "Architecture" — and the post must carry
+   `image_w`/`image_h`, because only a title card has a shape the template can assume.
+   Doing it costs the edition contrast above, so it is a per-post decision, not a default.
+   Note the share card is unchanged by any of this: X and Facebook crop a near-square plate
+   to ~1.91:1 from the centre, which loses the card's own headline — the Ledger has always
+   shared this way, so a chart-card Tape lead is consistent with it, not a new problem.
 3. **Commit** the post, then publish with `ops/website-build.sh --from-head &&
    ops/website-deploy.sh`. Committing is what makes it live: `--from-head` builds the
    committed tree, not the working tree, precisely so the drafts `publish.py` stages into
@@ -112,8 +121,9 @@ outbound links stay support/social only.
   reads newest-first. Rows come from `_includes/post-teaser.html`, which reuses the index and
   archive dateline markup. Verify changes by rendering, not by eye — see "Developing locally".
 - **`index.html`** — the cover: `default` layout with `wide: true`. A lead story (the newest
-  Weekly Tape, shown as its **title card** — a dark photographic motif with the market's own
-  price action drawn across it and the headline set into the image, rendered 16:9) and a
+  Weekly Tape, usually shown as its **title card** — a dark photographic motif with the
+  market's own price action drawn across it and the headline set into the image, cropped to
+  16:9) and a
   second lead (the newest Hedgers' Ledger, no picture), then the two editions as side-by-side
   strands of four headlines each, each strand ending in its own hub link, then a rail carrying
   the FX standing from
@@ -127,6 +137,18 @@ outbound links stay support/social only.
   post: the Ledger publishes automatically every week, and as a permanent lead it would bury
   the written notes under a headline that is just a date. Ten post links total (2 leads + 4 +
   4); a "Back issues" link closes the page to `/archive/`.
+  **The lead picture is a link to its own story** — readers click the picture before the
+  headline, and a cover plate that goes nowhere is a dead target. It is a plain `<a>`, not
+  the `aria-hidden`/`tabindex="-1"` decoration trick usually used for a link that repeats the
+  headline beneath it, because `image_alt` describes a chart with real numbers in it and
+  hiding the link would take that away from screen readers to save one tab stop.
+  **`.lead-figure-plate`**: when the lead's `image:` is a chart card (path contains
+  `/cards/`) the 16:9 crop is dropped and the card renders whole. A title card is *built* to
+  be cropped — headline in the lower half, motif carrying the rest — but a chart is read, and
+  cropping one cuts the data (on the COT card the cut severed the bar pane mid-annotation and
+  left a leader line pointing at nothing). Such a post carries `image_w`/`image_h` so the
+  browser can still reserve the space; a title card needs no front matter, being always
+  1280×720.
 - **`tape.html`** / **`ledger.html`** (`/tape/`, `/ledger/`) — one hub per edition: that
   edition's full run, grouped by year, reusing `/archive/`'s list markup. They exist because
   Google left 15 of 22 URLs at "discovered, currently not indexed" and thin internal linking
