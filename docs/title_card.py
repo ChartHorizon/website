@@ -32,6 +32,7 @@ arguments: a card whose headline has drifted from the page is worse than no card
 from __future__ import annotations
 
 import argparse
+import datetime
 import os
 import pathlib
 import statistics
@@ -249,7 +250,13 @@ def front_matter(slug: str) -> dict:
 def render(slug: str, motif: str, chart: pathlib.Path | None) -> None:
     fm = front_matter(slug)
     title = str(fm["title"])
+    # A post that pins its publication TIME (to break a same-day tie on the cover)
+    # writes `2026-08-20 09:00:00 +0200`, which PyYAML's timestamp pattern does not
+    # match — the zone offset has no colon — so it arrives here as a plain string.
+    # Take the leading date either way rather than demanding one shape.
     date = fm["date"]
+    if isinstance(date, str):
+        date = datetime.date.fromisoformat(date.split()[0])
     kicker = f"WEEKLY TAPE  ·  {date.strftime('%B %-d, %Y').upper()}"
 
     img = base_photo(motif)
