@@ -161,11 +161,19 @@ outbound links stay support/social only.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
-  coming-soon copy to launched copy and derives the three platform download URLs from the GitHub
-  release (see the comment block at the top of the file). **Launched at v1.1.3, but held back
-  at coming-soon since 2026-08-15** (`dl_version: ""`): the GitHub account is flagged, so every
-  `releases/download/v1.1.3/…` URL 404s and live buttons would be dead ones. Put `1.1.3` back
-  once the account is reinstated.
+  coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
+  (see the comment block at the top of the file). **Live at v1.1.3.**
+  **The installers are hosted on Cloudflare R2, not in this repo and not on GitHub**, at
+  `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
+  which the account flag turned into three 404s for every logged-out visitor — the page sat at
+  coming-soon from 2026-08-15 for exactly that reason. Committing them here was never an option
+  either: Cloudflare Pages refuses any file over 25 MiB and these are 34–71 MiB.
+  Publish a new release with **`ops/website-installers.sh <version>`** in the monorepo (it pulls
+  the assets, uploads them under an immutable versioned key, and verifies all three over HTTPS),
+  **then** bump `dl_version`. That order is load-bearing — reversed, the page ships buttons
+  pointing at objects that do not exist yet.
+  Note `dashboard/tools/download-stats.py` counts *GitHub* release downloads and therefore stops
+  seeing new ones; R2 has its own metrics in the Cloudflare dashboard.
   Two download affordances: a `.dl-top` release line set as dateline furniture directly under
   the masthead rule (above the fold — the page is ~5,300px and the foot is a fine place to *end*
   but a poor place to be the only one), and the full `.dl` platform block with first-run notes at

@@ -5,14 +5,20 @@ title: Dashboard
 seo_title: "Free COT Dashboard & Futures Charting Software — Seasonality, Term Structure"
 description: "A free, local-first futures charting dashboard for macOS, Windows and Linux: candlestick charts with CFTC Commitments of Traders positioning, seasonality, hedging programs and term structure across forty markets. Runs in your browser, no account."
 # ─────────────────────────────────────────────────────────────────────────────
-#  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and push.
-#  That is the ONLY step. The three platform download URLs are derived
-#  automatically from the GitHub release (ChartHorizon/charthorizon, tag
-#  v<version>), and setting the version flips the whole page from coming-soon
-#  copy to launched copy (dek, intro, closing line) and the buttons to live.
+#  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and publish.
+#  That is the ONLY step here. The three platform download URLs are derived
+#  automatically from dl_repo below, and setting the version flips the whole
+#  page from coming-soon copy to launched copy (dek, intro, closing line) and
+#  the buttons to live.
 #
-#  Derived assets at  …/releases/download/v<version>/ :
+#  Derived assets at  <dl_repo>/v<version>/ :
 #    ChartHorizon-<version>-macOS.dmg · -Windows-Setup.exe · -x86_64.AppImage
+#
+#  THE FILES MUST BE UPLOADED FIRST. They are not in this repo — Cloudflare Pages
+#  refuses any file over 25 MiB and these are 34-71 MiB. They live in Cloudflare R2
+#  and are published by ops/website-installers.sh <version> in the monorepo, which
+#  also verifies all three over HTTPS. Run that BEFORE bumping dl_version, or this
+#  page ships buttons pointing at objects that do not exist.
 #
 #  Per platform, dl_macos / dl_windows / dl_linux accept:
 #    ""        → derive the URL from dl_version (the normal case)
@@ -20,16 +26,19 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #    "soon"    → hold this platform at "Coming soon" even though a version is set
 #  Leaving dl_version empty keeps every platform at "Coming soon".
 # ─────────────────────────────────────────────────────────────────────────────
-#  HELD AT COMING-SOON since 2026-08-15: the release was v1.1.3, but the GitHub
-#  account is flagged, so every …/releases/download/v1.1.3/… URL 404s. Dead
-#  buttons read worse than an honest "coming soon". To restore, put "1.1.3" back.
-dl_version: ""          # release number WITHOUT the leading "v"
+#  Hosting moved off GitHub Releases on 2026-08-21. The account is flagged, so every
+#  …/releases/download/v1.1.3/… URL 404s for logged-out visitors — which is every
+#  visitor this page has — and the page sat at coming-soon from 2026-08-15 because
+#  live buttons would have been dead ones. R2 is served from the same Cloudflare
+#  account as the site and needs no Git provider at all. If GitHub is ever reinstated
+#  there is no reason to move back; the assets are versioned and immutably cached.
+dl_version: "1.1.3"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
 dl_linux: ""            # derive from version
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
-{%- assign dl_repo = "https://github.com/ChartHorizon/charthorizon/releases/download" -%}
+{%- assign dl_repo = "https://dl.chart-horizon.com" -%}
 {%- assign ver = page.dl_version | default: "" -%}
 {%- if ver != "" -%}{%- assign tag = ver | prepend: "v" -%}{%- endif -%}
 {%- assign url_macos = page.dl_macos | default: "" -%}
