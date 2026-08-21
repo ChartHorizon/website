@@ -8,17 +8,21 @@ The **blog** for ChartHorizon — "The Weekly Tape" — served at **chart-horizo
 A **Jekyll** site (the GitHub Pages default SSG). The custom domain is pinned by `CNAME`
 (`chart-horizon.com`); DNS lives at Cloudflare.
 
-> **Deployment moved off GitHub on 2026-08-15** and `.github/workflows/deploy-pages.yml` is
-> currently dead weight. The ChartHorizon GitHub account was flagged: every repo, release and
-> the Pages site began returning 404 to logged-out visitors while still looking normal to the
-> signed-in owner, so the site went dark. It is now built **locally** and pushed to
-> **Cloudflare Pages** (project `charthorizon`) by `ops/website-build.sh` +
-> `ops/website-deploy.sh` in the monorepo — see "Publishing a post" and "Developing locally".
-> `git push` to GitHub still works and is still worth doing; it just deploys nothing.
+> **The site deploys to Cloudflare Pages, and only there.** Nothing about a `git push`
+> publishes anything — not to GitHub, not anywhere. **Publishing is `ops/website-build.sh
+> --from-head && ops/website-deploy.sh`** (project `charthorizon`), and if you did not run
+> those two commands, the change is not live no matter how green the commit looks. See
+> "Publishing a post" and "Developing locally".
+>
+> Deployment moved off GitHub on 2026-08-15, when the ChartHorizon account was flagged: every
+> repo, release and the Pages site began returning 404 to logged-out visitors while still
+> looking normal to the signed-in owner, so the site went dark. **As of 2026-08-21 the operator
+> does not intend to go back**, so treat Cloudflare as the permanent home rather than a
+> stopgap — do not offer the GitHub path as the "real" one being restored later.
+> `git push` to GitHub still works and is still worth doing **as a backup**; it just is not a
+> deployment. `.github/workflows/deploy-pages.yml` is dead weight kept only as a record.
 > Apex and `www` are **proxied** CNAMEs to `charthorizon.pages.dev` (the zone used to be
-> DNS-only). To go back once the account is reinstated, restore the four GitHub A records
-> (185.199.108-111.153) and the `www` CNAME to `charthorizon.github.io`, and drop the custom
-> domain from the Pages project.
+> DNS-only); the old GitHub A records (185.199.108-111.153) are gone and stay gone.
 
 It was split out of the private ChartHorizon dashboard repo. **The hard constraint:** this
 repo is **public**, so the site must **not** expose the dashboard's **source** — no links to
@@ -82,7 +86,8 @@ outbound links stay support/social only.
    committed tree, not the working tree, precisely so the drafts `publish.py` stages into
    `_posts/` are not published the moment they are written. (The nightly `ops/daily-update.sh`
    runs the same two commands, so a committed post also goes out on its own that evening.)
-   Pushing to GitHub is still worth doing for the backup, but deploys nothing right now.
+   A `git push` is backup only — it deploys nothing, so it never substitutes for the two
+   commands above. "Committed and pushed" is not "published".
    The post appears on the cover automatically, as a lead if it is the newest of its edition
    or a strand row otherwise.
    `permalink` is `/:year/:month/:day/:title/`.
@@ -247,7 +252,8 @@ and the rate-decision calendar next to it.
   dashboard's daily job (`AUTO_UPDATE_CHARTHORIZON.command`, launchd ~23:30) calls
   `content_bot/fx_blog_push.command` → `content_bot/fx_blog_export.py`, which renders the real
   `forex.js` scoreboard headless, writes `_data/fx.json` here, and `git push`es it (only when the
-  data actually moved) → CI rebuilds. So the FX numbers refresh once a day, hands-off. To edit the
+  data actually moved) — the same nightly job then deploys to Pages (there is no CI; the push
+  alone rebuilds nothing). So the FX numbers refresh once a day, hands-off. To edit the
   snapshot by hand, change `_data/fx.json`; the next dashboard run overwrites it.
 - **TradingView = third-party scripts**, loaded only on this page → disclosed in `privacy.html`
   §6 (see the coupling note above). Constraint-safe: the page shows dashboard *output*, never
@@ -310,4 +316,6 @@ a flow mapping, so the build patches a *copy* of the config rather than the file
 prefix check silently fails to load the layouts.
 
 Keep `CNAME` intact on every change — it is what the Pages custom domain is matched against.
-The `Gemfile` is now unused locally; leave it, it is what CI would need if GitHub returns.
+The `Gemfile` is unused — there is no CI and none is coming back. Leave it anyway: it is the
+written record of the versions `github-pages` pinned, which is what the toolchain script
+reproduces by hand.
