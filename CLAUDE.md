@@ -226,6 +226,14 @@ outbound links stay support/social only.
   publishes under the masthead and not a byline, which stays true, but the Impressum is a legal
   obligation and the anonymity is therefore editorial, not actual.
   **Privacy §3 and §6 track what the site actually loads** — see the coupling note below.
+  **Cloudflare's Email Address Obfuscation must stay OFF for this zone** (Security → Settings,
+  formerly Scrape Shield). It rewrites `mailto:kontakt@chart-horizon.com` to a
+  `/cdn-cgi/l/email-protection#…` link reading `[email protected]`, restored by an injected
+  script — so with JavaScript off the Impressum shows no address at all, and § 5 DDG wants the
+  contact leicht erkennbar und unmittelbar erreichbar, not conditional on a script running. It
+  was on by default and was turned off on 2026-08-24; verify with a JS-disabled render, not by
+  reading the source you deployed. The trade is that the address gets harvested — that is the
+  correct trade for a statutory contact.
 - **TradingView is click-to-load, and nothing fetches it before the reader asks.** The embeds
   set third-party cookies, so `/fx/` renders a first-party `.tv-consent` ask in place of each
   widget (a bar over the ticker, a card over the calendar) and the pair overlay asks too. A
