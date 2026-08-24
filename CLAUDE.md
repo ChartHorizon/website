@@ -161,7 +161,7 @@ outbound links stay support/social only.
   links its own hub, and so does the cover's matching strand.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the four-signal method, the three editions, the not-advice stance, and the
-  deliberate no-byline statement. Links only X (`@PlayLoneHand`) — support/social only, per the
+  deliberate no-byline statement. Links only X (`@ChartHorizon`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
@@ -183,7 +183,7 @@ outbound links stay support/social only.
   the masthead rule (above the fold — the page is ~5,300px and the foot is a fine place to *end*
   but a poor place to be the only one), and the full `.dl` platform block with first-run notes at
   `#download`. Editorial broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads`
-  chip strip of the four/five signals), reusing `.fx-chips`. Contact is X-only (`@PlayLoneHand`) —
+  chip strip of the four/five signals), reusing `.fx-chips`. Contact is X-only (`@ChartHorizon`) —
   no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
   Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
   `WebPage` JSON-LD branch in `default.html`.
