@@ -216,9 +216,28 @@ outbound links stay support/social only.
   **zero third-party requests** on content pages — Georgia is the fallback.
 - **`impressum.html` / `privacy.html`** are Jekyll pages on the shared `default` layout
   (front matter `lang: de`, `noindex: true`; `.legal` styles live in `blog.css`, so they
-  match the light theme). The layout reads per-page `lang` and `noindex`. Their content is
-  an unfilled German placeholder template (amber `[...]` `.ph` fields) — not real legal or
-  contact info.
+  match the light theme). The layout reads per-page `lang` and `noindex`. **Both carry real
+  legal and contact data as of 2026-08-24** — operator name and postal address, the
+  `kontakt@chart-horizon.com` address (Cloudflare Email Routing, not a mailbox of its own),
+  USt-IdNr., and BayLDA as the competent authority. They were an unfilled placeholder template
+  until then; the amber `.ph` field styling is gone with it, so a returning `[...]` would now
+  render as plain body text rather than announcing itself.
+  Note this is the one place the site names its operator: `about.html` still says the desk
+  publishes under the masthead and not a byline, which stays true, but the Impressum is a legal
+  obligation and the anonymity is therefore editorial, not actual.
+  **Privacy §3 and §6 track what the site actually loads** — see the coupling note below.
+- **TradingView is click-to-load, and nothing fetches it before the reader asks.** The embeds
+  set third-party cookies, so `/fx/` renders a first-party `.tv-consent` ask in place of each
+  widget (a bar over the ticker, a card over the calendar) and the pair overlay asks too. A
+  bootstrap script at the **top of `fx.html`**, not in `<head>`, stamps `tv-ask`/`tv-ok` on
+  `<html>` before the widget markup is parsed — same pre-paint reason as the theme script, since
+  the ask and the frames are mutually exclusive. Consent lives in `localStorage` under
+  `ch_tv_consent` and is withdrawable from the `.tv-revoke` line under the calendar; withdrawing
+  **unmounts the live frames**, because leaving them up would keep TradingView served by a reader
+  who just said no. `mountAllTv()` and `probe()` both return early while unconsented — without
+  that second guard the blocked-embed copy would blame a filter for the reader's own choice.
+  This is what keeps §6 of `privacy.html` (consent under § 25 Abs. 1 TDDDG) true; the two move
+  together.
 - **Third-party embeds fail loudly, not silently.** Privacy extensions and DNS filters block
   TradingView outright. `fx.html` probes for the widget frames after a grace period and toggles
   `.no-tv` on `<html>`; the CSS then hides the empty widget shells, reveals a first-party
@@ -226,12 +245,17 @@ outbound links stay support/social only.
   shows `.fx-modal-empty` instead of an empty frame). The probe keeps watching, so frames that
   arrive late undo the fallback. It runs off `DOMContentLoaded`, **not `load`** — a proxy that
   black-holes the request rather than refusing it never fires `load` at all.
+  `.fx-modal-empty` sizes its overlay with `height:fit-content`, **never `auto`**: a `<dialog>`
+  is fixed with both block insets at 0, so an auto height makes the box stretch to the viewport
+  instead of centring — it framed 856px around two lines of text, taller than the panel with a
+  chart in it.
 - **Analytics ↔ privacy coupling:** two third-party scripts must stay disclosed in
   `privacy.html` — the cookieless Cloudflare beacon in `default.html` (loads on **every** page)
   in §3, and the **TradingView** widgets on `/fx/` (that **one** page only) in §6. Keep them in
-  sync if you add/remove third-party scripts. (The Newsreader web font is **self-hosted** under
-  `assets/fonts/`, not loaded from a CDN — so it adds no third-party request and needs no
-  disclosure. Keep it that way.)
+  sync if you add/remove third-party scripts — and note §4 enumerates **both** `localStorage`
+  keys by name (`ch_theme_mode`, `ch_tv_consent`), so a third one is a documentation change too.
+  (The Newsreader web font is **self-hosted** under `assets/fonts/`, not loaded from a CDN — so
+  it adds no third-party request and needs no disclosure. Keep it that way.)
 
 ## The FX Map page (`/fx/`)
 
@@ -255,8 +279,10 @@ and the rate-decision calendar next to it.
   data actually moved) — the same nightly job then deploys to Pages (there is no CI; the push
   alone rebuilds nothing). So the FX numbers refresh once a day, hands-off. To edit the
   snapshot by hand, change `_data/fx.json`; the next dashboard run overwrites it.
-- **TradingView = third-party scripts**, loaded only on this page → disclosed in `privacy.html`
-  §6 (see the coupling note above). Constraint-safe: the page shows dashboard *output*, never
+- **TradingView = third-party scripts**, loaded only on this page, and **only after the reader
+  clicks** (`ch_tv_consent`; see the click-to-load note under "Architecture") → disclosed in
+  `privacy.html` §6 (see the coupling note above). So the page's default state is the strength
+  board plus two first-party asks, not two live widgets — screenshot it accordingly. Constraint-safe: the page shows dashboard *output*, never
   links to dashboard source/installers/releases.
 - It's a normal indexed page (no `noindex`/`sitemap:false`) → in `/sitemap.xml`, with its own
   `seo_title`/`description`. Not a post, so it's absent from `/feed.xml`.

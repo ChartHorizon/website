@@ -7,6 +7,17 @@ description: "A daily currency strength meter and forex economic calendar: bulli
 ---
 {%- assign fx = site.data.fx -%}
 
+<!-- Consent bootstrap. Runs before the widget markup below is parsed, for the same reason
+     the theme script sits in <head>: the ask and the embeds are mutually exclusive, so
+     deciding after paint would flash one at the reader on the way to the other. -->
+<script>
+(function () {
+  var ok = false;
+  try { ok = localStorage.getItem('ch_tv_consent') === 'granted'; } catch (e) {}
+  document.documentElement.classList.add(ok ? 'tv-ok' : 'tv-ask');
+})();
+</script>
+
 <!-- Live FX ticker (TradingView) — third-party embed, documented in privacy.html §6.
      Mounted from JS rather than written inline, because a TradingView widget bakes its
      palette in at creation and cannot be re-themed afterwards: switching the edition has
@@ -31,6 +42,11 @@ description: "A daily currency strength meter and forex economic calendar: bulli
     "locale": "en"
     }'>
   <div class="tv-mount"></div>
+  <div class="tv-consent tv-consent--compact">
+    <p><strong>Live prices are off.</strong> The ticker is a TradingView embed: loading it sends
+       your IP address to TradingView and lets them set their own cookies.</p>
+    <button type="button" class="tv-consent-btn" data-tv-consent>Load live data</button>
+  </div>
 </div>
 
 <h1>FX Strength Map</h1>
@@ -117,8 +133,21 @@ description: "A daily currency strength meter and forex economic calendar: bulli
     "countryFilter": "us,eu,gb,jp,ch,au,ca,nz"
     }'>
   <div class="tv-mount"></div>
+  <div class="tv-consent">
+    <p><strong>The calendar is off until you ask for it.</strong></p>
+    <p>It comes from <strong>TradingView</strong>, the only third-party content anywhere on this
+       site. Loading it sends your IP address to TradingView and lets them set their own cookies.
+       The strength board above and the rate table below are ChartHorizon&rsquo;s own and need
+       none of it.</p>
+    <p><button type="button" class="tv-consent-btn" data-tv-consent>Load live data</button></p>
+    <p class="tv-consent-note">One click covers the price ticker, this calendar and the per-pair
+       charts. The choice is kept on this device under <code>ch_tv_consent</code> until you undo
+       it &mdash; see the <a href="{{ '/privacy/' | relative_url }}">privacy notice</a>.</p>
+  </div>
   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">Calendar by TradingView</a></div>
 </div>
+<p class="tv-revoke">Live TradingView data is loading on this page.
+   <button type="button" class="tv-revoke-btn" data-tv-revoke>Turn it off</button></p>
 <p class="tv-fallback"><strong>The calendar is not loading.</strong> It is a TradingView embed, and
    something between here and them — a privacy extension, a DNS filter, a company proxy — is
    holding it back. The strength board above is ChartHorizon's own and is unaffected.</p>
@@ -178,6 +207,23 @@ var PALETTE = {
 function themeName() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
 function palette() { return PALETTE[themeName()]; }
 
+/* ---- consent gate -------------------------------------------------------------------
+   The embeds set TradingView's own cookies, so nothing here may fetch before the reader
+   asks for it (§ 25 TDDDG). The verdict lives on <html> as tv-ok / tv-ask, is written
+   pre-paint by the bootstrap at the top of this page, and is kept under ch_tv_consent
+   (documented in privacy.html §4). Withdrawal is one click, from the line under the
+   calendar — consent that cannot be taken back is not consent. */
+var CONSENT_KEY = 'ch_tv_consent';
+function consented() { return document.documentElement.classList.contains('tv-ok'); }
+function setConsent(on) {
+  try {
+    if (on) localStorage.setItem(CONSENT_KEY, 'granted');
+    else localStorage.removeItem(CONSENT_KEY);
+  } catch (e) {}
+  document.documentElement.classList.toggle('tv-ok', on);
+  document.documentElement.classList.toggle('tv-ask', !on);
+}
+
 /* Build one embed from the config parked on the element, stamping in the current
    edition. Replacing the mount's contents drops the old frame; the attribution line is
    a sibling of the mount, so it survives. */
@@ -211,12 +257,37 @@ function mountTv(el) {
 }
 
 function mountAllTv() {
+  if (!consented()) return;
   Array.prototype.forEach.call(document.querySelectorAll('.tv-widget[data-tv-src]'), function (el) {
     // Only rebuild what is actually out of date. Tearing down a frame that already
     // carries the right palette would cost the reader a second fetch for nothing.
     if (el.getAttribute('data-tv-theme') !== themeName()) mountTv(el);
   });
 }
+
+// Withdrawal has to remove what is already on screen, not merely stop the next load:
+// leaving the frames up would keep TradingView receiving requests from a reader who just
+// said no. The mount points are ours, so emptying them drops the iframes outright.
+function unmountAllTv() {
+  Array.prototype.forEach.call(document.querySelectorAll('.tv-widget[data-tv-src]'), function (el) {
+    var mount = el.querySelector('.tv-mount');
+    if (mount) mount.innerHTML = '';
+    el.removeAttribute('data-tv-theme');
+  });
+}
+
+document.addEventListener('click', function (e) {
+  var grant = e.target.closest && e.target.closest('[data-tv-consent]');
+  if (grant) { setConsent(true); mountAllTv(); probe(); return; }
+  var deny = e.target.closest && e.target.closest('[data-tv-revoke]');
+  if (deny) {
+    setConsent(false);
+    unmountAllTv();
+    if (probeTimer) { clearTimeout(probeTimer); probeTimer = null; }
+    // The blocked-embed copy is about a request that failed, not one never made.
+    document.documentElement.classList.remove('no-tv');
+  }
+});
 
 (function () {
   var modal = document.getElementById('fxChart');
@@ -230,6 +301,16 @@ function mountAllTv() {
       '<p>TradingView supplies the live charts on this page, and something between here and ' +
       'them is blocking the request — usually a privacy extension, a DNS filter or a company ' +
       'proxy. The strength read behind this pair is ChartHorizon&rsquo;s own and stands as printed.</p>' +
+      '</div>';
+  }
+
+  function showAsk() {
+    body.innerHTML = '<div class="fx-modal-empty">' +
+      '<p><strong>This chart comes from TradingView.</strong></p>' +
+      '<p>Opening it sends your IP address to TradingView and lets them set their own ' +
+      'cookies. The strength read behind this pair is ChartHorizon&rsquo;s own and stands ' +
+      'as printed either way.</p>' +
+      '<p><button type="button" class="tv-consent-btn" data-tv-consent>Load the chart</button></p>' +
       '</div>';
   }
 
@@ -289,7 +370,9 @@ function mountAllTv() {
     titleEl.textContent = label || 'FX pair';
     modal.setAttribute('data-dir', dir || '');
     openSymbol = symbol;
-    if (document.documentElement.classList.contains('no-tv')) {
+    if (!consented()) {
+      showAsk();
+    } else if (document.documentElement.classList.contains('no-tv')) {
       showEmpty();
     } else {
       buildWidget(symbol);
@@ -315,6 +398,12 @@ function mountAllTv() {
   document.addEventListener('ch:themechange', function () {
     if (!modal.open || !openSymbol || body.querySelector('.fx-modal-empty')) return;
     buildWidget(openSymbol);
+  });
+
+  // Granting from inside the panel: the delegated handler above has already mounted the
+  // page's own embeds, so all that is left is the chart the reader actually clicked.
+  body.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-tv-consent]') && openSymbol) buildWidget(openSymbol);
   });
 
   Array.prototype.forEach.call(document.querySelectorAll('.fx-pair[data-symbol]'), function (el) {
@@ -343,6 +432,7 @@ function loaded() {
 // leave the page claiming data it actually got. Driven off DOMContentLoaded, not load:
 // a proxy that black-holes the request instead of refusing it never fires load at all.
 function check(attempt) {
+  if (!consented()) return;
   var blocked = !loaded();
   document.documentElement.classList.toggle('no-tv', blocked && attempt >= 12);
   if (!blocked || attempt >= 40) return;
@@ -354,6 +444,9 @@ function check(attempt) {
 // and print "the calendar is not loading" over a calendar that is on its way.
 function probe() {
   if (probeTimer) { clearTimeout(probeTimer); probeTimer = null; }
+  // Nothing has been requested yet, so nothing can have been blocked: printing "not
+  // loading" over an unanswered ask would blame a filter for the reader's own choice.
+  if (!consented()) return;
   check(0);
 }
 
