@@ -36,6 +36,11 @@ DATA NOTES THAT WILL BITE
       spec series in this archive. Say "commercial" or "producer/merchant" (cot_label
       tells you which) and never imply a spec/commercial divergence from this table.
     · FX is stored USD-based and inverted: USD/JPY = 1/jpy_fx.close. Use --invert.
+      --invert changes the VALUES only, never the axis direction, so USD/JPY rises
+      up the page like any other price. --flip-axis is the separate opt-in for the
+      reversed presentation (a falling line = the quoted currency strengthening).
+      The two were one flag until 2026-08-25, which silently drew every FX line
+      upside down; --invert-key in `multi` never flipped, and was already right.
     · The continuous price series ROLLS. A single-session gap of several per cent
       across an entire complex on one date is a roll, not a move. Check before
       annotating a daily change.
@@ -240,7 +245,7 @@ def draw_cot(a):
     bot = fig.add_axes([0.075, 0.105, 0.885, 0.305])
 
     top.plot(px, py, color=INK, lw=1.5 * SS, solid_joinstyle="round")
-    if a.invert:
+    if a.flip_axis:
         top.invert_yaxis()
     top.set_ylabel(a.price_label, fontsize=13 * SS, labelpad=10 * SS)
     style(top)
@@ -274,7 +279,7 @@ def draw_line(a):
     fig = frame(H1, a.kicker, a.title, a.sub, a.note)
     ax = fig.add_axes([0.075, 0.115, 0.885, 0.66])
     ax.plot(px, py, color=INK, lw=1.6 * SS, solid_joinstyle="round")
-    if a.invert:
+    if a.flip_axis:
         ax.invert_yaxis()
     if a.price_label:
         ax.set_ylabel(a.price_label, fontsize=13 * SS, labelpad=10 * SS)
@@ -298,7 +303,7 @@ def draw_line(a):
         bare = plt.figure(figsize=(1280 * SS / DPI, 720 * SS / DPI), dpi=DPI)
         b = bare.add_axes([0.05, 1 - 0.54, 0.865, 0.54 - 0.105])
         b.plot(px, py, color=src_colour, lw=3.0 * SS, solid_joinstyle="round")
-        if a.invert:
+        if a.flip_axis:
             b.invert_yaxis()
         b.set_axis_off()
         bare.savefig(src, dpi=DPI, facecolor=PAPER)
@@ -358,6 +363,8 @@ def main():
         s.add_argument("--since")
         s.add_argument("--until")
         s.add_argument("--invert", action="store_true")
+        s.add_argument("--flip-axis", action="store_true",
+                       help="reverse the y-axis; separate from --invert on purpose")
         s.add_argument("--png", action="store_true")
         s.add_argument("--mark", action="append")
         if kind == "line":

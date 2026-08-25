@@ -22,7 +22,7 @@ had started the week.
 
 <figure class="board">
   <img src="{{ page.cards }}/usdjpy.webp" width="1200" height="760" loading="lazy"
-       alt="USD/JPY daily close from 1 May to 24 August 2026 on an inverted axis, falling steadily from 157 to 163.59 by late July, spiking to 156.54 on the intervention, then drifting back to 158.93">
+       alt="USD/JPY daily close from 1 May to 24 August 2026, climbing steadily from 157 to 163.59 by 28 July, dropping to 156.54 on the intervention of 30 July and 3 August, then recovering to 158.93">
   <figcaption>USD/JPY · daily close · 1 May – 24 August 2026 · ChartHorizon</figcaption>
 </figure>
 
