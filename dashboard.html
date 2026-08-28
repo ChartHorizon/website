@@ -33,16 +33,23 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #  account as the site and needs no Git provider at all. If GitHub is ever reinstated
 #  there is no reason to move back; the assets are versioned and immutably cached.
 #
-#  HELD AT COMING-SOON since 2026-08-22, and this time not for a hosting reason: the
-#  1.1.3 binaries on R2 were built 2026-08-21 13:15, before the calendar-spread rework
-#  landed (dashboard commits 8e30889 · 2542478 · 4aaeb33). A download that ships the old
-#  spread pane misrepresents the board this page advertises, so it stays down until an
-#  installer carries the current code. The R2 objects are untouched and still reachable
-#  by direct URL — restoring is putting "1.1.4" (or "1.1.3") back on this line.
-dl_version: ""          # release number WITHOUT the leading "v"
+#  The 2026-08-22 hold is LIFTED FOR macOS as of 2026-08-28. It was never a hosting
+#  problem: the 1.1.3 binaries were built 2026-08-21 13:15, before the calendar-spread
+#  rework landed (dashboard commits 8e30889 · 2542478 · 4aaeb33), so a download shipped
+#  a pane this page no longer described. 1.1.4 carries that code and is on R2.
+#
+#  WINDOWS AND LINUX STAY AT COMING-SOON, for a different reason than before: PyInstaller
+#  cannot cross-compile, 1.1.4 was built on the Mac, and no Windows or Linux box was at
+#  hand. Their 1.1.3 objects are still on R2 and still reachable by direct URL — they are
+#  deliberately NOT linked, because they carry exactly the stale spread pane the hold was
+#  about. Pointing dl_windows/dl_linux back at 1.1.3 would undo the whole point.
+#  To finish the release: build on each box, upload with
+#  ops/website-installers.sh 1.1.4 --from-dir <dir> --only windows   (resp. linux),
+#  then clear that platform's "soon" here. Nothing else needs touching.
+dl_version: "1.1.4"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
-dl_windows: ""          # derive from version
-dl_linux: ""            # derive from version
+dl_windows: "soon"      # not built yet — see the note above
+dl_linux: "soon"        # not built yet — see the note above
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
 {%- assign dl_repo = "https://dl.chart-horizon.com" -%}
