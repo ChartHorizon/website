@@ -109,10 +109,10 @@ description: "A daily currency strength meter and forex economic calendar: bulli
   </div>
 
   <div class="fx-method">
-    <p><strong>Heatmap filter logic.</strong> Final currency score = Seasonals + COT + COT-Hedging +
+    <p><strong>Heatmap filter logic.</strong> Final currency score = Seasonals + COT-Hedging +
        Term Structure + Interest-Rate Bias. Pair score = base currency score minus quote currency
        score, in fixed canonical FX notation.</p>
-    <p><strong>Seasonals, COT, COT-Hedging:</strong> +1 bullish / −1 bearish ·
+    <p><strong>Seasonals, COT-Hedging:</strong> +1 bullish / −1 bearish ·
        <strong>Term Structure:</strong> +1 premium / −1 discount ·
        <strong>Interest Rates:</strong> +{{ fx.rate_range }} highest / −{{ fx.rate_range }} lowest,
        scaled across the FX basket. Pairs shown are the strongest divergences, ranked by score spread.</p>

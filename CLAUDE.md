@@ -160,7 +160,7 @@ outbound links stay support/social only.
   was the half of that problem fixable here — every post's foot (`_layouts/post.html`) now
   links its own hub, and so does the cover's matching strand.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
-  indexed page): the four-signal method, the three editions, the not-advice stance, and the
+  indexed page): the three-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@ChartHorizon`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
