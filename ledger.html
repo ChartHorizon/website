@@ -6,8 +6,10 @@ seo_title: "Hedgers' Ledger — Weekly COT Extremes From the Commercial Book"
 description: "Every Hedgers' Ledger release: where commercial hedgers sit against their own three-year range in each market, read from the CFTC Commitments of Traders report the week it published."
 ---
 <h1>The Hedgers&rsquo; Ledger</h1>
-<p class="dek">The weekly release: where the commercial book sits against its own three-year
-   range, market by market, straight from the CFTC report. The written notes run in
+<p class="dek">The weekly release, in two parts: the markets where the commercial book sits
+   at the edge of its own three-year range, and then the hedging program &mdash; where every
+   market&rsquo;s net sits inside its own trailing six-month range. Both straight from the CFTC
+   report. The written notes run in
    <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a>.</p>
 
 {%- assign run = "" | split: "" -%}
@@ -23,9 +25,9 @@ description: "Every Hedgers' Ledger release: where commercial hedgers sit agains
 {%- endcomment -%}
 {%- if run.size == 0 %}
 <p class="hub-empty">The Ledger is between editions. The back issues were retired on
-   August&nbsp;30, 2026, when the release was reworked to read the commercial extremes
-   alongside the hedging program from the ChartHorizon screener; the first issue in that
-   form runs with the next CFTC report. Until then, the written notes are in
+   August&nbsp;30, 2026, when the release was reworked to carry the hedging program
+   alongside the three-year extremes; the first issue in that form runs with the next CFTC
+   report. Until then, the written notes are in
    <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a>.</p>
 {%- endif -%}
 {%- assign by_year = run | group_by_exp: "post", "post.date | date: '%Y'" -%}

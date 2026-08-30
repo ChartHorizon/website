@@ -155,10 +155,22 @@ outbound links stay support/social only.
   browser can still reserve the space; a title card needs no front matter, being always
   1280×720.
 - **`tape.html`** / **`ledger.html`** (`/tape/`, `/ledger/`) — one hub per edition: that
-  edition's full run, grouped by year, reusing `/archive/`'s list markup. They exist because
-  Google left 15 of 22 URLs at "discovered, currently not indexed" and thin internal linking
-  was the half of that problem fixable here — every post's foot (`_layouts/post.html`) now
-  links its own hub, and so does the cover's matching strand.
+  edition's full run, grouped by year, reusing `/archive/`'s list markup. **An edition can have
+  an empty run** — the Ledger did from 2026-08-30, when the eleven old releases were retired
+  (they 301 to `/ledger/` from `_redirects`, spelled out date by date because the bot reuses the
+  `hedgers-ledger` slug every week), until the first issue of the reworked edition. Both places
+  that would otherwise render a heading over nothing carry a state for it: the hub shows
+  `.hub-empty` saying why, and the cover puts `strands-single` on `.strands` so the Tape strand
+  takes the full width instead of leaving a headed empty column. `lead_ledger == nil` is the
+  has-any test — it is the newest post of the whole run.
+  The hubs exist because Google left 15 of 22 URLs at "discovered, currently not indexed" and
+  thin internal linking was the half of that problem fixable here — every post's foot
+  (`_layouts/post.html`) now links its own hub, and so does the cover's matching strand.
+  Since 2026-08-30 a Ledger post carries a second half, **"The hedging program"** — one
+  `.program-board` table per category, from the upstream generator
+  (`content/livermore/blog/hedgeboard.py`). Those nine tables share one fixed column geometry on
+  purpose: sized to content, each would size to its own longest market name and the stack would
+  read ragged down the page.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the three-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@ChartHorizon`) — support/social only, per the

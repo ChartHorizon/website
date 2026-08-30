@@ -101,6 +101,14 @@ img{max-width:100%; height:auto; border-radius:6px; margin:18px 0; box-shadow:0 
 table{border-collapse:collapse; width:100%; font:14px/1.45 var(--sans); margin:14px 0; font-variant-numeric:tabular-nums lining-nums}
 td,th{border:1px solid var(--rule); padding:8px 12px; text-align:left}
 th{background:var(--thead); font-weight:600}
+/* The Ledger's hedging-program tables: nine tables, one shape. Without a fixed
+   layout each sizes to its own longest market name ("Natural Gas (Henry Hub)" vs
+   "Gold") and the stack reads ragged down the page. The last column is a rare
+   flag, so it gets the narrowest share. */
+.program-board{table-layout:fixed}
+.program-board td:first-child,.program-board th:first-child{width:44%}
+.program-board td:last-child,.program-board th:last-child{width:16%}
+@media (max-width:520px){ .program-board{table-layout:auto} }
 /* read marks for post tables — always paired with a glyph + word, never color alone (Read-Mark Rule) */
 .mark-bull{color:var(--bull); font-weight:700}
 .mark-bear{color:var(--bear); font-weight:700}
