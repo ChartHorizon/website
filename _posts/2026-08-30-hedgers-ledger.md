@@ -64,99 +64,24 @@ Producer/Merchant Net sits at the 2nd percentile of its ~3-year range — the co
 
 ## The hedging program
 
-Where each market's tracked COT net sits inside its own trailing six-month range — above the midpoint of that range or below it. This is the same positioning read at close quarters, and it answers a different question from the extremes above: a book can sit at a three-year low and still have been working higher for six months.
+Where each market's tracked COT net sits inside its own trailing six-month range — above the midpoint of that range or below it. This is the same positioning read at close quarters, and it answers a different question from the extremes above: a book can sit at a three-year low and still have been working higher for six months. What follows is only what MOVED — the markets that crossed that midpoint with this week's report.
 
-15 programs read above the midpoint of their own trailing six-month range this week, 24 below. No program turned since the last Ledger.
+15 programs read above the midpoint of their own trailing six-month range this week, 24 below. Two crossed it with this report — Ethereum and RBOB Gasoline, each from above the midpoint to below it.
 
-### Agriculture
-
-| Market | 6-month program | Turned |
+| Market | Turned | 6-month program |
 |---|---|---|
-| Corn | <span class="mark-bear">▼ below midpoint</span> |  |
-| Wheat (Chicago SRW) | <span class="mark-bear">▼ below midpoint</span> |  |
-| Soybeans | <span class="mark-bear">▼ below midpoint</span> |  |
-| Soybean Oil | <span class="mark-bull">▲ above midpoint</span> |  |
+| Ethereum | from above the midpoint | <span class="mark-bear">▼ below midpoint</span> |
+| RBOB Gasoline | from above the midpoint | <span class="mark-bear">▼ below midpoint</span> |
 {: .program-board}
 
-### Bonds
+### Ethereum — the program turns bearish
 
-| Market | 6-month program | Turned |
-|---|---|---|
-| 30-Year U.S. T-Bond | <span class="mark-bull">▲ above midpoint</span> |  |
-| 10-Year U.S. T-Note | <span class="mark-bull">▲ above midpoint</span> |  |
-| 5-Year U.S. T-Note | <span class="mark-bear">▼ below midpoint</span> |  |
-| 2-Year U.S. T-Note | <span class="mark-bear">▼ below midpoint</span> |  |
-{: .program-board}
+![Ethereum — the six-month hedging program, leveraged funds net]({{ page.cards }}/prog_ethereum.webp){: width="1200" height="1036" loading="lazy"}
 
-### Crypto
+In the CFTC report of 2026-08-25, Leveraged Funds Net crossed the midpoint of its own trailing six-month range: it now sits below that midpoint, where the previous report still had it above. It cleared that midpoint by 0.4% of the window's own range — a crossing on the definition, and a coin-flip in fact. The book tracked here is leveraged funds — a speculative cohort, not the hedger side.
 
-| Market | 6-month program | Turned |
-|---|---|---|
-| Bitcoin | <span class="mark-bull">▲ above midpoint</span> |  |
-| Ethereum | <span class="mark-bear">▼ below midpoint</span> |  |
-{: .program-board}
+### RBOB Gasoline — the program turns bearish
 
-### Currencies
+![RBOB Gasoline — the six-month hedging program, commercials net]({{ page.cards }}/prog_gasoline.webp){: width="1200" height="1036" loading="lazy"}
 
-| Market | 6-month program | Turned |
-|---|---|---|
-| US Dollar Index | <span class="mark-bear">▼ below midpoint</span> |  |
-| Euro FX | <span class="mark-bull">▲ above midpoint</span> |  |
-| British Pound | <span class="mark-bear">▼ below midpoint</span> |  |
-| Canadian Dollar | <span class="mark-bull">▲ above midpoint</span> |  |
-| Japanese Yen | <span class="mark-bear">▼ below midpoint</span> |  |
-| Swiss Franc | <span class="mark-bear">▼ below midpoint</span> |  |
-| Australian Dollar | <span class="mark-bull">▲ above midpoint</span> |  |
-| New Zealand Dollar | <span class="mark-bear">▼ below midpoint</span> |  |
-{: .program-board}
-
-### Energy
-
-| Market | 6-month program | Turned |
-|---|---|---|
-| WTI Crude Oil | <span class="mark-bull">▲ above midpoint</span> |  |
-| Brent Crude Oil | <span class="mark-bear">▼ below midpoint</span> |  |
-| Natural Gas (Henry Hub) | <span class="mark-bear">▼ below midpoint</span> |  |
-| RBOB Gasoline | <span class="mark-bear">▼ below midpoint</span> |  |
-{: .program-board}
-
-### Indices
-
-| Market | 6-month program | Turned |
-|---|---|---|
-| E-mini S&P 500 | <span class="mark-bear">▼ below midpoint</span> |  |
-| E-mini Nasdaq 100 | <span class="mark-bear">▼ below midpoint</span> |  |
-| E-mini Dow ($5) | <span class="mark-bear">▼ below midpoint</span> |  |
-| E-mini Russell 2000 | <span class="mark-bull">▲ above midpoint</span> |  |
-{: .program-board}
-
-### Livestock/Dairy
-
-| Market | 6-month program | Turned |
-|---|---|---|
-| Live Cattle | <span class="mark-bull">▲ above midpoint</span> |  |
-| Feeder Cattle | <span class="mark-bull">▲ above midpoint</span> |  |
-| Lean Hogs | <span class="mark-bull">▲ above midpoint</span> |  |
-| Class III Milk | <span class="mark-bull">▲ above midpoint</span> |  |
-{: .program-board}
-
-### Metals
-
-| Market | 6-month program | Turned |
-|---|---|---|
-| Gold | <span class="mark-bear">▼ below midpoint</span> |  |
-| Silver | <span class="mark-bear">▼ below midpoint</span> |  |
-| Copper | <span class="mark-bear">▼ below midpoint</span> |  |
-| Platinum | <span class="mark-bull">▲ above midpoint</span> |  |
-{: .program-board}
-
-### Softs
-
-| Market | 6-month program | Turned |
-|---|---|---|
-| Sugar #11 | <span class="mark-bear">▼ below midpoint</span> |  |
-| Coffee (Arabica) | <span class="mark-bear">▼ below midpoint</span> |  |
-| Cotton #2 | <span class="mark-bear">▼ below midpoint</span> |  |
-| Orange Juice (FCOJ-A) | <span class="mark-bull">▲ above midpoint</span> |  |
-| Cocoa | <span class="mark-bear">▼ below midpoint</span> |  |
-{: .program-board}
+In the CFTC report of 2026-08-25, Producer/Merchant Net crossed the midpoint of its own trailing six-month range: it now sits below that midpoint, where the previous report still had it above. It cleared that midpoint by 2.7% of the window's own range.

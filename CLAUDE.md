@@ -166,11 +166,22 @@ outbound links stay support/social only.
   The hubs exist because Google left 15 of 22 URLs at "discovered, currently not indexed" and
   thin internal linking was the half of that problem fixable here — every post's foot
   (`_layouts/post.html`) now links its own hub, and so does the cover's matching strand.
-  Since 2026-08-30 a Ledger post carries a second half, **"The hedging program"** — one
-  `.program-board` table per category, from the upstream generator
-  (`content/livermore/blog/hedgeboard.py`). Those nine tables share one fixed column geometry on
-  purpose: sized to content, each would size to its own longest market name and the stack would
-  read ragged down the page.
+  Since 2026-08-30 a Ledger post carries a second half, **"The hedging program"**, from the
+  upstream generator (`content/livermore/blog/hedgeboard.py`). It reports the **change, not the
+  state**: one `.program-board` table listing only the markets whose COT net crossed the midpoint
+  of its own trailing six-month range with that week's report, then a card and a fact paragraph
+  per turn. It shipped for one afternoon as nine per-category tables covering all 39 markets and
+  was cut the same day — a reader cannot act on 37 unchanged rows, and the two with news in them
+  were findable only by scanning a `Turned` column that is empty in every cell on a quiet week.
+  The fixed column geometry stays (a week's longest market name would otherwise set the header
+  width and make it jump between issues), but the widths are now 34/36/30, not 44/40/16: both
+  right-hand columns carry a phrase now, and at 16% the last one wrapped its own heading.
+  A week with **no** turn keeps the section and says so in a line — the whole-board counts are
+  there anyway, and a half that vanishes without visible cause reads as a bug.
+  The turn cards are **not** the extremes cards: they are shot at `range=6m` with the hedging
+  overlay ON, because that overlay is range-relative and only at 6M is its midpoint the one the
+  verdict comes from. Hence `prog_<key>.webp` alongside `<key>.webp` — a market can be an extreme
+  and a turn in the same issue, and the two pictures are not the same picture.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
   indexed page): the three-signal method, the three editions, the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@ChartHorizon`) — support/social only, per the
