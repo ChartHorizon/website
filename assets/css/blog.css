@@ -193,6 +193,9 @@ blockquote p{margin:.3em 0}
    the page IS the edition — so the dateline column only has to clear "Aug 16". */
 .hub-list .post-dateline{width:6.5rem}
 @media (max-width:560px){ .hub-list .post-dateline{width:auto} }
+/* Standing-in for a hub with no run yet: reads as an editorial note, not as an error. */
+.hub-empty{margin:30px 0 0; padding-top:18px; border-top:2px solid var(--rule-strong);
+  color:var(--muted); line-height:1.55; max-width:var(--measure)}
 
 /* ---- "Elsewhere in the paper": the links between editions, under every post ----
    Same dateline furniture as the index and /archive/ (see _includes/post-teaser.html),
@@ -534,6 +537,8 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 
 /* the two strands */
 .strands{display:grid; grid-template-columns:1fr 1fr; gap:34px}
+/* Empty-Ledger cover: one strand, full width, rather than a headed empty column. */
+.strands-single{grid-template-columns:1fr}
 .strand{min-width:0; display:flex; flex-direction:column}
 .strand-list{list-style:none; padding:0; margin:4px 0 0}
 .strand-list li{padding:13px 0; border-top:1px solid var(--rule)}

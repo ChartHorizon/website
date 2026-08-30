@@ -118,7 +118,14 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
   </article>
   {%- endif %}
 
-  <div class="strands">
+{%- comment -%}
+  `strands-single` is the empty-Ledger state. The edition can legitimately have no run at all
+  — it did between 2026-08-30, when the old releases were removed, and the first issue of the
+  reworked edition — and a two-column grid with a headed but empty column reads as a broken
+  page, not as "nothing here yet". lead_ledger is nil in exactly that case (it is the newest
+  Ledger of the whole run), so it doubles as the has-any test.
+{%- endcomment -%}
+  <div class="strands{% unless lead_ledger %} strands-single{% endunless %}">
     <section class="strand">
       <h2 class="section-rule"><span>The Weekly Tape</span></h2>
       <ul class="strand-list">
@@ -139,6 +146,7 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
       <p class="more-issues"><a href="{{ '/tape/' | relative_url }}">All Tape notes &rarr;</a></p>
     </section>
 
+    {%- if lead_ledger %}
     <section class="strand">
       <h2 class="section-rule"><span>Hedgers&rsquo; Ledger</span></h2>
       <ul class="strand-list">
@@ -158,6 +166,7 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
       </ul>
       <p class="more-issues"><a href="{{ '/ledger/' | relative_url }}">All Ledger releases &rarr;</a></p>
     </section>
+    {%- endif %}
   </div>
 
 </div>

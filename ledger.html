@@ -15,6 +15,19 @@ description: "Every Hedgers' Ledger release: where commercial hedgers sit agains
   {%- capture k %}{% include edition.html post=post key=true %}{% endcapture -%}
   {%- if k == "ledger" -%}{%- assign run = run | push: post -%}{%- endif -%}
 {%- endfor -%}
+{%- comment -%}
+  The run can be empty — it was from 2026-08-30, when the old releases were retired, until the
+  first issue of the reworked edition. Three pages link here in prose (the cover strand, /tape/,
+  /archive/), so an empty hub is a page readers actually reach: it says what happened instead of
+  rendering a heading, a dek and a back-issues link over nothing.
+{%- endcomment -%}
+{%- if run.size == 0 %}
+<p class="hub-empty">The Ledger is between editions. The back issues were retired on
+   August&nbsp;30, 2026, when the release was reworked to read the commercial extremes
+   alongside the hedging program from the ChartHorizon screener; the first issue in that
+   form runs with the next CFTC report. Until then, the written notes are in
+   <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a>.</p>
+{%- endif -%}
 {%- assign by_year = run | group_by_exp: "post", "post.date | date: '%Y'" -%}
 {% for year in by_year %}
 <h2 class="section-rule archive-year"><span>{{ year.name }}</span></h2>

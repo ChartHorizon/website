@@ -10,3 +10,24 @@
 # existing bookmark to the Datenschutzerklärung from breaking.
 /privacy.html    /privacy/      301
 /impressum.html  /impressum/    301
+
+# The eleven pre-2026-08-30 Hedgers' Ledger releases were removed on 2026-08-30: the edition
+# was reworked to carry the screener's hedging-program signal alongside the raw COT extremes,
+# and the old issues read as a different publication. They were indexed, so they redirect to
+# the hub rather than 404.
+#
+# These are spelled out date by date ON PURPOSE. A placeholder rule like
+# /2026/:mm/:dd/hedgers-ledger/ would also swallow every FUTURE release — the bot reuses the
+# slug every week — and the new issues would redirect away from themselves. Never generalise
+# this block.
+/2026/06/10/hedgers-ledger/         /ledger/   301
+/2026/06/13/hedgers-ledger/         /ledger/   301
+/2026/06/27/hedgers-ledger-dollar/  /ledger/   301
+/2026/07/11/hedgers-ledger/         /ledger/   301
+/2026/07/18/hedgers-ledger/         /ledger/   301
+/2026/07/25/hedgers-ledger/         /ledger/   301
+/2026/08/01/hedgers-ledger/         /ledger/   301
+/2026/08/08/hedgers-ledger/         /ledger/   301
+/2026/08/16/hedgers-ledger/         /ledger/   301
+/2026/08/21/hedgers-ledger/         /ledger/   301
+/2026/08/28/hedgers-ledger/         /ledger/   301
