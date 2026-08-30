@@ -190,7 +190,7 @@ outbound links stay support/social only.
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.1.3.**
+  (see the comment block at the top of the file). **Live at v1.2.1 — macOS and Windows; Linux is still `"soon"`.**
   **The installers are hosted on Cloudflare R2, not in this repo and not on GitHub**, at
   `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
   which the account flag turned into three 404s for every logged-out visitor — the page sat at

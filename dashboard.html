@@ -45,17 +45,26 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #  the 39 markets, so it was a per-market constant, not a signal). The prose here says
 #  "three lights" as of 2026-08-29; a download older than 1.2 would show four.
 #
-#  WINDOWS AND LINUX STAY AT COMING-SOON: PyInstaller cannot cross-compile, 1.2 was
-#  built on the Mac, and no Windows or Linux box was at hand. Their 1.1.3 objects are
-#  still on R2 and still reachable by direct URL — they are deliberately NOT linked,
-#  because they carry both the stale spread pane the original hold was about and the
-#  old four-signal score. Pointing dl_windows/dl_linux back at 1.1.3 would undo the
-#  whole point. To finish the release: build on each box, upload with
-#  ops/website-installers.sh 1.2 --from-dir <dir> --only windows   (resp. linux),
-#  then clear that platform's "soon" here. Nothing else needs touching.
-dl_version: "1.2"       # release number WITHOUT the leading "v"
+#  1.2.1 (2026-08-30) is a patch on top of 1.2, cut for a bug that only exists on
+#  Windows: every urllib call — all four CFTC endpoints and the BIS policy rates —
+#  failed with CERTIFICATE_VERIFY_FAILED, because urllib trusts the OS root store and
+#  Windows fills that store through Schannel's automatic root update, which OpenSSL
+#  never triggers. app/net_tls.py now pins those calls to certifi. macOS was never
+#  affected; it was rebuilt anyway so that one version number means one code state,
+#  which is the whole reason the About card exists.
+#
+#  WINDOWS IS LIVE SINCE 1.2.1, built by hand in a Parallels Windows-11-ARM VM with an
+#  emulated x64 Python (PyInstaller freezes whatever interpreter it runs under).
+#
+#  LINUX STAYS AT COMING-SOON: PyInstaller cannot cross-compile and no Linux box was at
+#  hand. Its 1.1.3 object is still on R2 and still reachable by direct URL — it is
+#  deliberately NOT linked, because it carries both the stale spread pane the original
+#  hold was about and the old four-signal score. Pointing dl_linux back at 1.1.3 would
+#  undo the whole point. To finish: build there, upload with
+#  ops/website-installers.sh 1.2.1 --from-dir <dir> --only linux, then clear its "soon".
+dl_version: "1.2.1"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
-dl_windows: "soon"      # not built yet — see the note above
+dl_windows: ""          # derive from version
 dl_linux: "soon"        # not built yet — see the note above
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
