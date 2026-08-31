@@ -288,15 +288,24 @@ a.dl-btn:active{transform:translateY(1px)}
 .dl-btn--soon .dl-os-ico{fill:var(--muted-2); opacity:.6}
 .dl-btn--soon .dl-os{color:var(--muted)}
 .dl-note{font:italic 14px/1.5 var(--serif); color:var(--muted); margin:16px auto 0; max-width:42ch; text-wrap:balance}
-/* first-run helper for unsigned builds — collapsed by default, launched state only */
-.dl-firstrun{max-width:50ch; margin:16px auto 0; text-align:left; font:14px/1.55 var(--sans); color:var(--muted)}
-/* padding lifts the disclosure control to a ≥24px target (WCAG 2.5.8) without moving the layout */
-.dl-firstrun summary{cursor:pointer; text-align:center; font:600 11px/1.3 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:var(--muted-2); list-style:none; padding:6px 0; border-radius:4px}
+/* First-run helper for unsigned builds — collapsed by default, launched state only.
+   Set as a card at .dl-grid's own 440px so it reads as the fourth element of the download
+   block rather than as a footnote under it. It was muted-2 11px on bare paper and got
+   missed: a reader who does not open this meets Gatekeeper calling the app damaged, or
+   SmartScreen refusing to run it, with no idea the page already answered it. That is the
+   most likely moment for a download to be abandoned, so the line carries ink weight and a
+   gold marker — still a disclosure, not a second CTA competing with the buttons above. */
+.dl-firstrun{max-width:440px; margin:18px auto 0; text-align:left; font:14px/1.55 var(--sans); color:var(--muted);
+  border:1px solid var(--rule); border-radius:12px; background:var(--card)}
+/* padding lifts the disclosure control well past the ≥24px target (WCAG 2.5.8) */
+.dl-firstrun summary{cursor:pointer; text-align:center; font:700 12px/1.3 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--ink); list-style:none; padding:13px 15px; border-radius:12px}
+.dl-firstrun summary:hover{color:var(--gold-ink)}
 .dl-firstrun summary::-webkit-details-marker{display:none}
-.dl-firstrun summary::after{content:" ▾"; color:var(--muted-2)}
+.dl-firstrun summary::after{content:" ▾"; font-size:15px; line-height:0; vertical-align:-1px; color:var(--gold-ink)}
+.dl-firstrun[open] summary{border-bottom:1px solid var(--rule); border-radius:12px 12px 0 0}
 .dl-firstrun[open] summary::after{content:" ▴"}
-.dl-firstrun p{margin:13px 0 8px}
-.dl-firstrun ul{margin:0; padding-left:1.15em; list-style:disc}
+.dl-firstrun p{margin:12px 0 8px; padding:0 15px}
+.dl-firstrun ul{margin:0 0 14px; padding:0 15px 0 calc(15px + 1.15em); list-style:disc}
 .dl-firstrun li{margin:5px 0}
 .dl-firstrun b{color:var(--ink); font-weight:700}
 .dl-firstrun code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--quote-bg); border:1px solid var(--rule); border-radius:4px; padding:1px 5px}
