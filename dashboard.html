@@ -105,13 +105,22 @@ dl_linux: "soon"        # not built yet — see the note above
     Release line. A shipped build has to be reachable on arrival — the full download block
     sits at the foot of a ~5,300px page, which is a fine place to end but a poor place to
     be the only one. Set as dateline furniture, not as a hero CTA.
+
+    It jumps to #download; it does not start the file itself. The buttons down there carry
+    the architecture each build is (.dl-arch) and the first-run notes for an unsigned one,
+    and a reader who fires the .dmg from up here arrives at neither. One link rather than
+    one per platform: three links with three different names and one shared destination
+    read as three different places to anyone who tabs or listens through them.
   {%- endcomment -%}
   {%- if released %}
+  {%- comment -%} Platform names for the release line, derived from the same three URLs as the buttons. {%- endcomment -%}
+  {%- assign plat_names = "" -%}
+  {%- if url_macos != "" %}{% assign plat_names = plat_names | append: "macOS," %}{% endif -%}
+  {%- if url_windows != "" %}{% assign plat_names = plat_names | append: "Windows," %}{% endif -%}
+  {%- if url_linux != "" %}{% assign plat_names = plat_names | append: "Linux," %}{% endif -%}
   <p class="dl-top">
-    <span class="dl-top-label">Version {{ ver }} &middot; Free download</span>
-    {%- if url_macos != "" %}<a href="{{ url_macos }}" download>macOS</a>{% endif -%}
-    {%- if url_windows != "" %}<a href="{{ url_windows }}" download>Windows</a>{% endif -%}
-    {%- if url_linux != "" %}<a href="{{ url_linux }}" download>Linux</a>{% endif -%}
+    <span class="dl-top-label">Version {{ ver }} &middot; {{ plat_names | split: "," | join: " &middot; " }}</span>
+    <a href="#download">Free download &darr;</a>
   </p>
   {%- else %}
   <p class="dl-top"><span class="dl-top-label">macOS &middot; Windows &middot; Linux &middot; coming soon</span></p>

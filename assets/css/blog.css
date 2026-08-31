@@ -245,7 +245,9 @@ blockquote p{margin:.3em 0}
 .notice-rule{width:54px; border-top:2px solid var(--gold); margin:16px auto 0}
 /* Release line — the masthead's own dateline idiom, set directly under the rule so a shipped
    build is visible on arrival instead of 4,800px down the page. Not a hero CTA: no button,
-   no panel, just the edition's stand-first for the software. */
+   no panel, just the edition's stand-first for the software. Its one link jumps to #download
+   rather than fetching a file, so the reader lands on the buttons with the architecture and
+   the first-run notes beside them. */
 .dl-top{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:4px 15px;
   margin:17px 0 0; font:700 11px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase;
   font-variant-numeric:tabular-nums lining-nums}
@@ -261,7 +263,9 @@ blockquote p{margin:.3em 0}
 .dash-close strong{font-style:normal; color:var(--ink)}
 
 /* download block — three platform buttons (active link or "Coming soon" state) */
-.dl{margin:34px 0 6px; text-align:center}
+/* scroll-margin: the release line up top jumps here, and without it the section label sits
+   flush against the viewport edge on arrival. */
+.dl{margin:34px 0 6px; text-align:center; scroll-margin-top:28px}
 .dl-label{display:block; font:700 11px/1.3 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); margin-bottom:15px}
 .dl-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:440px; margin:0 auto}
 .dl-btn{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; padding:18px 10px 15px; border:1px solid var(--rule); border-radius:12px; background:var(--card); color:var(--ink); text-decoration:none; transition:border-color .14s, box-shadow .14s, transform .04s}
