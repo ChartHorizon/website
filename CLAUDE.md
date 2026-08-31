@@ -190,7 +190,7 @@ outbound links stay support/social only.
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.2.1 — macOS and Windows; Linux is still `"soon"`.**
+  (see the comment block at the top of the file). **Live at v1.2.2 — macOS and Windows; Linux is still `"soon"`.**
   **The installers are hosted on Cloudflare R2, not in this repo and not on GitHub**, at
   `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
   which the account flag turned into three 404s for every logged-out visitor — the page sat at
@@ -202,10 +202,25 @@ outbound links stay support/social only.
   pointing at objects that do not exist yet.
   Note `dashboard/tools/download-stats.py` counts *GitHub* release downloads and therefore stops
   seeing new ones; R2 has its own metrics in the Cloudflare dashboard.
-  Two download affordances: a `.dl-top` release line set as dateline furniture directly under
-  the masthead rule (above the fold — the page is ~5,300px and the foot is a fine place to *end*
-  but a poor place to be the only one), and the full `.dl` platform block with first-run notes at
-  `#download`. Editorial broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads`
+  One download affordance, reachable from two places: the full `.dl` platform block at
+  `#download`, and a `.dl-top` release line set as dateline furniture directly under the masthead
+  rule that **jumps to it** (above the fold — the page is ~5,300px and the foot is a fine place to
+  *end* but a poor place to be the only one). That line used to start the file itself and no
+  longer does: the buttons carry the architecture each build is and the first-run notes for an
+  unsigned one, and a reader who downloaded from up top arrived at neither. It is **one** link,
+  not one per platform — three links with three names and one destination read as three different
+  places to anyone tabbing or listening through them — with the platform names moved into the
+  label beside it, derived from the same three URLs as the buttons.
+  Each live button carries a `.dl-arch` line under its version (**macOS = Apple Silicon**, the dmg
+  being arm64-only; **Windows = 64-bit (x64)**; Linux would be x86_64). The labels are hardcoded,
+  not derived — a universal2 dmg or an arm64 exe would turn one into a lie — and coming-soon
+  buttons deliberately carry none, so `.dl-btn` needs `justify-content:center` to keep the shorter
+  card balanced. Note the Windows *setup* stub reports 32-bit (`file` says PE32/i386) as every
+  Inno stub does; the payload is the x64 freeze, verified upstream by PE machine field `8664` on
+  `dist\ChartHorizon\ChartHorizon.exe`, never on the `…-Windows-Setup.exe`.
+  The `.dl-firstrun` disclosure is a card at `.dl-grid`'s own 440px so it lines up under the
+  buttons as their fourth element rather than reading as a footnote; it stays collapsed by
+  default. Editorial broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads`
   chip strip of the four/five signals), reusing `.fx-chips`. Contact is X-only (`@ChartHorizon`) —
   no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
   Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
