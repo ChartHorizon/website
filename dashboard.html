@@ -25,6 +25,13 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #    full URL  → explicit override (host elsewhere, or a differently-named asset)
 #    "soon"    → hold this platform at "Coming soon" even though a version is set
 #  Leaving dl_version empty keeps every platform at "Coming soon".
+#
+#  ARCHITECTURE is hardcoded in the .dl-arch line of each live button, not derived:
+#  macOS "Apple Silicon" (PyInstaller freezes the host arch and the dmg is built on an
+#  arm64 Mac — an Intel Mac cannot run it), Windows "64-bit (x64)" (the Inno stub is a
+#  32-bit Delphi loader, as every Inno stub is; the payload is the x64 freeze), Linux
+#  "x86_64". Change these the day a build's target changes — a universal2 dmg or an
+#  arm64 Windows exe would make the label a lie, and the label is why a reader clicks.
 # ─────────────────────────────────────────────────────────────────────────────
 #  Hosting moved off GitHub Releases on 2026-08-21. The account is flagged, so every
 #  …/releases/download/v1.1.3/… URL 404s for logged-out visitors — which is every
@@ -187,19 +194,19 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
   <span class="dl-label">Download the board</span>
   <div class="dl-grid">
     {%- if url_macos != "" -%}
-    <a class="dl-btn" href="{{ url_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
+    <a class="dl-btn" href="{{ url_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">Apple Silicon</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
     {%- if url_windows != "" -%}
-    <a class="dl-btn" href="{{ url_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
+    <a class="dl-btn" href="{{ url_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">64-bit (x64)</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
     {%- if url_linux != "" -%}
-    <a class="dl-btn" href="{{ url_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span></a>
+    <a class="dl-btn" href="{{ url_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">x86_64</span></a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
