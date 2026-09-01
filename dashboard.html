@@ -67,6 +67,20 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #  it. No behaviour change; both platforms were rebuilt so one version number keeps
 #  meaning one code state.
 #
+#  1.2.3 (2026-09-01) is a patch cut from a Windows field report: a refresh killed
+#  mid-run — a closed console window, a reboot, a machine that ran out of memory — could
+#  leave the app unable to start at all. Two halves, both fixed. Every payload the
+#  generator writes is atomic now (temp file, fsync, replace), so config.js can no longer
+#  be caught half-written; and an incomplete one left behind by an older build is now
+#  detected and rebuilt rather than trusted, which turns a dead installation into a
+#  self-repairing start. The other half is the process-liveness probe behind refresh.lock,
+#  which no longer uses os.kill on Windows: there signal 0 is CTRL_C_EVENT, not a
+#  question, so a stale lock could never expire and the app could not run the very
+#  refresh that would have repaired it. It ships with the same week's chart work — one
+#  candle painter (Black on White drew as a solid black mass), the COT bars moved onto
+#  the time axis, a cold start that waits for the opening market instead of all
+#  thirty-nine, and a layout that fits the window it is in.
+#
 #  WINDOWS IS LIVE SINCE 1.2.1, built by hand in a Parallels Windows-11-ARM VM with an
 #  emulated x64 Python (PyInstaller freezes whatever interpreter it runs under). The VM
 #  builds from its own copy of the source, NOT a live share: pull the release commit over
@@ -78,8 +92,8 @@ description: "A free, local-first futures charting dashboard for macOS, Windows 
 #  deliberately NOT linked, because it carries both the stale spread pane the original
 #  hold was about and the old four-signal score. Pointing dl_linux back at 1.1.3 would
 #  undo the whole point. To finish: build there, upload with
-#  ops/website-installers.sh 1.2.2 --from-dir <dir> --only linux, then clear its "soon".
-dl_version: "1.2.2"     # release number WITHOUT the leading "v"
+#  ops/website-installers.sh 1.2.3 --from-dir <dir> --only linux, then clear its "soon".
+dl_version: "1.2.3"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
 dl_linux: "soon"        # not built yet — see the note above
