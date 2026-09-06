@@ -256,7 +256,12 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   origin + the two Cloudflare beacon hosts, nothing else) and `privacy.html` needs no change.
   Keep it that way — an embedded player would make §3/§6 wrong, the same trap `videos.yml`
   documents for the cover's "On video" card.
-  **Paid links, since 2026-09-06.** `affiliate: true` on a *section* marks every item in it —
+  **Paid links, since 2026-09-06.** The paid section ("The desk's shelf", three Amazon books)
+  sits **first in the file and renders as a plate** — a commercial decision by the operator,
+  not an editorial ranking, which is why the page says so in as many words (see the standing
+  paragraphs below). `affiliate: true` and `featured: true` are **separate flags on purpose**:
+  a section can be paid without being promoted, and the legal disclosure must never depend on
+  the decoration. `affiliate: true` on a *section* marks every item in it —
   section-level so it cannot be forgotten on one entry. Two things follow and neither is
   styling: an "Affiliate link" chip prints **at the link**, because § 5a Abs. 4 UWG wants the
   commercial purpose recognisable there and not only in a note further up; and the link gains
@@ -273,10 +278,14 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   has to be `charthorizon-20`. One of the three links supplied on 2026-09-06 carried
   `elevati09-20` — copied from someone else's page, so it would have paid a stranger; it sits
   commented out in `resources.yml` until it is re-generated.
-  The two standing paragraphs at the top are load-bearing: the first says none of it is the
-  desk's work, the second says some links are paid and that nothing is listed because it pays.
-  The original single paragraph said flatly that nothing here was an endorsement, which a
-  commission makes untrue — that is why there are two. Keep them if you add to the file.
+  The two standing paragraphs at the top are load-bearing and were rewritten twice the same
+  day: the first says none of it is the desk's work; the second says which links are paid and
+  states outright that **the shelf leads the page because it pays**. The original single
+  paragraph said flatly that nothing here was an endorsement, which a commission makes untrue;
+  the first rewrite then claimed "nothing is on this page because it pays", which the promotion
+  to first position made untrue in turn. Both are the same failure — copy that outlived the
+  arrangement it described. If the commercial arrangement changes again, this paragraph is the
+  first thing to check.
   Adding this fifth nav tab is also what forced `white-space:nowrap` on `.dateline .site-nav a`
   plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
   without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of

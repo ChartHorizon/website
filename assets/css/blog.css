@@ -219,6 +219,18 @@ blockquote p{margin:.3em 0}
    signal (Positioning, Hedging program, …) instead of an edition — that is the whole
    editorial point of the page, so it sits where the eye already looks for a label. */
 .res-standing{max-width:var(--measure); color:var(--muted); margin:1.1em 0 0}
+/* A promoted section: set as a plate so it reads as its own shelf rather than as the first
+   run of an undifferentiated list. Used for the paid section, which is why the disclosure
+   chip on each entry is a SEPARATE flag in the data — decoration must never be what carries
+   a legal notice. The plate supplies the boundary, so the h2 gives up its own rule and gold
+   tick here — the plate edge is the section opener now. */
+.res-section--featured{margin:30px 0 0; padding:20px 26px 26px; border:1px solid var(--rule);
+  border-radius:12px; background:var(--card); box-shadow:0 1px 14px rgba(var(--shadow-tint),.07)}
+.res-section--featured > h2{margin:0; padding-top:0; border-top:none; font-size:27px}
+.res-section--featured > h2::before{content:none}
+.res-section--featured .res-title{font-size:23px}
+.res-section--featured .res-item:first-child{border-top-color:var(--rule-strong)}
+@media (max-width:560px){ .res-section--featured{padding:18px 16px 20px} }
 .res-standing a{color:var(--gold-ink)}
 .res-note{max-width:var(--measure); font:14px/1.55 var(--sans); color:var(--muted); margin:.5em 0 0}
 .res-list{list-style:none; padding:0; margin:14px 0 0}

@@ -35,6 +35,45 @@
 # NOTHING HERE IS THE DESK'S OWN WORK and none of it is an endorsement — the page says
 # so once, in print, at the top. Keep that line if you add to this file.
 
+- section: The desk's shelf
+  # Section-level, so it cannot be forgotten on an individual entry.
+  affiliate: true
+  # Renders as a plate rather than as a plain run, and sits first in this file. Both are
+  # commercial decisions, taken 2026-09-06 and stated as such in the second standing
+  # paragraph on the page — a highlighted paid section that presents itself as editorial
+  # ranking is the thing § 5a Abs. 4 UWG is actually about. The chip stays at every link.
+  featured: true
+  note: >-
+    Three books the desk actually works from. All three are affiliate links: buy through
+    one and this desk earns a commission, at no extra cost to you. As an Amazon Associate
+    I earn from qualifying purchases.
+  items:
+    - title: "Trade Stocks and Commodities with the Insiders: Secrets of the COT Report"
+      byline: Larry Williams
+      url: https://amzn.to/3UHuETS
+      source: "Wiley Trading"
+      signal: Hedging program
+      topics:
+        - The COT report read as the commercials' book
+        - Where the commercial net sits inside its own range
+
+    - title: "Intermarket Analysis: Profiting from Global Market Relationships"
+      byline: John J. Murphy
+      url: https://amzn.to/3SVc1eH
+      source: "Wiley Trading"
+      topics:
+        - How bonds, the dollar, commodities and equities lean on each other
+
+    # Re-issued 2026-09-06: the first short link for this ASIN carried `tag=elevati09-20`,
+    # somebody else's Associates tag, and was held back until this one arrived.
+    - title: "How I Made $1,000,000 Trading Commodities Last Year"
+      byline: Larry R. Williams
+      url: https://amzn.to/4xF98h0
+      source: "Windsor Books"
+      signal: Positioning
+      topics:
+        - The seasonal and positioning work the later COT book grew out of
+
 - section: On video
   # Says "on YouTube" in words on purpose: the ↗ on each headline is the only other
   # marker that these links leave the site, and an arrow is a hint, not a sentence.
@@ -77,38 +116,3 @@
       signal: Rate bias
       topics:
         - Interest-rate differentials between the majors
-
-- section: In print
-  # Section-level, so it cannot be forgotten on an individual entry.
-  affiliate: true
-  note: >-
-    These are affiliate links: buy through one and this desk earns a commission,
-    at no extra cost to you. As an Amazon Associate I earn from qualifying purchases.
-    Nothing was put on this page because it pays.
-  items:
-    - title: "Trade Stocks and Commodities with the Insiders: Secrets of the COT Report"
-      byline: Larry Williams
-      url: https://amzn.to/3UHuETS
-      source: "Wiley Trading"
-      signal: Hedging program
-      topics:
-        - The COT report read as the commercials' book
-        - Where the commercial net sits inside its own range
-
-    - title: "Intermarket Analysis: Profiting from Global Market Relationships"
-      byline: John J. Murphy
-      url: https://amzn.to/3SVc1eH
-      source: "Wiley Trading"
-      topics:
-        - How bonds, the dollar, commodities and equities lean on each other
-
-    # HELD BACK 2026-09-06 — Larry Williams, "How I Made $1,000,000 Trading Commodities
-    # Last Year" (ASIN 0930233107). The short link supplied resolves with `tag=elevati09-20`,
-    # which is somebody else's Associates tag: publishing it would send the commission to a
-    # stranger. Re-generate it from this desk's own Associates account (the tag must read
-    # charthorizon-20, like the two above), then uncomment and fill in the url.
-    # - title: "How I Made $1,000,000 Trading Commodities Last Year"
-    #   byline: Larry R. Williams
-    #   url: https://amzn.to/REPLACE-ME
-    #   source: "Windsor Books"
-    #   signal: Positioning
