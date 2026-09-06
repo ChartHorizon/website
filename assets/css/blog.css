@@ -223,7 +223,14 @@ blockquote p{margin:.3em 0}
 .res-note{max-width:var(--measure); font:14px/1.55 var(--sans); color:var(--muted); margin:.5em 0 0}
 .res-list{list-style:none; padding:0; margin:14px 0 0}
 .res-item{padding:16px 0; border-top:1px solid var(--rule)}
+/* Paid-link disclosure. Muted and outlined, never gold: gold is the slot the desk's own
+   signal sits in, and a disclosure wearing the accent colour reads as a recommendation.
+   Sits in the dateline row, so it is AT the link — § 5a Abs. 4 UWG wants the commercial
+   purpose recognisable there, not only in the section note above it. */
+.res-ad{display:inline-block; margin-left:9px; padding:2px 7px; border:1px solid var(--rule);
+  border-radius:999px; background:var(--quote-bg); color:var(--muted); font-weight:600; letter-spacing:.08em}
 .res-title{font:600 21px/1.28 var(--serif); letter-spacing:-.15px; margin:5px 0 0; text-wrap:balance}
+.res-byline{font:italic 400 16px/1.4 var(--serif); color:var(--muted); margin:3px 0 0}
 .res-title a{color:var(--ink); border:none}
 .res-title a:hover{color:var(--gold-ink)}
 /* Off-site marker on the one link each item has. Decorative and aria-hidden: the arrow is

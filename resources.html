@@ -8,12 +8,20 @@ description: "Outside viewing behind ChartHorizon's three-signal read: open inte
 {%- comment -%}
   The reading room. Everything on this page comes from _data/resources.yml — sections in
   file order, items in file order — so adding material is a YAML entry and nothing else.
-  Two fields are optional and the markup below is written for their absence: `signal`
-  (the desk's own light the piece speaks to) and `topics` (what to take from it).
+  Three fields are optional and the markup below is written for their absence: `signal`
+  (the desk's own light the piece speaks to), `byline` (an author, which books have and
+  videos do not) and `topics` (what to take from it).
 
   ONE LINK PER ITEM, the headline. A second "watch it here" link under the same headline
   would be two names for one destination, which reads as two places to anyone tabbing or
   listening through the page — the same rule the download line on /dashboard/ follows.
+
+  PAID LINKS: `affiliate: true` on a section marks every item in it. Two things follow and
+  neither is decoration. The chip prints AT the link, because § 5a Abs. 4 UWG wants the
+  commercial purpose recognisable there and not only in the note above; and rel gains
+  `sponsored nofollow`, which is Google's requirement for a paid link. The chip is
+  deliberately NOT gold: gold is the slot the desk's own signal sits in, and a disclosure
+  that borrows the accent colour reads as a recommendation.
 {%- endcomment -%}
 
 <div class="notice-head">
@@ -22,13 +30,21 @@ description: "Outside viewing behind ChartHorizon's three-signal read: open inte
   <p class="dek">Where to learn the mechanics this desk reads — from people who are not this desk.</p>
 </div>
 
-<p class="res-standing">None of this is ChartHorizon's work and none of it is an endorsement.
-It is listed because it explains, better than a paragraph here could, what sits behind the
-signals the <a href="{{ '/about/' | relative_url }}">three-signal read</a> runs on: what open
-interest is doing when price is doing nothing, how a commercial hedging program actually
-behaves, and what a spread chart tells you that a price chart does not. Take the mechanics
-and check them against your own screen — the standing rule on this page as everywhere else
-on the site.</p>
+<p class="res-standing">None of this is ChartHorizon's work. It is listed because it
+explains, better than a paragraph here could, what sits behind the signals the
+<a href="{{ '/about/' | relative_url }}">three-signal read</a> runs on: what open interest is
+doing when price is doing nothing, how a commercial hedging program actually behaves, and
+what a spread chart tells you that a price chart does not.</p>
+
+{%- comment -%}
+  This second paragraph appeared with the first paid links (2026-09-06). The original said
+  flatly that nothing here was an endorsement, which a commission makes untrue — so it says
+  what is actually the case instead, above the fold and before the first link.
+{%- endcomment -%}
+<p class="res-standing">Some of the links are paid, and each one says so where it sits. The
+desk earns a commission if you buy through one; the price you pay is the same either way;
+and nothing is on this page because it pays. Take the mechanics and check them against your
+own screen — the standing rule here as everywhere else on the site.</p>
 
 {% for section in site.data.resources %}
 <section class="res-section">
@@ -43,10 +59,14 @@ on the site.</p>
       <p class="post-dateline">
         {%- if item.signal %}<span class="post-edition">{{ item.signal }}</span><span class="sep"> · </span>{% endif -%}
         <span class="post-date">{{ item.source }}</span>
+        {%- if section.affiliate %}<span class="res-ad">Affiliate link</span>{% endif -%}
       </p>
       <h3 class="res-title">
-        <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}<span class="res-ext" aria-hidden="true">↗</span></a>
+        <a href="{{ item.url }}" target="_blank" rel="{% if section.affiliate %}sponsored nofollow {% endif %}noopener">{{ item.title }}<span class="res-ext" aria-hidden="true">↗</span></a>
       </h3>
+      {%- if item.byline %}
+      <p class="res-byline">{{ item.byline }}</p>
+      {%- endif %}
       {%- if item.topics %}
       <ul class="res-topics">
         {%- for topic in item.topics %}

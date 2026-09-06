@@ -256,8 +256,27 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   origin + the two Cloudflare beacon hosts, nothing else) and `privacy.html` needs no change.
   Keep it that way — an embedded player would make §3/§6 wrong, the same trap `videos.yml`
   documents for the cover's "On video" card.
-  The standing paragraph at the top says in print that none of it is the desk's work and none
-  of it is an endorsement. Keep that line if you add to the file.
+  **Paid links, since 2026-09-06.** `affiliate: true` on a *section* marks every item in it —
+  section-level so it cannot be forgotten on one entry. Two things follow and neither is
+  styling: an "Affiliate link" chip prints **at the link**, because § 5a Abs. 4 UWG wants the
+  commercial purpose recognisable there and not only in a note further up; and the link gains
+  `rel="sponsored nofollow"`, which is Google's requirement for a paid link (without it the
+  site is running undisclosed paid links and risks a manual action). Such a section's `note`
+  must carry the Amazon Associates sentence **verbatim** — "As an Amazon Associate I earn from
+  qualifying purchases." — which the Operating Agreement prescribes; do not paraphrase it. The
+  chip is deliberately **not** gold: gold is the slot the desk's own signal sits in, and a
+  disclosure wearing the accent colour reads as a recommendation. Its tone is `--muted`, not
+  `--muted-2`, which measured exactly 4.50 on the chip ground — a legal notice does not sit on
+  the AA floor.
+  **Check the Associates tag before adding an Amazon link**: resolve the short link and read
+  `tag=` out of the destination (`curl -sSI https://amzn.to/<id> | grep -io 'tag=[^&]*'`). It
+  has to be `charthorizon-20`. One of the three links supplied on 2026-09-06 carried
+  `elevati09-20` — copied from someone else's page, so it would have paid a stranger; it sits
+  commented out in `resources.yml` until it is re-generated.
+  The two standing paragraphs at the top are load-bearing: the first says none of it is the
+  desk's work, the second says some links are paid and that nothing is listed because it pays.
+  The original single paragraph said flatly that nothing here was an endorsement, which a
+  commission makes untrue — that is why there are two. Keep them if you add to the file.
   Adding this fifth nav tab is also what forced `white-space:nowrap` on `.dateline .site-nav a`
   plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
   without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of
