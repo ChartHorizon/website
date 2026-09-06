@@ -1,0 +1,61 @@
+# Resources for /resources/ (resources.html). Grouped into sections so a future
+# section — reading, data sources, tools — is a block here and no template change.
+#
+# Per item:
+#   title   headline, WITHOUT the series prefix (that belongs in `source`)
+#   url     the plain watch/permalink URL. No &list=/&index= params: they pin the link
+#           to one playlist position, which shifts when the uploader reorders the run.
+#           Link the series once, in the section `note`, if it is worth having.
+#   source  where it comes from — shown as dateline furniture, so keep it short
+#   signal  OPTIONAL. Which of the desk's own lights the piece speaks to
+#           (Season · Positioning · Hedging program · Term structure · Rate bias),
+#           so outside material lands somewhere in the method rather than in a heap.
+#           Leave it off when nothing fits — the template just drops the label.
+#   topics  OPTIONAL. What to take from it. OMIT when the only topic would restate
+#           the title; a bullet that repeats the headline above it reads as a bug.
+#
+# NOTHING HERE IS THE DESK'S OWN WORK and none of it is an endorsement — the page says
+# so once, in print, at the top. Keep that line if you add to this file.
+
+- section: On video
+  # Says "on YouTube" in words on purpose: the ↗ on each headline is the only other
+  # marker that these links leave the site, and an arrow is a hint, not a sentence.
+  note: >-
+    All five open on YouTube. Four sit in one mentorship run; the last is from a
+    separate FX series.
+  items:
+    - title: "Open Interest Secrets & Smart Money Footprints"
+      url: https://www.youtube.com/watch?v=qRYkTWePXF0
+      source: "ICT Mentorship Core Content, Month 10"
+      signal: Positioning
+      topics:
+        - Using open interest in consolidations
+        - The open-interest seasonal average
+        - Open interest at technical levels
+
+    - title: "Commitment of Traders"
+      url: https://www.youtube.com/watch?v=9H4iaaQXV5Y
+      source: "ICT Mentorship Core Content, Month 10"
+      signal: Hedging program
+      topics:
+        - How the commercials' hedging programs read
+        - When to ignore a hedging program
+
+    - title: "Premium vs. Carrying Charge Market"
+      url: https://www.youtube.com/watch?v=WsolkBzpDOQ
+      source: "ICT Mentorship Core Content, Month 10"
+      signal: Term structure
+      topics:
+        - Premium markets against carrying-charge markets
+        - Spread charts as “the real RSI”
+
+    - title: "Importance of Multi-Asset Analysis"
+      url: https://www.youtube.com/watch?v=gs3KMgz84yc
+      source: "ICT Mentorship Core Content, Month 10"
+
+    - title: "Market Maker Series, Vol. 1 of 5"
+      url: https://www.youtube.com/watch?v=Vh0NtdPPj1M
+      source: "ICT Forex"
+      signal: Rate bias
+      topics:
+        - Interest-rate differentials between the majors

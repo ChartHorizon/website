@@ -1,0 +1,73 @@
+---
+layout: default
+permalink: /resources/
+title: Resources
+seo_title: "Resources — Open Interest, COT Hedging Programs and Term Structure Explained"
+description: "Outside viewing behind ChartHorizon's three-signal read: open interest, the commercials' hedging programs, premium against carrying-charge markets, and interest-rate differentials."
+---
+{%- comment -%}
+  The reading room. Everything on this page comes from _data/resources.yml — sections in
+  file order, items in file order — so adding material is a YAML entry and nothing else.
+  Two fields are optional and the markup below is written for their absence: `signal`
+  (the desk's own light the piece speaks to) and `topics` (what to take from it).
+
+  ONE LINK PER ITEM, the headline. A second "watch it here" link under the same headline
+  would be two names for one destination, which reads as two places to anyone tabbing or
+  listening through the page — the same rule the download line on /dashboard/ follows.
+{%- endcomment -%}
+
+<div class="notice-head">
+  <p class="kicker">The Reading Room</p>
+  <h1>Resources</h1>
+  <p class="dek">Where to learn the mechanics this desk reads — from people who are not this desk.</p>
+</div>
+
+<p class="res-standing">None of this is ChartHorizon's work and none of it is an endorsement.
+It is listed because it explains, better than a paragraph here could, what sits behind the
+signals the <a href="{{ '/about/' | relative_url }}">three-signal read</a> runs on: what open
+interest is doing when price is doing nothing, how a commercial hedging program actually
+behaves, and what a spread chart tells you that a price chart does not. Take the mechanics
+and check them against your own screen — the standing rule on this page as everywhere else
+on the site.</p>
+
+{% for section in site.data.resources %}
+<section class="res-section">
+  <h2>{{ section.section }}</h2>
+  {%- if section.note %}
+  <p class="res-note">{{ section.note }}</p>
+  {%- endif %}
+
+  <ul class="res-list">
+    {%- for item in section.items %}
+    <li class="res-item">
+      <p class="post-dateline">
+        {%- if item.signal %}<span class="post-edition">{{ item.signal }}</span><span class="sep"> · </span>{% endif -%}
+        <span class="post-date">{{ item.source }}</span>
+      </p>
+      <h3 class="res-title">
+        <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}<span class="res-ext" aria-hidden="true">↗</span></a>
+      </h3>
+      {%- if item.topics %}
+      <ul class="res-topics">
+        {%- for topic in item.topics %}
+        <li>{{ topic }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+<div class="res-close">
+  {%- comment -%}
+    The rule is on the wrapper and the measure on the paragraph inside it, so the closing
+    rule runs the full sheet like the hairlines between the entries above. Put both on one
+    element and the rule stops at the text column, which reads as a rule that broke.
+  {%- endcomment -%}
+  <p>More will be added here as it earns the space. The desk's own output is on
+  <a href="{{ '/' | relative_url }}">the front page</a>, in the
+  <a href="{{ '/ledger/' | relative_url }}">Hedgers' Ledger</a>, and on the
+  <a href="{{ '/fx/' | relative_url }}">FX Map</a>.</p>
+</div>

@@ -29,7 +29,10 @@ repo is **public**, so the site must **not** expose the dashboard's **source** �
 its private repo or code. The dashboard *product* is positioned as a downloadable
 **local-first app** (installs on your machine, runs in your browser): the `/dashboard/` page
 may describe it and, once ready, offer the installer/download here. Apart from that download,
-outbound links stay support/social only.
+outbound links stay support/social only — with one further exception since 2026-09-06:
+**`/resources/` links out to third-party educational material** (see the `resources.html`
+bullet under "Architecture"). That is a reading list, not a change to the constraint: the rule
+is about never exposing the dashboard's *source*, which nothing on that page does.
 
 > History: this repo started as a standalone dark marketing landing page. It was converted
 > into the blog and the old landing page was retired; the homepage became a plain post list,
@@ -108,7 +111,7 @@ outbound links stay support/social only.
   **broadsheet masthead** (inline horizon SVG mark + `CHARTHORIZON` wordmark + a
   `The Weekly Tape · Futures Desk` sub-line, closed by a 3px double rule, then a dateline row —
   nav **The Tape** (home) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
-  **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
+  **Resources** (`/resources/`) / **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
   Impressum/Datenschutz links). A page widens to 1080px by setting `wide: true` in its front
   matter — today only `index.html` does. The layout puts `wide-page` on `<body>` and `wide` on
   `<main>`; the 760px cap lives on `body` (`assets/css/blog.css`), not on a wrapper, so a class
@@ -233,6 +236,32 @@ outbound links stay support/social only.
   shoots both editions from one session at one viewport and refuses to finish if the pair comes
   out at different pixel sizes, because the page swaps between them on a click and any drift in
   data or framing reads as a jump. Never hand-replace one edition on its own.
+- **`resources.html`** (`/resources/`, the **Resources** tab) — "The Reading Room": outside
+  material that explains the mechanics behind the desk's signals, added 2026-09-06. `default`
+  layout, normal indexed page, `CollectionPage` JSON-LD branch in `default.html`.
+  **All content comes from `_data/resources.yml`** — sections in file order, items in file
+  order — so adding a resource is a YAML entry and no template change; that file's header
+  comment documents every field. Two are optional and the template is written for their
+  absence: `signal` (which of the desk's own lights the piece speaks to — Positioning,
+  Hedging program, Term structure, Rate bias — rendered in the gold slot of the same
+  `.post-dateline` furniture the index and `/archive/` use, so an off-site link still reads
+  as an entry in this paper) and `topics` (**omit it when the only topic would restate the
+  title**; a bullet repeating the headline above it reads as a bug — `Importance of
+  Multi-Asset Analysis` is the live example).
+  **One link per item, the headline**, carrying a decorative `aria-hidden` `↗` — the same
+  rule as `/dashboard/`'s download line: a second "watch it here" under the same headline is
+  two names for one destination. That the links go to YouTube is said in *words*, in the
+  section note, because an arrow is a hint and not a sentence.
+  **Nothing here is embedded**, so the page still makes zero third-party requests (verified:
+  origin + the two Cloudflare beacon hosts, nothing else) and `privacy.html` needs no change.
+  Keep it that way — an embedded player would make §3/§6 wrong, the same trap `videos.yml`
+  documents for the cover's "On video" card.
+  The standing paragraph at the top says in print that none of it is the desk's work and none
+  of it is an endorsement. Keep that line if you add to the file.
+  Adding this fifth nav tab is also what forced `white-space:nowrap` on `.dateline .site-nav a`
+  plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
+  without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of
+  moving a whole tab to a second line.
 - **`archive.html`** (`/archive/`) — every post grouped by year, with the same edition dateline as
   the index. Indexed, in the sitemap. **`404.html`** — broadsheet not-found page (`noindex`,
   `sitemap: false`); without it GitHub Pages serves its own GitHub-branded 404, on a site whose
