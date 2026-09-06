@@ -273,6 +273,12 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   disclosure wearing the accent colour reads as a recommendation. Its tone is `--muted`, not
   `--muted-2`, which measured exactly 4.50 on the chip ground — a legal notice does not sit on
   the AA floor.
+  **Store redirection is Amazon's job, not this site's.** The links point at amazon.com and
+  Amazon's own OneLink forwards visitors to their local marketplace, configured account-side
+  (confirmed by the operator 2026-09-06). **Never embed the OneLink JavaScript widget** as the
+  alternative — it is a third-party script on every page carrying it, and it would break the
+  zero-third-party-request promise and make `privacy.html` §3 wrong for a redirect Amazon
+  already performs for free.
   **Check the Associates tag before adding an Amazon link**: resolve the short link and read
   `tag=` out of the destination (`curl -sSI https://amzn.to/<id> | grep -io 'tag=[^&]*'`). It
   has to be `charthorizon-20`. One of the three links supplied on 2026-09-06 carried

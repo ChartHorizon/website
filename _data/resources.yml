@@ -25,6 +25,15 @@
 # "As an Amazon Associate I earn from qualifying purchases." That wording is prescribed
 # by the Operating Agreement — do not paraphrase it.
 #
+# STORE REDIRECTION IS AMAZON'S JOB, NOT THIS SITE'S. The links point at amazon.com; a
+# visitor in another marketplace is forwarded by Amazon's own OneLink, configured in the
+# operator's Associates account (confirmed by the operator 2026-09-06). So there is nothing
+# to add here — and specifically **do not embed the OneLink JavaScript widget**
+# (z-na.amazon-adsystem.com/widgets/onejs …). That is the other way Amazon offers to do
+# this, it is a third-party script on every page that carries it, and it would break the
+# site's zero-third-party-request promise and make privacy.html §3 wrong. Account-side
+# OneLink costs the page nothing; the widget costs it the whole guarantee.
+#
 # CHECK THE TAG BEFORE ADDING AN AMAZON LINK. Resolve the amzn.to short link and read the
 # `tag=` parameter out of the destination:
 #     curl -sSI https://amzn.to/<id> | grep -io 'tag=[^&]*'
