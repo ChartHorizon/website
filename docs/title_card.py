@@ -68,6 +68,11 @@ MOTIFS = {
     "equities": "thumb-arch-nyse-floor-1920.jpg",
     "macro":    "thumb-arch-exchange-facade-1928.jpg",
     "rates":    "thumb-arch-trading-posts-1922.jpg",
+    # A crowd of traders bidding, hands up. Catalogued as a wheat pit, but nothing
+    # agricultural is visible in the frame and no institution is named on it — which
+    # makes it the one motif that carries "a bid" rather than a market, and the reason
+    # it is registered separately instead of under "grains" (taken by the elevators).
+    "pit":      "thumb-arch-wheat-pit-1920.jpg",
 }
 
 SS = 2                                    # supersample, then downsample once at the end
