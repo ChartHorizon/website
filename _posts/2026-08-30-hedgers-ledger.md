@@ -6,7 +6,7 @@ subtitle: "Weekly COT extremes from the commercial book and the six-month hedgin
 cards: /assets/posts/2026-08-30-hedgers-ledger/cards
 image: /assets/posts/2026-08-30-hedgers-ledger/cards/lean_hogs.png
 image_alt: "Lean Hogs — commercials net positioning"
-seo_title: "COT Extremes: Lean Hogs at Hedger Highs, Corn at a Low — Aug 30, 2026"
+seo_title: "COT: Lean Hogs at Hedger Highs, Corn at a Low — Aug 30, 2026"
 description: "Five markets at three-year positioning extremes in the CFTC report of 25 August 2026 — hedger highs in Lean Hogs, lows in Corn and Sugar #11."
 ---
 
