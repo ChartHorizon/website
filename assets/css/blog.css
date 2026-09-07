@@ -206,6 +206,11 @@ blockquote p{margin:.3em 0}
 
 /* section hubs (/tape/, /ledger/) reuse the archive list, minus the edition label —
    the page IS the edition — so the dateline column only has to clear "Aug 16". */
+/* A hub's standing paragraph: how to read the edition, under the dek. Body ink, not the
+   dek's muted italic — the dek says what the edition IS and this says how it works, and
+   two muted italic blocks in a row read as one long subtitle nobody finishes. */
+.hub-intro{max-width:var(--measure); margin:0 0 1.35em; line-height:1.6}
+.hub-intro a{color:var(--gold-ink)}
 .hub-list .post-dateline{width:6.5rem}
 @media (max-width:560px){ .hub-list .post-dateline{width:auto} }
 /* Standing-in for a hub with no run yet: reads as an editorial note, not as an error. */

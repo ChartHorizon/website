@@ -2,8 +2,16 @@
 layout: default
 permalink: /dashboard/
 title: Dashboard
-seo_title: "Free COT Dashboard & Futures Charting Software — Seasonality, Term Structure"
-description: "A free, local-first futures charting dashboard for macOS, Windows and Linux: candlestick charts with CFTC Commitments of Traders positioning, seasonality, hedging programs and term structure across forty markets. Runs in your browser, no account."
+seo_title: "Free COT Dashboard & Futures Charting Software"
+# jekyll-sitemap takes a page's <lastmod> from this field and nothing else. Set here and
+# NOT on /, /archive/, /tape/, /ledger/ or /fx/: those redraw from posts or from the daily
+# _data/fx.json, so a hand-typed date there is wrong by the next build, and an inaccurate
+# lastmod is ignored outright rather than merely being old. Bump when you edit this page.
+last_modified_at: 2026-09-07
+# NOTE THE PLATFORM LIST. It said "macOS, Windows and Linux" while dl_linux was "soon",
+# which promised a download that does not exist on the one page whose job is the download.
+# Keep it in step with the dl_* switches below.
+description: "A free, local-first futures charting dashboard for macOS and Windows: candlestick charts with CFTC positioning, seasonality and term structure. No account."
 # ─────────────────────────────────────────────────────────────────────────────
 #  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and publish.
 #  That is the ONLY step here. The three platform download URLs are derived

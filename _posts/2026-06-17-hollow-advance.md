@@ -7,8 +7,8 @@ cards: /assets/posts/2026-06-17-hollow-advance/cards
 image: /assets/posts/2026-06-17-hollow-advance/title.jpg
 image_alt: "Title card: an exchange facade in 1928, with the Dow's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
-seo_title: "A Hollow Advance: Divergences at the Stock-Market High — Jun 17, 2026"
-description: "The stock leaders print new highs without the dollar weakness the bull case required, while bond-board and Dow calendar-spread divergences warn of risk-off. A Livermore-voice read of a possible top, June 17, 2026."
+seo_title: "A Hollow Advance: Divergences at the Stock-Market High"
+description: "Stock leaders print new highs without the dollar weakness the bull case required, while bond-board and Dow calendar-spread divergences warn of risk-off."
 ---
 Last week I leaned with the wind and said so plainly. The dollar had run up to the 100 wall and
 stalled, sterling had turned up against it, and the stock leaders were only reacting inside an

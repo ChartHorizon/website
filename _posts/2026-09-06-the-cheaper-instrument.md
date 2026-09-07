@@ -6,8 +6,8 @@ subtitle: "Prices through 4 September 2026 · COT through the 1 September report
 cards: /assets/posts/2026-09-06-the-cheaper-instrument/cards
 image: /assets/posts/2026-09-06-the-cheaper-instrument/title.jpg
 image_alt: "Title card: a crowd of traders bidding in a 1920 pit, with the summer's dollar-yen price action drawn across it"
-seo_title: "Japan's Record ¥15.39tn Yen Intervention Bought Nothing — the BOJ Rate Bet Bought 2 Per Cent, Sep 6, 2026"
-description: "Tokyo spent ¥15.39 trillion between 30 July and 26 August, the largest month of yen buying ever recorded. On 2 September the dollar closed eight sen weaker than it had on the night of the first strike. On 3 September the yen gained 2.18 per cent in a session with no official money behind it at all — and the commercial hedgers had doubled their long two days before it happened."
+seo_title: "Japan's ¥15.39tn Yen Intervention Bought Nothing"
+description: "Tokyo spent ¥15.39 trillion in a month, the largest ever recorded. On 3 September the yen gained 2.18 per cent with no official money behind it."
 ---
 
 There are two ways for a government to buy its own currency. It can buy the currency, or it can

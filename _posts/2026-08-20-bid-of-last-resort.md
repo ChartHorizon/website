@@ -6,8 +6,8 @@ subtitle: "Prices through 19 August 2026 · COT through the 11 August report · 
 cards: /assets/posts/2026-08-20-bid-of-last-resort/cards
 image: /assets/posts/2026-08-20-bid-of-last-resort/title.jpg
 image_alt: "Title card: the trading posts of 1922, with the 30-year Treasury bond's price action drawn across them"
-seo_title: "Treasury Doubles Long-Bond Buybacks — And the Hedgers Were Long Eight Days Early, Aug 20, 2026"
-description: "On Tuesday the 30-year yield touched 5.33 per cent, the highest since 2007. On Wednesday the Treasury doubled its long-bond buybacks and the bond had its largest up day of the year. The commercial book had been at the 92nd percentile long since the 11 August report — and the whole operation is 0.14 per cent of the paper it is meant to support."
+seo_title: "Treasury Doubles Long-Bond Buybacks, Hedgers Long First"
+description: "The 30-year yield touched 5.33 per cent, its highest since 2007, and the Treasury doubled its buybacks. The hedgers had been long since 11 August."
 ---
 
 On Tuesday, 18 August, the yield on the thirty-year Treasury bond touched 5.33 per cent — the

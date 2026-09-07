@@ -120,9 +120,19 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }}{% if page.last_modified_at %},"dateModified":"{{ page.last_modified_at | date_to_xmlschema }}"{% endif %},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}},"mainEntity":{"@type":"ItemList","numberOfItems":{{ res_items.size }},"itemListElement":[{% for res_item in res_items %}{"@type":"ListItem","position":{{ forloop.index }},"name":{{ res_item.title | jsonify }},"url":{{ res_item.url | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}
 </script>
-{%- elsif page.url == '/dashboard/' %}
+{%- elsif page.url == '/dashboard/' or page.url == '/fx/' %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}}}
+{"@context":"https://schema.org","@type":"WebPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }}{% if page.last_modified_at %},"dateModified":"{{ page.last_modified_at | date_to_xmlschema }}"{% endif %},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}}}
+</script>
+{%- elsif page.url == '/archive/' or page.url == '/tape/' or page.url == '/ledger/' %}
+{%- comment -%}
+  The three list pages. CollectionPage and nothing more: each one is a run of posts that
+  already carry their own BlogPosting markup and are linked normally, so an ItemList here
+  would only restate what the crawler has. /resources/ gets one because its entries are
+  off-site and exist nowhere else on this domain — that is the difference, not page type.
+{%- endcomment -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}}}
 </script>
 {%- endif %}
 </head>

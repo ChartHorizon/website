@@ -7,8 +7,8 @@ cards: /assets/posts/2026-06-09-weekly-tape/cards
 image: /assets/posts/2026-06-09-weekly-tape/title.jpg
 image_alt: "Title card: an exchange facade in 1928, with the week's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
-seo_title: "Grain Futures Weekly: Corn, Soybeans & Wheat Turn Bearish — Jun 9, 2026"
-description: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT positioning, hedging and term structure align — weekly grain futures notes, June 9, 2026."
+seo_title: "Grain Futures Turn Bearish: Corn, Soybeans, Wheat"
+description: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT positioning, hedging and term structure align. Weekly grain futures notes."
 ---
 The grain complex went over to one side of the boat this week. Corn, soybeans, and Chicago
 wheat — the three sisters the country watches as one — each show the full hand: the season, the

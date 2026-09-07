@@ -6,8 +6,8 @@ subtitle: "Prices through 26 August 2026 · COT through the 18 August report · 
 cards: /assets/posts/2026-08-27-priced-in-dollars/cards
 image: /assets/posts/2026-08-27-priced-in-dollars/title.jpg
 image_alt: "Title card: grain elevators, with Chicago wheat's 2026 drawn across them"
-seo_title: "Why Wheat Went Limit Up: Black Sea Supply, Producer Hedging and the Dollar — Aug 27, 2026"
-description: "Chicago wheat closed limit up on 26 August, corn and soybeans at contract highs, on Black Sea export risk and a shrinking US crop. This desk's COT archive shows producers were already short into it — and 2022 shows what drains a war premium while the disruption is still in place."
+seo_title: "Why Wheat Went Limit Up: Black Sea Risk and the Dollar"
+description: "Chicago wheat closed limit up on 26 August, corn and soybeans at contract highs, on Black Sea export risk — and the producers were already short into it."
 ---
 
 December wheat settled limit up on Wednesday, 45 cents higher at $7.48¼. December corn took 13

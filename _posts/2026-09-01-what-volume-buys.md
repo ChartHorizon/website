@@ -5,8 +5,8 @@ date: 2026-09-01
 subtitle: "The BIS Triennial Survey, April 2025 · turnover shares by currency and by pair · a currency note · Data: BIS Triennial Central Bank Survey 2025 · Chart: ChartHorizon"
 image: /assets/posts/2026-09-01-what-volume-buys/title.jpg
 image_alt: "Title card: a freighter at the dock, with the headline What Volume Buys"
-seo_title: "The Safest Currencies to Trade in 2026 — FX Volume Share by Currency (BIS Data)"
-description: "Global FX turnover hit $9.6 trillion a day in April 2025. The dollar is on one side of 89.2 per cent of all trades, six pairs carry 58 per cent of the market — and three of the ten biggest currencies are ones you should think twice about trading. What the volume table does and does not tell you about safety."
+seo_title: "The Safest Currencies to Trade: FX Volume Share (BIS)"
+description: "Global FX turnover hit $9.6 trillion a day. The dollar is on one side of 89.2 per cent of trades and six pairs carry 58 per cent of the market."
 ---
 
 The question arrives in some form most weeks, and it arrived again this one: which are the

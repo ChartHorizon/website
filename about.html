@@ -2,7 +2,12 @@
 layout: default
 permalink: /about/
 title: About
-seo_title: "About ChartHorizon — How the Three-Signal COT Futures Read Works"
+seo_title: "About the Desk: the Three-Signal COT Futures Read"
+# jekyll-sitemap takes a page's <lastmod> from this field and nothing else. Set here and
+# NOT on /, /archive/, /tape/, /ledger/ or /fx/: those redraw from posts or from the daily
+# _data/fx.json, so a hand-typed date there is wrong by the next build, and an inaccurate
+# lastmod is ignored outright rather than merely being old. Bump when you edit this page.
+last_modified_at: 2026-09-07
 description: "What The Weekly Tape is, how the three-signal read works — season, hedging program, term structure — and what this desk will never sell you."
 ---
 <h1>About the Desk</h1>
@@ -42,7 +47,8 @@ trailing six-month range that week.<br>
 <strong><a href="{{ '/fx/' | relative_url }}">The FX Map</a></strong> — daily: the
 currency-strength scoreboard for the eight majors and the policy-rate backdrop behind it.</p>
 <p>Everything is computed from end-of-day futures and CFTC data by ChartHorizon's own
-research dashboard; this site publishes that dashboard's output, set in type.</p>
+<a href="{{ '/dashboard/' | relative_url }}">research dashboard</a>; this site publishes that
+dashboard's output, set in type.</p>
 
 <h2>What this is not</h2>
 <p>Not a signal service, and not financial advice. There are no trade calls, no

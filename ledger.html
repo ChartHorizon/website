@@ -2,8 +2,8 @@
 layout: default
 permalink: /ledger/
 title: The Hedgers' Ledger
-seo_title: "Hedgers' Ledger — Weekly COT Extremes From the Commercial Book"
-description: "Every Hedgers' Ledger release: where commercial hedgers sit against their own three-year range in each market, read from the CFTC Commitments of Traders report the week it published."
+seo_title: "Hedgers' Ledger: Weekly COT Positioning Extremes"
+description: "Every Hedgers' Ledger release: where commercial hedgers sit against their own three-year range, read from the CFTC Commitments of Traders report."
 ---
 <h1>The Hedgers&rsquo; Ledger</h1>
 <p class="dek">The weekly release, in two parts: the markets where the commercial book sits
@@ -11,6 +11,12 @@ description: "Every Hedgers' Ledger release: where commercial hedgers sit agains
    whose net crossed the midpoint of its own trailing six-month range that week. Both straight
    from the CFTC report. The written notes run in
    <a href="{{ '/tape/' | relative_url }}">The Weekly Tape</a>.</p>
+<p class="hub-intro">The second half reports the change, not the state. A commercial book
+   that has sat at one extreme for months is usually a producer with a crop to sell rather
+   than news, so only the crossings are listed &mdash; which makes a quiet week a short
+   issue that says so, instead of a long one padded with unchanged rows. The measure behind
+   both halves, a net read against its own range, is described in
+   <a href="{{ '/about/' | relative_url }}">the three-signal read</a>.</p>
 
 {%- assign run = "" | split: "" -%}
 {%- for post in site.posts -%}

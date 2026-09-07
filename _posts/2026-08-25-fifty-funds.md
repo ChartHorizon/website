@@ -6,8 +6,8 @@ subtitle: "Prices through 24 August 2026 · COT through the 18 August report · 
 cards: /assets/posts/2026-08-25-fifty-funds/cards
 image: /assets/posts/2026-08-25-fifty-funds/title.jpg
 image_alt: "Title card: a 1922 trading floor, with USD/JPY's summer drawn across it"
-seo_title: "Who Is at the End of the Collateral Chain? Hedge Fund Treasury Exposure and the Yen Carry Trade — Aug 25, 2026"
-description: "The yen carry trade is named as the trigger of every crash. But the yen is the funding leg. Hedge funds now hold $4tn of gross Treasury exposure, ninety per cent of it in fifty funds, financed by $3tn of repo — and this desk's own COT archive shows the other side of that trade at a three-year extreme in the long end and a three-year low in the front."
+seo_title: "Hedge Fund Treasury Exposure and the Yen Carry Trade"
+description: "The yen is the funding leg, not the trigger. Hedge funds hold $4tn of gross Treasury exposure, ninety per cent of it in fifty funds, financed by $3tn of repo."
 ---
 
 The dollar bought 163.59 yen on 28 July, a level it had not seen since 1986. Two sessions later it

@@ -6,8 +6,8 @@ subtitle: "Prices through 18 August 2026 · COT through the 11 August report · 
 cards: /assets/posts/2026-08-20-who-sold-into-it/cards
 image: /assets/posts/2026-08-20-who-sold-into-it/title.jpg
 image_alt: "Title card: cotton bales in a warehouse, with sugar's price action drawn across them"
-seo_title: "Sugar and Cotton Growers Hedged Into the Softs Rally — Coffee and Cocoa Producers Did Not, Aug 20, 2026"
-description: "Five soft commodities rallied in the same week. The producer book went to the 6th percentile short in sugar and the lowest reading in three years in cotton — and barely moved in coffee and cocoa. The difference is not the rally. It is where each price sits in its own history."
+seo_title: "Sugar and Cotton Growers Hedged Into the Softs Rally"
+description: "Five softs rallied in the same week. The producer book went to the 6th percentile short in sugar and a three-year low in cotton — and barely moved in coffee."
 ---
 
 Every soft commodity on the board went up last week. Sugar added 4.4 per cent, cocoa 6.5, orange

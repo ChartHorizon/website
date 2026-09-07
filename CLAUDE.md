@@ -193,7 +193,11 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.2.2 — macOS and Windows; Linux is still `"soon"`.**
+  (see the comment block at the top of the file). **Live at v1.2.5 — macOS and Windows; Linux is still `"soon"`.**
+  The page `description` names the platforms too, and said "macOS, Windows and Linux" until
+  2026-09-07 while `dl_linux` was `"soon"` — a promised download that does not exist, in the
+  search snippet of the one page whose job is the download. **Keep the description in step
+  with the `dl_*` switches**; nothing checks this for you.
   **The installers are hosted on Cloudflare R2, not in this repo and not on GitHub**, at
   `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
   which the account flag turned into three 404s for every logged-out visitor — the page sat at
@@ -313,6 +317,11 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
   without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of
   moving a whole tab to a second line.
+- **`tape.html` / `ledger.html` carry a `.hub-intro`** under the dek — how the edition is read,
+  in body ink rather than the dek's muted italic, because two muted italic blocks in a row read
+  as one long subtitle nobody finishes. It exists because both hubs were nearly contentless
+  (the Ledger was 80 words, most of them post titles) and because it is the natural place for
+  each hub's one prose link to `/about/`.
 - **`archive.html`** (`/archive/`) — every post grouped by year, with the same edition dateline as
   the index. Indexed, in the sitemap. **`404.html`** — broadsheet not-found page (`noindex`,
   `sitemap: false`); without it GitHub Pages serves its own GitHub-branded 404, on a site whose
@@ -422,6 +431,35 @@ scripts, so the analytics↔privacy coupling is untouched.
 - **Meta**: `<title>`, `description`, `canonical`, Open Graph + Twitter Card, and JSON-LD
   (`BlogPosting` on posts, `WebSite` on the home page) — all derived from one set of `meta_*`
   Liquid vars so they never drift. JSON-LD is inline metadata, not a script that runs.
+- **Lengths are the author's job, and they had drifted.** A SERP line shows roughly 60
+  characters of `<title>` and ~158 of `description`; nothing here truncates either (see the
+  head comment in `default.html` for why truncating would only lose text). On 2026-09-07 all
+  21 posts were over on the title and 18 of 21 on the description — the worst ran 113 and 387
+  — and every standing page was over on one or both. All of them were rewritten to fit.
+  **Write to the limit, don't discover it later.**
+- **Do not put the date in a post's `seo_title`.** Nineteen of the twenty-one carried one
+  ("— Aug 28, 2026"), spending ~14 characters on something Google prints beside the result
+  anyway. **The two Hedgers' Ledger posts are the exception and keep theirs**: the generator
+  reuses the same slug and the same headline every week, so the date is the only thing that
+  makes their titles distinct — strip it and you have manufactured duplicate titles, which is
+  worse than an overlong one. That also means the durable fix for the Ledger's title length is
+  upstream in `content/livermore/blog/` (`cot_seo`), not here.
+- **`last_modified_at` puts a `<lastmod>` on a standing page** — `jekyll-sitemap` takes a
+  post's from its date and a page's from this field and nothing else. It is set on `/about/`,
+  `/dashboard/` and `/resources/`, and **deliberately not** on `/`, `/archive/`, `/tape/`,
+  `/ledger/` or `/fx/`: those redraw from the posts or from the daily `_data/fx.json`, so a
+  hand-typed date is wrong by the next build — and an inaccurate lastmod is discarded outright
+  rather than merely being stale, which is worse than having none.
+- **Every indexed page now carries a JSON-LD branch** in `default.html`: `BlogPosting`,
+  `WebSite` (home), `AboutPage`, `WebPage` (`/dashboard/`, `/fx/`), `CollectionPage`
+  (`/resources/`, `/archive/`, `/tape/`, `/ledger/`). Only `/resources/` adds an `ItemList`,
+  because its entries are off-site and exist nowhere else on the domain; on the three list
+  pages the posts already carry their own `BlogPosting` markup, so a list there would restate
+  what the crawler has.
+- **The nav does not count for much.** Crawlers discount site-wide chrome, and on 2026-09-07
+  `/about/` and `/dashboard/` had exactly one contextual inbound link each. `/about/` now links
+  `/dashboard/` where it names the research dashboard, and both hubs link `/about/` from their
+  standing paragraph. When a page is added, give it a link from prose somewhere, not just a tab.
 - **Per-post knobs**: `seo_title`, `description`, `image`, `image_alt` (see "Publishing a post").
   Site-wide default share image: `og_image` in `_config.yml` → `assets/og-default.png`.
 - **Plugins** (`_config.yml`, bundled with `github-pages`): `jekyll-sitemap` → `/sitemap.xml`,

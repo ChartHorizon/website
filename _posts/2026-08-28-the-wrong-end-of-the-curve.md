@@ -6,8 +6,8 @@ subtitle: "Prices through 27 August 2026 · COT through the 18 August report · 
 cards: /assets/posts/2026-08-28-the-wrong-end-of-the-curve/cards
 image: /assets/posts/2026-08-28-the-wrong-end-of-the-curve/title.jpg
 image_alt: "Title card: the New York Stock Exchange facade in 1928, with the 30-year Treasury bond's summer drawn across it"
-seo_title: "Why Jackson Hole Cannot Fix the Long End: 30-Year Yields, Treasury Buybacks and Hedger Positioning — Aug 28, 2026"
-description: "Kevin Warsh gives his first Jackson Hole keynote today. But since 1 July the two-year future has lost 0.19 per cent and the thirty-year 2.88 — damage that scales with duration, not with the funds rate. The Treasury aimed directly at the long end on 19 August and bought nine basis points. This desk's COT archive shows the hedgers were already at the 98th percentile long the day before."
+seo_title: "Why Jackson Hole Cannot Fix the Long End of the Curve"
+description: "Since 1 July the two-year future has lost 0.19 per cent and the thirty-year 2.88 — damage that scales with duration, not with the funds rate."
 ---
 
 Kevin Warsh speaks at Jackson Hole this morning, ten o'clock Mountain time, in his first keynote

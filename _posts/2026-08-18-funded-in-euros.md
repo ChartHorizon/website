@@ -9,8 +9,8 @@ image_alt: "Japanese Yen — commercial net position against price over three ye
 # the cover shows a chart-card lead uncropped, so it needs the card's own shape
 image_w: 1200
 image_h: 1036
-seo_title: "Euro-Funded Carry Trade Survives the Yen Intervention — Currency Note, Aug 18, 2026"
-description: "Two weeks after the first joint US-Japan intervention since 2011, the dollar is back at 159.21 and the commercial hedgers have sold 69 per cent of the yen long they were holding before the first yen was bought. The carry trade did not die. It changed its funding currency."
+seo_title: "Euro-Funded Carry Trade Survives the Yen Intervention"
+description: "Two weeks after the first joint US-Japan intervention since 2011, the dollar is back at 159.21 and the hedgers have sold 69 per cent of their yen long."
 ---
 
 A fortnight ago this desk wrote that governments can buy a currency but have never yet bought a
