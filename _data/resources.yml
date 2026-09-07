@@ -12,8 +12,20 @@
 #           so outside material lands somewhere in the method rather than in a heap.
 #           Leave it off when nothing fits — the template just drops the label.
 #   byline  OPTIONAL. The author, for anything that has one. Books do; videos do not.
-#   topics  OPTIONAL. What to take from it. OMIT when the only topic would restate
-#           the title; a bullet that repeats the headline above it reads as a bug.
+#   take    The desk's own sentence or two on the piece: what this paper takes from it,
+#           and which of its own signals that feeds. Write one for EVERY entry — see the
+#           note below on why it is the only field here that is not optional in practice.
+#   topics  OPTIONAL. What to take from it, as bullets. OMIT when the only topic would
+#           restate the title; a bullet that repeats the headline above it reads as a bug.
+#           `take` covers such an entry on its own (Multi-Asset Analysis is the live case).
+#
+# WHY `take` IS EFFECTIVELY MANDATORY (added 2026-09-07). Everything else on this page is
+# somebody else's words — titles, authors, series names — and a page that is mostly other
+# people's titles wrapped around paid links is, to a search engine, a thin affiliate page,
+# which is a named category in Google's spam policy and not a subjective judgement. `take`
+# is the half of the page that is this desk's own work, and it is also the half a reader
+# came for: an entry without one is a bare link with a price attached. It renders in full
+# ink while the borrowed material stays muted, which is the same distinction said visually.
 #
 # PAID LINKS. A section may carry `affiliate: true`, which marks EVERY item in it:
 # the template prints a visible "Affiliate link" chip on each entry and switches the
@@ -34,12 +46,14 @@
 # site's zero-third-party-request promise and make privacy.html §3 wrong. Account-side
 # OneLink costs the page nothing; the widget costs it the whole guarantee.
 #
-# CHECK THE TAG BEFORE ADDING AN AMAZON LINK. Resolve the amzn.to short link and read the
-# `tag=` parameter out of the destination:
-#     curl -sSI https://amzn.to/<id> | grep -io 'tag=[^&]*'
+# CHECK THE TAG BEFORE ADDING AN AMAZON LINK. Resolve the short link and read the tag out
+# of the destination. Anchor the match — an Amazon search URL also carries `dib_tag=se`,
+# and a bare `grep -io 'tag=[^&]*'` reports THAT first and looks like a wrong tag:
+#     curl -sSI https://amzn.to/<id> | grep -io '[?&]tag=[^&]*'
 # It has to be this desk's Associates tag (charthorizon-20). A link copied from someone
-# else's page keeps THEIR tag and pays THEM — see the commented-out entry below, which
-# arrived that way on 2026-09-06.
+# else's page keeps THEIR tag and pays THEM: the third book below first arrived on
+# 2026-09-06 carrying `tag=elevati09-20` and was held back until a fresh link was cut.
+# All three were re-verified on 2026-09-07 and are correct.
 #
 # NOTHING HERE IS THE DESK'S OWN WORK and none of it is an endorsement — the page says
 # so once, in print, at the top. Keep that line if you add to this file.
@@ -62,6 +76,12 @@
       url: https://amzn.to/3UHuETS
       source: "Wiley Trading"
       signal: Hedging program
+      take: >-
+        The measure the Hedgers' Ledger is built on comes from here: a commercial net read
+        as a position inside its own trailing range rather than as a number. Williams'
+        argument is that the level tells you almost nothing and the percentile tells you
+        most of it — which is why the Ledger reports a midpoint crossing every week and
+        never a headline figure.
       topics:
         - The COT report read as the commercials' book
         - Where the commercial net sits inside its own range
@@ -70,16 +90,24 @@
       byline: John J. Murphy
       url: https://amzn.to/3SVc1eH
       source: "Wiley Trading"
+      take: >-
+        The case that no market's chart explains itself — a dollar move is a bond move
+        first. It is the reason the FX Map prints its interest-rate table beside the
+        strength board instead of underneath it: the rates are not context for the scores,
+        they are half the read.
       topics:
         - How bonds, the dollar, commodities and equities lean on each other
 
-    # Re-issued 2026-09-06: the first short link for this ASIN carried `tag=elevati09-20`,
-    # somebody else's Associates tag, and was held back until this one arrived.
     - title: "How I Made $1,000,000 Trading Commodities Last Year"
       byline: Larry R. Williams
       url: https://amzn.to/4xF98h0
       source: "Windsor Books"
       signal: Positioning
+      take: >-
+        The 1973 original, and better read after the COT book than before it: the seasonal
+        and positioning work here is the raw version of what the later one systematised.
+        Take the method and leave the numbers — every contract it names has rolled a few
+        thousand times since.
       topics:
         - The seasonal and positioning work the later COT book grew out of
 
@@ -94,6 +122,11 @@
       url: https://www.youtube.com/watch?v=qRYkTWePXF0
       source: "ICT Mentorship Core Content, Month 10"
       signal: Positioning
+      take: >-
+        The clearest statement of why open interest earns its keep when price is doing
+        nothing at all. A range that narrows while open interest builds is not a quiet
+        market; it is a crowded one, and that distinction is what this desk's positioning
+        light is looking at.
       topics:
         - Using open interest in consolidations
         - The open-interest seasonal average
@@ -103,6 +136,11 @@
       url: https://www.youtube.com/watch?v=9H4iaaQXV5Y
       source: "ICT Mentorship Core Content, Month 10"
       signal: Hedging program
+      take: >-
+        Worth it for the half a weekly table cannot print: when a hedging program should be
+        ignored. A commercial book parked at one extreme for months is usually a producer
+        with a crop to sell, and reading that as a signal is the standard way to be wrong
+        about the COT report.
       topics:
         - How the commercials' hedging programs read
         - When to ignore a hedging program
@@ -111,6 +149,11 @@
       url: https://www.youtube.com/watch?v=WsolkBzpDOQ
       source: "ICT Mentorship Core Content, Month 10"
       signal: Term structure
+      take: >-
+        Term structure in its shortest form. A spread chart says whether the market is
+        paying you to hold the physical or paying to get it now — the one question a price
+        chart is structurally unable to answer, and the reason this desk reads the curve
+        before the candles.
       topics:
         - Premium markets against carrying-charge markets
         - Spread charts as “the real RSI”
@@ -118,10 +161,20 @@
     - title: "Importance of Multi-Asset Analysis"
       url: https://www.youtube.com/watch?v=gs3KMgz84yc
       source: "ICT Mentorship Core Content, Month 10"
+      # No `topics`: the only honest bullet would restate the headline. `take` carries it.
+      take: >-
+        Short, and the argument fits in a line: a read taken from one market is a read
+        taken from one witness. The video to send anyone who thinks the FX Map's eight
+        columns are seven too many.
 
     - title: "Market Maker Series, Vol. 1 of 5"
       url: https://www.youtube.com/watch?v=Vh0NtdPPj1M
       source: "ICT Forex"
       signal: Rate bias
+      take: >-
+        Where the FX Map's rate-bias column gets its logic. The differential between two
+        policy rates is the standing reason one currency is held and the other is funded,
+        and it changes on decisions — which is why the desk watches a calendar for it and
+        not a chart.
       topics:
         - Interest-rate differentials between the majors

@@ -2,15 +2,25 @@
 layout: default
 permalink: /resources/
 title: Resources
-seo_title: "Resources — Open Interest, COT Hedging Programs and Term Structure Explained"
-description: "Outside viewing behind ChartHorizon's three-signal read: open interest, the commercials' hedging programs, premium against carrying-charge markets, and interest-rate differentials."
+# Front-loaded and inside the ~60 characters a SERP line shows. This used to open with
+# "Resources — " and run to 76: twelve characters spent on a word nobody searches, and
+# the keywords that follow cut off before they were read.
+seo_title: "Open Interest, COT and Term Structure — A Reading List"
+# ~150 characters. Nothing truncates this (see the head comment in _layouts/default.html
+# for why), so length is the author's job and anything past ~160 is simply lost.
+description: "Where to learn the mechanics behind ChartHorizon's three-signal read: open interest, the commercials' hedging programs, spreads and rate differentials."
+# jekyll-sitemap emits <lastmod> from this. A post gets one from its own date; a standing
+# page gets one only from this field, and this page says in print that it grows. Bump it
+# whenever _data/resources.yml changes.
+last_modified_at: 2026-09-07
 ---
 {%- comment -%}
   The reading room. Everything on this page comes from _data/resources.yml — sections in
   file order, items in file order — so adding material is a YAML entry and nothing else.
   Three fields are optional and the markup below is written for their absence: `signal`
   (the desk's own light the piece speaks to), `byline` (an author, which books have and
-  videos do not) and `topics` (what to take from it).
+  videos do not) and `topics` (what to take from it). `take` — the desk's own paragraph on
+  the piece — is optional to the template and mandatory in practice; resources.yml says why.
 
   ONE LINK PER ITEM, the headline. A second "watch it here" link under the same headline
   would be two names for one destination, which reads as two places to anyone tabbing or
@@ -69,6 +79,16 @@ the standing rule: take the mechanics and check them against your own screen.</p
       </h3>
       {%- if item.byline %}
       <p class="res-byline">{{ item.byline }}</p>
+      {%- endif %}
+      {%- if item.take %}
+      {%- comment -%}
+        The one thing on this entry that is the desk's own writing, which is why it is set
+        in full ink while every borrowed line around it stays muted. Not decoration: a page
+        built out of other people's titles and paid links is a thin affiliate page by
+        Google's own definition, and this paragraph is the answer to that — as well as the
+        part a reader actually came for.
+      {%- endcomment -%}
+      <p class="res-take">{{ item.take }}</p>
       {%- endif %}
       {%- if item.topics %}
       <ul class="res-topics">

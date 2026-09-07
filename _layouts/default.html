@@ -108,8 +108,17 @@
 {"@context":"https://schema.org","@type":"AboutPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }},"mainEntity":{"@type":"Organization","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }},"sameAs":["https://x.com/ChartHorizon"]}}
 </script>
 {%- elsif page.url == '/resources/' %}
+{%- comment -%}
+  The reading room is a list, so it says so: a bare CollectionPage names the page but not
+  what is on it, and the entries are the page. Flattened across sections into one run first,
+  because ListItem positions are continuous over the whole list and a nested loop would
+  restart them at each heading. No rich result comes of this — it is machine-readable
+  subject matter, not a SERP feature.
+{%- endcomment -%}
+{%- assign res_items = "" | split: "" -%}
+{%- for res_section in site.data.resources -%}{%- assign res_items = res_items | concat: res_section.items -%}{%- endfor -%}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CollectionPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}}}
+{"@context":"https://schema.org","@type":"CollectionPage","name":{{ page.title | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"description":{{ meta_desc | jsonify }}{% if page.last_modified_at %},"dateModified":"{{ page.last_modified_at | date_to_xmlschema }}"{% endif %},"isPartOf":{"@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | jsonify }}},"mainEntity":{"@type":"ItemList","numberOfItems":{{ res_items.size }},"itemListElement":[{% for res_item in res_items %}{"@type":"ListItem","position":{{ forloop.index }},"name":{{ res_item.title | jsonify }},"url":{{ res_item.url | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}}
 </script>
 {%- elsif page.url == '/dashboard/' %}
 <script type="application/ld+json">

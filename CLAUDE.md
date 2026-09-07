@@ -238,7 +238,13 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   data or framing reads as a jump. Never hand-replace one edition on its own.
 - **`resources.html`** (`/resources/`, the **Resources** tab) — "The Reading Room": outside
   material that explains the mechanics behind the desk's signals, added 2026-09-06. `default`
-  layout, normal indexed page, `CollectionPage` JSON-LD branch in `default.html`.
+  layout, normal indexed page, `CollectionPage` JSON-LD branch in `default.html` — which
+  since 2026-09-07 carries a `mainEntity` `ItemList` of the entries, flattened across sections
+  first so `position` runs continuously (a nested loop restarts it at every heading), plus a
+  `dateModified` from the page's `last_modified_at`. That front-matter date is also the only
+  thing that puts a `<lastmod>` on a standing page in `/sitemap.xml`: `jekyll-sitemap` derives
+  one from a post's date but takes it from `last_modified_at` for a page, and this page says in
+  print that it grows. **Bump it whenever `resources.yml` changes.**
   **All content comes from `_data/resources.yml`** — sections in file order, items in file
   order — so adding a resource is a YAML entry and no template change; that file's header
   comment documents every field. Two are optional and the template is written for their
@@ -247,7 +253,15 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   `.post-dateline` furniture the index and `/archive/` use, so an off-site link still reads
   as an entry in this paper) and `topics` (**omit it when the only topic would restate the
   title**; a bullet repeating the headline above it reads as a bug — `Importance of
-  Multi-Asset Analysis` is the live example).
+  Multi-Asset Analysis` is the live example, and `take` carries that entry on its own).
+  **`take` is optional to the template and mandatory in practice** (added 2026-09-07): the
+  desk's own sentence or two on a piece, set in full `--ink` while every borrowed line around
+  it — title, byline, source, topics — stays muted, which is the same distinction said
+  visually. Without it the page is other people's titles wrapped around paid links, which is
+  Google's own definition of a thin affiliate page and a named category in its spam policy,
+  not a matter of taste; it also took `<main>` from 455 words to 848. Write one for every entry.
+  A contextual inbound link lives in `about.html` under "The three lights" — the nav counts
+  for crawling but is discounted, and this page had no other way in.
   **One link per item, the headline**, carrying a decorative `aria-hidden` `↗` — the same
   rule as `/dashboard/`'s download line: a second "watch it here" under the same headline is
   two names for one destination. That the links go to YouTube is said in *words*, in the
@@ -280,10 +294,13 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   zero-third-party-request promise and make `privacy.html` §3 wrong for a redirect Amazon
   already performs for free.
   **Check the Associates tag before adding an Amazon link**: resolve the short link and read
-  `tag=` out of the destination (`curl -sSI https://amzn.to/<id> | grep -io 'tag=[^&]*'`). It
-  has to be `charthorizon-20`. One of the three links supplied on 2026-09-06 carried
-  `elevati09-20` — copied from someone else's page, so it would have paid a stranger; it sits
-  commented out in `resources.yml` until it is re-generated.
+  the tag out of the destination — **anchored**, because an Amazon search URL also carries
+  `dib_tag=se` and an unanchored `grep -io 'tag=[^&]*'` reports *that* first and looks exactly
+  like a wrong tag:
+  `curl -sSI https://amzn.to/<id> | grep -io '[?&]tag=[^&]*'`. It has to be `charthorizon-20`.
+  One of the three links supplied on 2026-09-06 carried `elevati09-20` — copied from someone
+  else's page, so it would have paid a stranger; it was held back until a fresh link was cut.
+  All three were re-verified on 2026-09-07 and are correct.
   The two standing paragraphs at the top are load-bearing and were rewritten twice the same
   day: the first says none of it is the desk's work; the second says which links are paid and
   states outright that **the shelf leads the page because it pays**. The original single
