@@ -193,7 +193,7 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.2.5 — macOS and Windows; Linux is still `"soon"`.**
+  (see the comment block at the top of the file). **Live at v1.2.6 — macOS and Windows; Linux is still `"soon"`.**
   The page `description` names the platforms too, and said "macOS, Windows and Linux" until
   2026-09-07 while `dl_linux` was `"soon"` — a promised download that does not exist, in the
   search snippet of the one page whose job is the download. **Keep the description in step
