@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "The Hedgers' Ledger — 2026-09-05"
+title: "New Hedger Low in Soybeans; Record Lows in Corn, Wheat, Sugar and Cotton"
+edition: "Hedgers’ Ledger"
 date: 2026-09-05
-subtitle: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-09-01 · 3-year window · Data: ChartHorizon"
+subtitle: "Six markets at three-year positioning extremes in the CFTC report of 1 September 2026 — hedger highs in Lean Hogs, lows in Corn and Wheat (Chicago SRW)."
+sources: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-09-01 · 3-year window · Data: ChartHorizon"
 cards: /assets/posts/2026-09-05-hedgers-ledger/cards
 image: /assets/posts/2026-09-05-hedgers-ledger/cards/corn.png
 image_alt: "Corn — commercials net positioning"

@@ -2,7 +2,8 @@
 layout: post
 title: "The Wrong End of the Curve"
 date: 2026-08-28 09:00:00 +0200
-subtitle: "Prices through 27 August 2026 · COT through the 18 August report · a rates note · Data: ChartHorizon, CFTC, U.S. Treasury & press reports · Charts: ChartHorizon"
+subtitle: "Since 1 July the two-year future has lost 0.19 per cent and the thirty-year 2.88 — damage that scales with duration, not with the funds rate."
+sources: "Prices through 27 August 2026 · COT through the 18 August report · a rates note · Data: ChartHorizon, CFTC, U.S. Treasury & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-28-the-wrong-end-of-the-curve/cards
 image: /assets/posts/2026-08-28-the-wrong-end-of-the-curve/title.jpg
 image_alt: "Title card: the New York Stock Exchange facade in 1928, with the 30-year Treasury bond's summer drawn across it"

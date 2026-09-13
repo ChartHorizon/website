@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "The Hedgers' Ledger — 2026-08-30"
+title: "Record Hedger Lows in Corn, Sugar and Cotton; Record High in Lean Hogs"
+edition: "Hedgers’ Ledger"
 date: 2026-08-30
-subtitle: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-08-25 · 3-year window · Data: ChartHorizon"
+subtitle: "Five markets at three-year positioning extremes in the CFTC report of 25 August 2026 — hedger highs in Lean Hogs, lows in Corn and Sugar #11."
+sources: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-08-25 · 3-year window · Data: ChartHorizon"
 cards: /assets/posts/2026-08-30-hedgers-ledger/cards
 image: /assets/posts/2026-08-30-hedgers-ledger/cards/lean_hogs.png
 image_alt: "Lean Hogs — commercials net positioning"

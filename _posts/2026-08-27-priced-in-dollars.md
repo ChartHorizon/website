@@ -2,7 +2,8 @@
 layout: post
 title: "Priced in Dollars"
 date: 2026-08-27 07:00:00 +0200
-subtitle: "Prices through 26 August 2026 · COT through the 18 August report · Data: ChartHorizon, CFTC, USDA, SovEcon & press reports · Charts: ChartHorizon"
+subtitle: "Chicago wheat closed limit up on 26 August, corn and soybeans at contract highs, on Black Sea export risk — and the producers were already short into it."
+sources: "Prices through 26 August 2026 · COT through the 18 August report · Data: ChartHorizon, CFTC, USDA, SovEcon & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-27-priced-in-dollars/cards
 image: /assets/posts/2026-08-27-priced-in-dollars/title.jpg
 image_alt: "Title card: grain elevators, with Chicago wheat's 2026 drawn across them"

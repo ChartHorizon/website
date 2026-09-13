@@ -22,7 +22,7 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
   Selection, in one pass over site.posts (which is newest-first):
     · lead_tape   — the newest Weekly Tape. It leads even when a Ledger is newer: the
                     Ledger publishes automatically every week, and as a permanent lead it
-                    would bury the written notes under a headline that is a date.
+                    would bury the written notes under a generated one every week.
     · lead_ledger — the newest Ledger, second lead, no picture.
   A post has exactly one edition key, so nothing can appear in both strands, and the
   strand loop below skips whichever two posts became leads.
@@ -100,7 +100,15 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
       </a>
     </figure>
     {%- endif %}
-    <div class="post-dateline">
+    {%- comment -%}
+      A title card already prints the edition, the date and the headline into the picture, so
+      under one the dateline is kept for screen readers only (the card's alt describes the
+      photograph, not the date) and the headline stays as the link. A chart-card lead prints
+      no date of its own and keeps the visible dateline.
+    {%- endcomment -%}
+    {%- assign lead_is_title_card = false -%}
+    {%- if lead_img != "" and lead_fig_class == "lead-figure" -%}{%- assign lead_is_title_card = true -%}{%- endif %}
+    <div class="post-dateline{% if lead_is_title_card %} visually-hidden{% endif %}">
       <span class="post-edition">{% include edition.html post=lead_tape %}</span>
       <span class="sep" aria-hidden="true">&middot;</span>
       <time class="post-date" datetime="{{ lead_tape.date | date: '%Y-%m-%d' }}">{{ lead_tape.date | date: "%B %-d, %Y" }}</time>

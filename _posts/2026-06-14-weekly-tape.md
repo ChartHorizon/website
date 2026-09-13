@@ -2,7 +2,8 @@
 layout: post
 title: "The Weekly Tape — The Dollar at the 100 Line"
 date: 2026-06-14
-subtitle: "Prices through June 12 · An intermarket note · Data: ChartHorizon"
+subtitle: "The Dollar Index stalls at the 100 handle while sterling turns up and the stock leaders hold their advance — a short-term risk-on read for the week ahead."
+sources: "Prices through June 12 · An intermarket note · Data: ChartHorizon"
 cards: /assets/posts/2026-06-14-weekly-tape/cards
 image: /assets/posts/2026-06-14-weekly-tape/title.jpg
 image_alt: "Title card: a freighter at the dock, with the dollar's price action drawn across it"

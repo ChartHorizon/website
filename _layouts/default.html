@@ -162,7 +162,8 @@
   <div class="masthead-motto">Positioning, not predictions.</div>
   <div class="dateline">
     <nav class="site-nav" aria-label="Sections">
-      <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} class="active" aria-current="page"{% endif %}>The Tape</a>
+      {%- comment -%} "Front Page", not "The Tape": that name belongs to one of the two editions (/tape/), and the cover carries both. Active on the cover only — an article is not the page this link points at, so aria-current there was a false statement. {%- endcomment %}
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>Front Page</a>
       <a href="{{ '/fx/' | relative_url }}"{% if page.url == '/fx/' %} class="active" aria-current="page"{% endif %}>FX Map</a>
       <a href="{{ '/dashboard/' | relative_url }}"{% if page.url == '/dashboard/' %} class="active" aria-current="page"{% endif %}>Dashboard</a>
       <a href="{{ '/resources/' | relative_url }}"{% if page.url == '/resources/' %} class="active" aria-current="page"{% endif %}>Resources</a>

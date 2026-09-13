@@ -2,8 +2,23 @@
 layout: default
 ---
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  {% if page.subtitle %}<p class="dek">{{ page.subtitle }}</p>{% endif %}
+  {%- comment -%}
+    The head reads headline → story → when and from what. `subtitle` is the one-sentence
+    story (the dek); `sources` is the provenance line ("Prices through … · Data: …"), which
+    used to sit in `subtitle` and so filled the dek slot with metadata. The dateline goes
+    under the dek, not over the headline: a label above the heading would make the first
+    thing on the page a category instead of the story.
+  {%- endcomment %}
+  <header class="post-head">
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="dek">{{ page.subtitle }}</p>{% endif %}
+    <p class="post-meta">
+      <span class="post-edition">{% include edition.html post=page %}</span>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+    {% if page.sources %}<p class="post-sources">{{ page.sources }}</p>{% endif %}
+  </header>
 
   <div class="post-body">
     {{ content }}

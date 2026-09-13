@@ -90,7 +90,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
   <div class="fx-pairs">
     <div class="fx-pairshelf">
       <div class="fx-pairshelf-head fx-pairshelf-head--bull">Bullish pairs · buy</div>
-      <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
+      <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation · <span class="fx-pair-hint">select a pair for its live chart</span></div>
       {% if fx.bullish_pairs and fx.bullish_pairs.size > 0 %}
       <div class="fx-pairlist">
         {% for p in fx.bullish_pairs %}<button type="button" class="fx-pair fx-pair--bull" data-symbol="{{ p.pair | remove: '/' | prepend: 'FOREXCOM:' }}" data-pair="{{ p.pair }}" data-dir="bull"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
@@ -99,7 +99,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
     </div>
     <div class="fx-pairshelf">
       <div class="fx-pairshelf-head fx-pairshelf-head--bear">Bearish pairs · short</div>
-      <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation · <span class="fx-pair-hint">click a pair for its live chart</span></div>
+      <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation · <span class="fx-pair-hint">select a pair for its live chart</span></div>
       {% if fx.bearish_pairs and fx.bearish_pairs.size > 0 %}
       <div class="fx-pairlist">
         {% for p in fx.bearish_pairs %}<button type="button" class="fx-pair fx-pair--bear" data-symbol="{{ p.pair | remove: '/' | prepend: 'FOREXCOM:' }}" data-pair="{{ p.pair }}" data-dir="bear"><span class="fx-pair-nm">{{ p.pair }}</span><span class="fx-pair-sp">{{ p.label }}</span></button>{% endfor %}
@@ -109,7 +109,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
   </div>
 
   <div class="fx-method">
-    <p><strong>Heatmap filter logic.</strong> Final currency score = Seasonals + COT-Hedging +
+    <p><strong>How the score is built.</strong> Final currency score = Seasonals + COT-Hedging +
        Term Structure + Interest-Rate Bias. Pair score = base currency score minus quote currency
        score, in fixed canonical FX notation.</p>
     <p><strong>Seasonals, COT-Hedging:</strong> +1 bullish / −1 bearish ·

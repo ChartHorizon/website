@@ -2,7 +2,8 @@
 layout: post
 title: "The Weekly Tape — the yen did not turn, it was turned"
 date: 2026-08-01
-subtitle: "Prices through 31 July 2026 · COT through the 28 July report · a currency note · Data: ChartHorizon & CFTC · Charts: TradingView"
+subtitle: "Tokyo spent an estimated ¥8.45tn in one night and Washington joined for the first time since 2011. But the hedgers were already 96th-percentile long."
+sources: "Prices through 31 July 2026 · COT through the 28 July report · a currency note · Data: ChartHorizon & CFTC · Charts: TradingView"
 cards: /assets/posts/2026-08-01-yen-warning-shot/cards
 image: /assets/posts/2026-08-01-yen-warning-shot/title.jpg
 image_alt: "Title card: a freighter at the dock, with the dollar-yen price action drawn across it"

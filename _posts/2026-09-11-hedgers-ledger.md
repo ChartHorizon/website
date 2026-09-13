@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "The Hedgers' Ledger — 2026-09-11"
+title: "New Hedger Highs in Russell 2000, Bonds and Milk; New Low in Copper"
+edition: "Hedgers’ Ledger"
 date: 2026-09-11
-subtitle: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-09-08 · 3-year window · Data: ChartHorizon"
+subtitle: "Nine markets at three-year positioning extremes in the CFTC report of 8 September 2026 — hedger highs in E-mini Russell 2000, lows in Sugar #11 and Corn."
+sources: "Weekly COT extremes from the commercial book and the six-month hedging program · CFTC report 2026-09-08 · 3-year window · Data: ChartHorizon"
 cards: /assets/posts/2026-09-11-hedgers-ledger/cards
 image: /assets/posts/2026-09-11-hedgers-ledger/cards/sugar.png
 image_alt: "Sugar #11 — commercials net positioning"

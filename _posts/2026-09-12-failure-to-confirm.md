@@ -2,7 +2,8 @@
 layout: post
 title: "Failure to Confirm"
 date: 2026-09-12
-subtitle: "Prices through 11 September 2026 · COT through the 8 September report · an intermarket note · Data: ChartHorizon, CFTC, U.S. Treasury, USDA & press reports · Charts: ChartHorizon"
+subtitle: "The 30-year yield broke its 2023 peak; the 10-year did not. Grains, currencies and stock indices refused to confirm in the same week, days before the Fed."
+sources: "Prices through 11 September 2026 · COT through the 8 September report · an intermarket note · Data: ChartHorizon, CFTC, U.S. Treasury, USDA & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-09-12-failure-to-confirm/cards
 image: /assets/posts/2026-09-12-failure-to-confirm/title.jpg
 image_alt: "Title card: the floor of the New York Stock Exchange in 1920, with the 30-year Treasury bond's price action since 2023 drawn across it"

@@ -2,7 +2,8 @@
 layout: post
 title: "Who Sold Into It"
 date: 2026-08-20 07:00:00 +0200
-subtitle: "Prices through 18 August 2026 · COT through the 11 August report · a positioning note · Data: ChartHorizon, CFTC, USDA & press reports · Charts: ChartHorizon"
+subtitle: "Five softs rallied in the same week. The producer book went to the 6th percentile short in sugar and a three-year low in cotton — and barely moved in coffee."
+sources: "Prices through 18 August 2026 · COT through the 11 August report · a positioning note · Data: ChartHorizon, CFTC, USDA & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-20-who-sold-into-it/cards
 image: /assets/posts/2026-08-20-who-sold-into-it/title.jpg
 image_alt: "Title card: cotton bales in a warehouse, with sugar's price action drawn across them"

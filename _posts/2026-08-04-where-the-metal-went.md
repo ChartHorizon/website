@@ -2,7 +2,8 @@
 layout: post
 title: "Where the Metal Went"
 date: 2026-08-04
-subtitle: "COMEX stocks through 31 July 2026 · COT through the 28 July report · WGC Q2 demand · Data: ChartHorizon, CFTC, World Gold Council · Charts: ChartHorizon"
+subtitle: "COMEX gold stocks fell from 45.1m ounces to the middle twenties. The Shanghai premium stayed flat: what moved east was the bid, not the bullion."
+sources: "COMEX stocks through 31 July 2026 · COT through the 28 July report · WGC Q2 demand · Data: ChartHorizon, CFTC, World Gold Council · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-04-where-the-metal-went/cards
 image: /assets/posts/2026-08-04-where-the-metal-went/title.jpg
 image_alt: "Title card: a foundry pour, with gold's price action drawn across it"

@@ -14,10 +14,10 @@
 {%- assign base = '/assets/dashboard/' | append: include.plate -%}
 <figure class="board{% if include.hero %} board-hero{% endif %}">
   <img class="plate plate-light" src="{{ base | append: '.webp' | relative_url }}"
-       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"
+       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"{% if include.hero %} fetchpriority="high"{% endif %}
        alt="{{ include.alt }}">
   <img class="plate plate-dark" src="{{ base | append: '-dark.webp' | relative_url }}"
-       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"
+       width="{{ include.w }}" height="{{ include.h }}" loading="lazy" decoding="async"{% if include.hero %} fetchpriority="high"{% endif %}
        alt="{{ include.alt }}">
   <figcaption>{{ include.caption }}</figcaption>
 </figure>

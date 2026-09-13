@@ -2,7 +2,8 @@
 layout: post
 title: "The Calendar Had No Vote"
 date: 2026-08-22
-subtitle: "Prices through 21 August 2026 · 35 markets tested over 2006–2026 · a seasonality note · Data: ChartHorizon & press reports · Charts: ChartHorizon"
+subtitle: "Crude was supposed to fall in August and rose. Tested across 5,026 market-months since 2006, the move after a failed season is slightly smaller, not larger."
+sources: "Prices through 21 August 2026 · 35 markets tested over 2006–2026 · a seasonality note · Data: ChartHorizon & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-22-the-calendar-had-no-vote/cards
 image: /assets/posts/2026-08-22-the-calendar-had-no-vote/title.jpg
 image_alt: "Crude's August, twenty times over — WTI front month, each August rebased to 31 July equals 100, with 2026 running well above the twenty-year average"

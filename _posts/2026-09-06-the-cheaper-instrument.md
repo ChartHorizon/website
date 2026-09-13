@@ -2,7 +2,8 @@
 layout: post
 title: "The Cheaper Instrument"
 date: 2026-09-06
-subtitle: "Prices through 4 September 2026 · COT through the 1 September report · a currency note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
+subtitle: "Tokyo spent ¥15.39 trillion in a month, the largest ever recorded. On 3 September the yen gained 2.18 per cent with no official money behind it."
+sources: "Prices through 4 September 2026 · COT through the 1 September report · a currency note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-09-06-the-cheaper-instrument/cards
 image: /assets/posts/2026-09-06-the-cheaper-instrument/title.jpg
 image_alt: "Title card: a crowd of traders bidding in a 1920 pit, with the summer's dollar-yen price action drawn across it"

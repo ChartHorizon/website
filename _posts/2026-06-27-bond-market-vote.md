@@ -2,7 +2,8 @@
 layout: post
 title: "The Weekly Tape — the bond market's vote"
 date: 2026-06-27
-subtitle: "Prices through 2026-06-26 · a cross-asset read · Data: ChartHorizon"
+subtitle: "The long end is bid to fresh highs while the 2-year sits still — a bull flattening. With the Dow leading, the cross-asset read points risk-on, not to a top."
+sources: "Prices through 2026-06-26 · a cross-asset read · Data: ChartHorizon"
 cards: /assets/posts/2026-06-27-bond-market-vote/cards
 image: /assets/posts/2026-06-27-bond-market-vote/title.jpg
 image_alt: "Title card: exchange trading posts in 1922, with the bond price action drawn across them"

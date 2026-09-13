@@ -41,10 +41,16 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
 ## Publishing a post (the core workflow)
 
 1. Add `_posts/YYYY-MM-DD-slug.md` with front matter: `layout: post`, `title`, `date`,
-   optional `subtitle` (shown as the dek and as the index excerpt), and `cards` (the
-   image base path). Optional `edition:` overrides the masthead section shown in the
-   index/archive dateline; without it `_includes/edition.html` derives it from the title
-   ("Hedgers' Ledger" if the title contains *Hedgers*, otherwise "Weekly Tape"). Callers that
+   optional `subtitle` and `sources`, and `cards` (the image base path). **`subtitle` is the
+   story in one sentence** (the dek under the headline, and the cover's excerpt); **`sources`
+   is the provenance line** ("Prices through … · COT through … · Data: …"), set small under
+   the article's dateline. Until 2026-09-13 the provenance line WAS the subtitle on 21 of 23
+   posts, which put metadata in the one slot a skimming reader looks to for the hook; they
+   were migrated then, each dek taken from the post's own `description`. Optional `edition:`
+   overrides the masthead section shown in the datelines; without it `_includes/edition.html`
+   derives it from the title ("Hedgers' Ledger" if the title contains *Hedgers*, otherwise
+   "Weekly Tape"). **The Ledger generator always writes `edition:`**, because its headline no
+   longer names the series (see the hubs bullet under "Architecture"). Callers that
    need to compare editions rather than display them — the cover's lead/strand selection, the
    two hubs — call `edition.html` with `key=true`, which returns the machine key `tape`/`ledger`
    instead: the display name carries an HTML entity (`&rsquo;`) no caller should have to spell
@@ -54,6 +60,11 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
    "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta
    description, overrides `subtitle`), `image` (social-share image, abs path under `/assets/...`),
    `image_alt`. Without `image`, the site default `og_image` (`_config.yml`) is used.
+   **Writing rule for new posts** (operator call, 2026-09-13): keep em-dashes rare (a comma,
+   colon, parenthesis or full stop nearly always does the job) and skip stock flourishes such
+   as "… theater". An Impeccable critique counted 25 em-dashes in one Tape note and 34 in a
+   Ledger; to the readers this paper is for, that cadence reads as generated copy. Published
+   posts were deliberately left as they are.
 2. Put images under `assets/posts/<slug>/...` and reference them with the `cards` var,
    e.g. `![alt]({{ page.cards }}/wti_crude.webp)`. **In-body charts are WebP** (~67% smaller
    than the PNGs they replaced); only the card used as the OG `image:` keeps a PNG twin,
@@ -110,7 +121,8 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   `@font-face`/preload, favicon, cookieless Cloudflare Web Analytics beacon), the centred
   **broadsheet masthead** (inline horizon SVG mark + `CHARTHORIZON` wordmark + a
   `The Weekly Tape · Futures Desk` sub-line, closed by a 3px double rule, then a dateline row —
-  nav **The Tape** (home) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
+  nav **Front Page** (home; "The Tape" until 2026-09-13, a name that belongs to one of the two
+  editions; active on the cover only) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
   **Resources** (`/resources/`) / **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
   Impressum/Datenschutz links). A page widens to 1080px by setting `wide: true` in its front
   matter — today only `index.html` does. The layout puts `wide-page` on `<body>` and `wide` on
@@ -118,8 +130,12 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   on `main` alone would do nothing, and the CSS lifts the cap there and hands it back to
   `.site-head`/`.site-foot`, which stay at 760px so the masthead and footer read as the same
   narrow paper while the cover steps out from under them.
-- **`_layouts/post.html`** — wraps `default`, renders title/dek/content + the per-post
-  disclaimer, then the **"Elsewhere in the paper"** block: 4-6 links to other editions, all
+- **`_layouts/post.html`** — wraps `default`, renders a `.post-head` (the headline, the
+  `subtitle` dek, a `.post-meta` dateline of edition · date, then the `sources` line), the
+  content and the per-post disclaimer. The dateline sits **under the dek, not over the
+  headline**: until 2026-09-13 an article showed no date anywhere on the page, and a label
+  above the heading is the eyebrow pattern the rest of the site moved away from the same day.
+  Then the **"Elsewhere in the paper"** block: 4-6 links to other editions, all
   derived, so no post needs front matter. It exists for crawling — before it, a post was
   reachable only from the home page (10 most recent) and `/archive/`, and Google left 15 of
   22 URLs at "discovered, currently not indexed". Two rules there are load-bearing and
@@ -143,13 +159,16 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   hand-maintained; the upload pipeline records no video ids anywhere to read from.
   The lead is the newest *Tape*, not simply the newest
   post: the Ledger publishes automatically every week, and as a permanent lead it would bury
-  the written notes under a headline that is just a date. Ten post links total (2 leads + 4 +
+  the written notes under a generated one every week. Ten post links total (2 leads + 4 +
   4); a "Back issues" link closes the page to `/archive/`.
   **The lead picture is a link to its own story** — readers click the picture before the
   headline, and a cover plate that goes nowhere is a dead target. It is a plain `<a>`, not
   the `aria-hidden`/`tabindex="-1"` decoration trick usually used for a link that repeats the
   headline beneath it, because `image_alt` describes a chart with real numbers in it and
   hiding the link would take that away from screen readers to save one tab stop.
+  **Under a title card the lead's dateline is `.visually-hidden`**: the card already prints the
+  edition, the date and the headline into the picture, and repeating them right under it was
+  the cover saying its headline three times. A chart-card lead prints no date and keeps it.
   **`.lead-figure-plate`**: when the lead's `image:` is a chart card (path contains
   `/cards/`) the 16:9 crop is dropped and the card renders whole. A title card is *built* to
   be cropped — headline in the lower half, motif carrying the rest — but a chart is read, and
@@ -227,8 +246,9 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   `dist\ChartHorizon\ChartHorizon.exe`, never on the `…-Windows-Setup.exe`.
   The `.dl-firstrun` disclosure is a card at `.dl-grid`'s own 440px so it lines up under the
   buttons as their fourth element rather than reading as a footnote; it stays collapsed by
-  default. Editorial broadsheet treatment (centred `.kicker` + `.notice-head` + a `.dash-reads`
-  chip strip of the four/five signals), reusing `.fx-chips`. Contact is X-only (`@ChartHorizon`) —
+  default. Editorial broadsheet treatment (centred `.notice-head` + a `.dash-reads`
+  chip strip of the four/five signals), reusing `.fx-chips`; the tracked-caps kicker over its h1
+  was removed on 2026-09-13, as on /resources/ and the 404. Contact is X-only (`@ChartHorizon`) —
   no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
   Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
   `WebPage` JSON-LD branch in `default.html`.
@@ -240,7 +260,8 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   shoots both editions from one session at one viewport and refuses to finish if the pair comes
   out at different pixel sizes, because the page swaps between them on a click and any drift in
   data or framing reads as a jump. Never hand-replace one edition on its own.
-- **`resources.html`** (`/resources/`, the **Resources** tab) — "The Reading Room": outside
+- **`resources.html`** (`/resources/`, the **Resources** tab) — "The Reading Room", which has
+  also been its h1 since 2026-09-13 (it was a kicker over a generic "Resources" before): outside
   material that explains the mechanics behind the desk's signals, added 2026-09-06. `default`
   layout, normal indexed page, `CollectionPage` JSON-LD branch in `default.html` — which
   since 2026-09-07 carries a `mainEntity` `ItemList` of the entries, flattened across sections
@@ -318,7 +339,8 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
   without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of
   moving a whole tab to a second line. Wrapping then stranded **About** alone under the other
-  four (the row needs ~410px), so **under 420px the nav is a 3 + 2 grid** — six tracks, each
+  four (the row needs ~425px since the first tab became "Front Page"), so **under 440px the nav
+  is a 3 + 2 grid** — six tracks, each
   tab spanning two, the second row starting on track two. Under 560px every dateline control
   also drops to 7px of vertical padding over 14px row gaps: targets stay ≥24px (WCAG 2.5.8)
   and meet the row below instead of overlapping it. The masthead's top padding drops from 38px
@@ -343,7 +365,11 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   before editing it: **both** muted tones clear 4.5:1 on every surface they sit on (gold is
   2.19:1 on paper — never body text, never a focus ring there); `:focus-visible` is one ink
   ring defined once, not per-component; and prose is capped at `--measure` (~72 chars/line)
-  while figures, boards and tables break out to the full 760px sheet. Both layouts and the index pull from it, so the index and every
+  while figures, boards and tables break out to the full 760px sheet. A fourth, since
+  2026-09-13: **tracked capitals belong to the masthead, the nav, section rules and section
+  labels, and table headers only.** Datelines, link feet ("All Tape notes →"), meta lines and
+  button sublabels are sentence case, because the caps had become the cover's single voice
+  (15 of the first screen's 36 text runs). Both layouts and the index pull from it, so the index and every
   page match. Type is **Newsreader**, self-hosted under `assets/fonts/` and declared via
   `@font-face` at the top of `blog.css` (preloaded in `default.html`), so the site still makes
   **zero third-party requests** on content pages — Georgia is the fallback.
@@ -448,9 +474,10 @@ scripts, so the analytics↔privacy coupling is untouched.
   **Write to the limit, don't discover it later.**
 - **Do not put the date in a post's `seo_title`.** Nineteen of the twenty-one carried one
   ("— Aug 28, 2026"), spending ~14 characters on something Google prints beside the result
-  anyway. **The two Hedgers' Ledger posts are the exception and keep theirs**: the generator
-  reuses the same slug and the same headline every week, so the date is the only thing that
-  makes their titles distinct — strip it and you have manufactured duplicate titles, which is
+  anyway. **The Hedgers' Ledger posts are the exception and keep theirs**: the generator
+  reuses the same slug every week, and although the on-page headline now says what changed
+  (`content/livermore/blog/headline.py`), a quiet week can repeat one, so the date is what keeps
+  their titles reliably distinct. Strip it and you risk manufactured duplicate titles, which is
   worse than an overlong one. That also means the durable fix for the Ledger's title length is
   upstream in `content/livermore/blog/` (`cot_seo`), not here.
 - **`last_modified_at` puts a `<lastmod>` on a standing page** — `jekyll-sitemap` takes a

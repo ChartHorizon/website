@@ -2,7 +2,8 @@
 layout: post
 title: "Funded in Euros"
 date: 2026-08-18
-subtitle: "Prices through 17 August 2026 · COT through the 11 August report · a currency note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
+subtitle: "Two weeks after the first joint US-Japan intervention since 2011, the dollar is back at 159.21 and the hedgers have sold 69 per cent of their yen long."
+sources: "Prices through 17 August 2026 · COT through the 11 August report · a currency note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-18-funded-in-euros/cards
 image: /assets/posts/2026-08-18-funded-in-euros/cards/jpy_cot.png
 image_alt: "Japanese Yen — commercial net position against price over three years, showing the collapse from 158,025 contracts on 28 July to 48,769 on 11 August"
