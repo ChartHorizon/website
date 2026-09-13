@@ -7,7 +7,7 @@ seo_title: "Free COT Dashboard & Futures Charting Software"
 # NOT on /, /archive/, /tape/, /ledger/ or /fx/: those redraw from posts or from the daily
 # _data/fx.json, so a hand-typed date there is wrong by the next build, and an inaccurate
 # lastmod is ignored outright rather than merely being old. Bump when you edit this page.
-last_modified_at: 2026-09-11
+last_modified_at: 2026-09-14
 # NOTE THE PLATFORM LIST. It said "macOS, Windows and Linux" while dl_linux was "soon",
 # which promised a download that does not exist on the one page whose job is the download.
 # Keep it in step with the dl_* switches below.
@@ -105,6 +105,13 @@ dl_version: "1.2.9"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
 dl_linux: "soon"        # not built yet — see the note above
+# Installer sizes, printed under each button's architecture line so a reader knows what the
+# click costs before making it. Decimal MB, as Finder shows them. They belong to dl_version:
+# bump them together (ops/website-installers.sh prints both lines once an upload verifies).
+# "" hides the line for that platform.
+dl_size_macos: "39.7 MB"
+dl_size_windows: "35.6 MB"
+dl_size_linux: ""
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
 {%- assign dl_repo = "https://dl.chart-horizon.com" -%}
@@ -213,8 +220,7 @@ built on, open to your own read.</p>
    caption="Charts — the E-mini S&P 500, positioning stacked under price." %}
 
 {% if released %}
-<p>The board is ready. Pick your platform below — it lives on your machine and opens in
-your browser, with no account and nothing in the cloud.</p>
+<p>The board is ready. Pick your platform below.</p>
 {% else %}
 <p>No launch date promised and no waitlist games; that is not this desk's style. It's being
 readied now. Until then, the rest of this paper <em>is</em> the dashboard, set in type.</p>
@@ -229,28 +235,31 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
   <span class="dl-label">Download the board</span>
   <div class="dl-grid">
     {%- if url_macos != "" -%}
-    <a class="dl-btn" href="{{ url_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">Apple Silicon</span></a>
+    <a class="dl-btn" href="{{ url_macos }}" download>{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">Apple Silicon</span>{% if page.dl_size_macos and page.dl_size_macos != "" %}<span class="dl-size">{{ page.dl_size_macos }}</span>{% endif %}</a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_macos }}<span class="dl-os">macOS</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
     {%- if url_windows != "" -%}
-    <a class="dl-btn" href="{{ url_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">64-bit (x64)</span></a>
+    <a class="dl-btn" href="{{ url_windows }}" download>{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">64-bit (x64)</span>{% if page.dl_size_windows and page.dl_size_windows != "" %}<span class="dl-size">{{ page.dl_size_windows }}</span>{% endif %}</a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_windows }}<span class="dl-os">Windows</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
 
     {%- if url_linux != "" -%}
-    <a class="dl-btn" href="{{ url_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">x86_64</span></a>
+    <a class="dl-btn" href="{{ url_linux }}" download>{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">{% if ver != "" %}v{{ ver }}{% else %}Download{% endif %}</span><span class="dl-arch">x86_64</span>{% if page.dl_size_linux and page.dl_size_linux != "" %}<span class="dl-size">{{ page.dl_size_linux }}</span>{% endif %}</a>
     {%- else -%}
     <span class="dl-btn dl-btn--soon" aria-disabled="true">{{ ico_linux }}<span class="dl-os">Linux</span><span class="dl-sub">Coming soon</span></span>
     {%- endif -%}
   </div>
-  <p class="dl-note">Local-first · runs in your browser · no account, no cloud.</p>
+  {%- comment -%} The unsigned fact sits AT the buttons, where the decision is made. Until
+  2026-09-14 it surfaced only inside the collapsed notes below, while this line said "local-first
+  / no account" for the fourth time on the page. {%- endcomment %}
+  <p class="dl-note">{% if released %}Not code-signed yet, so your system may warn the first time you open it.{% else %}Local-first · runs in your browser · no account, no cloud.{% endif %}</p>
   {%- if released %}
   <details class="dl-firstrun">
     <summary>Opening it the first time</summary>
-    <p>The builds aren't code-signed yet, so your system may warn on first launch — this clears it:</p>
+    <p>One step on each system gets it running:</p>
     <ul>
       <li><b>macOS</b> — drag <b>ChartHorizon</b> onto <b>Applications</b>, then right-click (or Control-click) the app and choose <b>Open</b> → <b>Open</b>. If macOS still calls it “damaged,” clear the quarantine once: <code>xattr -cr /Applications/ChartHorizon.app</code>.</li>
       <li><b>Windows</b> — on the SmartScreen prompt, click <b>More info</b>, then <b>Run anyway</b>.</li>
@@ -261,12 +270,12 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
 </div>
 
 {% if released %}
-<p class="dash-close">Local-first by design — your data never leaves your machine. Something
-broken, or working well? <strong>The desk reads its mail at
-<a href="https://x.com/ChartHorizon" rel="me noopener" target="_blank">@ChartHorizon</a>.</strong></p>
+<p class="dash-close">Local-first by design: no account, and your data never leaves your
+machine. Something broken, or working well? The desk reads its mail at
+<a href="https://x.com/ChartHorizon" rel="me noopener" target="_blank">@ChartHorizon</a>.</p>
 {% else %}
-<p class="dash-close">The builds land on these buttons the moment they’re signed and ready. <strong>Follow
+<p class="dash-close">The builds land on these buttons the moment they’re signed and ready. Follow
 <a href="https://x.com/ChartHorizon" rel="me noopener" target="_blank">@ChartHorizon</a>
-for the launch.</strong></p>
+for the launch.</p>
 {% endif %}
 </div>

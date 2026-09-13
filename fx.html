@@ -42,11 +42,9 @@ description: "A daily currency strength meter and forex economic calendar: bias 
     "locale": "en"
     }'>
   <div class="tv-mount"></div>
-  <div class="tv-consent tv-consent--compact">
-    <p><strong>Live prices are off.</strong> The ticker is a TradingView embed: loading it sends
-       your IP address to TradingView and lets them set their own cookies.</p>
-    <button type="button" class="tv-consent-btn" data-tv-consent>Load live data</button>
-  </div>
+  {%- comment -%} No ask of its own: the ticker is not drawn until the reader says yes to the
+  calendar card below, which asks once for all three embeds (see .tv-ask .tv-ticker in
+  blog.css). {%- endcomment %}
 </div>
 
 <h1>FX Strength Map</h1>
@@ -54,13 +52,13 @@ description: "A daily currency strength meter and forex economic calendar: bias 
    (season, hedging program, term structure and the interest-rate bias),
    refreshed once a day, with live FX prices and the economic calendar from TradingView.</p>
 
-<section class="fxmap">
-  <div class="fx-section-head">
-    <h2 class="fx-section-title">FX Strength &amp; Pairs</h2>
-    {%- comment -%} Both scales, because the board shows both: currency scores run ±max_score,
-    pair spreads are the difference of two of them and run ±pair_max. {%- endcomment -%}
-    <div class="fxmap-meta">Data as of {{ fx.as_of }} · currency −{{ fx.max_score }}…+{{ fx.max_score }} · pair −{{ fx.pair_max }}…+{{ fx.pair_max }}</div>
-  </div>
+{%- comment -%} The board's dateline, set under the dek the way an article's is. It used to sit
+beside a 13px sans-caps "FX Strength & Pairs" h2 that restated the h1 in a heading voice nothing
+else on the site uses (removed 2026-09-14). Both scales, because the board shows both: currency
+scores run ±max_score, pair spreads are the difference of two of them and run ±pair_max. {%- endcomment %}
+<p class="fxmap-meta">Data as of {{ fx.as_of }} · currency −{{ fx.max_score }}…+{{ fx.max_score }} · pair −{{ fx.pair_max }}…+{{ fx.pair_max }}</p>
+
+<section class="fxmap" aria-label="Strength board">
 
   {%- comment -%} Bias, never calls. The heads name a lean and never an order: until 2026-09-14
   they read "Long bias" and "Bullish pairs · buy" / "Bearish pairs · short", the only imperative
@@ -154,7 +152,8 @@ description: "A daily currency strength meter and forex economic calendar: bias 
    <button type="button" class="tv-revoke-btn" data-tv-revoke>Turn it off</button></p>
 <p class="tv-fallback"><strong>The calendar is not loading.</strong> It is a TradingView embed, and
    something between here and them — a privacy extension, a DNS filter, a company proxy — is
-   holding it back. The strength board above is ChartHorizon's own and is unaffected.</p>
+   holding it back. Allowing TradingView there, for this page only, brings it back. The
+   strength board above is ChartHorizon's own and is unaffected.</p>
 
 <h2>Interest rates</h2>
 <p>The policy-rate backdrop behind the strength scores — the rate-bias column is how each central
@@ -185,9 +184,9 @@ description: "A daily currency strength meter and forex economic calendar: bias 
 <!-- Per-pair chart overlay — opened on click from the pairs grid above. A native <dialog>,
      so the browser supplies the focus trap, Escape handling and focus restore.
      Loads a TradingView Advanced Chart widget (third-party, documented in privacy.html §6). -->
-<dialog class="fx-modal" id="fxChart" aria-labelledby="fxChartTitle">
+<dialog class="fx-modal" id="fxChart" aria-labelledby="fxChartTitle fxChartDir">
   <div class="fx-modal-head">
-    <span class="fx-modal-title" id="fxChartTitle">FX pair</span>
+    <span class="fx-modal-name"><span class="fx-modal-title" id="fxChartTitle">FX pair</span><span class="fx-modal-dir" id="fxChartDir"></span></span>
     <button type="button" class="fx-modal-x" data-close aria-label="Close chart">&#10005;</button>
   </div>
   <div class="fx-modal-body" id="fxChartBody"></div>
@@ -298,13 +297,15 @@ document.addEventListener('click', function (e) {
   if (!modal) return;
   var body = document.getElementById('fxChartBody');
   var titleEl = document.getElementById('fxChartTitle');
+  var dirEl = document.getElementById('fxChartDir');
 
   function showEmpty() {
     body.innerHTML = '<div class="fx-modal-empty">' +
       '<p><strong>The chart is not loading.</strong></p>' +
       '<p>TradingView supplies the live charts on this page, and something between here and ' +
       'them is blocking the request — usually a privacy extension, a DNS filter or a company ' +
-      'proxy. The strength read behind this pair is ChartHorizon&rsquo;s own and stands as printed.</p>' +
+      'proxy. Allowing TradingView there, for this page only, brings the chart back. The ' +
+      'strength read behind this pair is ChartHorizon&rsquo;s own and stands as printed.</p>' +
       '</div>';
   }
 
@@ -370,8 +371,11 @@ document.addEventListener('click', function (e) {
   // rather than leave a light panel sitting inside a dark one.
   var openSymbol = null;
 
-  function open(symbol, label, dir) {
+  function open(symbol, label, dir, read) {
     titleEl.textContent = label || 'FX pair';
+    // The direction in words, the tile's own "Bull +8/10". Until 2026-09-14 the panel said it
+    // only as the colour of a 3px stripe along its top edge.
+    dirEl.textContent = read || '';
     modal.setAttribute('data-dir', dir || '');
     openSymbol = symbol;
     if (!consented()) {
@@ -412,7 +416,9 @@ document.addEventListener('click', function (e) {
 
   Array.prototype.forEach.call(document.querySelectorAll('.fx-pair[data-symbol]'), function (el) {
     el.addEventListener('click', function () {
-      open(el.getAttribute('data-symbol'), el.getAttribute('data-pair'), el.getAttribute('data-dir'));
+      var read = el.querySelector('.fx-pair-sp');
+      open(el.getAttribute('data-symbol'), el.getAttribute('data-pair'), el.getAttribute('data-dir'),
+           read ? read.textContent : '');
     });
   });
 

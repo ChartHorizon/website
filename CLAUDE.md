@@ -85,7 +85,12 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
    **PNG**: they're flat line art (solid fills, hard edges, text), which is what PNG is
    actually for and where JPEG would add ringing around every line for no size win. The
    **Hedgers' Ledger deliberately keeps its chart card** instead of a title card, so the
-   two editions read as visibly different at a glance.
+   two editions read as visibly different at a glance. Since 2026-09-14 both generators shoot
+   their cards with `&paper=1`, which sets the dashboard's card mode to this site's newsprint
+   (paper ground, `--bull`/`--bear` candles and COT bars, ink labels, a gold-ink category and a
+   muted wordmark; `PAPER_CARD_COLORS` in `dashboard/app/web/core.js`). A card in the app's
+   blue/salmon under an orange wordmark read here as a screenshot pasted onto the page. Issues
+   published before keep the cards they shipped with.
 
    A Tape post **may point `image:` at one of its own chart cards instead** (2026-08-18
    "Funded in Euros" does, at `cards/jpy_cot.png`). The cover then renders that lead
@@ -124,7 +129,8 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   nav **Front Page** (home; "The Tape" until 2026-09-13, a name that belongs to one of the two
   editions; active on the cover only) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
   **Resources** (`/resources/`) / **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
-  Impressum/Datenschutz links). A page widens to 1080px by setting `wide: true` in its front
+  RSS feed/Impressum/Datenschutz links; the feed link since 2026-09-14, when the Atom feed was
+  otherwise only a `<link>` in the head). A page widens to 1080px by setting `wide: true` in its front
   matter — today only `index.html` does. The layout puts `wide-page` on `<body>` and `wide` on
   `<main>`; the 760px cap lives on `body` (`assets/css/blog.css`), not on a wrapper, so a class
   on `main` alone would do nothing, and the CSS lifts the cap there and hands it back to
@@ -162,6 +168,8 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   cover, neon type on a paper whose one accent is gold. Grey rather than a gold duotone, because
   gold is the slot the desk's own signal sits in. The rail's FX block prints the currency scale
   in its meta line ("Currency strength −5…+5"), because "AUD +3" means nothing without it.
+  The standfirst under the masthead dropped its closing "Data: ChartHorizon." the same day and
+  steps down to 16.5px on phones, where it ran four lines above the lead.
   The lead is the newest *Tape*, not simply the newest
   post: the Ledger publishes automatically every week, and as a permanent lead it would bury
   the written notes under a generated one every week. Ten post links total (2 leads + 4 +
@@ -202,7 +210,9 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   were findable only by scanning a `Turned` column that is empty in every cell on a quiet week.
   The fixed column geometry stays (a week's longest market name would otherwise set the header
   width and make it jump between issues), but the widths are now 34/36/30, not 44/40/16: both
-  right-hand columns carry a phrase now, and at 16% the last one wrapped its own heading.
+  right-hand columns carry a phrase now, and at 16% the last one wrapped its own heading. On
+  phones (≤560px) the shares are 30/36/34 with tighter padding, and the program mark may wrap
+  before "midpoint" there: auto layout had squeezed `Turned` to one word per line (~196px rows).
   A week with **no** turn keeps the section and says so in a line — the whole-board counts are
   there anyway, and a half that vanishes without visible cause reads as a bug.
   The turn cards are **not** the extremes cards: they are shot at `range=6m` with the hedging
@@ -249,6 +259,13 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   card balanced. Note the Windows *setup* stub reports 32-bit (`file` says PE32/i386) as every
   Inno stub does; the payload is the x64 freeze, verified upstream by PE machine field `8664` on
   `dist\ChartHorizon\ChartHorizon.exe`, never on the `…-Windows-Setup.exe`.
+  Under it sits a `.dl-size` line from `dl_size_macos` / `dl_size_windows` / `dl_size_linux`
+  (decimal MB, as Finder shows them). **They belong to `dl_version` and are bumped with it**: a
+  size left over from the last release is a quiet lie on the one line a reader checks before
+  clicking. `ops/website-installers.sh` prints both lines once an upload verifies. Since
+  2026-09-14 the `.dl-note` under the buttons says the builds are **not code-signed yet**; it
+  used to repeat "local-first / no account" while the unsigned fact surfaced only inside the
+  collapsed first-run notes, and the page said "local-first / no account" nine times in all.
   The `.dl-firstrun` disclosure is a card at `.dl-grid`'s own 440px so it lines up under the
   buttons as their fourth element rather than reading as a footnote; it stays collapsed by
   default. Editorial broadsheet treatment (centred `.notice-head` + a `.dash-reads`
@@ -402,11 +419,12 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   reading the source you deployed. The trade is that the address gets harvested — that is the
   correct trade for a statutory contact.
 - **TradingView is click-to-load, and nothing fetches it before the reader asks.** The embeds
-  set third-party cookies, so `/fx/` renders a first-party `.tv-consent` ask in place of each
-  widget (a bar over the ticker, a card over the calendar) and the pair overlay asks too.
-  **Under 560px the ticker's bar is not rendered while unconsented**: stacked, it was 162px of
-  permission copy above the board, and the calendar card already asks once for all three
-  embeds with the full explanation. A
+  set third-party cookies, so `/fx/` renders a first-party `.tv-consent` card in place of the
+  calendar, and the pair overlay asks too. **The ticker has no ask of its own and is not
+  rendered while unconsented, at any width**: on a phone its bar was 162px of permission copy
+  above the board, and on a desktop (until 2026-09-14) its "Live prices are off." was the first
+  line under the masthead, above the h1. The calendar card asks once for all three embeds with
+  the full explanation. A
   bootstrap script at the **top of `fx.html`**, not in `<head>`, stamps `tv-ask`/`tv-ok` on
   `<html>` before the widget markup is parsed — same pre-paint reason as the theme script, since
   the ask and the frames are mutually exclusive. Consent lives in `localStorage` under
@@ -457,6 +475,15 @@ and the rate-decision calendar next to it.
   method note under the board uses `/about/`'s vocabulary for the same reason (season, hedging
   program, term structure, rate bias), not the dashboard's internal names (Seasonals, COT-Hedging).
   These labels live in `fx.html`, not in the export, so the nightly `fx.json` push cannot undo them.
+- **Head, ledger, overlay (2026-09-14).** The board has no heading of its own: its as-of line is a
+  `.fxmap-meta` dateline under the dek, the way an article's sits under its dek. A 13px sans-caps
+  "FX Strength & Pairs" h2 stood there before, restating the h1 in a heading voice nothing else on
+  the site uses. The rate table's currency column is **sticky**, which is why that one table draws
+  its borders per cell (`border-collapse:separate`): collapsed borders belong to the table and
+  would not move with the stuck cell. The pair overlay names the read in words beside the pair
+  ("Bull +8/10", taken from the tile) instead of a bull/bear stripe along its top edge, which said
+  the direction in colour alone. Both blocked-embed notes end with the remedy (allowing
+  TradingView in the filter, for this page).
 - **Refresh (cross-repo — runs on the dashboard machine, NOT in this repo):** the private
   dashboard's daily job (`AUTO_UPDATE_CHARTHORIZON.command`, launchd ~23:30) calls
   `content_bot/fx_blog_push.command` → `content_bot/fx_blog_export.py`, which renders the real
@@ -467,7 +494,7 @@ and the rate-decision calendar next to it.
 - **TradingView = third-party scripts**, loaded only on this page, and **only after the reader
   clicks** (`ch_tv_consent`; see the click-to-load note under "Architecture") → disclosed in
   `privacy.html` §6 (see the coupling note above). So the page's default state is the strength
-  board plus two first-party asks (one on a phone), not two live widgets — screenshot it accordingly. Constraint-safe: the page shows dashboard *output*, never
+  board plus one first-party ask (the calendar card), not two live widgets — screenshot it accordingly. Constraint-safe: the page shows dashboard *output*, never
   links to dashboard source/installers/releases.
 - It's a normal indexed page (no `noindex`/`sitemap:false`) → in `/sitemap.xml`, with its own
   `seo_title`/`description`. Not a post, so it's absent from `/feed.xml`.

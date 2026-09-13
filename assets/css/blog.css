@@ -119,6 +119,12 @@ img{max-width:100%; height:auto; border-radius:6px; margin:18px 0; box-shadow:0 
 table{border-collapse:collapse; width:100%; font:14px/1.45 var(--sans); margin:14px 0; font-variant-numeric:tabular-nums lining-nums}
 td,th{border:1px solid var(--rule); padding:8px 12px; text-align:left}
 th{background:var(--thead); font-weight:600}
+/* The Ledger's four-column extremes table needs ~313px at 14px with 12px padding, and a 320px
+   phone gives it 276px: the page scrolled sideways by 15px on every Ledger issue. */
+@media (max-width:420px){
+  .post-body table{font-size:13px}
+  .post-body :is(td,th){padding:7px 8px}
+}
 /* The Ledger's hedging-program table: the markets that crossed the midpoint this
    report. Fixed layout so the market column does not size to whichever name happens
    to be longest that week ("Natural Gas (Henry Hub)" vs "Gold"), which made the
@@ -128,7 +134,16 @@ th{background:var(--thead); font-weight:600}
 .program-board{table-layout:fixed}
 .program-board td:first-child,.program-board th:first-child{width:34%}
 .program-board td:last-child,.program-board th:last-child{width:30%}
-@media (max-width:520px){ .program-board{table-layout:auto} }
+/* On a phone, auto layout handed the nowrap "▼ below midpoint" its full width and squeezed
+   "Turned" to one word per line: ~196px rows at 390px. Fixed shares and tighter padding keep
+   each phrase to two lines. The mark may wrap before "midpoint" in this table only, because
+   the column cannot hold it whole; "▼ below" still never splits at these widths. */
+@media (max-width:560px){
+  .program-board :is(td,th){padding:8px 9px}
+  .program-board td:first-child,.program-board th:first-child{width:30%}
+  .program-board td:last-child,.program-board th:last-child{width:34%}
+  .program-board :is(.mark-bull,.mark-bear){white-space:normal}
+}
 /* read marks for post tables — always paired with a glyph + word, never color alone (Read-Mark Rule) */
 .mark-bull{color:var(--bull); font-weight:700}
 .mark-bear{color:var(--bear); font-weight:700}
@@ -220,6 +235,9 @@ blockquote p{margin:.3em 0}
 
 /* ---- index front page ---- */
 .index-standfirst{font:italic 400 19px/1.5 var(--serif); color:var(--muted); margin:1.3em 0 1.7em; max-width:62ch; text-wrap:pretty}
+/* On a phone it ran four lines of 19px italic between the masthead and the lead, and the lead
+   headline started 596px down an 844px screen. */
+@media (max-width:560px){ .index-standfirst{font-size:16.5px; margin:1em 0 1.3em} }
 /* section rule: a small caps label riding a strong hairline, broadsheet-style (an h2, so it carries the outline) */
 .section-rule{display:flex; align-items:center; gap:14px; margin:0; padding-top:0; border-top:none;
   font:700 11px/1 var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
@@ -383,7 +401,6 @@ blockquote p{margin:.3em 0}
 .dash-reads .fx-chips{justify-content:center}
 .dash-close{text-align:center; font-style:italic; color:var(--muted); margin:30px 0 4px; text-wrap:balance}
 .notfound{max-width:var(--measure); margin:28px auto 0; text-align:center; text-wrap:pretty}
-.dash-close strong{font-style:normal; color:var(--ink)}
 
 /* download block — three platform buttons (active link or "Coming soon" state) */
 /* scroll-margin: the release line up top jumps here, and without it the section label sits
@@ -399,12 +416,14 @@ blockquote p{margin:.3em 0}
    32-bit Windows cannot run the x64 setup — that belongs before the click, not after it.
    Deliberately NOT nowrap like .dl-sub: at 320px the column is ~75px wide and a wrapped
    second line is better than a label overflowing its own button. */
-.dl-arch{margin-top:-5px; font:500 12px/1.35 var(--sans); color:var(--muted-2); font-variant-numeric:tabular-nums lining-nums}
+.dl-arch,.dl-size{margin-top:-5px; font:500 12px/1.35 var(--sans); color:var(--muted-2); font-variant-numeric:tabular-nums lining-nums}
+/* what the click costs, set tight under the architecture so the two read as one group */
+.dl-size{margin-top:-8px}
 /* active state: real download link */
 a.dl-btn:hover{border-color:var(--gold); box-shadow:0 2px 10px rgba(var(--shadow-tint),.09)}
 a.dl-btn:hover .dl-os-ico{fill:var(--gold-ink)}
 a.dl-btn:hover .dl-sub{color:var(--gold-ink)}
-a.dl-btn:hover .dl-arch{color:var(--gold-ink)}
+a.dl-btn:hover :is(.dl-arch,.dl-size){color:var(--gold-ink)}
 a.dl-btn:active{transform:translateY(1px)}
 /* coming-soon state: not yet downloadable */
 .dl-btn--soon{background:var(--quote-bg); border-style:dashed; cursor:default}
@@ -435,7 +454,7 @@ a.dl-btn:active{transform:translateY(1px)}
 .dl-firstrun code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--quote-bg); border:1px solid var(--rule); border-radius:4px; padding:1px 5px}
 /* 11px floor on a phone: the architecture line is what stops an Intel Mac downloading a dmg
    it cannot run, and at 8px it was the smallest text on the site */
-@media (max-width:420px){ .dl-grid{gap:8px} .dl-btn{padding:14px 6px 12px} .dl-os{font-size:14px} .dl-sub{font-size:11.5px} .dl-arch{font-size:11px} }
+@media (max-width:420px){ .dl-grid{gap:8px} .dl-btn{padding:14px 6px 12px} .dl-os{font-size:14px} .dl-sub{font-size:11.5px} .dl-arch,.dl-size{font-size:11px} }
 
 /* dashboard product page — screenshot plates set as plates on the sheet */
 .board{margin:30px 0}
@@ -451,11 +470,9 @@ a.dl-btn:active{transform:translateY(1px)}
 
 /* ---- FX Map page (/fx/) ---- */
 .fxmap{margin:18px 0 6px}
-.fx-section-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px; margin:0 0 14px}
-/* an h2 visually set as the board's small-caps label — resets the global h2 chrome */
-.fx-section-title{font:700 13px/1.2 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--ink); margin:0; padding-top:0; border-top:none}
-.fx-section-title::before{content:none}
-.fxmap-meta{font:12.5px/1.4 var(--sans); color:var(--muted)}
+/* the board's dateline, set under the dek the way an article's is (see fx.html) */
+.dek:has(+ .fxmap-meta){margin-bottom:.7em}
+.fxmap-meta{font:500 12.5px/1.4 var(--sans); color:var(--muted); margin:0}
 .fx-board,.fx-pairs{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 .fx-pairs{margin-top:14px}
 .fx-col,.fx-pairshelf{border:1px solid var(--rule); border-radius:10px; padding:14px 16px; background:var(--card)}
@@ -499,7 +516,8 @@ button.fx-pair:active{transform:translateY(1px)}
 .fx-pair-hint::before{content:"\203A\00a0"}
 .fx-empty{font:italic 13px/1.5 var(--sans); color:var(--muted); margin:2px 0 0}
 .fx-method{margin:16px 0 0}
-.fx-method p{font:12.5px/1.55 var(--sans); color:var(--muted); margin:.4em 0; max-width:70ch}
+/* read, not fine print: it is the one place the page says how a score is made */
+.fx-method p{font:13.5px/1.55 var(--sans); color:var(--muted); margin:.4em 0; max-width:64ch}
 .fx-method strong{color:var(--ink)}
 .fx-rate-wrap{overflow-x:auto}
 /* Shown only where the ledger actually has to scroll, so the clipped edge is announced
@@ -507,8 +525,15 @@ button.fx-pair:active{transform:translateY(1px)}
 .fx-rate-scroll{display:none; font:italic 13px/1.5 var(--serif); color:var(--muted); margin:9px 0 0}
 /* ledger numerals: aligned figures across every FX data surface (font: shorthand resets variant-numeric, so set it per element) */
 .fxmap-meta,.fx-count,.fx-chip,.fx-chip b,.fx-pair-sp,.fx-pair-nm,.fx-rate-table{font-variant-numeric:tabular-nums lining-nums}
-.fx-rate-table{border-collapse:collapse; width:100%; font:13px/1.4 var(--sans); margin:0}
-.fx-rate-table th,.fx-rate-table td{border:1px solid var(--rule); padding:8px 11px; text-align:left; white-space:nowrap}
+/* Borders are drawn per cell (right + bottom; the header row and the first column close the top
+   and left) because the currency column is sticky, and in a collapsed table the borders belong
+   to the table: a stuck cell would slide over the ledger without its own edge. On a phone the
+   ledger scrolls sideways, and until 2026-09-14 it took each row's currency with it. */
+.fx-rate-table{border-collapse:separate; border-spacing:0; width:100%; font:13px/1.4 var(--sans); margin:0}
+.fx-rate-table th,.fx-rate-table td{border:solid var(--rule); border-width:0 1px 1px 0; padding:8px 11px; text-align:left; white-space:nowrap}
+.fx-rate-table th{border-top-width:1px}
+.fx-rate-table :is(th,td):first-child{position:sticky; left:0; z-index:1; border-left-width:1px; background:var(--paper)}
+.fx-rate-table th:first-child{background:var(--thead)}
 /* Bank and instrument are the only wide columns; letting the two of them wrap brings the
    whole ledger inside the 760px sheet, so nothing is clipped on a desktop read. */
 .fx-rate-table :is(th,td):nth-child(3),.fx-rate-table :is(th,td):nth-child(4){white-space:normal; min-width:9ch}
@@ -556,21 +581,14 @@ button.fx-pair:active{transform:translateY(1px)}
 .tv-ask .tv-consent strong{color:var(--ink)}
 .tv-consent-note{font-size:12.5px}
 .tv-consent code{font:11.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:1px 5px}
-/* The ticker is a thin strip, so its ask is a bar rather than a card: the sentence runs
-   the width and the control sits at the end of it, instead of the button wrapping into
-   the middle of the prose the way an inline one does. */
-.tv-ask .tv-consent--compact{display:flex; align-items:center; gap:18px}
-.tv-ask .tv-consent--compact p{flex:1; max-width:none; margin:0}
-.tv-ask .tv-consent--compact .tv-consent-btn{flex:none}
-/* On a phone the ticker's ask is not drawn at all. Stacked, it came to 162px of permission
-   copy between the masthead and the board the reader opened the page for, and pushed the
-   board below the fold. Nothing is lost: the dek already says live prices come from
-   TradingView, and the calendar card further down asks once for all three embeds with the
-   full explanation beside its button. Only the unconsented state is hidden, so a reader who
-   has said yes still gets the tape at the top of the page. */
-@media (max-width:560px){
-  .tv-ask .tv-ticker{display:none}
-}
+/* The ticker has no ask of its own, at any width. On a phone its bar came to 162px of
+   permission copy between the masthead and the board the reader opened the page for; on a
+   desktop (until 2026-09-14) its first words, "Live prices are off.", were the first line under
+   the masthead, above the page's own h1. Nothing is lost: the dek says live prices come from
+   TradingView, and the calendar card further down asks once for all three embeds with the full
+   explanation beside its button. Only the unconsented state is hidden, so a reader who has
+   said yes still gets the tape at the top of the page. */
+.tv-ask .tv-ticker{display:none}
 /* attribution for a frame that was never built reads as a credit for nothing */
 .tv-ask .tv-widget .tradingview-widget-copyright{display:none}
 .tv-ok .tv-revoke{display:block; margin:6px 0 18px; font:12.5px/1.5 var(--sans); color:var(--muted)}
@@ -591,10 +609,13 @@ button.fx-pair:active{transform:translateY(1px)}
   box-shadow:0 18px 60px rgba(var(--shadow-tint),.35); overflow:hidden; color:inherit}
 .fx-modal[open]{display:flex}
 .fx-modal::backdrop{background:rgba(var(--shadow-tint),.55); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px)}
-.fx-modal-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-top:3px solid var(--gold); border-bottom:1px solid var(--rule)}
-.fx-modal[data-dir="bull"] .fx-modal-head{border-top-color:var(--bull)}
-.fx-modal[data-dir="bear"] .fx-modal-head{border-top-color:var(--bear)}
+.fx-modal-head{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid var(--rule)}
 .fx-modal-title{font:700 15px/1 var(--sans); letter-spacing:.03em; color:var(--ink)}
+/* The pair's read in words ("Bull +8/10"), coloured as on the tile it came from. It replaced a
+   3px bull/bear stripe along the panel's top edge, which said the direction in colour alone. */
+.fx-modal-dir{margin-left:10px; font:600 13px/1 var(--sans); color:var(--muted); font-variant-numeric:tabular-nums lining-nums}
+.fx-modal[data-dir="bull"] .fx-modal-dir{color:var(--bull)}
+.fx-modal[data-dir="bear"] .fx-modal-dir{color:var(--bear)}
 .fx-modal-x{appearance:none; width:30px; height:30px; border-radius:8px; border:1px solid var(--rule); background:var(--quote-bg); color:var(--muted); font:13px/1 var(--sans); cursor:pointer}
 .fx-modal-x:hover{color:var(--ink); border-color:var(--gold)}
 .fx-modal-body{flex:1; min-height:0}
@@ -693,7 +714,7 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 .lead-head .post-link:hover{color:var(--gold-ink)}
 .lead-dek{margin:.4em 0 0; color:var(--muted); font-style:italic; line-height:1.5; max-width:58ch}
 .lead-second{border-bottom:2px solid var(--rule-strong); padding-bottom:22px; margin-bottom:26px}
-.lead-second .lead-head .post-link{font-size:clamp(21px,1.9vw,25px); line-height:1.18; letter-spacing:-.2px}
+.lead-second .lead-head .post-link{font-size:clamp(21px,1.9vw,25px); line-height:1.24; letter-spacing:-.2px}
 .lead-second .lead-dek{font-size:16px}
 
 /* the two strands */
