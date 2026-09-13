@@ -16,6 +16,8 @@ _site/
 .claude/
 .impeccable/
 .github/skills/
+.github/agents/
+.github/hooks/
 
 # Internal working notes. This repo is PUBLIC: product positioning and the design
 # system stay local, so a stray `git add -A` can't publish them.
