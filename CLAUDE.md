@@ -312,11 +312,17 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   the first rewrite then claimed "nothing is on this page because it pays", which the promotion
   to first position made untrue in turn. Both are the same failure — copy that outlived the
   arrangement it described. If the commercial arrangement changes again, this paragraph is the
-  first thing to check.
+  first thing to check. On phones (≤560px) both step down to 16px so the first entry is not
+  1,150px down the screen; that is a size change only, never a reason to shorten them.
   Adding this fifth nav tab is also what forced `white-space:nowrap` on `.dateline .site-nav a`
   plus `flex-wrap` on the nav under 560px: a flex row shrinks its items before it wraps, so
   without the pair the narrow masthead broke the labels themselves ("THE / TAPE") instead of
-  moving a whole tab to a second line.
+  moving a whole tab to a second line. Wrapping then stranded **About** alone under the other
+  four (the row needs ~410px), so **under 420px the nav is a 3 + 2 grid** — six tracks, each
+  tab spanning two, the second row starting on track two. Under 560px every dateline control
+  also drops to 7px of vertical padding over 14px row gaps: targets stay ≥24px (WCAG 2.5.8)
+  and meet the row below instead of overlapping it. The masthead's top padding drops from 38px
+  to 24px there to pay for it, so no page's content starts lower on a phone than before.
 - **`tape.html` / `ledger.html` carry a `.hub-intro`** under the dek — how the edition is read,
   in body ink rather than the dek's muted italic, because two muted italic blocks in a row read
   as one long subtitle nobody finishes. It exists because both hubs were nearly contentless
@@ -363,7 +369,10 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   correct trade for a statutory contact.
 - **TradingView is click-to-load, and nothing fetches it before the reader asks.** The embeds
   set third-party cookies, so `/fx/` renders a first-party `.tv-consent` ask in place of each
-  widget (a bar over the ticker, a card over the calendar) and the pair overlay asks too. A
+  widget (a bar over the ticker, a card over the calendar) and the pair overlay asks too.
+  **Under 560px the ticker's bar is not rendered while unconsented**: stacked, it was 162px of
+  permission copy above the board, and the calendar card already asks once for all three
+  embeds with the full explanation. A
   bootstrap script at the **top of `fx.html`**, not in `<head>`, stamps `tv-ask`/`tv-ok` on
   `<html>` before the widget markup is parsed — same pre-paint reason as the theme script, since
   the ask and the frames are mutually exclusive. Consent lives in `localStorage` under
@@ -417,7 +426,7 @@ and the rate-decision calendar next to it.
 - **TradingView = third-party scripts**, loaded only on this page, and **only after the reader
   clicks** (`ch_tv_consent`; see the click-to-load note under "Architecture") → disclosed in
   `privacy.html` §6 (see the coupling note above). So the page's default state is the strength
-  board plus two first-party asks, not two live widgets — screenshot it accordingly. Constraint-safe: the page shows dashboard *output*, never
+  board plus two first-party asks (one on a phone), not two live widgets — screenshot it accordingly. Constraint-safe: the page shows dashboard *output*, never
   links to dashboard source/installers/releases.
 - It's a normal indexed page (no `noindex`/`sitemap:false`) → in `/sitemap.xml`, with its own
   `seo_title`/`description`. Not a post, so it's absent from `/feed.xml`.
