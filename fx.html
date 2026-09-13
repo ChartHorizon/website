@@ -62,9 +62,13 @@ description: "A daily currency strength meter and forex economic calendar: bias 
     <div class="fxmap-meta">Data as of {{ fx.as_of }} · currency −{{ fx.max_score }}…+{{ fx.max_score }} · pair −{{ fx.pair_max }}…+{{ fx.pair_max }}</div>
   </div>
 
+  {%- comment -%} Bias, never calls. The heads name a lean and never an order: until 2026-09-14
+  they read "Long bias" and "Bullish pairs · buy" / "Bearish pairs · short", the only imperative
+  on a site whose /about/ page says there are no trade calls, and on the one page a reader could
+  mistake for a signal service. The method note below uses /about/'s words for the same reason. {%- endcomment -%}
   <div class="fx-board">
     <div class="fx-col fx-col--bull">
-      <div class="fx-col-head">Bullish / Long bias <span class="fx-count">{{ fx.bullish | size }}</span></div>
+      <div class="fx-col-head">Bullish bias <span class="fx-count">{{ fx.bullish | size }}</span></div>
       {% if fx.bullish and fx.bullish.size > 0 %}
       <div class="fx-chips">
         {% for c in fx.bullish %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
@@ -72,7 +76,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
       {% else %}<p class="fx-empty">No currency carries a bullish score today.</p>{% endif %}
     </div>
     <div class="fx-col fx-col--bear">
-      <div class="fx-col-head">Bearish / Short bias <span class="fx-count">{{ fx.bearish | size }}</span></div>
+      <div class="fx-col-head">Bearish bias <span class="fx-count">{{ fx.bearish | size }}</span></div>
       {% if fx.bearish and fx.bearish.size > 0 %}
       <div class="fx-chips">
         {% for c in fx.bearish %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
@@ -89,7 +93,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
 
   <div class="fx-pairs">
     <div class="fx-pairshelf">
-      <div class="fx-pairshelf-head fx-pairshelf-head--bull">Bullish pairs · buy</div>
+      <div class="fx-pairshelf-head fx-pairshelf-head--bull">Bullish pairs</div>
       <div class="fx-pairshelf-note">Strongest base versus weakest quote · canonical FX notation · <span class="fx-pair-hint">select a pair for its live chart</span></div>
       {% if fx.bullish_pairs and fx.bullish_pairs.size > 0 %}
       <div class="fx-pairlist">
@@ -98,7 +102,7 @@ description: "A daily currency strength meter and forex economic calendar: bias 
       {% else %}<p class="fx-empty">No bullish divergence today.</p>{% endif %}
     </div>
     <div class="fx-pairshelf">
-      <div class="fx-pairshelf-head fx-pairshelf-head--bear">Bearish pairs · short</div>
+      <div class="fx-pairshelf-head fx-pairshelf-head--bear">Bearish pairs</div>
       <div class="fx-pairshelf-note">Weakest base versus strongest quote · canonical FX notation · <span class="fx-pair-hint">select a pair for its live chart</span></div>
       {% if fx.bearish_pairs and fx.bearish_pairs.size > 0 %}
       <div class="fx-pairlist">
@@ -109,12 +113,12 @@ description: "A daily currency strength meter and forex economic calendar: bias 
   </div>
 
   <div class="fx-method">
-    <p><strong>How the score is built.</strong> Final currency score = Seasonals + COT-Hedging +
-       Term Structure + Interest-Rate Bias. Pair score = base currency score minus quote currency
-       score, in fixed canonical FX notation.</p>
-    <p><strong>Seasonals, COT-Hedging:</strong> +1 bullish / −1 bearish ·
-       <strong>Term Structure:</strong> +1 premium / −1 discount ·
-       <strong>Interest Rates:</strong> +{{ fx.rate_range }} highest / −{{ fx.rate_range }} lowest,
+    <p><strong>How the score is built.</strong> A currency's score is the sum of its season, hedging
+       program, term structure and rate bias. A pair's score is its base currency's score minus its
+       quote currency's, in fixed canonical FX notation.</p>
+    <p><strong>Season, hedging program:</strong> +1 bullish / −1 bearish ·
+       <strong>Term structure:</strong> +1 premium / −1 discount ·
+       <strong>Rate bias:</strong> +{{ fx.rate_range }} highest / −{{ fx.rate_range }} lowest,
        scaled across the FX basket. Pairs shown are the strongest divergences, ranked by score spread.</p>
   </div>
 </section>

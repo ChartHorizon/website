@@ -189,7 +189,9 @@ description: "Weekly futures notes read from the CFTC Commitments of Traders rep
   {%- if nbull > 0 %}
   <section class="rail-block rail-fx">
     <h2 class="section-rule"><span>FX standing</span></h2>
-    <p class="rail-meta">Currency strength &middot; {{ fx.as_of }}</p>
+    {%- comment -%} The scale rides along because "AUD +3" means nothing without it, and the
+    only other place it is printed is /fx/. {%- endcomment %}
+    <p class="rail-meta">Currency strength −{{ fx.max_score }}…+{{ fx.max_score }} &middot; {{ fx.as_of }}</p>
     <div class="fx-chips fx-col--bull">
       {%- for c in fx.bullish limit: 3 %}<span class="fx-chip">{{ c.cur }} <b>{{ c.label }}</b></span>{% endfor %}
     </div>

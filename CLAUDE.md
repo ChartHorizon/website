@@ -157,6 +157,11 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   `i.ytimg.com` — would put Google on the most-visited page of a site whose standing promise
   is zero third-party requests, and would make `privacy.html` wrong. `videos.yml` is
   hand-maintained; the upload pipeline records no video ids anywhere to read from.
+  The still is set in **grey** and takes its colour back on hover or focus (`.video-shot img` in
+  `blog.css`, since 2026-09-14): a thumbnail made for a YouTube feed was the loudest thing on the
+  cover, neon type on a paper whose one accent is gold. Grey rather than a gold duotone, because
+  gold is the slot the desk's own signal sits in. The rail's FX block prints the currency scale
+  in its meta line ("Currency strength −5…+5"), because "AUD +3" means nothing without it.
   The lead is the newest *Tape*, not simply the newest
   post: the Ledger publishes automatically every week, and as a permanent lead it would bury
   the written notes under a generated one every week. Ten post links total (2 leads + 4 +
@@ -247,7 +252,10 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   The `.dl-firstrun` disclosure is a card at `.dl-grid`'s own 440px so it lines up under the
   buttons as their fourth element rather than reading as a footnote; it stays collapsed by
   default. Editorial broadsheet treatment (centred `.notice-head` + a `.dash-reads`
-  chip strip of the four/five signals), reusing `.fx-chips`; the tracked-caps kicker over its h1
+  chip strip of the three lights plus the FX rate bias), reusing `.fx-chips`. The strip listed
+  five chips, "Positioning" among them, until 2026-09-14, two lines under prose that says three;
+  positioning is the COT data the hedging program is read from, not a light of its own, and
+  `_data/resources.yml` keeps it only as a topic tag. The tracked-caps kicker over its h1
   was removed on 2026-09-13, as on /resources/ and the 404. Contact is X-only (`@ChartHorizon`) —
   no email/waitlist, so **zero third-party requests** stays intact (no `privacy.html` change).
   Screenshots are the product imagery; still **no link to the dashboard source/repo**. Gets a
@@ -411,7 +419,7 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
 - **Third-party embeds fail loudly, not silently.** Privacy extensions and DNS filters block
   TradingView outright. `fx.html` probes for the widget frames after a grace period and toggles
   `.no-tv` on `<html>`; the CSS then hides the empty widget shells, reveals a first-party
-  `.tv-fallback` note, and suppresses the "click a pair for its live chart" hint (the chart modal
+  `.tv-fallback` note, and suppresses the "select a pair for its live chart" hint (the chart modal
   shows `.fx-modal-empty` instead of an empty frame). The probe keeps watching, so frames that
   arrive late undo the fallback. It runs off `DOMContentLoaded`, **not `load`** — a proxy that
   black-holes the request rather than refusing it never fires `load` at all.
@@ -437,11 +445,18 @@ calendar) that carry their own licensed live data — the strength read with a l
 and the rate-decision calendar next to it.
 
 - **Data**: `_data/fx.json` (`site.data.fx`) — `as_of`, `bullish`/`bearish`/`neutral` (currency +
-  score + display `label`), `bullish_pairs`/`bearish_pairs` (top 6 each, with a `Bull/Bear ±x/12`
-  label), `rate_table` (policy rate, central bank, instrument, rate-bias + tone, as-of), and the
+  score + display `label`), `bullish_pairs`/`bearish_pairs` (top 6 each, with a `Bull/Bear ±x/<pair_max>`
+  label such as `Bull +8/10`), `rate_table` (policy rate, central bank, instrument, rate-bias + tone, as-of), and the
   score scale. `fx.html` iterates it at build time; **the snapshot half is static daily, not
   live** (a public static site can't query the local dashboard) — the live half is the TradingView
   widgets.
+- **Bias, never calls.** The heads say `Bullish bias` / `Bearish bias` and `Bullish pairs` /
+  `Bearish pairs`. Until 2026-09-14 they said "Long bias" and "Bullish pairs · buy" / "Bearish
+  pairs · short": the only imperative on the site, on the page a reader is likeliest to mistake
+  for a signal service, while `/about/` says in so many words that there are no trade calls. The
+  method note under the board uses `/about/`'s vocabulary for the same reason (season, hedging
+  program, term structure, rate bias), not the dashboard's internal names (Seasonals, COT-Hedging).
+  These labels live in `fx.html`, not in the export, so the nightly `fx.json` push cannot undo them.
 - **Refresh (cross-repo — runs on the dashboard machine, NOT in this repo):** the private
   dashboard's daily job (`AUTO_UPDATE_CHARTHORIZON.command`, launchd ~23:30) calls
   `content_bot/fx_blog_push.command` → `content_bot/fx_blog_export.py`, which renders the real

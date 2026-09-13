@@ -629,13 +629,13 @@ button.fx-pair:active{transform:translateY(1px)}
 
    `.plate` is exempt because it needs no correction: the /dashboard/ screenshots are shot
    twice, in the app's own light and dark themes, and the rule below picks the right one. */
-[data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate){filter:brightness(.92)}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){filter:brightness(.92)}
 @media (prefers-reduced-motion:no-preference){
   /* box-shadow is restated because .board img already animates it above and this
      later, more specific rule would otherwise replace that transition outright. */
-  [data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
+  [data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate){transition:filter .2s ease, box-shadow .25s ease}
 }
-[data-theme="dark"] :is(.post-body,.board,.lead-figure,.video-shot) img:not(.plate):hover{filter:none}
+[data-theme="dark"] :is(.post-body,.board,.lead-figure) img:not(.plate):hover{filter:none}
 
 /* Two plates per figure, one per edition (see _includes/board.html). `display:none` is
    load-bearing twice over: it keeps the plate that isn't showing out of the accessibility
@@ -748,7 +748,15 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
    the cover at zero third-party requests. */
 .rail-video .video-card{display:block; color:inherit; border:none; margin-top:12px}
 .video-shot{position:relative; display:block}
-.video-shot img{display:block; width:100%; margin:0; border:1px solid var(--rule); border-radius:10px}
+.video-shot img{display:block; width:100%; margin:0; border:1px solid var(--rule); border-radius:10px; filter:grayscale(1)}
+/* The still is set in grey and takes its colour back only when the reader reaches for the
+   card. It is a thumbnail made for a YouTube feed, and in full colour it was the loudest thing
+   on the cover: neon type brighter than the lead story beside it, on a paper whose one accent
+   is gold. Grey rather than a gold duotone, because gold is the slot the desk's own signal
+   sits in. The dark edition adds the plates' usual dim here, since the plate rule above no
+   longer lists .video-shot: one selector cannot carry both filters. */
+[data-theme="dark"] .video-shot img{filter:grayscale(1) brightness(.92)}
+.video-card:is(:hover,:focus-visible) .video-shot img{filter:none}
 .video-play{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
 /* White, not --paper: this sits on a photograph, not on the sheet, so it must stay light
    in both editions — in the dark one --paper is navy and the glyph would vanish. */
@@ -757,6 +765,7 @@ body.wide-page main.wide{max-width:1080px; margin-inline:auto}
 .video-title{display:block; margin-top:2px; font:600 17px/1.28 var(--serif); color:var(--ink); text-wrap:balance}
 .video-card:hover .video-title{color:var(--gold-ink)}
 @media (prefers-reduced-motion:no-preference){
+  .video-shot img{transition:filter .25s ease}
   .video-play svg{transition:transform .12s ease}
   .video-card:hover .video-play svg{transform:scale(1.08)}
 }
