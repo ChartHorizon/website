@@ -8,6 +8,13 @@
 <meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
 {%- if site.bing_site_verification and site.bing_site_verification != "" %}
 <meta name="msvalidate.01" content="{{ site.bing_site_verification }}">{% endif %}
+{%- comment -%}
+  Impact wants `value=`, not `content=` (see the note in _config.yml). Site-wide rather
+  than home-only: they ask for the home page, this costs one line on the others, and a
+  tag that exists only on `/` is one template edit away from silently disappearing.
+{%- endcomment -%}
+{%- if site.impact_site_verification and site.impact_site_verification != "" %}
+<meta name="impact-site-verification" value="{{ site.impact_site_verification }}">{% endif %}
 
 {%- comment -%}
   One canonical title/description/image, reused across <title>, Open Graph and Twitter so the

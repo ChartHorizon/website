@@ -44,6 +44,14 @@ google_site_verification: "2CJ61hpNB-e-4qrgSS79xAPnwaOq4N-iFPaDpQmga5s"
 # Verified 2026-08-15: Bing reported 14 URLs indexed, 0 errors, 0 excluded.
 bing_site_verification: ""
 
+# Impact (impact.com) — ownership proof for the affiliate network, added 2026-09-18.
+# Not a search engine: it gates joining a programme, and it is re-checked, so the tag
+# stays after approval. NOTE THE ATTRIBUTE: Impact's snippet is
+#   <meta name='impact-site-verification' value='...'>
+# `value`, not `content`. It is not valid HTML for <meta> and their verifier reads exactly
+# that attribute anyway — do not "fix" it to content= or the check fails.
+impact_site_verification: "37949e58-9723-4000-afa4-0b1598b5dffa"
+
 # Pretty, date-based URLs for posts only. A top-level `permalink:` would also rewrite
 # pages (index, impressum, privacy) and break their .html paths — so scope it to posts.
 defaults:
