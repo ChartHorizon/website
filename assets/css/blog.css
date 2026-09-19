@@ -377,6 +377,20 @@ blockquote p{margin:.3em 0}
 .legal a.link:hover{color:var(--ink)}
 .legal .back{display:inline-block; margin-top:36px}
 
+/* Bilingual since 2026-09-19: one h1 for both languages, then each edition under its own
+   label. The old subsection h2s became h3s so the two language blocks sit at one level and
+   a heading-by-heading reader meets a boundary instead of sliding from English section 8
+   into German section 1 — the level moved, the type did not, so h3 reproduces what .legal h2
+   looked like, gold tick included. The edition label is the one head that drops the tick:
+   the double rule is its furniture, and gold is the slot the desk's own signal sits in. */
+.legal h3{font:650 20px/1.25 var(--serif); letter-spacing:-.2px; margin:1.7em 0 .3em; position:relative; text-wrap:balance}
+.legal h3::before{content:""; position:absolute; margin-top:-1.1em; width:34px; border-top:2px solid var(--gold)}
+.legal h2.legal-edition{font:650 13px/1.3 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); border-top:3px double var(--rule-strong); padding-top:12px; margin:3em 0 .1em}
+.legal h2.legal-edition:first-of-type{margin-top:2em}
+.legal h2.legal-edition::before{content:none}
+.legal .legal-lang{font-size:14px; margin:.3em 0 0}
+.legal .legal-note{font-style:italic; margin:.2em 0 1.2em}
+
 /* ---- /dashboard/ — coming-soon notice (broadsheet, no hero-CTA) ---- */
 /* No kicker over the headline (removed 2026-09-13 from /dashboard/, /resources/ and the 404):
    the heading carries its own weight, so it takes the ordinary h1 top margin back. */

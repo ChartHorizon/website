@@ -442,8 +442,29 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   `@font-face` at the top of `blog.css` (preloaded in `default.html`), so the site still makes
   **zero third-party requests** on content pages — Georgia is the fallback.
 - **`impressum.html` / `privacy.html`** are Jekyll pages on the shared `default` layout
-  (front matter `lang: de`, `noindex: true`; `.legal` styles live in `blog.css`, so they
-  match the light theme). The layout reads per-page `lang` and `noindex`. **Both carry real
+  (front matter `noindex: true`; `.legal` styles live in `blog.css`, so they
+  match the light theme). The layout reads per-page `lang` and `noindex`.
+  **Both are bilingual since 2026-09-19**: English first, then the German original, which each
+  page names as **the authoritative one** — so the statutory text is the one that governs and
+  the site stops reading as two German pages bolted onto an English paper. Neither § 5 DDG nor
+  Art. 12 GDPR prescribes a language; the test in both is whether the addressed audience
+  understands it, which for an all-English paper would have made English-only defensible and,
+  for a controller sitting in Bavaria, German-only equally so. Carrying both is the answer that
+  needs no argument, and it costs one page each. Three things follow. The page `lang` is now
+  **`en`**, and the German half is a `<div lang="de" id="deutsch">` — a language block, not a
+  page-level claim, so a screen reader switches voice at the boundary. Each half opens with an
+  `h2.legal-edition` (a tracked-caps label over a double rule) and its sections are **`h3`**,
+  which is why `blog.css` now gives `.legal h3` what `.legal h2` used to look like, gold tick
+  included: the level moved, the type did not. Do not flatten it back — the h2 boundary is what
+  keeps a heading-by-heading reader from sliding out of English section 8 into German section 1.
+  Both halves must be edited **together**; a change to one alone is the same
+  failure the `/resources/` paragraphs document, copy outliving what it describes.
+  **The footer labels stay German** (`Impressum`, `Datenschutz` in `default.html`): the BGH has
+  accepted "Impressum" as a recognisable label and a reader looking for the statutory page looks
+  for that word, so translating the link buys nothing and costs the recognisability § 5 DDG asks
+  for. The `Stand`/last-updated date is **24 August 2026 in both halves** and stays there — a
+  translation is not a revision, and bumping it would claim the substance changed.
+  **Both carry real
   legal and contact data as of 2026-08-24** — operator name and postal address, the
   `kontakt@chart-horizon.com` address (Cloudflare Email Routing, not a mailbox of its own),
   USt-IdNr., and BayLDA as the competent authority. They were an unfilled placeholder template
@@ -493,6 +514,9 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   in §3, and the **TradingView** widgets on `/fx/` (that **one** page only) in §6. Keep them in
   sync if you add/remove third-party scripts — and note §4 enumerates **both** `localStorage`
   keys by name (`ch_theme_mode`, `ch_tv_consent`), so a third one is a documentation change too.
+  Since the page went bilingual, **every one of those sections exists twice**: a disclosure added
+  to one half only is a policy that is wrong in one language, which is worse than not having it
+  translated at all.
   (The Newsreader web font is **self-hosted** under `assets/fonts/`, not loaded from a CDN — so
   it adds no third-party request and needs no disclosure. Keep it that way.)
 

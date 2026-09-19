@@ -1,9 +1,14 @@
 ---
 layout: default
-lang: de
+lang: en
 title: Datenschutz
 noindex: true
 sitemap: false
+# Bilingual since 2026-09-19 — see the note at the top of impressum.html for why both
+# halves are here and why the German one is named as authoritative. Art. 12(1) GDPR asks
+# for information the data subject understands, which on an English paper read from
+# everywhere is an argument for English and, for a German controller, an argument for
+# German; both is the answer that needs no argument.
 # A directory permalink, like every other page on the site. Cloudflare Pages strips
 # .html and 308s to the extensionless path, so the old privacy.html spent a round trip
 # on a redirect and advertised a redirecting URL as its own canonical. `/privacy.html`
@@ -11,39 +16,80 @@ sitemap: false
 permalink: /privacy/
 ---
 <section class="legal">
-  <h1>Datenschutzerklärung</h1>
+  <h1>Privacy Policy&nbsp;· Datenschutzerklärung</h1>
+  <p class="legal-lang"><a class="link" href="#deutsch">Deutsche Fassung ↓</a></p>
 
-  <h2>1. Verantwortlicher</h2>
-  <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
-  <p>Tom Bauer, Koppenplatz 3, 90513 Zirndorf, Deutschland, E-Mail: <a class="link" href="mailto:kontakt@chart-horizon.com">kontakt@chart-horizon.com</a> (siehe auch <a class="link" href="{{ '/impressum/' | relative_url }}">Impressum</a>).</p>
+  <h2 class="legal-edition">English</h2>
+  <p class="legal-note">Convenience translation. The German version below is the authoritative one.</p>
 
-  <h2>2. Hosting (Cloudflare Pages)</h2>
-  <p>Diese Website wird über <strong>Cloudflare Pages</strong> bereitgestellt, einen Dienst der Cloudflare, Inc. (101 Townsend Street, San Francisco, CA 94107, USA). Cloudflare ist zugleich der DNS- und Reverse-Proxy-Anbieter dieser Domain, sodass <strong>sämtlicher Datenverkehr</strong> über das Netz von Cloudflare läuft. Beim Aufruf der Seite verarbeitet Cloudflare technisch notwendige Zugriffsdaten (u. a. IP-Adresse, Datum/Uhrzeit, abgerufene Datei, User-Agent), um die Seite auszuliefern und die Sicherheit des Angebots zu gewährleisten. Rechtsgrundlage ist das berechtigte Interesse an einer sicheren, funktionsfähigen Bereitstellung (Art. 6 Abs. 1 lit. f DSGVO). Es findet eine Übermittlung in die USA statt. Details: <a class="link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. Für die Auftragsverarbeitung gilt das <a class="link" href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">Data Processing Addendum</a>, das Bestandteil der Vertragsbedingungen von Cloudflare ist und die Standardvertragsklauseln der EU-Kommission einbezieht.</p>
+  <h3>1. Controller</h3>
+  <p>The controller for the data processing on this website is:</p>
+  <p>Tom Bauer, Koppenplatz 3, 90513 Zirndorf, Germany, email: <a class="link" href="mailto:kontakt@chart-horizon.com">kontakt@chart-horizon.com</a> (see also the <a class="link" href="{{ '/impressum/' | relative_url }}">legal notice</a>).</p>
 
-  <h2>3. Reichweitenmessung (Cloudflare Web Analytics)</h2>
-  <p>Diese Website nutzt <strong>Cloudflare Web Analytics</strong> (Cloudflare, Inc., USA) zur anonymen Reichweitenmessung. Der Dienst arbeitet <strong>ohne Cookies</strong> und erstellt nach Angaben des Anbieters keine seitenübergreifenden Nutzerprofile und speichert keine personenbezogenen Identifikatoren; ausgewertet werden aggregierte Aufrufzahlen. Rechtsgrundlage ist das berechtigte Interesse an einer datensparsamen Statistik (Art. 6 Abs. 1 lit. f DSGVO).</p>
+  <h3>2. Hosting (Cloudflare Pages)</h3>
+  <p>This website is served through <strong>Cloudflare Pages</strong>, a service of Cloudflare, Inc. (101 Townsend Street, San Francisco, CA 94107, USA). Cloudflare is also the DNS and reverse-proxy provider for this domain, so <strong>all traffic</strong> passes through Cloudflare's network. When you open the site, Cloudflare processes technically necessary access data (including IP address, date and time, the file requested, user agent) in order to deliver the page and to keep the service secure. The legal basis is the legitimate interest in secure, functioning delivery (Art. 6(1)(f) GDPR). Data is transferred to the USA. Details: <a class="link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. Processing on the controller's behalf is governed by the <a class="link" href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">Data Processing Addendum</a>, which forms part of Cloudflare's terms and incorporates the European Commission's standard contractual clauses.</p>
 
-  <h2>4. Cookies und lokale Speicherung</h2>
-  <p>Diese Website selbst setzt <strong>keine</strong> Cookies. Die auf der Seite <strong>FX Map</strong> eingebundenen TradingView-Widgets können eigene Cookies bzw. ähnliche Technologien setzen — sie werden dort aber <strong>erst nach deinem ausdrücklichen Klick</strong> geladen, sodass vor dieser Entscheidung keinerlei Daten an TradingView fließen (siehe Abschnitt 6).</p>
-  <p>Wenn du über den Schalter in der Kopfzeile die <strong>helle oder dunkle Ansicht</strong> wählst, wird diese Entscheidung unter dem Schlüssel <code>ch_theme_mode</code> im <strong>localStorage</strong> deines Browsers gespeichert, damit die Seite beim nächsten Besuch so aussieht, wie du sie verlassen hast. Der Wert ist ausschließlich <code>light</code> oder <code>dark</code>, verlässt dein Gerät nicht, wird nicht an einen Server übertragen und erlaubt keine Wiedererkennung. Ohne eigene Wahl wird nichts gespeichert; die Seite folgt dann der Farbeinstellung deines Betriebssystems. Du kannst den Eintrag jederzeit über die Websitedaten deines Browsers löschen. Die Speicherung erfolgt ausschließlich auf deine ausdrückliche Anforderung hin und ist zur Bereitstellung des von dir gewünschten Dienstes unbedingt erforderlich; sie ist damit nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.</p>
+  <h3>3. Audience measurement (Cloudflare Web Analytics)</h3>
+  <p>This website uses <strong>Cloudflare Web Analytics</strong> (Cloudflare, Inc., USA) for anonymous audience measurement. The service works <strong>without cookies</strong> and, according to the provider, builds no cross-site user profiles and stores no personal identifiers; what is evaluated is aggregate page views. The legal basis is the legitimate interest in data-minimising statistics (Art. 6(1)(f) GDPR).</p>
 
-  <p>Entscheidest du dich auf der Seite <strong>FX Map</strong> für das Laden der TradingView-Inhalte, wird diese Einwilligung unter dem Schlüssel <code>ch_tv_consent</code> ebenfalls im <strong>localStorage</strong> gespeichert, damit du sie nicht bei jedem Besuch erneut erteilen musst. Auch dieser Wert verlässt dein Gerät nicht. Du kannst die Einwilligung jederzeit mit einem Klick auf <em>„Turn it off“</em> unter dem Wirtschaftskalender widerrufen; die bereits geladenen Widgets werden dabei sofort entfernt und der Eintrag gelöscht. Rechtsgrundlage für diese Speicherung ist deine Einwilligung nach § 25 Abs. 1 TDDDG.</p>
+  <h3>4. Cookies and local storage</h3>
+  <p>This website itself sets <strong>no</strong> cookies. The TradingView widgets embedded on the <strong>FX Map</strong> page can set cookies or similar technologies of their own — but they are loaded there <strong>only after you explicitly click</strong>, so no data whatsoever reaches TradingView before that decision (see section 6).</p>
+  <p>If you use the switch in the header to choose the <strong>light or dark edition</strong>, that choice is stored under the key <code>ch_theme_mode</code> in your browser's <strong>localStorage</strong>, so that the site looks on your next visit the way you left it. The value is only ever <code>light</code> or <code>dark</code>, it does not leave your device, it is not transmitted to any server, and it permits no recognition. If you make no choice of your own, nothing is stored and the site follows your operating system's colour setting. You can delete the entry at any time through your browser's website data. The storage happens solely at your express request and is strictly necessary to provide the service you asked for; it therefore requires no consent under § 25(2) no. 2 TDDDG.</p>
 
-  <h2>5. Externe Links und Dienste</h2>
-  <p>Die Seite verlinkt auf externe Dienste — <strong>Buy Me a Coffee</strong> (Unterstützung, in der Kopfzeile jeder Seite) und <strong>X</strong> (Kontakt, auf den Seiten <strong>About</strong> und <strong>Dashboard</strong>). Erst beim Anklicken werden dort Daten verarbeitet; es gelten dann die jeweiligen Datenschutzbestimmungen der Anbieter. Ein bloßer Link löst keine Datenübertragung aus.</p>
+  <p>If you decide on the <strong>FX Map</strong> page to load the TradingView content, that consent is likewise stored under the key <code>ch_tv_consent</code> in <strong>localStorage</strong>, so that you do not have to give it again on every visit. This value, too, does not leave your device. You can withdraw the consent at any time by clicking <em>“Turn it off”</em> below the economic calendar; the widgets already loaded are removed immediately and the entry is deleted. The legal basis for this storage is your consent under § 25(1) TDDDG.</p>
 
-  <h2>6. Eingebettete Marktdaten (TradingView)</h2>
-  <p>Auf der Seite <strong>FX Map</strong> stehen interaktive Markt-Widgets von <strong>TradingView</strong> (TradingView, Inc., USA) bereit: ein Live-Kurs-Ticker, ein Wirtschaftskalender und ein Kurschart, der sich beim Anklicken eines Währungspaars öffnet.</p>
-  <p>Diese Inhalte werden <strong>nicht automatisch geladen</strong>. An ihrer Stelle zeigt die Seite zunächst einen Hinweis mit einer Schaltfläche; erst wenn du diese anklickst, lädt dein Browser die Widget-Skripte von TradingView. Dabei wird deine <strong>IP-Adresse</strong> an TradingView übermittelt, und TradingView kann zur Auslieferung und Reichweitenmessung <strong>eigene Cookies</strong> oder ähnliche Technologien setzen; es findet eine Übermittlung in die USA statt. Solange du nicht klickst, wird keine einzige Anfrage an TradingView gestellt.</p>
-  <p>Rechtsgrundlage für das Speichern und Auslesen von Informationen auf deinem Endgerät ist deine <strong>Einwilligung</strong> nach § 25 Abs. 1 TDDDG, für die anschließende Verarbeitung deiner Daten deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Die Übermittlung in die USA stützt sich auf Art. 49 Abs. 1 lit. a DSGVO. Du kannst die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen (siehe Abschnitt 4); die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt davon unberührt.</p>
-  <p>Auf den übrigen Seiten dieser Website werden keine TradingView-Inhalte geladen. Details: <a class="link" href="https://www.tradingview.com/policies/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</p>
+  <h3>5. External links and services</h3>
+  <p>The site links to external services — <strong>Buy Me a Coffee</strong> (support, in the header of every page) and <strong>X</strong> (contact, on the <strong>About</strong> and <strong>Dashboard</strong> pages). Data is processed there only once you click; the respective providers' privacy terms then apply. A link on its own triggers no data transfer.</p>
 
-  <h2>7. Deine Rechte</h2>
-  <p>Du hast im Rahmen der gesetzlichen Vorgaben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Wende dich dazu an den oben genannten Verantwortlichen.</p>
-  <p>Außerdem besteht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde. Zuständig ist das <strong>Bayerische Landesamt für Datenschutzaufsicht (BayLDA)</strong>, Promenade 18, 91522 Ansbach.</p>
+  <h3>6. Embedded market data (TradingView)</h3>
+  <p>The <strong>FX Map</strong> page offers interactive market widgets from <strong>TradingView</strong> (TradingView, Inc., USA): a live price ticker, an economic calendar, and a price chart that opens when you click a currency pair.</p>
+  <p>These contents are <strong>not loaded automatically</strong>. In their place the page first shows a notice with a button; only when you click it does your browser load TradingView's widget scripts. Your <strong>IP address</strong> is then transmitted to TradingView, and TradingView can set <strong>cookies of its own</strong> or similar technologies for delivery and audience measurement; data is transferred to the USA. As long as you do not click, not a single request is made to TradingView.</p>
+  <p>The legal basis for storing and reading information on your device is your <strong>consent</strong> under § 25(1) TDDDG, and for the subsequent processing of your data your consent under Art. 6(1)(a) GDPR. The transfer to the USA is based on Art. 49(1)(a) GDPR. You may withdraw the consent at any time with effect for the future (see section 4); the lawfulness of the processing carried out until then is unaffected.</p>
+  <p>No TradingView content is loaded on any other page of this website. Details: <a class="link" href="https://www.tradingview.com/policies/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</p>
 
-  <h2>8. Stand</h2>
-  <p>Stand dieser Erklärung: 24. August 2026.</p>
+  <h3>7. Your rights</h3>
+  <p>Within the statutory limits you have the right of access, rectification, erasure, restriction of processing, data portability and objection. Please address these to the controller named above.</p>
+  <p>You also have the right to lodge a complaint with a data protection supervisory authority. The competent authority is the <strong>Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong>, Promenade 18, 91522 Ansbach, Germany.</p>
 
-  <a class="back" href="{{ '/' | relative_url }}">← Zurück zur Startseite</a>
+  <h3>8. Last updated</h3>
+  <p>This policy is dated 24 August 2026.</p>
+
+  <div lang="de" id="deutsch">
+    <h2 class="legal-edition">Deutsche Fassung</h2>
+    <p class="legal-note">Maßgeblich ist diese deutsche Fassung.</p>
+
+    <h3>1. Verantwortlicher</h3>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>Tom Bauer, Koppenplatz 3, 90513 Zirndorf, Deutschland, E-Mail: <a class="link" href="mailto:kontakt@chart-horizon.com">kontakt@chart-horizon.com</a> (siehe auch <a class="link" href="{{ '/impressum/' | relative_url }}">Impressum</a>).</p>
+
+    <h3>2. Hosting (Cloudflare Pages)</h3>
+    <p>Diese Website wird über <strong>Cloudflare Pages</strong> bereitgestellt, einen Dienst der Cloudflare, Inc. (101 Townsend Street, San Francisco, CA 94107, USA). Cloudflare ist zugleich der DNS- und Reverse-Proxy-Anbieter dieser Domain, sodass <strong>sämtlicher Datenverkehr</strong> über das Netz von Cloudflare läuft. Beim Aufruf der Seite verarbeitet Cloudflare technisch notwendige Zugriffsdaten (u. a. IP-Adresse, Datum/Uhrzeit, abgerufene Datei, User-Agent), um die Seite auszuliefern und die Sicherheit des Angebots zu gewährleisten. Rechtsgrundlage ist das berechtigte Interesse an einer sicheren, funktionsfähigen Bereitstellung (Art. 6 Abs. 1 lit. f DSGVO). Es findet eine Übermittlung in die USA statt. Details: <a class="link" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>. Für die Auftragsverarbeitung gilt das <a class="link" href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">Data Processing Addendum</a>, das Bestandteil der Vertragsbedingungen von Cloudflare ist und die Standardvertragsklauseln der EU-Kommission einbezieht.</p>
+
+    <h3>3. Reichweitenmessung (Cloudflare Web Analytics)</h3>
+    <p>Diese Website nutzt <strong>Cloudflare Web Analytics</strong> (Cloudflare, Inc., USA) zur anonymen Reichweitenmessung. Der Dienst arbeitet <strong>ohne Cookies</strong> und erstellt nach Angaben des Anbieters keine seitenübergreifenden Nutzerprofile und speichert keine personenbezogenen Identifikatoren; ausgewertet werden aggregierte Aufrufzahlen. Rechtsgrundlage ist das berechtigte Interesse an einer datensparsamen Statistik (Art. 6 Abs. 1 lit. f DSGVO).</p>
+
+    <h3>4. Cookies und lokale Speicherung</h3>
+    <p>Diese Website selbst setzt <strong>keine</strong> Cookies. Die auf der Seite <strong>FX Map</strong> eingebundenen TradingView-Widgets können eigene Cookies bzw. ähnliche Technologien setzen — sie werden dort aber <strong>erst nach deinem ausdrücklichen Klick</strong> geladen, sodass vor dieser Entscheidung keinerlei Daten an TradingView fließen (siehe Abschnitt 6).</p>
+    <p>Wenn du über den Schalter in der Kopfzeile die <strong>helle oder dunkle Ansicht</strong> wählst, wird diese Entscheidung unter dem Schlüssel <code>ch_theme_mode</code> im <strong>localStorage</strong> deines Browsers gespeichert, damit die Seite beim nächsten Besuch so aussieht, wie du sie verlassen hast. Der Wert ist ausschließlich <code>light</code> oder <code>dark</code>, verlässt dein Gerät nicht, wird nicht an einen Server übertragen und erlaubt keine Wiedererkennung. Ohne eigene Wahl wird nichts gespeichert; die Seite folgt dann der Farbeinstellung deines Betriebssystems. Du kannst den Eintrag jederzeit über die Websitedaten deines Browsers löschen. Die Speicherung erfolgt ausschließlich auf deine ausdrückliche Anforderung hin und ist zur Bereitstellung des von dir gewünschten Dienstes unbedingt erforderlich; sie ist damit nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei.</p>
+
+    <p>Entscheidest du dich auf der Seite <strong>FX Map</strong> für das Laden der TradingView-Inhalte, wird diese Einwilligung unter dem Schlüssel <code>ch_tv_consent</code> ebenfalls im <strong>localStorage</strong> gespeichert, damit du sie nicht bei jedem Besuch erneut erteilen musst. Auch dieser Wert verlässt dein Gerät nicht. Du kannst die Einwilligung jederzeit mit einem Klick auf <em>„Turn it off“</em> unter dem Wirtschaftskalender widerrufen; die bereits geladenen Widgets werden dabei sofort entfernt und der Eintrag gelöscht. Rechtsgrundlage für diese Speicherung ist deine Einwilligung nach § 25 Abs. 1 TDDDG.</p>
+
+    <h3>5. Externe Links und Dienste</h3>
+    <p>Die Seite verlinkt auf externe Dienste — <strong>Buy Me a Coffee</strong> (Unterstützung, in der Kopfzeile jeder Seite) und <strong>X</strong> (Kontakt, auf den Seiten <strong>About</strong> und <strong>Dashboard</strong>). Erst beim Anklicken werden dort Daten verarbeitet; es gelten dann die jeweiligen Datenschutzbestimmungen der Anbieter. Ein bloßer Link löst keine Datenübertragung aus.</p>
+
+    <h3>6. Eingebettete Marktdaten (TradingView)</h3>
+    <p>Auf der Seite <strong>FX Map</strong> stehen interaktive Markt-Widgets von <strong>TradingView</strong> (TradingView, Inc., USA) bereit: ein Live-Kurs-Ticker, ein Wirtschaftskalender und ein Kurschart, der sich beim Anklicken eines Währungspaars öffnet.</p>
+    <p>Diese Inhalte werden <strong>nicht automatisch geladen</strong>. An ihrer Stelle zeigt die Seite zunächst einen Hinweis mit einer Schaltfläche; erst wenn du diese anklickst, lädt dein Browser die Widget-Skripte von TradingView. Dabei wird deine <strong>IP-Adresse</strong> an TradingView übermittelt, und TradingView kann zur Auslieferung und Reichweitenmessung <strong>eigene Cookies</strong> oder ähnliche Technologien setzen; es findet eine Übermittlung in die USA statt. Solange du nicht klickst, wird keine einzige Anfrage an TradingView gestellt.</p>
+    <p>Rechtsgrundlage für das Speichern und Auslesen von Informationen auf deinem Endgerät ist deine <strong>Einwilligung</strong> nach § 25 Abs. 1 TDDDG, für die anschließende Verarbeitung deiner Daten deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Die Übermittlung in die USA stützt sich auf Art. 49 Abs. 1 lit. a DSGVO. Du kannst die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen (siehe Abschnitt 4); die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt davon unberührt.</p>
+    <p>Auf den übrigen Seiten dieser Website werden keine TradingView-Inhalte geladen. Details: <a class="link" href="https://www.tradingview.com/policies/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</p>
+
+    <h3>7. Deine Rechte</h3>
+    <p>Du hast im Rahmen der gesetzlichen Vorgaben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Wende dich dazu an den oben genannten Verantwortlichen.</p>
+    <p>Außerdem besteht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde. Zuständig ist das <strong>Bayerische Landesamt für Datenschutzaufsicht (BayLDA)</strong>, Promenade 18, 91522 Ansbach.</p>
+
+    <h3>8. Stand</h3>
+    <p>Stand dieser Erklärung: 24. August 2026.</p>
+  </div>
+
+  <a class="back" href="{{ '/' | relative_url }}">← Back to the front page</a>
 </section>
