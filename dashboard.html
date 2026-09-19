@@ -121,7 +121,7 @@ description: "A free, local-first futures dashboard for macOS, Windows and Linux
 #  three terse architecture lines are the point of that row.
 #  The stale 1.1.3 object is still on R2 and still reachable by direct URL. It stays
 #  unlinked: it carries the old spread pane and the four-signal score.
-dl_version: "1.2.9"     # release number WITHOUT the leading "v"
+dl_version: "1.3"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
 dl_linux: ""            # derive from version
@@ -129,9 +129,9 @@ dl_linux: ""            # derive from version
 # click costs before making it. Decimal MB, as Finder shows them. They belong to dl_version:
 # bump them together (ops/website-installers.sh prints both lines once an upload verifies).
 # "" hides the line for that platform.
-dl_size_macos: "39.7 MB"
+dl_size_macos: "39.5 MB"
 dl_size_windows: "35.6 MB"
-dl_size_linux: "78.3 MB"
+dl_size_linux: "78.4 MB"
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
 {%- assign dl_repo = "https://dl.chart-horizon.com" -%}
