@@ -144,7 +144,8 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   editions; active on the cover only) / **FX Map** (`/fx/`) / **Dashboard** (`/dashboard/`) /
   **Resources** (`/resources/`) / **About** (`/about/`) + edition date + Support pill), and the footer (risk disclaimer +
   RSS feed/Impressum/Datenschutz links; the feed link since 2026-09-14, when the Atom feed was
-  otherwise only a `<link>` in the head). A page widens to 1080px by setting `wide: true` in its front
+  otherwise only a `<link>` in the head — and since 2026-09-19 it leads somewhere legible, see
+  `feed.xslt.xml` below). A page widens to 1080px by setting `wide: true` in its front
   matter — today only `index.html` does. The layout puts `wide-page` on `<body>` and `wide` on
   `<main>`; the 760px cap lives on `body` (`assets/css/blog.css`), not on a wrapper, so a class
   on `main` alone would do nothing, and the CSS lifts the cap there and hands it back to
@@ -402,6 +403,25 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   the index. Indexed, in the sitemap. **`404.html`** — broadsheet not-found page (`noindex`,
   `sitemap: false`); without it GitHub Pages serves its own GitHub-branded 404, on a site whose
   standing constraint is that it never points at its own repository.
+- **`feed.xslt.xml`** — the human view of `/feed.xml`, added 2026-09-19. `jekyll-feed` looks for
+  exactly that filename at the site root and, finding one, stamps an `<?xml-stylesheet?>` into the
+  feed it generates: a browser then renders the masthead, the address to paste into a reader and
+  the ten issues with their deks, while a feed reader parses the same bytes as before. It exists
+  because the footer's RSS link landed a reader on raw Atom XML — browsers dropped their feed
+  viewers years ago, so the one link on the page that looked broken was the one that worked.
+  Delete the file and the feed falls back to that raw XML, which is the correct fallback, not a
+  failure. Three things the page may not do: **no script** (Firefox has never run one in an XSLT
+  result, so the dark edition here reads `prefers-color-scheme` rather than `ch_theme_mode` — the
+  one page where the site's edition switch and the page disagree, and why it carries no theme
+  toggle), **no third-party request** (no beacon, so `privacy.html` needs no change), and **no
+  outbound link** (NetNewsWire, Feedly and the rest are named in the copy, never linked). It
+  links `blog.css` without the `?v=` key — Liquid never touches this file, so a hardcoded one
+  would rot — and copies that file's dark tokens into an inline `@media` block, which nothing
+  checks for drift. **The edition label comes off the `/hedgers-ledger/` slug, not the title**:
+  the Ledger's headline stopped naming the series and a feed carries no `edition:` front matter,
+  so the title test alone labelled every Ledger a Tape note. XSLT is 1.0 (hence the substring
+  date arithmetic), and Chrome has announced its intent to remove it — when that lands, the page
+  degrades to the XML it replaced and the feed is untouched.
 - **`fx.html`** (`/fx/`, the **FX Map** tab) — `default` layout; renders ChartHorizon's daily
   FX currency-strength scoreboard (bias columns + neutral + pairs grid + interest-rate table)
   natively in the paper theme from **`_data/fx.json`**, interleaved with two **TradingView**
