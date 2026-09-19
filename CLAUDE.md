@@ -242,11 +242,21 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.2.6 — macOS and Windows; Linux is still `"soon"`.**
+  (see the comment block at the top of the file). **Live at v1.2.9 on all three platforms** — macOS and Windows
+  since 2026-09-13, **Linux since 2026-09-19**. Linux is built on a rented GitHub runner
+  (`workflow_dispatch` only, artifact not Release asset, no credentials — see
+  `dashboard/packaging/README.md` in the monorepo), because PyInstaller cannot cross-compile
+  and there is no Linux machine; the upload and the hosting did not move, and a tag trigger
+  or a release step there would be the deleted release CI growing back.
   The page `description` names the platforms too, and said "macOS, Windows and Linux" until
   2026-09-07 while `dl_linux` was `"soon"` — a promised download that does not exist, in the
   search snippet of the one page whose job is the download. **Keep the description in step
-  with the `dl_*` switches**; nothing checks this for you.
+  with the `dl_*` switches**; nothing checks this for you. When Linux joined it on
+  2026-09-19 the three-platform line ran 162 characters against the ~158 a SERP prints, so
+  "charting" went rather than a platform: it sat two words from "charts" and `seo_title`
+  carries the term. **The `.dl-arch` line stays three terse architectures** — the AppImage's
+  real constraint is a glibc 2.35 floor (the runner is pinned to `ubuntu-22.04` for exactly
+  that reason), and that belongs in the build docs, not on a download button.
   **The installers are hosted on Cloudflare R2, not in this repo and not on GitHub**, at
   `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
   which the account flag turned into three 404s for every logged-out visitor — the page sat at
