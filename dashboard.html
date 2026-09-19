@@ -7,7 +7,7 @@ seo_title: "Free COT Dashboard & Futures Charting Software"
 # NOT on /, /archive/, /tape/, /ledger/ or /fx/: those redraw from posts or from the daily
 # _data/fx.json, so a hand-typed date there is wrong by the next build, and an inaccurate
 # lastmod is ignored outright rather than merely being old. Bump when you edit this page.
-last_modified_at: 2026-09-14
+last_modified_at: 2026-09-19
 # NOTE THE PLATFORM LIST. It said "macOS, Windows and Linux" while dl_linux was "soon",
 # which promised a download that does not exist on the one page whose job is the download.
 # Keep it in step with the dl_* switches below.
@@ -41,12 +41,16 @@ description: "A free, local-first futures charting dashboard for macOS and Windo
 #  "x86_64". Change these the day a build's target changes — a universal2 dmg or an
 #  arm64 Windows exe would make the label a lie, and the label is why a reader clicks.
 # ─────────────────────────────────────────────────────────────────────────────
-#  Hosting moved off GitHub Releases on 2026-08-21. The account is flagged, so every
-#  …/releases/download/v1.1.3/… URL 404s for logged-out visitors — which is every
+#  Hosting moved off GitHub Releases on 2026-08-21, when the account flag made every
+#  …/releases/download/v1.1.3/… URL 404 for logged-out visitors — which is every
 #  visitor this page has — and the page sat at coming-soon from 2026-08-15 because
-#  live buttons would have been dead ones. R2 is served from the same Cloudflare
-#  account as the site and needs no Git provider at all. If GitHub is ever reinstated
-#  there is no reason to move back; the assets are versioned and immutably cached.
+#  live buttons would have been dead ones. THE ACCOUNT WAS REINSTATED ON 2026-09-19 and
+#  the R2 arrangement does not move back: the assets are versioned and immutably cached,
+#  R2 is served from the same Cloudflare account as the site, and Pages would refuse these
+#  files anyway. What reinstatement DID change is the .dl-source line at the foot of this
+#  page — the AGPL source link, dead from 2026-08-15 to 2026-09-19 and therefore absent.
+#  The four old v1.1.x releases were deleted the same day so the repo's Releases tab cannot
+#  offer a July build as "Latest" beside the R2 download this page actually serves.
 #
 #  The 2026-08-22 hold is LIFTED FOR macOS as of 2026-08-28. It was never a hosting
 #  problem: the 1.1.3 binaries were built 2026-08-21 13:15, before the calendar-spread
@@ -267,6 +271,16 @@ readied now. Until then, the rest of this paper <em>is</em> the dashboard, set i
     </ul>
   </details>
   {%- endif %}
+  {%- comment -%} The source offer sits AT the download, which is where the question is asked:
+  the app is AGPL-3.0, so whoever takes a binary is entitled to the code it was frozen from,
+  and that entitlement is not met by a link somewhere further up the page. One link, like the
+  release line under the masthead. It points at the public mirror, which `tools/publish-dashboard.sh`
+  syncs and tags per release in the monorepo — so it has to be re-synced BEFORE dl_version is
+  bumped, or this line offers the previous version's code under this one's number.
+  Added 2026-09-19, when the GitHub account came back from the 2026-08-15 flag that had made
+  the mirror 404 for every logged-out reader. Nothing else moves back: the site is on Cloudflare
+  Pages and the installers are on R2, both permanently. {%- endcomment %}
+  <p class="dl-source">Open source under the AGPL-3.0. The code behind {% if ver != "" %}v{{ ver }}{% else %}the board{% endif %} is on <a href="https://github.com/ChartHorizon/charthorizon" rel="noopener" target="_blank">GitHub<span aria-hidden="true"> ↗</span></a>.</p>
 </div>
 
 {% if released %}

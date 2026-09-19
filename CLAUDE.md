@@ -16,23 +16,37 @@ A **Jekyll** site (the GitHub Pages default SSG). The custom domain is pinned by
 >
 > Deployment moved off GitHub on 2026-08-15, when the ChartHorizon account was flagged: every
 > repo, release and the Pages site began returning 404 to logged-out visitors while still
-> looking normal to the signed-in owner, so the site went dark. **As of 2026-08-21 the operator
-> does not intend to go back**, so treat Cloudflare as the permanent home rather than a
-> stopgap — do not offer the GitHub path as the "real" one being restored later.
+> looking normal to the signed-in owner, so the site went dark. **The account was reinstated on
+> 2026-09-19** (verified logged-out: profile, both repos, releases, `raw.githubusercontent.com`
+> and the API all answer 200). **That changes nothing here.** The operator decided on 2026-08-21
+> that Cloudflare is the permanent home, and reinstatement was explicitly not a condition of
+> that — so do not read the account's return as the cue to move back, do not offer the GitHub
+> path as the "real" one restored at last, and do not put the DNS back.
 > `git push` to GitHub still works and is still worth doing **as a backup**; it just is not a
 > deployment. `.github/workflows/deploy-pages.yml` is dead weight kept only as a record.
 > Apex and `www` are **proxied** CNAMEs to `charthorizon.pages.dev` (the zone used to be
 > DNS-only); the old GitHub A records (185.199.108-111.153) are gone and stay gone.
 
 It was split out of the private ChartHorizon dashboard repo. **The hard constraint:** this
-repo is **public**, so the site must **not** expose the dashboard's **source** — no links to
-its private repo or code. The dashboard *product* is positioned as a downloadable
-**local-first app** (installs on your machine, runs in your browser): the `/dashboard/` page
-may describe it and, once ready, offer the installer/download here. Apart from that download,
-outbound links stay support/social only — with one further exception since 2026-09-06:
-**`/resources/` links out to third-party educational material** (see the `resources.html`
-bullet under "Architecture"). That is a reading list, not a change to the constraint: the rule
-is about never exposing the dashboard's *source*, which nothing on that page does.
+repo is **public**, so the site must **not** expose the **private** monorepo — no links to it,
+to `dashboard/CLAUDE.md`, to `docs/`, or to anything else that only exists there. The dashboard
+*product* is positioned as a downloadable **local-first app** (installs on your machine, runs in
+your browser): the `/dashboard/` page may describe it and offer the installer/download here.
+Apart from that download, outbound links stay support/social only, with two exceptions:
+**`/resources/` links out to third-party educational material** since 2026-09-06 (see the
+`resources.html` bullet under "Architecture") — a reading list, which exposes nothing — and,
+since **2026-09-19**, **`/dashboard/` links to the public source mirror**
+`github.com/ChartHorizon/charthorizon` (the `.dl-source` line at the foot of the download block).
+
+> **That second one narrowed the rule, so read it exactly.** Until then this paragraph said "no
+> links to its source", full stop. But the app is **AGPL-3.0** and is *published* as source: the
+> mirror is a deliberate, cleaned export (`dashboard/tools/publish-dashboard.sh`, no CLAUDE.md,
+> no `docs/`, no `tools/`), and a licence that obliges you to offer the source to whoever takes
+> the binary is poorly served by a download page that hides where it is. The rule that survives
+> is **never expose the private monorepo**; the public mirror was never part of it, and it only
+> stayed off the page from 2026-08-15 to 2026-09-19 because the account flag made the link a 404.
+> **The mirror must be re-synced and tagged before `dl_version` is bumped**, or the page offers
+> the previous release's code under this release's number.
 
 > History: this repo started as a standalone dark marketing landing page. It was converted
 > into the blog and the old landing page was retired; the homepage became a plain post list,
@@ -236,13 +250,22 @@ is about never exposing the dashboard's *source*, which nothing on that page doe
   `https://dl.chart-horizon.com/v<version>/`. They were on GitHub Releases until 2026-08-21,
   which the account flag turned into three 404s for every logged-out visitor — the page sat at
   coming-soon from 2026-08-15 for exactly that reason. Committing them here was never an option
-  either: Cloudflare Pages refuses any file over 25 MiB and these are 34–71 MiB.
+  either: Cloudflare Pages refuses any file over 25 MiB and these are 34–71 MiB. **The 2026-09-19
+  reinstatement does not move them back**, and the four leftover v1.1.x releases were deleted that
+  day so the mirror's Releases tab cannot offer a July build as "Latest" beside this page's R2
+  download. Binaries are R2's job; the repo's job is the source.
   Publish a new release with **`ops/website-installers.sh <version>`** in the monorepo (it pulls
   the assets, uploads them under an immutable versioned key, and verifies all three over HTTPS),
   **then** bump `dl_version`. That order is load-bearing — reversed, the page ships buttons
-  pointing at objects that do not exist yet.
-  Note `dashboard/tools/download-stats.py` counts *GitHub* release downloads and therefore stops
-  seeing new ones; R2 has its own metrics in the Cloudflare dashboard.
+  pointing at objects that do not exist yet. Since 2026-09-19 a third step joins it, **first**:
+  re-sync and tag the public mirror (`dashboard/tools/publish-dashboard.sh --tag v<version>`),
+  because the foot of this page now offers that mirror as the source these builds were frozen from.
+  Note `dashboard/tools/download-stats.py` reads **Cloudflare zone analytics**, not GitHub's
+  `download_count` — it has since 2026-08-21, and the GitHub-era numbers survive as a frozen
+  baseline CSV in the monorepo, so deleting those releases cost no history.
+  **The `.dl-source` line** under the first-run disclosure is the AGPL source offer: one link,
+  to the public mirror, styled as the block's closing furniture rather than a second CTA. See the
+  constraint note at the top of this file for why it is allowed to exist at all.
   One download affordance, reachable from two places: the full `.dl` platform block at
   `#download`, and a `.dl-top` release line set as dateline furniture directly under the masthead
   rule that **jumps to it** (above the fold — the page is ~5,300px and the foot is a fine place to

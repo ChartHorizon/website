@@ -452,6 +452,10 @@ a.dl-btn:active{transform:translateY(1px)}
 .dl-firstrun li{margin:5px 0}
 .dl-firstrun b{color:var(--ink); font-weight:700}
 .dl-firstrun code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--quote-bg); border:1px solid var(--rule); border-radius:4px; padding:1px 5px}
+/* The source offer, the block's closing line. Sans and muted, not the italic serif of
+   .dl-note: that line carries the one thing a reader must know before clicking, and two
+   italic lines under the buttons read as one paragraph nobody finishes. */
+.dl-source{font:14px/1.55 var(--sans); color:var(--muted); margin:18px auto 0; max-width:42ch; text-wrap:balance}
 /* 11px floor on a phone: the architecture line is what stops an Intel Mac downloading a dmg
    it cannot run, and at 8px it was the smallest text on the site */
 @media (max-width:420px){ .dl-grid{gap:8px} .dl-btn{padding:14px 6px 12px} .dl-os{font-size:14px} .dl-sub{font-size:11.5px} .dl-arch,.dl-size{font-size:11px} }
