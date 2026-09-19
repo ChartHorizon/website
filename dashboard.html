@@ -11,7 +11,7 @@ last_modified_at: 2026-09-19
 # NOTE THE PLATFORM LIST. It said "macOS, Windows and Linux" while dl_linux was "soon",
 # which promised a download that does not exist on the one page whose job is the download.
 # Keep it in step with the dl_* switches below.
-description: "A free, local-first futures charting dashboard for macOS and Windows: candlestick charts with CFTC positioning, seasonality and term structure. No account."
+description: "A free, local-first futures dashboard for macOS, Windows and Linux: candlestick charts with CFTC positioning, seasonality and term structure. No account."
 # ─────────────────────────────────────────────────────────────────────────────
 #  TO GO LIVE: set dl_version to the release number (e.g. "1.0.0") and publish.
 #  That is the ONLY step here. The three platform download URLs are derived
@@ -99,23 +99,36 @@ description: "A free, local-first futures charting dashboard for macOS and Windo
 #  before building, or the installer carries the previous version's code under the new
 #  version's name.
 #
-#  LINUX STAYS AT COMING-SOON: PyInstaller cannot cross-compile and no Linux box was at
-#  hand. Its 1.1.3 object is still on R2 and still reachable by direct URL — it is
-#  deliberately NOT linked, because it carries both the stale spread pane the original
-#  hold was about and the old four-signal score. Pointing dl_linux back at 1.1.3 would
-#  undo the whole point. To finish: build there, upload with
-#  ops/website-installers.sh 1.2.4 --from-dir <dir> --only linux, then clear its "soon".
+#  LINUX IS LIVE SINCE 1.2.9 (2026-09-19), and it is the one installer built on a
+#  machine nobody here owns. PyInstaller cannot cross-compile and there is no Linux box,
+#  so the public mirror carries a build-only workflow (.github/workflows/linux-build.yml)
+#  that is dispatched by hand, checks out the release TAG, and hands back an AppImage as
+#  an Actions artifact. That is a rented Linux box, NOT the release CI deleted on
+#  2026-08-22: no tag trigger, no Release asset, no Cloudflare credentials. The upload is
+#  still ops/website-installers.sh and the hosting is still R2. Do not "finish the job"
+#  by adding a release step there.
+#    dashboard/tools/publish-dashboard.sh --tag v<ver>
+#    gh workflow run linux-build.yml -R ChartHorizon/charthorizon -f version=<ver>
+#    gh run download -R ChartHorizon/charthorizon -n ChartHorizon-<ver>-linux -D <dir>
+#    ops/website-installers.sh <ver> --from-dir <dir> --only linux
+#  The runner is pinned to ubuntu-22.04, not ubuntu-latest: an AppImage links against the
+#  runner's glibc and will not start on anything older, so 22.04 sets the floor at glibc
+#  2.35 (Ubuntu 22.04+, Debian 12+, Fedora 36+) where 24.04 would set it at 2.39. The
+#  floor is deliberately NOT printed on the button — .dl-arch says what a build IS, and
+#  three terse architecture lines are the point of that row.
+#  The stale 1.1.3 object is still on R2 and still reachable by direct URL. It stays
+#  unlinked: it carries the old spread pane and the four-signal score.
 dl_version: "1.2.9"     # release number WITHOUT the leading "v"
 dl_macos: ""            # derive from version
 dl_windows: ""          # derive from version
-dl_linux: "soon"        # not built yet — see the note above
+dl_linux: ""            # derive from version
 # Installer sizes, printed under each button's architecture line so a reader knows what the
 # click costs before making it. Decimal MB, as Finder shows them. They belong to dl_version:
 # bump them together (ops/website-installers.sh prints both lines once an upload verifies).
 # "" hides the line for that platform.
 dl_size_macos: "39.7 MB"
 dl_size_windows: "35.6 MB"
-dl_size_linux: ""
+dl_size_linux: "78.3 MB"
 ---
 {%- comment -%} Resolve each download URL: explicit URL wins · "soon" forces Coming-soon · else derive from dl_version. {%- endcomment -%}
 {%- assign dl_repo = "https://dl.chart-horizon.com" -%}
