@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  feed.xslt.xml — the human view of /feed.xml.
+
+  WHY THIS FILE EXISTS. Browsers dropped their built-in feed viewers years ago, so a reader
+  who clicks the footer's "RSS feed" link lands on raw Atom XML and concludes the site is
+  broken. jekyll-feed (0.17) looks for exactly this filename at the site root and, when it
+  finds one, stamps an <?xml-stylesheet?> instruction into the feed it generates — so the
+  browser renders the page below while a feed reader goes on parsing the same file as XML.
+  Nothing about the feed's contents changes; this is presentation for the one visitor the
+  feed was never meant for. Rename or delete this file and the feed silently goes back to
+  raw XML — which is the correct fallback, not a failure.
+
+  THREE CONSTRAINTS, all load-bearing:
+
+  · NO JAVASCRIPT. Chrome runs scripts in an XSLT result; Firefox never has. So the dark
+    edition here is read from the OS via prefers-color-scheme instead of from the site's
+    ch_theme_mode script, and this page cannot carry the masthead's theme toggle. A reader
+    who forced an edition on the site gets the OS answer here — the only page where those
+    two can disagree.
+  · NO THIRD-PARTY REQUESTS. Same promise as every content page (privacy.html §3): the
+    stylesheet, the fonts it pulls and the favicon are first-party, the Cloudflare beacon
+    is deliberately absent (it could not run anyway), and the feed readers named in the
+    copy are named, never linked. Nothing here needs a privacy.html change.
+  · NO OUTBOUND LINKS. The public-repo constraint in CLAUDE.md applies to this page too.
+
+  XSLT is 1.0 — the only version browsers implement — hence the month lookup by substring
+  and the string surgery on the ISO dates rather than a date library. Note also that Chrome
+  has announced its intent to remove XSLT from the browser; when that lands, this page
+  degrades to the raw XML it replaced and the feed itself is untouched.
+-->
+<xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:atom="http://www.w3.org/2005/Atom"
+                exclude-result-prefixes="atom">
+
+<xsl:output method="html" encoding="utf-8" indent="yes"
+            doctype-system="about:legacy-compat"/>
+
+<!-- "2026-09-19T00:00:00+02:00" -> "Sep 19, 2026". The month names ride one string so the
+     alternative (a twelve-branch xsl:choose) stays out of the template. -->
+<xsl:template name="pretty-date">
+  <xsl:param name="iso"/>
+  <xsl:value-of select="substring('JanFebMarAprMayJunJulAugSepOctNovDec',
+                                  (number(substring($iso,6,2)) - 1) * 3 + 1, 3)"/>
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="number(substring($iso,9,2))"/>
+  <xsl:text>, </xsl:text>
+  <xsl:value-of select="substring($iso,1,4)"/>
+</xsl:template>
+
+<xsl:template match="/">
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title><xsl:value-of select="/atom:feed/atom:title"/> — Feed</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"/>
+<!-- Linked without the ?v= cache key the rest of the site uses: that key lives in
+     _config.yml and Liquid never touches this file, so a hardcoded one would rot. Pages
+     serves the CSS must-revalidate at four hours, which is the right trade for a page
+     nobody reads twice in an afternoon. -->
+<link rel="stylesheet" href="/assets/css/blog.css"/>
+<style>
+/* The dark edition, read from the OS because no script runs here (see the head note).
+   These are blog.css's [data-theme="dark"] tokens, trimmed to the ones this page paints:
+   if that block is ever retuned, retune these with it — nothing checks the two agree. */
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0b131d; --ink:#f3f6fa; --gold:#c8a24a; --gold-ink:#d6b264;
+    --rule:#243240; --rule-strong:#6b8099;
+    --muted:#8493a6; --muted-2:#808fa2;
+    --quote-bg:#1b2734; --card:#141f2b;
+    --shadow-tint:0,0,0;
+  }
+  html{color-scheme:dark}
+}
+
+/* The standing explanation, set as a plate: this page is furniture, not an article, and a
+   card says so before a word is read. */
+.feed-how{margin:0 0 30px; padding:20px 24px 24px; border:1px solid var(--rule);
+  border-radius:12px; background:var(--card)}
+.feed-how p{margin:.55em 0; max-width:var(--measure)}
+.feed-how p:first-of-type{margin-top:0}
+.feed-label{display:block; font:700 11px/1 var(--sans); letter-spacing:.16em;
+  text-transform:uppercase; color:var(--muted)}
+/* user-select:all makes one click take the whole address — the only thing a reader who
+   got here on purpose actually came to do. */
+.feed-url{display:block; margin:9px 0 16px; padding:13px 15px; border-radius:6px;
+  background:var(--quote-bg); color:var(--ink); user-select:all; word-break:break-all;
+  font:14px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* The run, as the archive sets it, plus the entry's own dek — the feed carries summaries
+   and a bare headline list would throw them away. Block rows rather than /archive/'s
+   dateline column, because a two-line dek beside an 11rem gutter reads as a table. */
+.feed-list{list-style:none; padding:0; margin:6px 0 0}
+.feed-list li{padding:15px 0; border-top:1px solid var(--rule)}
+.feed-link{display:inline-block; margin-top:2px; border:none; text-wrap:balance;
+  font:600 21px/1.28 var(--serif); color:var(--ink)}
+.feed-link:hover{color:var(--gold-ink)}
+.feed-summary{margin:.3em 0 0; max-width:var(--measure); color:var(--muted);
+  font:italic 400 16.5px/1.5 var(--serif); text-wrap:pretty}
+.feed-updated{margin:26px 0 0; padding-top:16px; border-top:2px solid var(--rule-strong);
+  font:500 13px/1.4 var(--sans); color:var(--muted-2)}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <a class="brand" href="/">
+    <svg class="mark" width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="translate(0,3)" fill="none" stroke-linecap="round">
+        <line x1="14" y1="64" x2="86" y2="64" stroke="currentColor" stroke-width="2.6"/>
+        <g class="mark-sun" stroke-width="5.2">
+          <path d="M33 64 a17 17 0 0 1 34 0"/>
+          <line x1="50" y1="19" x2="50" y2="28"/>
+          <line x1="26.4" y1="35.6" x2="32" y2="41.3"/>
+          <line x1="73.6" y1="35.6" x2="68" y2="41.3"/>
+        </g>
+      </g>
+    </svg>
+    <span class="word">ChartHorizon</span>
+  </a>
+  <div class="masthead-sub">The Weekly Tape · Futures Desk</div>
+  <div class="masthead-rule"></div>
+  <div class="masthead-motto">Positioning, not predictions.</div>
+  <div class="dateline">
+    <nav class="site-nav" aria-label="Sections">
+      <a href="/">Front Page</a>
+      <a href="/archive/">Back Issues</a>
+      <a href="/about/">About</a>
+    </nav>
+    <span class="edition">
+      Updated <xsl:call-template name="pretty-date">
+                <xsl:with-param name="iso" select="/atom:feed/atom:updated"/>
+              </xsl:call-template>
+    </span>
+  </div>
+</header>
+
+<main id="main">
+  <h1>Subscribe by feed</h1>
+  <p class="dek">This address is the paper’s machine-readable edition. Hand it to a feed
+     reader and every new Weekly Tape note and Hedgers’ Ledger turns up there on its own,
+     with no account, no email address and nothing to unsubscribe from.</p>
+
+  <div class="feed-how">
+    <span class="feed-label">The address</span>
+    <code class="feed-url"><xsl:value-of select="/atom:feed/atom:link[@rel='self']/@href"/></code>
+    <p>Paste it into whichever reader you use: NetNewsWire, Reeder, Feedly, Inoreader and
+       Thunderbird all take a raw address. You can also hand the reader
+       <strong>chart-horizon.com</strong> and let it find this file by itself.</p>
+    <p>Browsers stopped rendering feeds years ago, which is why this address shows a wall of
+       XML when no reader is involved. What you are reading now is that same file, set in
+       the paper’s own type. The feed carries the full text of the ten most recent issues
+       and is rewritten whenever one is published.</p>
+  </div>
+
+  <h2 class="section-rule"><span>In this feed</span></h2>
+  <ul class="feed-list">
+    <xsl:for-each select="/atom:feed/atom:entry">
+    <li>
+      <div class="post-dateline">
+        <span class="post-edition">
+          <!-- _includes/edition.html reads `edition:` front matter first and falls back to
+               the title; a feed carries neither, and the Ledger's headline stopped naming
+               the series (it says what changed instead), so testing the title alone labels
+               every Ledger as a Tape note — which it did, until this was caught in review.
+               The slug is what survives into the feed: the generator reuses
+               /hedgers-ledger/ every week, which is also why _redirects spells the old
+               releases out date by date. The title test stays as the belt. -->
+          <xsl:choose>
+            <xsl:when test="contains(atom:link[@rel='alternate']/@href, '/hedgers-ledger/')
+                            or contains(atom:title, 'Hedgers')">Hedgers’ Ledger</xsl:when>
+            <xsl:otherwise>Weekly Tape</xsl:otherwise>
+          </xsl:choose>
+        </span>
+        <xsl:text> </xsl:text>
+        <span class="sep" aria-hidden="true">·</span>
+        <xsl:text> </xsl:text>
+        <span class="post-date">
+          <xsl:call-template name="pretty-date">
+            <xsl:with-param name="iso" select="atom:published"/>
+          </xsl:call-template>
+        </span>
+      </div>
+      <a class="feed-link">
+        <xsl:attribute name="href"><xsl:value-of select="atom:link[@rel='alternate']/@href"/></xsl:attribute>
+        <xsl:value-of select="atom:title"/>
+      </a>
+      <xsl:if test="atom:summary">
+        <p class="feed-summary"><xsl:value-of select="atom:summary"/></p>
+      </xsl:if>
+    </li>
+    </xsl:for-each>
+  </ul>
+
+  <p class="feed-updated">Older issues are not in the feed. They are on the
+     <a href="/archive/">back issues</a> page.</p>
+</main>
+
+<footer class="site-foot">
+  <p><strong>Not financial advice · educational only.</strong> Futures trading involves substantial
+     risk of loss; seasonal and positioning signals do not guarantee future results. Market data is
+     provided “as is” for personal, informational use.</p>
+  <p class="legal-links">© <xsl:value-of select="substring(/atom:feed/atom:updated,1,4)"/> ChartHorizon ·
+     <a href="/">Front Page</a> ·
+     <a href="/impressum/">Impressum</a> ·
+     <a href="/privacy/">Datenschutz</a></p>
+</footer>
+
+</body>
+</html>
+</xsl:template>
+
+</xsl:stylesheet>
