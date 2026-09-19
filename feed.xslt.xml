@@ -205,8 +205,8 @@
      provided “as is” for personal, informational use.</p>
   <p class="legal-links">© <xsl:value-of select="substring(/atom:feed/atom:updated,1,4)"/> ChartHorizon ·
      <a href="/">Front Page</a> ·
-     <a href="/impressum/">Impressum</a> ·
-     <a href="/privacy/">Datenschutz</a></p>
+     <a href="/impressum/">Legal Notice</a> ·
+     <a href="/privacy/">Privacy Policy</a></p>
 </footer>
 
 </body>

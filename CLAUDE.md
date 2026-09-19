@@ -459,10 +459,19 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   keeps a heading-by-heading reader from sliding out of English section 8 into German section 1.
   Both halves must be edited **together**; a change to one alone is the same
   failure the `/resources/` paragraphs document, copy outliving what it describes.
-  **The footer labels stay German** (`Impressum`, `Datenschutz` in `default.html`): the BGH has
-  accepted "Impressum" as a recognisable label and a reader looking for the statutory page looks
-  for that word, so translating the link buys nothing and costs the recognisability § 5 DDG asks
-  for. The `Stand`/last-updated date is **24 August 2026 in both halves** and stays there — a
+  **The footer labels are English** — `Legal Notice`, `Privacy Policy` — an operator call on
+  2026-09-19, and they live in **two** files: `_layouts/default.html` and the footer
+  `feed.xslt.xml` reproduces, which nothing checks for drift. They shipped German for an hour
+  first, on the argument that § 5 DDG wants the statutory page recognisable and "Impressum" is
+  the word a German reader looks for. What makes English safe is that the word did not
+  disappear: each page's `h1` reads "Legal Notice · Impressum" and "Privacy Policy ·
+  Datenschutzerklärung", so the term a German reader or the BayLDA searches for is on the page
+  itself, one click from a footer that no longer speaks a language the rest of the paper does
+  not. **So keep both halves of those two h1s** while the footer is English — dropping the
+  German half would leave the statutory page with no German name anywhere. The tab titles follow
+  the footer, which is why `title:` is `Legal Notice` / `Privacy Policy`: a tab that renames the
+  page the reader just clicked reads as the wrong page.
+  The `Stand`/last-updated date is **24 August 2026 in both halves** and stays there — a
   translation is not a revision, and bumping it would claim the substance changed.
   **Both carry real
   legal and contact data as of 2026-08-24** — operator name and postal address, the
