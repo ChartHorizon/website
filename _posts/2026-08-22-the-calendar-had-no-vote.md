@@ -6,7 +6,7 @@ subtitle: "Crude was supposed to fall in August and rose. Tested across 5,026 ma
 sources: "Prices through 21 August 2026 · 35 markets tested over 2006–2026 · a seasonality note · Data: ChartHorizon & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-22-the-calendar-had-no-vote/cards
 image: /assets/posts/2026-08-22-the-calendar-had-no-vote/title.jpg
-image_alt: "Crude's August, twenty times over — WTI front month, each August rebased to 31 July equals 100, with 2026 running well above the twenty-year average"
+image_alt: "Title card: a crude oil tank farm in the last light, with crude's price action drawn across it"
 seo_title: "Does a Failed Seasonal Predict a Bigger Move? 35 Markets"
 description: "Crude was supposed to fall in August and rose. Tested across 5,026 market-months since 2006, the move after a failed season is slightly smaller, not larger."
 ---

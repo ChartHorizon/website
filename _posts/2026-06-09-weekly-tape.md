@@ -6,7 +6,7 @@ subtitle: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT 
 sources: "Prices through June 8 · COT report June 2 · Data: ChartHorizon"
 cards: /assets/posts/2026-06-09-weekly-tape/cards
 image: /assets/posts/2026-06-09-weekly-tape/title.jpg
-image_alt: "Title card: an exchange facade in 1928, with the week's price action drawn across it"
+image_alt: "Title card: a dust storm rolling over a plains farmstead, with the week's price action drawn across it"
 # SEO-only fields (do not change the on-page <h1>/dek): keyword-rich title + meta description for search results.
 seo_title: "Grain Futures Turn Bearish: Corn, Soybeans, Wheat"
 description: "Corn, soybeans and Chicago wheat all turn bearish 4/4 as season, COT positioning, hedging and term structure align. Weekly grain futures notes."

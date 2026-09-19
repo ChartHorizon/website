@@ -73,6 +73,21 @@ MOTIFS = {
     # makes it the one motif that carries "a bid" rather than a market, and the reason
     # it is registered separately instead of under "grains" (taken by the elevators).
     "pit":      "thumb-arch-wheat-pit-1920.jpg",
+    # Batch 3 (2026-09-19), generated for the gaps the pool had: Energy and
+    # Livestock/Dairy carried no motif at all, and nothing said season or policy.
+    # Their prompts sit in the content repo's prompts.txt as blocks 15-18 and 20,
+    # which is what these filenames count from. Two spec changes there, both
+    # measured rather than assumed: the bright mass stays INBOARD of the top right
+    # corner, because that is where this module draws the cream wordmark (on the
+    # five cards built from "fx" it sits at 128/255, 3.6:1 — the worst in the
+    # corpus; these five measure 6.6 to 9.7:1). And the generator returns
+    # 1376x768 whatever canvas you ask for, so the >=1920x1080 in BRIEF.md is
+    # still unmet and the crop headroom is ~7%.
+    "energy":   "thumb-scene-15.jpg",                # tank farm, and storage
+    "refining": "thumb-scene-16.jpg",                # cracking towers, one flare
+    "season":   "thumb-scene-17.jpg",                # the dust wall
+    "dairy":    "thumb-scene-18.jpg",                # creamery platform, milk cans
+    "vault":    "thumb-scene-20.jpg",                # the vault door
 }
 
 SS = 2                                    # supersample, then downsample once at the end

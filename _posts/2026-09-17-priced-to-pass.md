@@ -6,7 +6,7 @@ subtitle: "The Fed raised rates into $100 oil on Wednesday, while the futures ma
 sources: "Prices through 16 September 2026 · COT through the 8 September report · Data: ChartHorizon, CFTC, CME Group, U.S. Treasury, Federal Reserve, FRED & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-09-17-priced-to-pass/cards
 image: /assets/posts/2026-09-17-priced-to-pass/title.jpg
-image_alt: "Title card: a freighter at the dock, with WTI crude oil's price action since June drawn across it"
+image_alt: "Title card: a refinery's cracking towers under a gas flare, with WTI crude oil's price action since June drawn across it"
 seo_title: "WTI Backwardation and the Fed's First Hike Since 2023"
 description: "The Fed hiked into $100 oil. The WTI futures curve prices December 2027 at $72.55, almost $30 under October: the market expects the shock to pass."
 ---

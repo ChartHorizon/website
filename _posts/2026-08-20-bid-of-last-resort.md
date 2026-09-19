@@ -6,7 +6,7 @@ subtitle: "The 30-year yield touched 5.33 per cent, its highest since 2007, and 
 sources: "Prices through 19 August 2026 · COT through the 11 August report · a rates note · Data: ChartHorizon, CFTC & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-20-bid-of-last-resort/cards
 image: /assets/posts/2026-08-20-bid-of-last-resort/title.jpg
-image_alt: "Title card: the trading posts of 1922, with the 30-year Treasury bond's price action drawn across them"
+image_alt: "Title card: the open door of a bank vault, with the 30-year Treasury bond's price action drawn across it"
 seo_title: "Treasury Doubles Long-Bond Buybacks, Hedgers Long First"
 description: "The 30-year yield touched 5.33 per cent, its highest since 2007, and the Treasury doubled its buybacks. The hedgers had been long since 11 August."
 ---
