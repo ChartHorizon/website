@@ -12,6 +12,28 @@ author: ChartHorizon
 # Per-post `image:` front matter overrides this; replace the file to rebrand without touching config.
 og_image: /assets/og-default.png
 
+# ── Brand identity ───────────────────────────────────────────────────────────────
+# Feeds the Organization/WebSite JSON-LD in _layouts/default.html: the machine-readable
+# half of "this domain IS the thing called ChartHorizon". Added 2026-09-19, because a
+# search for the name returned the generic data-viz term "horizon chart", an unrelated
+# charthorizon.com (no hyphen, someone else's) and the old GitHub repo — while neither
+# the home page nor /dashboard/ carried the name in <title> at all.
+#   brand_alt_name — the SPACED spelling, which is what a reader actually types. The
+#     one-word form is `title` above; both have to hang off one entity or the two
+#     spellings compete instead of reinforcing each other.
+#   brand_same_as  — the profiles that corroborate the entity, defined ONCE here because
+#     two JSON-LD branches emit it (home and /about/) and a drifting pair is worse than
+#     one list. Public and genuinely the desk's only: a sameAs that 404s is a liability,
+#     which is exactly what the X link was while the account was flagged. The mirror is
+#     the cleaned AGPL export, public again since the 2026-09-19 reinstatement.
+brand_alt_name: "Chart Horizon"
+brand_same_as:
+  - "https://x.com/ChartHorizon"
+  - "https://github.com/ChartHorizon/charthorizon"
+# 512x512, rendered from assets/favicon.svg (the masthead mark). Raster on purpose:
+# Google's logo guidance does not list SVG, so favicon.svg cannot do this job itself.
+brand_logo: "/assets/logo-512.png"
+
 markdown: kramdown
 
 # Stylesheet cache key, appended as ?v= in _layouts/default.html. BUMP THIS whenever

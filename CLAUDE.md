@@ -600,6 +600,37 @@ scripts, so the analytics↔privacy coupling is untouched.
   21 posts were over on the title and 18 of 21 on the description — the worst ran 113 and 387
   — and every standing page was over on one or both. All of them were rewritten to fit.
   **Write to the limit, don't discover it later.**
+- **The brand goes first in a title, and the entity is declared once (2026-09-19).** Until
+  that day the home page and `/dashboard/` carried the brand in neither `<title>` nor
+  `description` — a deliberate call, argued in `default.html`'s head comment and again in
+  `index.html`, that a brand-led title spends the strongest page on the domain on a name
+  nobody searches. The premise expired the moment the operator searched it and found
+  nothing. Two things make that query hard and **neither is fixable in this repo**: every
+  engine reads "chart horizon" as the generic data-viz term **horizon chart** (Wikipedia,
+  Tableau, D3, Observable all rank for it), and the unhyphenated `charthorizon.com` is
+  somebody else's site. So both titles now lead with `ChartHorizon — `, **in front and not
+  appended**, because a SERP line cuts at ~60 characters from the right and a trailing brand
+  is exactly the half that disappears. Both run 61 characters: that is the price, and it is
+  paid out of the generic tail rather than out of the name. **Posts keep the trailing
+  `· ChartHorizon`** — they are found by their own headline, where the brand is context and
+  not the query.
+  The markup half is an `@graph` on the home page: `WebSite` + `Organization`, `sameAs` to X
+  and the public mirror, `alternateName` carrying the **spaced** spelling a reader actually
+  types (it held the tagline before, which is the paper's edition name and not a second name
+  for the site), and a 512×512 `logo` at `assets/logo-512.png`, rendered from
+  `assets/favicon.svg` because Google's logo guidance does not list SVG. `/about/` and every
+  post now **reference** that `#org` `@id` instead of each emitting its own same-named
+  Organization, and the list pages reference `#website` — three nodes that merely share a
+  name are not an entity. The identity fields live in `_config.yml` (`brand_alt_name`,
+  `brand_same_as`, `brand_logo`) because two branches emit them and a drifting pair is worse
+  than one list. **A `sameAs` that 404s is worse than no `sameAs`** — which is what the X
+  link was for five weeks under the account flag — so re-check every entry **logged out**
+  before adding a third.
+  **None of this wins the query by itself**, and it is not meant to: it is the half that is
+  ours to say, and it was simply missing. The other half is the backlink count in the bullet
+  below, which is still the bottleneck. Measure in Search Console, on the query `chart
+  horizon`: impressions at position 20-50 mean indexed but buried (this helps), zero
+  impressions mean the entity does not exist yet (only off-site mentions help).
 - **Do not put the date in a post's `seo_title`.** Nineteen of the twenty-one carried one
   ("— Aug 28, 2026"), spending ~14 characters on something Google prints beside the result
   anyway. **The Hedgers' Ledger posts are the exception and keep theirs**: the generator
