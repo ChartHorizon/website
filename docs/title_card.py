@@ -88,6 +88,18 @@ MOTIFS = {
     "season":   "thumb-scene-17.jpg",                # the dust wall
     "dairy":    "thumb-scene-18.jpg",                # creamery platform, milk cans
     "vault":    "thumb-scene-20.jpg",                # the vault door
+    # Batch 4 (2026-09-20), blocks 21-25. Batch 3 filled the empty dashboard
+    # CATEGORIES; this one goes after the repeats that were left — currencies
+    # (8 markets, the most-written category, carrying one picture used three
+    # times) and indices — plus the two subjects the desk writes about and had
+    # no picture for at all: a freeze, and a number being published. The
+    # inboard-corner rule from batch 3 held: these measure 12.5-16.7:1 behind
+    # the wordmark against batch 3's 6.6-9.7 and `fx`'s 3.6.
+    "bullion":  "thumb-scene-21.jpg",                # assay balance and bars
+    "steel":    "thumb-scene-22.jpg",                # tower frame, girder on the hook
+    "frost":    "thumb-scene-23.jpg",                # smudge pots in an orchard
+    "press":    "thumb-scene-24.jpg",                # rotary press, blank web
+    "stockyard":"thumb-scene-25.jpg",                # cattle pens, steam in raking light
 }
 
 SS = 2                                    # supersample, then downsample once at the end

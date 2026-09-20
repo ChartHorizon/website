@@ -6,7 +6,7 @@ subtitle: "The yen is the funding leg, not the trigger. Hedge funds hold $4tn of
 sources: "Prices through 24 August 2026 · COT through the 18 August report · a structure note · Data: ChartHorizon, CFTC, Federal Reserve, OFR & press reports · Charts: ChartHorizon"
 cards: /assets/posts/2026-08-25-fifty-funds/cards
 image: /assets/posts/2026-08-25-fifty-funds/title.jpg
-image_alt: "Title card: a 1922 trading floor, with USD/JPY's summer drawn across it"
+image_alt: "Title card: a steel tower frame with a girder on the hook, with USD/JPY's summer drawn across it"
 seo_title: "Hedge Fund Treasury Exposure and the Yen Carry Trade"
 description: "The yen is the funding leg, not the trigger. Hedge funds hold $4tn of gross Treasury exposure, ninety per cent of it in fifty funds, financed by $3tn of repo."
 ---

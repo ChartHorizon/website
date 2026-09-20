@@ -6,7 +6,7 @@ subtitle: "The week payrolls fell 23,000, the commercial book was already record
 sources: "COT through the 4 August report · prices through 7 August 2026 · a positioning note · Data: ChartHorizon & CFTC"
 cards: /assets/posts/2026-08-08-warning-filed-on-tuesday/cards
 image: /assets/posts/2026-08-08-warning-filed-on-tuesday/title.jpg
-image_alt: "Title card: the New York Stock Exchange floor in 1920, with the Dow's price action drawn across it"
+image_alt: "Title card: a rotary press running a blank web, with the Dow's price action drawn across it"
 seo_title: "Hedgers Record Long Bonds, Record Short the Dollar"
 description: "The week payrolls fell 23,000, the commercial book was already record long the T-Note and record short the dollar — filed three days before the number."
 ---
