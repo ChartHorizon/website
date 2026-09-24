@@ -1,6 +1,6 @@
 {
-  "as_of": "Sep 21, 2026",
-  "generated": "2026-09-22",
+  "as_of": "Sep 22, 2026",
+  "generated": "2026-09-24",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -29,14 +29,14 @@
       "label": "-3"
     },
     {
-      "cur": "CAD",
-      "score": -2.9,
-      "label": "-2.9"
-    },
-    {
       "cur": "NZD",
       "score": -2.5,
       "label": "-2.5"
+    },
+    {
+      "cur": "CAD",
+      "score": -1.9,
+      "label": "-1.9"
     },
     {
       "cur": "GBP",
@@ -62,14 +62,14 @@
       "label": "Bull +7.3/10"
     },
     {
-      "pair": "USD/CAD",
-      "spread": 7.2,
-      "label": "Bull +7.2/10"
-    },
-    {
       "pair": "AUD/JPY",
       "spread": 7.1,
       "label": "Bull +7.1/10"
+    },
+    {
+      "pair": "USD/CAD",
+      "spread": 6.2,
+      "label": "Bull +6.2/10"
     },
     {
       "pair": "AUD/CHF",
@@ -77,9 +77,9 @@
       "label": "Bull +6/10"
     },
     {
-      "pair": "AUD/CAD",
-      "spread": 5.9,
-      "label": "Bull +5.9/10"
+      "pair": "AUD/NZD",
+      "spread": 5.5,
+      "label": "Bull +5.5/10"
     }
   ],
   "bearish_pairs": [
