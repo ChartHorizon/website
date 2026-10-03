@@ -1,6 +1,6 @@
 {
-  "as_of": "Sep 28, 2026",
-  "generated": "2026-09-29",
+  "as_of": "Oct 02, 2026",
+  "generated": "2026-10-03",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -13,8 +13,8 @@
     },
     {
       "cur": "USD",
-      "score": 3.6,
-      "label": "+3.6"
+      "score": 1.6,
+      "label": "+1.6"
     },
     {
       "cur": "GBP",
@@ -29,14 +29,14 @@
   ],
   "bearish": [
     {
-      "cur": "JPY",
-      "score": -4.1,
-      "label": "-4.1"
-    },
-    {
       "cur": "CHF",
       "score": -4,
       "label": "-4"
+    },
+    {
+      "cur": "JPY",
+      "score": -3.9,
+      "label": "-3.9"
     },
     {
       "cur": "CAD",
@@ -52,24 +52,14 @@
   "neutral": [],
   "bullish_pairs": [
     {
-      "pair": "AUD/JPY",
-      "spread": 8.1,
-      "label": "Bull +8.1/10"
-    },
-    {
       "pair": "AUD/CHF",
       "spread": 8,
       "label": "Bull +8/10"
     },
     {
-      "pair": "USD/JPY",
-      "spread": 7.7,
-      "label": "Bull +7.7/10"
-    },
-    {
-      "pair": "USD/CHF",
-      "spread": 7.6,
-      "label": "Bull +7.6/10"
+      "pair": "AUD/JPY",
+      "spread": 7.9,
+      "label": "Bull +7.9/10"
     },
     {
       "pair": "AUD/CAD",
@@ -77,26 +67,31 @@
       "label": "Bull +5.9/10"
     },
     {
-      "pair": "USD/CAD",
+      "pair": "USD/CHF",
+      "spread": 5.6,
+      "label": "Bull +5.6/10"
+    },
+    {
+      "pair": "USD/JPY",
+      "spread": 5.5,
+      "label": "Bull +5.5/10"
+    },
+    {
+      "pair": "AUD/NZD",
       "spread": 5.5,
       "label": "Bull +5.5/10"
     }
   ],
   "bearish_pairs": [
     {
-      "pair": "NZD/USD",
-      "spread": 5.1,
-      "label": "Bear -5.1/10"
-    },
-    {
       "pair": "EUR/AUD",
       "spread": 3.7,
       "label": "Bear -3.7/10"
     },
     {
-      "pair": "EUR/USD",
-      "spread": 3.3,
-      "label": "Bear -3.3/10"
+      "pair": "NZD/USD",
+      "spread": 3.1,
+      "label": "Bear -3.1/10"
     },
     {
       "pair": "GBP/AUD",
@@ -104,14 +99,19 @@
       "label": "Bear -2.6/10"
     },
     {
-      "pair": "GBP/USD",
-      "spread": 2.2,
-      "label": "Bear -2.2/10"
+      "pair": "EUR/USD",
+      "spread": 1.3,
+      "label": "Bear -1.3/10"
     },
     {
       "pair": "EUR/GBP",
       "spread": 1.1,
       "label": "Bear -1.1/10"
+    },
+    {
+      "pair": "GBP/USD",
+      "spread": 0.2,
+      "label": "Bear -0.2/10"
     }
   ],
   "rate_table": [
@@ -177,13 +177,13 @@
     },
     {
       "cur": "JPY",
-      "policy": "1.00%",
+      "policy": "1.25%",
       "bank": "Bank of Japan",
       "instrument": "Overnight Call Rate",
-      "bias": -1.1,
-      "bias_label": "-1.1",
+      "bias": -0.9,
+      "bias_label": "-0.9",
       "tone": "bear",
-      "as_of": "2026-06-17"
+      "as_of": "2026-09-24"
     },
     {
       "cur": "CHF",
