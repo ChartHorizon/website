@@ -1,6 +1,6 @@
 {
-  "as_of": "Oct 12, 2026",
-  "generated": "2026-10-13",
+  "as_of": "Oct 16, 2026",
+  "generated": "2026-10-17",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -13,28 +13,23 @@
     },
     {
       "cur": "USD",
-      "score": 1.6,
-      "label": "+1.6"
-    },
-    {
-      "cur": "GBP",
       "score": 1.4,
       "label": "+1.4"
     },
     {
+      "cur": "GBP",
+      "score": 1.3,
+      "label": "+1.3"
+    },
+    {
       "cur": "NZD",
-      "score": 0.5,
-      "label": "+0.5"
+      "score": 0.4,
+      "label": "+0.4"
     },
     {
       "cur": "EUR",
-      "score": 0.3,
-      "label": "+0.3"
-    },
-    {
-      "cur": "CAD",
-      "score": 0.1,
-      "label": "+0.1"
+      "score": 0.2,
+      "label": "+0.2"
     }
   ],
   "bearish": [
@@ -49,7 +44,13 @@
       "label": "-2.9"
     }
   ],
-  "neutral": [],
+  "neutral": [
+    {
+      "cur": "CAD",
+      "score": 0,
+      "label": "0"
+    }
+  ],
   "bullish_pairs": [
     {
       "pair": "AUD/CHF",
@@ -63,45 +64,40 @@
     },
     {
       "pair": "USD/CHF",
-      "spread": 5.6,
-      "label": "Bull +5.6/10"
-    },
-    {
-      "pair": "GBP/CHF",
       "spread": 5.4,
       "label": "Bull +5.4/10"
     },
     {
-      "pair": "USD/JPY",
-      "spread": 4.5,
-      "label": "Bull +4.5/10"
+      "pair": "GBP/CHF",
+      "spread": 5.3,
+      "label": "Bull +5.3/10"
     },
     {
       "pair": "NZD/CHF",
-      "spread": 4.5,
-      "label": "Bull +4.5/10"
+      "spread": 4.4,
+      "label": "Bull +4.4/10"
+    },
+    {
+      "pair": "USD/JPY",
+      "spread": 4.3,
+      "label": "Bull +4.3/10"
     }
   ],
   "bearish_pairs": [
     {
       "pair": "EUR/AUD",
-      "spread": 3.7,
-      "label": "Bear -3.7/10"
+      "spread": 3.8,
+      "label": "Bear -3.8/10"
     },
     {
       "pair": "GBP/AUD",
-      "spread": 2.6,
-      "label": "Bear -2.6/10"
+      "spread": 2.7,
+      "label": "Bear -2.7/10"
     },
     {
       "pair": "EUR/USD",
-      "spread": 1.3,
-      "label": "Bear -1.3/10"
-    },
-    {
-      "pair": "NZD/USD",
-      "spread": 1.1,
-      "label": "Bear -1.1/10"
+      "spread": 1.2,
+      "label": "Bear -1.2/10"
     },
     {
       "pair": "EUR/GBP",
@@ -112,26 +108,31 @@
       "pair": "CHF/JPY",
       "spread": 1.1,
       "label": "Bear -1.1/10"
+    },
+    {
+      "pair": "NZD/USD",
+      "spread": 1,
+      "label": "Bear -1/10"
     }
   ],
   "rate_table": [
     {
       "cur": "AUD",
-      "policy": "4.35%",
+      "policy": "4.60%",
       "bank": "Reserve Bank of Australia",
       "instrument": "Cash Rate Target",
       "bias": 2,
       "bias_label": "+2",
       "tone": "bull",
-      "as_of": "2026-05-06"
+      "as_of": "2026-09-30"
     },
     {
       "cur": "USD",
       "policy": "3.75-4.00%",
       "bank": "Federal Reserve",
       "instrument": "Fed Funds Target Midpoint",
-      "bias": 1.6,
-      "bias_label": "+1.6",
+      "bias": 1.4,
+      "bias_label": "+1.4",
       "tone": "bull",
       "as_of": "2026-09-17"
     },
@@ -140,8 +141,8 @@
       "policy": "3.75%",
       "bank": "Bank of England",
       "instrument": "Bank Rate",
-      "bias": 1.4,
-      "bias_label": "+1.4",
+      "bias": 1.3,
+      "bias_label": "+1.3",
       "tone": "bull",
       "as_of": "2025-12-18"
     },
@@ -150,8 +151,8 @@
       "policy": "2.75%",
       "bank": "Reserve Bank of New Zealand",
       "instrument": "Official Cash Rate",
-      "bias": 0.5,
-      "bias_label": "+0.5",
+      "bias": 0.4,
+      "bias_label": "+0.4",
       "tone": "bull",
       "as_of": "2026-09-03"
     },
@@ -160,8 +161,8 @@
       "policy": "2.50%",
       "bank": "European Central Bank",
       "instrument": "Deposit Facility Rate",
-      "bias": 0.3,
-      "bias_label": "+0.3",
+      "bias": 0.2,
+      "bias_label": "+0.2",
       "tone": "bull",
       "as_of": "2026-09-16"
     },
@@ -170,9 +171,9 @@
       "policy": "2.25%",
       "bank": "Bank of Canada",
       "instrument": "Overnight Target",
-      "bias": 0.1,
-      "bias_label": "+0.1",
-      "tone": "bull",
+      "bias": 0,
+      "bias_label": "0",
+      "tone": "flat",
       "as_of": "2025-10-30"
     },
     {
