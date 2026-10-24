@@ -1,6 +1,6 @@
 {
-  "as_of": "Oct 21, 2026",
-  "generated": "2026-10-22",
+  "as_of": "Oct 23, 2026",
+  "generated": "2026-10-24",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -42,15 +42,14 @@
       "cur": "JPY",
       "score": -2.9,
       "label": "-2.9"
-    }
-  ],
-  "neutral": [
+    },
     {
       "cur": "CAD",
-      "score": 0,
-      "label": "0"
+      "score": -2,
+      "label": "-2"
     }
   ],
+  "neutral": [],
   "bullish_pairs": [
     {
       "pair": "AUD/CHF",
@@ -61,6 +60,11 @@
       "pair": "AUD/JPY",
       "spread": 6.9,
       "label": "Bull +6.9/10"
+    },
+    {
+      "pair": "AUD/CAD",
+      "spread": 6,
+      "label": "Bull +6/10"
     },
     {
       "pair": "USD/CHF",
@@ -76,11 +80,6 @@
       "pair": "NZD/CHF",
       "spread": 4.4,
       "label": "Bull +4.4/10"
-    },
-    {
-      "pair": "USD/JPY",
-      "spread": 4.3,
-      "label": "Bull +4.3/10"
     }
   ],
   "bearish_pairs": [
