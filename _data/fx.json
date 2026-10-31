@@ -1,6 +1,6 @@
 {
-  "as_of": "Oct 26, 2026",
-  "generated": "2026-10-27",
+  "as_of": "Oct 30, 2026",
+  "generated": "2026-10-31",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -12,14 +12,14 @@
       "label": "+4"
     },
     {
+      "cur": "GBP",
+      "score": 3.3,
+      "label": "+3.3"
+    },
+    {
       "cur": "USD",
       "score": 1.4,
       "label": "+1.4"
-    },
-    {
-      "cur": "GBP",
-      "score": 1.3,
-      "label": "+1.3"
     },
     {
       "cur": "NZD",
@@ -57,9 +57,19 @@
       "label": "Bull +8/10"
     },
     {
+      "pair": "GBP/CHF",
+      "spread": 7.3,
+      "label": "Bull +7.3/10"
+    },
+    {
       "pair": "AUD/JPY",
       "spread": 6.9,
       "label": "Bull +6.9/10"
+    },
+    {
+      "pair": "GBP/JPY",
+      "spread": 6.2,
+      "label": "Bull +6.2/10"
     },
     {
       "pair": "AUD/CAD",
@@ -70,16 +80,6 @@
       "pair": "USD/CHF",
       "spread": 5.4,
       "label": "Bull +5.4/10"
-    },
-    {
-      "pair": "GBP/CHF",
-      "spread": 5.3,
-      "label": "Bull +5.3/10"
-    },
-    {
-      "pair": "NZD/CHF",
-      "spread": 4.4,
-      "label": "Bull +4.4/10"
     }
   ],
   "bearish_pairs": [
@@ -89,19 +89,14 @@
       "label": "Bear -3.8/10"
     },
     {
-      "pair": "GBP/AUD",
-      "spread": 2.7,
-      "label": "Bear -2.7/10"
+      "pair": "EUR/GBP",
+      "spread": 3.1,
+      "label": "Bear -3.1/10"
     },
     {
       "pair": "EUR/USD",
       "spread": 1.2,
       "label": "Bear -1.2/10"
-    },
-    {
-      "pair": "EUR/GBP",
-      "spread": 1.1,
-      "label": "Bear -1.1/10"
     },
     {
       "pair": "CHF/JPY",
@@ -112,6 +107,11 @@
       "pair": "NZD/USD",
       "spread": 1,
       "label": "Bear -1/10"
+    },
+    {
+      "pair": "GBP/AUD",
+      "spread": 0.7,
+      "label": "Bear -0.7/10"
     }
   ],
   "rate_table": [
