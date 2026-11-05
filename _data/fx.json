@@ -1,6 +1,6 @@
 {
-  "as_of": "Oct 30, 2026",
-  "generated": "2026-10-31",
+  "as_of": "Nov 04, 2026",
+  "generated": "2026-11-05",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -12,14 +12,14 @@
       "label": "+4"
     },
     {
-      "cur": "GBP",
-      "score": 3.3,
-      "label": "+3.3"
-    },
-    {
       "cur": "USD",
       "score": 1.4,
       "label": "+1.4"
+    },
+    {
+      "cur": "GBP",
+      "score": 1.3,
+      "label": "+1.3"
     },
     {
       "cur": "NZD",
@@ -45,8 +45,8 @@
     },
     {
       "cur": "CAD",
-      "score": -2,
-      "label": "-2"
+      "score": -1.8,
+      "label": "-1.8"
     }
   ],
   "neutral": [],
@@ -57,29 +57,29 @@
       "label": "Bull +8/10"
     },
     {
-      "pair": "GBP/CHF",
-      "spread": 7.3,
-      "label": "Bull +7.3/10"
-    },
-    {
       "pair": "AUD/JPY",
       "spread": 6.9,
       "label": "Bull +6.9/10"
     },
     {
-      "pair": "GBP/JPY",
-      "spread": 6.2,
-      "label": "Bull +6.2/10"
-    },
-    {
       "pair": "AUD/CAD",
-      "spread": 6,
-      "label": "Bull +6/10"
+      "spread": 5.8,
+      "label": "Bull +5.8/10"
     },
     {
       "pair": "USD/CHF",
       "spread": 5.4,
       "label": "Bull +5.4/10"
+    },
+    {
+      "pair": "GBP/CHF",
+      "spread": 5.3,
+      "label": "Bull +5.3/10"
+    },
+    {
+      "pair": "NZD/CHF",
+      "spread": 4.4,
+      "label": "Bull +4.4/10"
     }
   ],
   "bearish_pairs": [
@@ -89,14 +89,19 @@
       "label": "Bear -3.8/10"
     },
     {
-      "pair": "EUR/GBP",
-      "spread": 3.1,
-      "label": "Bear -3.1/10"
+      "pair": "GBP/AUD",
+      "spread": 2.7,
+      "label": "Bear -2.7/10"
     },
     {
       "pair": "EUR/USD",
       "spread": 1.2,
       "label": "Bear -1.2/10"
+    },
+    {
+      "pair": "EUR/GBP",
+      "spread": 1.1,
+      "label": "Bear -1.1/10"
     },
     {
       "pair": "CHF/JPY",
@@ -107,11 +112,6 @@
       "pair": "NZD/USD",
       "spread": 1,
       "label": "Bear -1/10"
-    },
-    {
-      "pair": "GBP/AUD",
-      "spread": 0.7,
-      "label": "Bear -0.7/10"
     }
   ],
   "rate_table": [
@@ -156,6 +156,16 @@
       "as_of": "2026-09-03"
     },
     {
+      "cur": "CAD",
+      "policy": "2.50%",
+      "bank": "Bank of Canada",
+      "instrument": "Overnight Target",
+      "bias": 0.2,
+      "bias_label": "+0.2",
+      "tone": "bull",
+      "as_of": "2026-10-29"
+    },
+    {
       "cur": "EUR",
       "policy": "2.50%",
       "bank": "European Central Bank",
@@ -164,16 +174,6 @@
       "bias_label": "+0.2",
       "tone": "bull",
       "as_of": "2026-09-16"
-    },
-    {
-      "cur": "CAD",
-      "policy": "2.25%",
-      "bank": "Bank of Canada",
-      "instrument": "Overnight Target",
-      "bias": 0,
-      "bias_label": "0",
-      "tone": "flat",
-      "as_of": "2025-10-30"
     },
     {
       "cur": "JPY",
