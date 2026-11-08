@@ -242,7 +242,7 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   page for the **local-first dashboard**: it installs on your machine and runs **in the browser**.
   Setting `dl_version` in the front matter is the single switch that flips the whole page from
   coming-soon copy to launched copy and derives the three platform download URLs from `dl_repo`
-  (see the comment block at the top of the file). **Live at v1.2.9 on all three platforms** — macOS and Windows
+  (see the comment block at the top of the file). **Live at v1.3.3 on all three platforms** — macOS and Windows
   since 2026-09-13, **Linux since 2026-09-19**. Linux is built on a rented GitHub runner
   (`workflow_dispatch` only, artifact not Release asset, no credentials — see
   `dashboard/packaging/README.md` in the monorepo), because PyInstaller cannot cross-compile
