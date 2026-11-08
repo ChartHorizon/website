@@ -1,0 +1,30 @@
+---
+layout: null
+permalink: /version.json
+sitemap: false
+---
+{%- comment -%}
+  The newest dashboard release, for the app's "a newer version is out" notice
+  (dashboard/app/update_check.py asks for this file at most once a day, with nothing in the
+  request — no version, no OS, no ID; the comparison happens on the user's machine).
+
+  NOTHING TO EDIT HERE. It is rendered from the dl_* switches in dashboard.html, so it changes
+  in the very publish that makes the new installers downloadable, and not one step earlier —
+  the release procedure already puts dl_version last, after the R2 upload. A platform held at
+  "soon" is null, so a macOS-only release never tells a Windows user about a download the page
+  still shows as Coming soon. An explicit URL override counts as dl_version (that is what the
+  override is for: the same release, hosted elsewhere or named differently).
+
+  Keep the shape: {"version": "x.y.z" | null, "platforms": {"macos"|"windows"|"linux": "x.y.z" | null}}.
+  Every app since the first one with the check reads exactly these keys.
+{%- endcomment -%}
+{%- assign dash = site.pages | where: "url", "/dashboard/" | first -%}
+{%- assign ver = dash.dl_version | default: "" | strip -%}
+{%- assign mac = dash.dl_macos | default: "" -%}
+{%- assign win = dash.dl_windows | default: "" -%}
+{%- assign lin = dash.dl_linux | default: "" -%}
+{%- if ver == "" -%}
+{"version": null, "platforms": {"macos": null, "windows": null, "linux": null}}
+{%- else -%}
+{"version": {{ ver | jsonify }}, "platforms": {"macos": {% if mac == "soon" %}null{% else %}{{ ver | jsonify }}{% endif %}, "windows": {% if win == "soon" %}null{% else %}{{ ver | jsonify }}{% endif %}, "linux": {% if lin == "soon" %}null{% else %}{{ ver | jsonify }}{% endif %}}}
+{%- endif %}

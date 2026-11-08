@@ -319,6 +319,15 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   shoots both editions from one session at one viewport and refuses to finish if the pair comes
   out at different pixel sizes, because the page swaps between them on a click and any drift in
   data or framing reads as a jump. Never hand-replace one edition on its own.
+- **`version.json`** (`/version.json`, since 2026-11-08) — what the dashboard app's update check
+  reads (`dashboard/app/update_check.py`). **Never edit it**: it is rendered from the `dl_*`
+  switches in `dashboard.html`, so it changes in the very publish that bumps `dl_version`, after
+  the R2 upload, and a platform held at `"soon"` comes out `null` (a macOS-only release does not
+  tell Windows users about a download the page still shows as Coming soon). Its shape —
+  `{"version", "platforms": {"macos", "windows", "linux"}}` — is a contract with every installed
+  app that has the check; extend it, never rename a key. The app asks only when its user says so
+  (off by default) and sends nothing about them; `privacy.html` §7 says so in both languages,
+  keep the two in step.
 - **`resources.html`** (`/resources/`, the **Resources** tab) — "The Reading Room", which has
   also been its h1 since 2026-09-13 (it was a kicker over a generic "Resources" before): outside
   material that explains the mechanics behind the desk's signals, added 2026-09-06. `default`
