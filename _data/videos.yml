@@ -14,6 +14,11 @@
 #   curl -sfL -o /tmp/yt.jpg "https://i.ytimg.com/vi/<id>/maxresdefault.jpg"
 #   python3 -c "from PIL import Image; Image.open('/tmp/yt.jpg').convert('RGB').save('assets/video/<id>.webp','WEBP',quality=82,method=6)"
 
+- id: WOs5C-sl0_Y
+  title: "Carrying Charges: Why the Curve Tells You More Than the Price"
+  date: 2026-11-07
+  alt: "Video thumbnail — a dark candlestick chart sliding from 5.00 to 3.00 behind the words Futures Curve Secrets"
+
 - id: H2tFRSRPZE8
   title: "Hedgers vs Speculators: Why Rising Prices With Short Hedges Reveal the Truth"
   date: 2026-09-06
