@@ -1,6 +1,6 @@
 {
-  "as_of": "Nov 06, 2026",
-  "generated": "2026-11-07",
+  "as_of": "Nov 11, 2026",
+  "generated": "2026-11-12",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -13,23 +13,23 @@
     },
     {
       "cur": "USD",
-      "score": 1.4,
-      "label": "+1.4"
+      "score": 1.2,
+      "label": "+1.2"
     },
     {
       "cur": "GBP",
-      "score": 1.3,
-      "label": "+1.3"
+      "score": 0.3,
+      "label": "+0.3"
     },
     {
       "cur": "NZD",
-      "score": 0.4,
-      "label": "+0.4"
+      "score": 0.3,
+      "label": "+0.3"
     },
     {
       "cur": "EUR",
-      "score": 0.2,
-      "label": "+0.2"
+      "score": 0.1,
+      "label": "+0.1"
     }
   ],
   "bearish": [
@@ -40,13 +40,13 @@
     },
     {
       "cur": "JPY",
-      "score": -2.9,
-      "label": "-2.9"
+      "score": -3,
+      "label": "-3"
     },
     {
       "cur": "CAD",
-      "score": -1.8,
-      "label": "-1.8"
+      "score": -1.9,
+      "label": "-1.9"
     }
   ],
   "neutral": [],
@@ -58,100 +58,100 @@
     },
     {
       "pair": "AUD/JPY",
-      "spread": 6.9,
-      "label": "Bull +6.9/10"
+      "spread": 7,
+      "label": "Bull +7/10"
     },
     {
       "pair": "AUD/CAD",
-      "spread": 5.8,
-      "label": "Bull +5.8/10"
+      "spread": 5.9,
+      "label": "Bull +5.9/10"
     },
     {
       "pair": "USD/CHF",
-      "spread": 5.4,
-      "label": "Bull +5.4/10"
+      "spread": 5.2,
+      "label": "Bull +5.2/10"
     },
     {
       "pair": "GBP/CHF",
-      "spread": 5.3,
-      "label": "Bull +5.3/10"
+      "spread": 4.3,
+      "label": "Bull +4.3/10"
     },
     {
       "pair": "NZD/CHF",
-      "spread": 4.4,
-      "label": "Bull +4.4/10"
+      "spread": 4.3,
+      "label": "Bull +4.3/10"
     }
   ],
   "bearish_pairs": [
     {
       "pair": "EUR/AUD",
-      "spread": 3.8,
-      "label": "Bear -3.8/10"
+      "spread": 3.9,
+      "label": "Bear -3.9/10"
     },
     {
       "pair": "GBP/AUD",
-      "spread": 2.7,
-      "label": "Bear -2.7/10"
+      "spread": 3.7,
+      "label": "Bear -3.7/10"
     },
     {
       "pair": "EUR/USD",
-      "spread": 1.2,
-      "label": "Bear -1.2/10"
-    },
-    {
-      "pair": "EUR/GBP",
       "spread": 1.1,
       "label": "Bear -1.1/10"
     },
     {
       "pair": "CHF/JPY",
-      "spread": 1.1,
-      "label": "Bear -1.1/10"
+      "spread": 1,
+      "label": "Bear -1/10"
+    },
+    {
+      "pair": "GBP/USD",
+      "spread": 0.9,
+      "label": "Bear -0.9/10"
     },
     {
       "pair": "NZD/USD",
-      "spread": 1,
-      "label": "Bear -1/10"
+      "spread": 0.9,
+      "label": "Bear -0.9/10"
     }
   ],
   "rate_table": [
     {
       "cur": "AUD",
-      "policy": "4.60%",
+      "policy": "4.85%",
       "bank": "Reserve Bank of Australia",
       "instrument": "Cash Rate Target",
       "bias": 2,
       "bias_label": "+2",
       "tone": "bull",
-      "as_of": "2026-09-30"
+      "as_of": "2026-11-04"
+    },
+    {
+      "cur": "GBP",
+      "policy": "4.00%",
+      "bank": "Bank of England",
+      "instrument": "Bank Rate",
+      "bias": 1.3,
+      "bias_label": "+1.3",
+      "tone": "bull",
+      "as_of": "2026-11-05"
     },
     {
       "cur": "USD",
       "policy": "3.75-4.00%",
       "bank": "Federal Reserve",
       "instrument": "Fed Funds Target Midpoint",
-      "bias": 1.4,
-      "bias_label": "+1.4",
+      "bias": 1.2,
+      "bias_label": "+1.2",
       "tone": "bull",
       "as_of": "2026-09-17"
-    },
-    {
-      "cur": "GBP",
-      "policy": "3.75%",
-      "bank": "Bank of England",
-      "instrument": "Bank Rate",
-      "bias": 1.3,
-      "bias_label": "+1.3",
-      "tone": "bull",
-      "as_of": "2025-12-18"
     },
     {
       "cur": "NZD",
       "policy": "2.75%",
       "bank": "Reserve Bank of New Zealand",
       "instrument": "Official Cash Rate",
-      "bias": 0.4,
-      "bias_label": "+0.4",
+      "bias": 0.3,
+      "bias_label": "+0.3",
       "tone": "bull",
       "as_of": "2026-09-03"
     },
@@ -160,8 +160,8 @@
       "policy": "2.50%",
       "bank": "Bank of Canada",
       "instrument": "Overnight Target",
-      "bias": 0.2,
-      "bias_label": "+0.2",
+      "bias": 0.1,
+      "bias_label": "+0.1",
       "tone": "bull",
       "as_of": "2026-10-29"
     },
@@ -170,8 +170,8 @@
       "policy": "2.50%",
       "bank": "European Central Bank",
       "instrument": "Deposit Facility Rate",
-      "bias": 0.2,
-      "bias_label": "+0.2",
+      "bias": 0.1,
+      "bias_label": "+0.1",
       "tone": "bull",
       "as_of": "2026-09-16"
     },
@@ -180,8 +180,8 @@
       "policy": "1.25%",
       "bank": "Bank of Japan",
       "instrument": "Overnight Call Rate",
-      "bias": -0.9,
-      "bias_label": "-0.9",
+      "bias": -1,
+      "bias_label": "-1",
       "tone": "bear",
       "as_of": "2026-09-24"
     },
