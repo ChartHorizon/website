@@ -172,6 +172,10 @@
           <xsl:choose>
             <xsl:when test="contains(atom:link[@rel='alternate']/@href, '/hedgers-ledger/')
                             or contains(atom:title, 'Hedgers')">Hedgers’ Ledger</xsl:when>
+            <!-- A Full Hand report carries `category: full-hand`, which jekyll-feed writes
+                 out as <category term="full-hand"/>: the one piece of its front matter that
+                 survives into the feed. -->
+            <xsl:when test="atom:category/@term = 'full-hand'">Full Hand</xsl:when>
             <xsl:otherwise>Weekly Tape</xsl:otherwise>
           </xsl:choose>
         </span>

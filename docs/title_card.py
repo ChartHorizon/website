@@ -289,7 +289,10 @@ def render(slug: str, motif: str, chart: pathlib.Path | None) -> None:
     date = fm["date"]
     if isinstance(date, str):
         date = datetime.date.fromisoformat(date.split()[0])
-    kicker = f"WEEKLY TAPE  ·  {date.strftime('%B %-d, %Y').upper()}"
+    # The kicker names the post's edition: `edition:` front matter when it has one (Full
+    # Hand reports do), the Weekly Tape otherwise, which is every other post with a card.
+    edition = str(fm.get("edition") or "Weekly Tape").upper()
+    kicker = f"{edition}  ·  {date.strftime('%B %-d, %Y').upper()}"
 
     img = base_photo(motif)
     if chart is not None:

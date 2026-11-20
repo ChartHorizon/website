@@ -51,7 +51,6 @@ layout: default
 {%- for p in posts -%}
   {%- if p.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- break -%}{%- endif -%}
 {%- endfor -%}
-{%- capture this_edition %}{% include edition.html post=page %}{% endcapture -%}
 {%- capture this_key %}{% include edition.html post=page key=true %}{% endcapture -%}
 
 {%- comment -%}
@@ -89,8 +88,11 @@ layout: default
     {%- if pass == 2 and forloop.index0 >= idx -%}{%- continue -%}{%- endif -%}
     {%- assign key = p.url | append: "|" -%}
     {%- if p.url == page.url or chosen contains key -%}{%- continue -%}{%- endif -%}
-    {%- capture p_edition %}{% include edition.html post=p %}{% endcapture -%}
-    {%- if p_edition == this_edition -%}
+    {%- comment -%} Matched on the KEY, not the display name: a Full Hand report would
+        otherwise find no section-mates at all, and a Ledger with `edition:` front matter
+        (curly apostrophe) never matched one without it (&rsquo;). {%- endcomment -%}
+    {%- capture p_key %}{% include edition.html post=p key=true %}{% endcapture -%}
+    {%- if p_key == this_key -%}
       {%- assign chosen = chosen | append: key -%}
       {%- assign shown = shown | plus: 1 -%}
     {%- endif -%}

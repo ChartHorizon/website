@@ -68,7 +68,14 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
    need to compare editions rather than display them — the cover's lead/strand selection, the
    two hubs — call `edition.html` with `key=true`, which returns the machine key `tape`/`ledger`
    instead: the display name carries an HTML entity (`&rsquo;`) no caller should have to spell
-   to match on. The post body is **only** the article — the `post` layout supplies
+   to match on (so does the "Elsewhere in the paper" block, since 2026-11-20).
+   **Full Hand** (since 2026-11-20, first issue: coffee) is a third, occasional format: one
+   report on one market that has newly turned 3/3, a section per light plus the news and
+   what would switch it off. It sets `edition: "Full Hand"` **and** `category: full-hand`.
+   The first is the dateline label (and `docs/title_card.py`'s kicker); the second is the
+   only front matter that reaches the Atom feed, where `feed.xslt.xml` labels it. It keys
+   as `tape` on purpose (Tape strand, `/tape/`, may lead the cover), so it has no hub of its own
+   until there is a run to fill one. The post body is **only** the article — the `post` layout supplies
    the `<h1>`, the dek, and the trailing educational/risk disclaimer automatically.
    Optional **SEO-only** front matter (never shown on-page, just feeds `<head>` meta — see
    "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta

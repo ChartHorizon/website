@@ -12,6 +12,11 @@
   The key is total by construction — anything that is not a Ledger is `tape` — so the
   two hubs always partition the run and no post can fall out of both.
 
+  A Full Hand report (`edition: "Full Hand"`, since 2026-11-20: one market that has turned
+  3/3) displays its own name but keys as `tape` on purpose. It is a written note like the
+  Tape, so it may lead the cover, sits in the Tape strand and on /tape/, and needs no third
+  hub until there is a run of them to fill one.
+
   Usage: {% include edition.html post=post %}           -> "Hedgers&rsquo; Ledger" | "Weekly Tape"
          {% include edition.html post=post key=true %}  -> "ledger" | "tape"
 {%- endcomment -%}
