@@ -1,6 +1,6 @@
 {
-  "as_of": "Nov 19, 2026",
-  "generated": "2026-11-20",
+  "as_of": "Nov 20, 2026",
+  "generated": "2026-11-21",
   "max_score": 5,
   "pair_max": 10,
   "pair_threshold": 6,
@@ -12,24 +12,24 @@
       "label": "+4"
     },
     {
+      "cur": "GBP",
+      "score": 2.3,
+      "label": "+2.3"
+    },
+    {
       "cur": "USD",
       "score": 1.2,
       "label": "+1.2"
     },
     {
-      "cur": "GBP",
-      "score": 0.3,
-      "label": "+0.3"
+      "cur": "EUR",
+      "score": 1.1,
+      "label": "+1.1"
     },
     {
       "cur": "NZD",
       "score": 0.3,
       "label": "+0.3"
-    },
-    {
-      "cur": "EUR",
-      "score": 0.1,
-      "label": "+0.1"
     }
   ],
   "bearish": [
@@ -62,41 +62,41 @@
       "label": "Bull +7/10"
     },
     {
+      "pair": "GBP/CHF",
+      "spread": 6.3,
+      "label": "Bull +6.3/10"
+    },
+    {
       "pair": "AUD/CAD",
       "spread": 5.9,
       "label": "Bull +5.9/10"
     },
     {
+      "pair": "GBP/JPY",
+      "spread": 5.3,
+      "label": "Bull +5.3/10"
+    },
+    {
       "pair": "USD/CHF",
       "spread": 5.2,
       "label": "Bull +5.2/10"
-    },
-    {
-      "pair": "GBP/CHF",
-      "spread": 4.3,
-      "label": "Bull +4.3/10"
-    },
-    {
-      "pair": "NZD/CHF",
-      "spread": 4.3,
-      "label": "Bull +4.3/10"
     }
   ],
   "bearish_pairs": [
     {
       "pair": "EUR/AUD",
-      "spread": 3.9,
-      "label": "Bear -3.9/10"
+      "spread": 2.9,
+      "label": "Bear -2.9/10"
     },
     {
       "pair": "GBP/AUD",
-      "spread": 3.7,
-      "label": "Bear -3.7/10"
+      "spread": 1.7,
+      "label": "Bear -1.7/10"
     },
     {
-      "pair": "EUR/USD",
-      "spread": 1.1,
-      "label": "Bear -1.1/10"
+      "pair": "EUR/GBP",
+      "spread": 1.2,
+      "label": "Bear -1.2/10"
     },
     {
       "pair": "CHF/JPY",
@@ -104,14 +104,14 @@
       "label": "Bear -1/10"
     },
     {
-      "pair": "GBP/USD",
+      "pair": "NZD/USD",
       "spread": 0.9,
       "label": "Bear -0.9/10"
     },
     {
-      "pair": "NZD/USD",
-      "spread": 0.9,
-      "label": "Bear -0.9/10"
+      "pair": "EUR/USD",
+      "spread": 0.1,
+      "label": "Bear -0.1/10"
     }
   ],
   "rate_table": [
