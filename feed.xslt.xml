@@ -176,6 +176,8 @@
                  out as <category term="full-hand"/>: the one piece of its front matter that
                  survives into the feed. -->
             <xsl:when test="atom:category/@term = 'full-hand'">Full Hand</xsl:when>
+            <!-- Small Print (since 2026-11-22) rides on `category: small-print` the same way. -->
+            <xsl:when test="atom:category/@term = 'small-print'">Small Print</xsl:when>
             <xsl:otherwise>Weekly Tape</xsl:otherwise>
           </xsl:choose>
         </span>

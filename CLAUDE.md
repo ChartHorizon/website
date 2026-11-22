@@ -75,7 +75,21 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
    The first is the dateline label (and `docs/title_card.py`'s kicker); the second is the
    only front matter that reaches the Atom feed, where `feed.xslt.xml` labels it. It keys
    as `tape` on purpose (Tape strand, `/tape/`, may lead the cover), so it has no hub of its own
-   until there is a run to fill one. The post body is **only** the article — the `post` layout supplies
+   until there is a run to fill one.
+   **Small Print** (since 2026-11-22, first issue: US diesel and crude stocks, "Flat Out and Still
+   Short") is a fourth, occasional format, the operator's "über den Tellerrand" request: a report
+   that starts from a **public statistic** at a multi-year extreme (EIA, Treasury, Fed …) rather
+   than from the week's headlines or the desk's own signals, and comes back to the desk's markets
+   only where one is involved. The angle is off-headline, the tone is not: no calls, no alarm,
+   and every claim rests on a number charted from the public data, with the original publisher
+   in the caption and the source named in prose, never linked. Topics come from the monorepo's
+   `livermore blog scout` (Telegram list); the report is written in a session, never generated.
+   Wired exactly like Full Hand: `edition: "Small Print"` + `category: small-print`, keys as
+   `tape`, a `feed.xslt.xml` branch, a line in `edition.html`'s comment, and `/about/` lists it
+   as the fourth edition, where the "computed from end-of-day futures and CFTC data" sentence
+   now names the editions it is true of. Its title card uses a motif and a trace of the
+   statistic itself (the first issue: `energy`, distillate stocks), not a price.
+   The post body is **only** the article — the `post` layout supplies
    the `<h1>`, the dek, and the trailing educational/risk disclaimer automatically.
    Optional **SEO-only** front matter (never shown on-page, just feeds `<head>` meta — see
    "SEO" below): `seo_title` (keyword-rich `<title>`/`og:title`), `description` (search meta
@@ -242,7 +256,7 @@ since **2026-09-19**, **`/dashboard/` links to the public source mirror**
   verdict comes from. Hence `prog_<key>.webp` alongside `<key>.webp` — a market can be an extreme
   and a turn in the same issue, and the two pictures are not the same picture.
 - **`about.html`** (`/about/`) — the anonymous "About the Desk" page (`default` layout, normal
-  indexed page): the three-signal method, the three editions, the not-advice stance, and the
+  indexed page): the three-signal method, the editions (Tape, Ledger, Full Hand, Small Print), the not-advice stance, and the
   deliberate no-byline statement. Links only X (`@ChartHorizon`) — support/social only, per the
   public-repo constraint. Gets an `AboutPage` JSON-LD branch in `default.html`.
 - **`dashboard.html`** (`/dashboard/`, the **Dashboard** tab) — `default` layout, normal indexed
