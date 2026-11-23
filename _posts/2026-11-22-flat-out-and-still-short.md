@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Flat Out and Still Short"
-date: 2026-11-22 06:00:00 +0100
+date: 2026-11-22 08:00:00 +0100
 edition: "Small Print"
 category: small-print
 subtitle: "American refineries are running harder than in any November since 1998, yet the country holds less diesel for the time of year than in any November on record, and the reserve behind it is at its lowest since 1982."
